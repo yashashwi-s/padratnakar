@@ -1,64 +1,57 @@
-import { useEffect } from 'react';
-import { AppProvider, useAppState, useAppDispatch } from './context/AppContext';
-import Sidebar from './components/Sidebar';
-import HymnList from './components/HymnList';
-import HymnReader from './components/HymnReader';
-import hymnsData from './data/hymns.json';
-import sectionsData from './data/sections.json';
-import './index.css';
 
-function AppInner() {
-  const { sidebarOpen } = useAppState();
+import { AppProvider, useAppState, useAppDispatch } from './context/AppContext';
+import HymnReader from './components/HymnReader';
+import SearchModal from './components/SearchModal';
+import { useEffect } from 'react';
+
+function MainApp() {
+  const { isSearchOpen, activePad, hymns } = useAppState();
   const dispatch = useAppDispatch();
 
-  // Load data on mount
   useEffect(() => {
-    // Build sections from hymns if sections.json is empty
-    let sections = sectionsData || [];
-    if (!sections.length && hymnsData.length) {
-      const secMap = {};
-      hymnsData.forEach(h => {
-        const sec = h.section || 'Uncategorized';
-        if (!secMap[sec]) secMap[sec] = { name: sec, padCount: 0, startId: h.id, endId: h.id };
-        secMap[sec].padCount++;
-        secMap[sec].endId = Math.max(secMap[sec].endId, h.id);
-      });
-      sections = Object.values(secMap);
+    if (!activePad && hymns && hymns.length > 0) {
+      // Find Pad 1 or just the first pad
+      const pad1 = hymns.find(h => h.id === 1) || hymns[0];
+      if (pad1) {
+        dispatch({ type: 'SET_ACTIVE_PAD', pad: pad1 });
+      }
     }
-    dispatch({ type: 'SET_DATA', hymns: hymnsData, sections });
-  }, [dispatch]);
-
-  // Keyboard shortcut: "/" to focus search
-  useEffect(() => {
-    const handler = (e) => {
-      if (e.key === '/' && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
-        e.preventDefault();
-        const searchInput = document.querySelector('.search-input');
-        if (searchInput) searchInput.focus();
-      }
-      if (e.key === 'Escape') {
-        dispatch({ type: 'CLOSE_SIDEBAR' });
-      }
-    };
-    window.addEventListener('keydown', handler);
-    return () => window.removeEventListener('keydown', handler);
-  }, [dispatch]);
+  }, [activePad, hymns, dispatch]);
 
   return (
     <div className="app-layout">
-      {/* Sidebar overlay for mobile */}
-      {sidebarOpen && <div className="sidebar-overlay" onClick={() => dispatch({ type: 'CLOSE_SIDEBAR' })} />}
-      <Sidebar />
-      <HymnList />
-      <HymnReader />
+      {/* Top Navigation */}
+      <header className="top-nav">
+        <h1 className="top-nav-title">पद-रत्नाकर</h1>
+        <div className="top-nav-actions">
+          <button 
+            className="nav-btn" 
+            onClick={() => dispatch({ type: 'TOGGLE_SEARCH' })}
+          >
+            <span>⌕</span> Search / Topics
+          </button>
+        </div>
+      </header>
+
+      {/* Main Reader View */}
+      <main className="reader-container">
+        <div className="reader-content-box">
+          <HymnReader />
+        </div>
+      </main>
+
+      {/* Full Screen Search / Topics Modal */}
+      {isSearchOpen && <SearchModal />}
     </div>
   );
 }
 
-export default function App() {
+function App() {
   return (
     <AppProvider>
-      <AppInner />
+      <MainApp />
     </AppProvider>
   );
 }
+
+export default App;

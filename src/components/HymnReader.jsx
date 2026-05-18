@@ -1,28 +1,34 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 import { useAppState, useAppDispatch } from '../context/AppContext';
 
+/**
+ * Convert Arabic numeral to Devanagari.
+ */
+function toDevanagariNum(n) {
+  const map = { '0':'०','1':'१','2':'२','3':'३','4':'४','5':'५','6':'६','7':'७','8':'८','9':'९' };
+  return String(n).replace(/[0-9]/g, d => map[d]);
+}
+
 export default function HymnReader() {
-  const { activePad, fontSize, bookmarks, hymns, collections } = useAppState();
+  const { activePad, hymns, bookmarks, fontSize } = useAppState();
   const dispatch = useAppDispatch();
   const contentRef = useRef(null);
 
-  const isBookmarked = activePad ? bookmarks.includes(activePad.id) : false;
-
+  // Scroll to top on pad change
   useEffect(() => {
-    if (contentRef.current) {
-      contentRef.current.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    if (contentRef.current) contentRef.current.scrollTo({ top: 0, behavior: 'smooth' });
   }, [activePad?.id]);
 
-  const navigatePad = (direction) => {
+  // ── Keyboard navigation ────────────────────────────────────────────────────
+  const navigatePad = useCallback((direction) => {
     if (!activePad || !hymns.length) return;
-    const currentIdx = hymns.findIndex(h => h.id === activePad.id);
-    if (currentIdx === -1) return;
-    const nextIdx = currentIdx + direction;
-    if (nextIdx >= 0 && nextIdx < hymns.length) {
-      dispatch({ type: 'SET_ACTIVE_PAD', pad: hymns[nextIdx] });
+    const idx = hymns.findIndex(h => h.id === activePad.id);
+    if (idx === -1) return;
+    const next = idx + direction;
+    if (next >= 0 && next < hymns.length) {
+      dispatch({ type: 'SET_ACTIVE_PAD', pad: hymns[next] });
     }
-  };
+  }, [activePad, hymns, dispatch]);
 
   useEffect(() => {
     const handler = (e) => {
@@ -32,111 +38,106 @@ export default function HymnReader() {
     };
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
-  });
+  }, [navigatePad]);
+
+  // ── Touch / swipe ──────────────────────────────────────────────────────────
+  const touchX = useRef(null);
+  const touchY = useRef(null);
+
+  const onTouchStart = (e) => {
+    touchX.current = e.targetTouches[0].clientX;
+    touchY.current = e.targetTouches[0].clientY;
+  };
+  const onTouchEnd = (e) => {
+    if (touchX.current === null) return;
+    const dx = e.changedTouches[0].clientX - touchX.current;
+    const dy = e.changedTouches[0].clientY - touchY.current;
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 60) {
+      navigatePad(dx < 0 ? 1 : -1);
+    }
+    touchX.current = null;
+  };
+
+  // ── Bookmark ──────────────────────────────────────────────────────────────
+  const isBookmarked = activePad ? bookmarks.includes(activePad.id) : false;
+  const toggleBookmark = () => {
+    if (activePad) dispatch({ type: 'TOGGLE_BOOKMARK', padId: activePad.id });
+  };
+
+  // ── Font size ──────────────────────────────────────────────────────────────
+  const changeFontSize = (delta) => {
+    const next = Math.min(2.5, Math.max(0.8, (fontSize || 1.2) + delta));
+    dispatch({ type: 'SET_FONT_SIZE', size: Math.round(next * 10) / 10 });
+  };
 
   if (!activePad) {
     return (
-      <div className="reader-panel glass-panel empty-state">
+      <div className="empty-state">
         <div className="empty-icon">॥</div>
         <h2>पद-रत्नाकर</h2>
-        <p>Select a pad from the list to begin reading</p>
-        <div className="empty-shortcuts">
-          <span>← → Navigate</span>
-          <span>/ Search</span>
-        </div>
+        <p>Search or browse Topics to begin</p>
       </div>
     );
   }
 
+  const currentIdx = hymns.findIndex(h => h.id === activePad.id);
+  const hasPrev = currentIdx > 0;
+  const hasNext = currentIdx < hymns.length - 1;
+
+  // Separate raag line from verse lines
+  const isRaagLine = (line) => /^\s*\(.+\)\s*$/.test(line.trim()) && line.trim().length < 60;
+  const raagLine = activePad.verses.find(v => isRaagLine(v));
+  const verseLines = activePad.verses.filter(v => !isRaagLine(v));
+
   return (
-    <div className="reader-panel glass-panel" ref={contentRef}>
-      {/* Breadcrumb: section > pad number */}
+    <div
+      ref={contentRef}
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}
+    >
+      {/* Section breadcrumb */}
       <div className="reader-breadcrumb">
-        {activePad.section && (
-          <button
-            className="breadcrumb-section"
-            onClick={() => dispatch({ type: 'SET_VIEW_SECTION', section: activePad.section })}
-          >
-            {activePad.section}
-          </button>
+        {activePad.section && <span className="breadcrumb-section">{activePad.section}</span>}
+        {activePad.subtopic && (
+          <>
+            <span className="breadcrumb-sep">›</span>
+            <span className="breadcrumb-section">{activePad.subtopic}</span>
+          </>
         )}
-        <span className="breadcrumb-sep">›</span>
-        <span className="breadcrumb-current">पद {activePad._customNumber || activePad.id}</span>
       </div>
 
-      {/* Pad number as the title — like the original app */}
-      <h2 className="reader-title">
-        पद संख्या {activePad._customNumber || activePad.id}
-      </h2>
+      {/* Pad number in Devanagari */}
+      <h2 className="reader-pad-number">[{toDevanagariNum(activePad.id)}]</h2>
 
-      {/* Raag/Taal — if present */}
-      {(activePad.raag || activePad.taal) && (
-        <div className="reader-meta">
-          {activePad.raag && <span className="meta-tag">{activePad.raag}</span>}
-          {activePad.taal && <span className="meta-tag">{activePad.taal}</span>}
-        </div>
-      )}
+      {/* Raag/Taal line directly below the number */}
+      {raagLine && <div className="reader-raag-line">{raagLine.trim()}</div>}
 
-      {/* Controls */}
+      {/* Controls row */}
       <div className="reader-controls">
-        <button onClick={() => navigatePad(-1)} title="Previous (←)" className="ctrl-btn">‹ Prev</button>
-        <button onClick={() => navigatePad(1)} title="Next (→)" className="ctrl-btn">Next ›</button>
-        <div className="ctrl-divider" />
-        <button
-          onClick={() => dispatch({ type: 'SET_FONT_SIZE', size: Math.max(0.8, fontSize - 0.1) })}
-          title="Smaller text"
-          className="ctrl-btn"
-        >A−</button>
-        <button
-          onClick={() => dispatch({ type: 'SET_FONT_SIZE', size: Math.min(2.5, fontSize + 0.1) })}
-          title="Larger text"
-          className="ctrl-btn"
-        >A+</button>
-        <div className="ctrl-divider" />
-        <button
-          onClick={() => dispatch({ type: 'TOGGLE_BOOKMARK', padId: activePad.id })}
-          title={isBookmarked ? 'Remove from saved' : 'Save'}
-          className={`ctrl-btn ${isBookmarked ? 'bookmarked' : ''}`}
-        >
-          {isBookmarked ? '✦ Saved' : '✦ Save'}
+        <button onClick={() => navigatePad(-1)} disabled={!hasPrev} className="ctrl-btn">‹</button>
+        <button onClick={() => navigatePad(1)} disabled={!hasNext} className="ctrl-btn">›</button>
+        <span className="ctrl-divider" />
+        <button onClick={toggleBookmark} className={`ctrl-btn ${isBookmarked ? 'bookmarked' : ''}`}>
+          {isBookmarked ? '★' : '☆'}
         </button>
-        {collections.length > 0 && (
-          <div className="ctrl-dropdown">
-            <button className="ctrl-btn" title="Add to Collection">+ Collection</button>
-            <div className="ctrl-dropdown-content">
-              {collections.map(col => (
-                <button
-                  key={col.id}
-                  onClick={() => dispatch({
-                    type: 'ADD_PAD_TO_COLLECTION',
-                    collectionId: col.id,
-                    padId: activePad.id,
-                  })}
-                >
-                  {col.name}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
+        <span className="ctrl-divider" />
+        <button onClick={() => changeFontSize(-0.1)} className="ctrl-btn">A−</button>
+        <button onClick={() => changeFontSize(+0.1)} className="ctrl-btn">A+</button>
       </div>
 
-      {/* Verses — the content, simply and cleanly */}
-      <div className="reader-content" style={{ fontSize: `${fontSize}em` }}>
-        {activePad.verses.map((verse, i) => (
+      {/* Verses */}
+      <div className="reader-content" style={{ fontSize: `${fontSize || 1.2}em` }}>
+        {verseLines.map((verse, i) => (
           <p key={i} className="verse-line">{verse}</p>
         ))}
       </div>
 
-      {/* Footnotes */}
-      {activePad.footnotes && activePad.footnotes.length > 0 && (
-        <div className="reader-footnotes">
-          <h4>Footnotes</h4>
-          {activePad.footnotes.map((fn, i) => (
-            <p key={i} className="footnote">{fn}</p>
-          ))}
-        </div>
-      )}
+      {/* Bottom navigation */}
+      <div className="reader-nav-bottom">
+        <button onClick={() => navigatePad(-1)} disabled={!hasPrev} className="ctrl-btn">‹ Previous</button>
+        <span className="pad-position">{currentIdx + 1} / {hymns.length}</span>
+        <button onClick={() => navigatePad(1)} disabled={!hasNext} className="ctrl-btn">Next ›</button>
+      </div>
     </div>
   );
 }

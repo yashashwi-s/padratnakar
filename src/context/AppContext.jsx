@@ -1,72 +1,73 @@
 import { createContext, useContext, useReducer, useEffect } from 'react';
+import hymnsData from '../data/hymns.json';
+import sectionsData from '../data/sections.json';
 
-const AppContext = createContext(null);
+const AppStateContext = createContext(null);
 const AppDispatchContext = createContext(null);
 
 const initialState = {
-  // Data
-  hymns: [],
-  sections: [],
-  
+  // Data (loaded from JSON at startup)
+  hymns: hymnsData,
+  sections: sectionsData,
+
   // Navigation
-  activePad: null,
-  activeSection: null,      // null = all, or section name string
-  activeCollection: null,   // null = not viewing collection, or collection id
-  activeView: 'all',        // 'all' | 'section' | 'bookmarks' | 'collection'
-  
-  // Search
+  activePad: null,          // null = none selected
+  activeSection: null,      // string section name or null
+  activeSubtopic: null,     // string subtopic or null
+
+  // Search Modal
+  isSearchOpen: false,
   searchQuery: '',
   searchMode: 'fuzzy',      // 'fuzzy' | 'exact'
-  
-  // Collections
+
+  // Collections (user-defined groupings of pads)
   collections: [],
+
+  // Bookmarks (array of pad IDs)
   bookmarks: [],
-  
-  // UI
-  theme: 'dark',
-  fontSize: 1.2,
-  sidebarOpen: false,
+
+  // Reader preferences
+  fontSize: 1.2,            // em multiplier applied to verses
 };
 
-function appReducer(state, action) {
+function reducer(state, action) {
   switch (action.type) {
-    case 'SET_DATA':
-      return { ...state, hymns: action.hymns, sections: action.sections };
-    
+
+    // ── Navigation ──────────────────────────────────────────────────────────
     case 'SET_ACTIVE_PAD':
-      return { ...state, activePad: action.pad };
-    
-    case 'SET_VIEW_ALL':
-      return { ...state, activeView: 'all', activeSection: null, activeCollection: null };
-    
+      return { ...state, activePad: action.pad, isSearchOpen: false };
+
+    case 'CLEAR_ACTIVE_PAD':
+      return { ...state, activePad: null };
+
     case 'SET_VIEW_SECTION':
-      return { ...state, activeView: 'section', activeSection: action.section, activeCollection: null };
-    
-    case 'SET_VIEW_BOOKMARKS':
-      return { ...state, activeView: 'bookmarks', activeSection: null, activeCollection: null };
-    
-    case 'SET_VIEW_COLLECTION':
-      return { ...state, activeView: 'collection', activeCollection: action.collectionId, activeSection: null };
-    
+      return {
+        ...state,
+        activeSection: action.section,
+        activeSubtopic: action.subtopic || null,
+        isSearchOpen: false,
+      };
+
+    case 'CLEAR_SECTION':
+      return { ...state, activeSection: null, activeSubtopic: null };
+
+    // ── Search Modal ──────────────────────────────────────────────────────────
+    case 'OPEN_SEARCH':
+      return { ...state, isSearchOpen: true };
+
+    case 'CLOSE_SEARCH':
+      return { ...state, isSearchOpen: false, searchQuery: '' };
+
+    case 'TOGGLE_SEARCH':
+      return { ...state, isSearchOpen: !state.isSearchOpen, searchQuery: state.isSearchOpen ? '' : state.searchQuery };
+
     case 'SET_SEARCH':
       return { ...state, searchQuery: action.query };
-    
+
     case 'SET_SEARCH_MODE':
       return { ...state, searchMode: action.mode };
-    
-    case 'TOGGLE_THEME':
-      return { ...state, theme: state.theme === 'dark' ? 'light' : 'dark' };
-    
-    case 'SET_FONT_SIZE':
-      return { ...state, fontSize: action.size };
-    
-    case 'TOGGLE_SIDEBAR':
-      return { ...state, sidebarOpen: !state.sidebarOpen };
-    
-    case 'CLOSE_SIDEBAR':
-      return { ...state, sidebarOpen: false };
-    
-    // Bookmarks
+
+    // ── Bookmarks ─────────────────────────────────────────────────────────────
     case 'TOGGLE_BOOKMARK': {
       const id = action.padId;
       const bookmarks = state.bookmarks.includes(id)
@@ -74,29 +75,28 @@ function appReducer(state, action) {
         : [...state.bookmarks, id];
       return { ...state, bookmarks };
     }
-    
-    // Collections
+
+    // ── Collections ───────────────────────────────────────────────────────────
     case 'SET_COLLECTIONS':
       return { ...state, collections: action.collections };
-    
+
     case 'ADD_COLLECTION': {
       const newCol = {
         id: Date.now().toString(),
         name: action.name,
+        description: action.description || '',
         pads: [],
         createdAt: new Date().toISOString(),
       };
       return { ...state, collections: [...state.collections, newCol] };
     }
-    
+
     case 'DELETE_COLLECTION':
       return {
         ...state,
         collections: state.collections.filter(c => c.id !== action.collectionId),
-        activeCollection: state.activeCollection === action.collectionId ? null : state.activeCollection,
-        activeView: state.activeCollection === action.collectionId ? 'all' : state.activeView,
       };
-    
+
     case 'RENAME_COLLECTION':
       return {
         ...state,
@@ -104,14 +104,13 @@ function appReducer(state, action) {
           c.id === action.collectionId ? { ...c, name: action.name } : c
         ),
       };
-    
-    case 'ADD_PAD_TO_COLLECTION': {
+
+    case 'ADD_PAD_TO_COLLECTION':
       return {
         ...state,
         collections: state.collections.map(c => {
           if (c.id !== action.collectionId) return c;
-          // Don't add duplicates
-          if (c.pads.some(p => p.padId === action.padId)) return c;
+          if (c.pads.some(p => p.padId === action.padId)) return c; // no duplicates
           return {
             ...c,
             pads: [...c.pads, {
@@ -122,8 +121,7 @@ function appReducer(state, action) {
           };
         }),
       };
-    }
-    
+
     case 'REMOVE_PAD_FROM_COLLECTION':
       return {
         ...state,
@@ -132,7 +130,7 @@ function appReducer(state, action) {
           return { ...c, pads: c.pads.filter(p => p.padId !== action.padId) };
         }),
       };
-    
+
     case 'REORDER_COLLECTION_PADS': {
       return {
         ...state,
@@ -145,8 +143,8 @@ function appReducer(state, action) {
         }),
       };
     }
-    
-    case 'UPDATE_COLLECTION_PAD': {
+
+    case 'UPDATE_COLLECTION_PAD':
       return {
         ...state,
         collections: state.collections.map(c => {
@@ -161,69 +159,71 @@ function appReducer(state, action) {
           };
         }),
       };
-    }
-    
+
+    // ── Reader Preferences ────────────────────────────────────────────────────
+    case 'SET_FONT_SIZE':
+      return { ...state, fontSize: action.size };
+
     default:
       return state;
   }
 }
 
+const STORAGE_KEY = 'pad-ratnakar-state-v2';
+
+function loadPersistedState() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (!saved) return {};
+    const parsed = JSON.parse(saved);
+    return {
+      bookmarks: Array.isArray(parsed.bookmarks) ? parsed.bookmarks : [],
+      collections: Array.isArray(parsed.collections) ? parsed.collections : [],
+      fontSize: typeof parsed.fontSize === 'number' ? parsed.fontSize : 1.2,
+    };
+  } catch {
+    return {};
+  }
+}
+
 export function AppProvider({ children }) {
-  const [state, dispatch] = useReducer(appReducer, initialState);
-  
-  // Load bookmarks and collections from localStorage on mount
+  const persisted = loadPersistedState();
+  const [state, dispatch] = useReducer(reducer, {
+    ...initialState,
+    ...persisted,
+  });
+
+  // Auto-open Pad 1 on first load if no pad is active
+  useEffect(() => {
+    if (!state.activePad && state.hymns.length > 0) {
+      const pad1 = state.hymns.find(h => h.id === 1) || state.hymns[0];
+      if (pad1) dispatch({ type: 'SET_ACTIVE_PAD', pad: pad1 });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Persist bookmarks, collections, fontSize
   useEffect(() => {
     try {
-      const savedBookmarks = JSON.parse(localStorage.getItem('pad-ratnakar-bookmarks') || '[]');
-      const savedCollections = JSON.parse(localStorage.getItem('pad-ratnakar-collections') || '[]');
-      const savedTheme = localStorage.getItem('pad-ratnakar-theme') || 'dark';
-      const savedFontSize = parseFloat(localStorage.getItem('pad-ratnakar-fontSize') || '1.2');
-      
-      if (savedBookmarks.length) {
-        savedBookmarks.forEach(id => dispatch({ type: 'TOGGLE_BOOKMARK', padId: id }));
-      }
-      if (savedCollections.length) {
-        dispatch({ type: 'SET_COLLECTIONS', collections: savedCollections });
-      }
-      if (savedTheme !== 'dark') dispatch({ type: 'TOGGLE_THEME' });
-      if (savedFontSize !== 1.2) dispatch({ type: 'SET_FONT_SIZE', size: savedFontSize });
-    } catch (e) {
-      console.warn('Failed to load saved state:', e);
-    }
-  }, []);
-  
-  // Persist bookmarks
-  useEffect(() => {
-    localStorage.setItem('pad-ratnakar-bookmarks', JSON.stringify(state.bookmarks));
-  }, [state.bookmarks]);
-  
-  // Persist collections
-  useEffect(() => {
-    localStorage.setItem('pad-ratnakar-collections', JSON.stringify(state.collections));
-  }, [state.collections]);
-  
-  // Persist theme
-  useEffect(() => {
-    localStorage.setItem('pad-ratnakar-theme', state.theme);
-    document.documentElement.setAttribute('data-theme', state.theme);
-  }, [state.theme]);
-  
-  // Persist fontSize
-  useEffect(() => {
-    localStorage.setItem('pad-ratnakar-fontSize', state.fontSize.toString());
-  }, [state.fontSize]);
-  
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        bookmarks: state.bookmarks,
+        collections: state.collections,
+        fontSize: state.fontSize,
+      }));
+    } catch { /* quota exceeded or private mode */ }
+  }, [state.bookmarks, state.collections, state.fontSize]);
+
   return (
-    <AppContext.Provider value={state}>
+    <AppStateContext.Provider value={state}>
       <AppDispatchContext.Provider value={dispatch}>
         {children}
       </AppDispatchContext.Provider>
-    </AppContext.Provider>
+    </AppStateContext.Provider>
   );
 }
 
 export function useAppState() {
-  return useContext(AppContext);
+  return useContext(AppStateContext);
 }
 
 export function useAppDispatch() {

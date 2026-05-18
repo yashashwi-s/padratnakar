@@ -1,32 +1,283 @@
 [
   {
-    "name": "पद-रत्नाकर",
-    "padCount": 94,
-    "startId": 3,
-    "endId": 15035
-  },
-  {
     "name": "वन्दना एवं प्रार्थना",
-    "padCount": 44,
-    "startId": 4,
-    "endId": 151
-  },
-  {
-    "name": "अनुभूति",
-    "padCount": 4,
-    "startId": 65,
-    "endId": 11572
-  },
-  {
-    "name": "स्तुति",
-    "padCount": 5,
-    "startId": 80,
-    "endId": 15570
+    "padCount": 151,
+    "startPad": 1,
+    "endPad": 152,
+    "subtopics": []
   },
   {
     "name": "श्रीराधा-माधव-स्वरूप-माधुरी",
-    "padCount": 1,
-    "startId": 152,
-    "endId": 152
+    "padCount": 47,
+    "startPad": 153,
+    "endPad": 199,
+    "subtopics": []
+  },
+  {
+    "name": "श्रीकृष्ण-बाल-लीला-माधुरी",
+    "padCount": 33,
+    "startPad": 200,
+    "endPad": 232,
+    "subtopics": [
+      {
+        "name": "भैया",
+        "padCount": 4,
+        "startPad": 200,
+        "endPad": 203
+      }
+    ]
+  },
+  {
+    "name": "श्रीराधा-माधव-लीला-माधुरी",
+    "padCount": 375,
+    "startPad": 233,
+    "endPad": 607,
+    "subtopics": [
+      {
+        "name": "वृन्दावन-शोभा",
+        "padCount": 2,
+        "startPad": 233,
+        "endPad": 234
+      },
+      {
+        "name": "निकुञ्ज-लीला",
+        "padCount": 3,
+        "startPad": 235,
+        "endPad": 237
+      },
+      {
+        "name": "गोपी-प्रेम",
+        "padCount": 8,
+        "startPad": 238,
+        "endPad": 245
+      },
+      {
+        "name": "आवनी-लीला",
+        "padCount": 5,
+        "startPad": 246,
+        "endPad": 250
+      },
+      {
+        "name": "मुरली-ध्वनि",
+        "padCount": 8,
+        "startPad": 251,
+        "endPad": 258
+      },
+      {
+        "name": "रस-लीला",
+        "padCount": 10,
+        "startPad": 259,
+        "endPad": 268
+      },
+      {
+        "name": "मिलन-लीला",
+        "padCount": 7,
+        "startPad": 269,
+        "endPad": 275
+      },
+      {
+        "name": "झूलन-लीला",
+        "padCount": 11,
+        "startPad": 276,
+        "endPad": 286
+      },
+      {
+        "name": "नौकाविहार",
+        "padCount": 1,
+        "startPad": 287,
+        "endPad": 287
+      },
+      {
+        "name": "होली-लीला",
+        "padCount": 4,
+        "startPad": 288,
+        "endPad": 291
+      },
+      {
+        "name": "प्रेमवैचित्त्य-लीला",
+        "padCount": 6,
+        "startPad": 292,
+        "endPad": 297
+      },
+      {
+        "name": "विरह एवं उद्धव-लीला",
+        "padCount": 57,
+        "startPad": 298,
+        "endPad": 354
+      },
+      {
+        "name": "मधुर-लीला",
+        "padCount": 62,
+        "startPad": 355,
+        "endPad": 416
+      },
+      {
+        "name": "प्रेम-समुद्रकी मधुर तरंगें",
+        "padCount": 31,
+        "startPad": 417,
+        "endPad": 447
+      },
+      {
+        "name": "मधुर अभिलाषा",
+        "padCount": 16,
+        "startPad": 448,
+        "endPad": 463
+      },
+      {
+        "name": "मधुर अनुभूति",
+        "padCount": 9,
+        "startPad": 464,
+        "endPad": 472
+      },
+      {
+        "name": "प्रभु-चरणोंमें",
+        "padCount": 61,
+        "startPad": 473,
+        "endPad": 533
+      },
+      {
+        "name": "श्रीकृष्णके प्रेमोद्गार",
+        "padCount": 74,
+        "startPad": 534,
+        "endPad": 607
+      }
+    ]
+  },
+  {
+    "name": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति",
+    "padCount": 20,
+    "startPad": 608,
+    "endPad": 627,
+    "subtopics": []
+  },
+  {
+    "name": "सर्वदोषमय",
+    "padCount": 33,
+    "startPad": 628,
+    "endPad": 660,
+    "subtopics": []
+  },
+  {
+    "name": "प्रेम-तत्त्व एवं गोपी-प्रेमका महत्त्व",
+    "padCount": 92,
+    "startPad": 661,
+    "endPad": 752,
+    "subtopics": []
+  },
+  {
+    "name": "श्रीराधा-कृष्ण-जन्म-महोत्सव एवं जय-गान",
+    "padCount": 71,
+    "startPad": 753,
+    "endPad": 823,
+    "subtopics": []
+  },
+  {
+    "name": "श्रीराम-गुण-गान",
+    "padCount": 106,
+    "startPad": 824,
+    "endPad": 929,
+    "subtopics": [
+      {
+        "name": "एक सत्य जो परम तत्त्व",
+        "padCount": 4,
+        "startPad": 856,
+        "endPad": 859
+      }
+    ]
+  },
+  {
+    "name": "भगवान्‌का स्वभाव",
+    "padCount": 31,
+    "startPad": 930,
+    "endPad": 960,
+    "subtopics": []
+  },
+  {
+    "name": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+    "padCount": 37,
+    "startPad": 961,
+    "endPad": 997,
+    "subtopics": [
+      {
+        "name": "योगभ्रष्ट पुण्यलोकोंमें",
+        "padCount": 24,
+        "startPad": 974,
+        "endPad": 997
+      }
+    ]
+  },
+  {
+    "name": "श्रीभगवन्नाम-महिमा",
+    "padCount": 24,
+    "startPad": 998,
+    "endPad": 1021,
+    "subtopics": []
+  },
+  {
+    "name": "प्रबोध-चेतावनी",
+    "padCount": 29,
+    "startPad": 1022,
+    "endPad": 1050,
+    "subtopics": []
+  },
+  {
+    "name": "अभिलाषा",
+    "padCount": 69,
+    "startPad": 1051,
+    "endPad": 1119,
+    "subtopics": []
+  },
+  {
+    "name": "अनुभूति",
+    "padCount": 137,
+    "startPad": 1120,
+    "endPad": 1256,
+    "subtopics": []
+  },
+  {
+    "name": "व्यवहार-परमार्थ",
+    "padCount": 97,
+    "startPad": 1257,
+    "endPad": 1353,
+    "subtopics": [
+      {
+        "name": "भगवान्‌की सर्वव्यापकता",
+        "padCount": 25,
+        "startPad": 1257,
+        "endPad": 1281
+      },
+      {
+        "name": "भगवत्कृपा-आश्वासन",
+        "padCount": 29,
+        "startPad": 1282,
+        "endPad": 1310
+      },
+      {
+        "name": "सनातनधर्मकी महिमा",
+        "padCount": 20,
+        "startPad": 1311,
+        "endPad": 1330
+      },
+      {
+        "name": "महापुरुष-वन्दना, लक्षण एवं महिमा",
+        "padCount": 23,
+        "startPad": 1331,
+        "endPad": 1353
+      }
+    ]
+  },
+  {
+    "name": "मानवता",
+    "padCount": 150,
+    "startPad": 1354,
+    "endPad": 1503,
+    "subtopics": []
+  },
+  {
+    "name": "प्रकीर्ण",
+    "padCount": 62,
+    "startPad": 1504,
+    "endPad": 1565,
+    "subtopics": []
   }
 ]

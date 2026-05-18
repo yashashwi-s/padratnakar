@@ -1,0 +1,145 @@
+{
+  "bookTitle": "पद-रत्नाकर",
+  "totalPads": 1565,
+  "lastPadPage": 947,
+  "topics": [
+    {
+      "name": "वन्दना एवं प्रार्थना",
+      "startPad": 1,
+      "endPad": 152,
+      "subtopics": []
+    },
+    {
+      "name": "श्रीराधा-माधव-स्वरूप-माधुरी",
+      "startPad": 153,
+      "endPad": 199,
+      "subtopics": []
+    },
+    {
+      "name": "श्रीकृष्ण-बाल-लीला-माधुरी",
+      "startPad": 200,
+      "endPad": 232,
+      "subtopics": [
+        { "name": "भैया", "startPad": 200, "endPad": 203 }
+      ]
+    },
+    {
+      "name": "श्रीराधा-माधव-लीला-माधुरी",
+      "startPad": 233,
+      "endPad": 607,
+      "subtopics": [
+        { "name": "वृन्दावन-शोभा", "startPad": 233, "endPad": 234 },
+        { "name": "निकुञ्ज-लीला", "startPad": 235, "endPad": 237 },
+        { "name": "गोपी-प्रेम", "startPad": 238, "endPad": 245 },
+        { "name": "आवनी-लीला", "startPad": 246, "endPad": 250 },
+        { "name": "मुरली-ध्वनि", "startPad": 251, "endPad": 258 },
+        { "name": "रस-लीला", "startPad": 259, "endPad": 268 },
+        { "name": "मिलन-लीला", "startPad": 269, "endPad": 275 },
+        { "name": "झूलन-लीला", "startPad": 276, "endPad": 286 },
+        { "name": "नौकाविहार", "startPad": 287, "endPad": 287 },
+        { "name": "होली-लीला", "startPad": 288, "endPad": 291 },
+        { "name": "प्रेमवैचित्त्य-लीला", "startPad": 292, "endPad": 297 },
+        { "name": "विरह एवं उद्धव-लीला", "startPad": 298, "endPad": 354 },
+        { "name": "मधुर-लीला", "startPad": 355, "endPad": 416 },
+        { "name": "प्रेम-समुद्रकी मधुर तरंगें", "startPad": 417, "endPad": 447 },
+        { "name": "मधुर अभिलाषा", "startPad": 448, "endPad": 463 },
+        { "name": "मधुर अनुभूति", "startPad": 464, "endPad": 472 },
+        { "name": "प्रभु-चरणोंमें", "startPad": 473, "endPad": 533 },
+        { "name": "श्रीकृष्णके प्रेमोद्गार", "startPad": 534, "endPad": 607 }
+      ]
+    },
+    {
+      "name": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति",
+      "startPad": 608,
+      "endPad": 627,
+      "subtopics": []
+    },
+    {
+      "name": "सर्वदोषमय",
+      "startPad": 628,
+      "endPad": 660,
+      "subtopics": []
+    },
+    {
+      "name": "प्रेम-तत्त्व एवं गोपी-प्रेमका महत्त्व",
+      "startPad": 661,
+      "endPad": 752,
+      "subtopics": []
+    },
+    {
+      "name": "श्रीराधा-कृष्ण-जन्म-महोत्सव एवं जय-गान",
+      "startPad": 753,
+      "endPad": 823,
+      "subtopics": []
+    },
+    {
+      "name": "श्रीराम-गुण-गान",
+      "startPad": 824,
+      "endPad": 929,
+      "subtopics": [
+        { "name": "एक सत्य जो परम तत्त्व", "startPad": 856, "endPad": 859 }
+      ]
+    },
+    {
+      "name": "भगवान्‌का स्वभाव",
+      "startPad": 930,
+      "endPad": 960,
+      "subtopics": []
+    },
+    {
+      "name": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+      "startPad": 961,
+      "endPad": 997,
+      "subtopics": [
+        { "name": "योगभ्रष्ट पुण्यलोकोंमें", "startPad": 974, "endPad": 997 }
+      ]
+    },
+    {
+      "name": "श्रीभगवन्नाम-महिमा",
+      "startPad": 998,
+      "endPad": 1021,
+      "subtopics": []
+    },
+    {
+      "name": "प्रबोध-चेतावनी",
+      "startPad": 1022,
+      "endPad": 1050,
+      "subtopics": []
+    },
+    {
+      "name": "अभिलाषा",
+      "startPad": 1051,
+      "endPad": 1119,
+      "subtopics": []
+    },
+    {
+      "name": "अनुभूति",
+      "startPad": 1120,
+      "endPad": 1256,
+      "subtopics": []
+    },
+    {
+      "name": "व्यवहार-परमार्थ",
+      "startPad": 1257,
+      "endPad": 1353,
+      "subtopics": [
+        { "name": "भगवान्‌की सर्वव्यापकता", "startPad": 1257, "endPad": 1281 },
+        { "name": "भगवत्कृपा-आश्वासन", "startPad": 1282, "endPad": 1310 },
+        { "name": "सनातनधर्मकी महिमा", "startPad": 1311, "endPad": 1330 },
+        { "name": "महापुरुष-वन्दना, लक्षण एवं महिमा", "startPad": 1331, "endPad": 1353 }
+      ]
+    },
+    {
+      "name": "मानवता",
+      "startPad": 1354,
+      "endPad": 1503,
+      "subtopics": []
+    },
+    {
+      "name": "प्रकीर्ण",
+      "startPad": 1504,
+      "endPad": 1565,
+      "subtopics": []
+    }
+  ]
+}
