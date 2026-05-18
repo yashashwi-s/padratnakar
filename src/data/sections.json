@@ -1,0 +1,32 @@
+[
+  {
+    "name": "पद-रत्नाकर",
+    "padCount": 94,
+    "startId": 3,
+    "endId": 15035
+  },
+  {
+    "name": "वन्दना एवं प्रार्थना",
+    "padCount": 44,
+    "startId": 4,
+    "endId": 151
+  },
+  {
+    "name": "अनुभूति",
+    "padCount": 4,
+    "startId": 65,
+    "endId": 11572
+  },
+  {
+    "name": "स्तुति",
+    "padCount": 5,
+    "startId": 80,
+    "endId": 15570
+  },
+  {
+    "name": "श्रीराधा-माधव-स्वरूप-माधुरी",
+    "padCount": 1,
+    "startId": 152,
+    "endId": 152
+  }
+]
