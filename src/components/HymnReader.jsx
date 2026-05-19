@@ -94,7 +94,21 @@ export default function HymnReader() {
       ref={contentRef}
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
+      style={{ position: 'relative' }}
     >
+      {/* Controls row at top right */}
+      <div className="reader-controls" style={{ position: 'absolute', top: 0, right: 0, margin: 0 }}>
+        <button onClick={() => navigatePad(-1)} disabled={!hasPrev} className="ctrl-btn">‹</button>
+        <button onClick={() => navigatePad(1)} disabled={!hasNext} className="ctrl-btn">›</button>
+        <span className="ctrl-divider" />
+        <button onClick={toggleBookmark} className={`ctrl-btn ${isBookmarked ? 'bookmarked' : ''}`}>
+          {isBookmarked ? '★' : '☆'}
+        </button>
+        <span className="ctrl-divider" />
+        <button onClick={() => changeFontSize(-0.1)} className="ctrl-btn">A−</button>
+        <button onClick={() => changeFontSize(+0.1)} className="ctrl-btn">A+</button>
+      </div>
+
       {/* Section breadcrumb */}
       <div className="reader-breadcrumb">
         {activePad.section && <span className="breadcrumb-section">{activePad.section}</span>}
@@ -111,19 +125,6 @@ export default function HymnReader() {
 
       {/* Raag/Taal line directly below the number */}
       {raagLine && <div className="reader-raag-line">{raagLine.trim()}</div>}
-
-      {/* Controls row */}
-      <div className="reader-controls">
-        <button onClick={() => navigatePad(-1)} disabled={!hasPrev} className="ctrl-btn">‹</button>
-        <button onClick={() => navigatePad(1)} disabled={!hasNext} className="ctrl-btn">›</button>
-        <span className="ctrl-divider" />
-        <button onClick={toggleBookmark} className={`ctrl-btn ${isBookmarked ? 'bookmarked' : ''}`}>
-          {isBookmarked ? '★' : '☆'}
-        </button>
-        <span className="ctrl-divider" />
-        <button onClick={() => changeFontSize(-0.1)} className="ctrl-btn">A−</button>
-        <button onClick={() => changeFontSize(+0.1)} className="ctrl-btn">A+</button>
-      </div>
 
       {/* Verses */}
       <div className="reader-content" style={{ fontSize: `${fontSize || 1.2}em` }}>

@@ -147,7 +147,7 @@ input { font-family: var(--font-ui); }
   font-family: var(--font-pad);
   font-size: 1.3rem;
   font-weight: 700;
-  color: var(--accent);
+  color: var(--text-primary);
   margin-bottom: 0.3rem;
   text-align: center;
 }
@@ -157,11 +157,9 @@ input { font-family: var(--font-ui); }
   text-align: center;
   font-family: var(--font-pad);
   font-size: 0.95rem;
-  color: var(--text-secondary);
+  color: var(--text-primary);
   font-style: italic;
   margin-bottom: 1rem;
-  padding-bottom: 0.8rem;
-  border-bottom: 1px solid var(--accent-border);
 }
 
 /* Prev/Next controls */

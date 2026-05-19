@@ -25,10 +25,11 @@ function MainApp() {
         <h1 className="top-nav-title">पद-रत्नाकर</h1>
         <div className="top-nav-actions">
           <button 
-            className="nav-btn" 
+            className="nav-btn icon-btn" 
             onClick={() => dispatch({ type: 'TOGGLE_SEARCH' })}
+            aria-label="Search and Topics"
           >
-            <span>⌕</span> Search / Topics
+            <span style={{ fontSize: '1.8rem', lineHeight: 1 }}>⌕</span>
           </button>
         </div>
       </header>
