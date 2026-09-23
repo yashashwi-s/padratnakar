@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pad format review</title>
+    <link rel="stylesheet" href="/review/review.css" />
+  </head>
+  <body>
+    <header>
+      <strong>Pad format review</strong><span id="progress"></span
+      ><a id="export" href="#">Export comments</a>
+    </header>
+    <main>
+      <section class="app-panel">
+        <div class="panel-title">
+          <b>App · mobile view</b
+          ><select id="width" aria-label="Phone size">
+            <option value="390">390 × 780</option>
+            <option value="320">320 × 640</option>
+            <option value="430">430 × 860</option>
+          </select>
+        </div>
+        <div id="phone-space">
+          <div id="phone">
+            <iframe
+              id="app"
+              title="Actual Pad Ratnakar app in a phone viewport"
+            ></iframe>
+          </div>
+        </div>
+      </section>
+      <section class="controls">
+        <form id="jump">
+          <label for="pad">Pad</label
+          ><input id="pad" type="number" min="1" max="1565" value="1" /><span
+            >/ 1565</span
+          ><button>Go</button>
+        </form>
+        <div id="status" class="badge">Not reviewed</div>
+        <label for="comment">Your comment</label
+        ><textarea
+          id="comment"
+          placeholder="What looks wrong? Type here. It saves automatically."
+        ></textarea>
+        <div id="save-state" role="status">Loading…</div>
+        <button id="verify" class="primary">
+          ✓ Verified & next <kbd>⌘ / Ctrl ↵</kbd></button
+        ><button id="issue">
+          ⚑ Format issue & next <kbd>⌘ / Ctrl ⇧ ↵</kbd></button
+        ><button id="next">Save comment & next <kbd>Alt →</kbd></button>
+        <div class="row">
+          <button id="prev">← Previous</button
+          ><button id="pending">Next unreviewed</button>
+        </div>
+        <button id="reset">Mark unreviewed</button>
+        <p class="hint">
+          Typing saves a draft. A non-empty comment is flagged as an issue when
+          you choose “Save comment & next”. Verification keeps your comment.
+        </p>
+        <p class="hint">
+          Comments stay on this computer. Nothing changes the book text.
+        </p>
+      </section>
+      <section class="pdf-panel">
+        <div class="panel-title">
+          <b>Original PDF</b
+          ><label><input id="full" type="checkbox" /> Full pages</label>
+        </div>
+        <div id="pdf" tabindex="0"></div>
+      </section>
+    </main>
+    <script type="module" src="/review/review.js"></script>
+  </body>
+</html>

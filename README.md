@@ -68,3 +68,7 @@ The Android debug APK build is available for testing. See [the reader audit](doc
 ## Frontend direction
 
 The implemented inner reader uses a white and black book surface and source-informed line relationships. Future work should refine the surrounding application with a restrained paper-colored surround and the supplied Pad Ratnakar logo. Avoid dark themes, gradients, and decorative interface effects that compete with the text. See [the frontend handoff](docs/frontend-handoff.md) for the current architecture, constraints, and remaining work. Ideas outside the current scope are recorded in [future suggestions](docs/future-suggestions.md).
+
+## Review pad formatting
+
+Run `npm run review` and open [the local review page](http://127.0.0.1:8766/review/). Compare the mobile reader with the source PDF, leave autosaved comments, and verify or flag pads in one step. See [the review guide](docs/format-review.md) for shortcuts and local storage.

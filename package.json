@@ -14,8 +14,10 @@
     "native:sync": "npm run build && cap sync",
     "android:open": "cap open android",
     "ios:open": "cap open ios",
-    "check": "npm run lint && npm test && npm run test:data && npm run build",
-    "format": "prettier --write \"src/**/*.{js,jsx,css}\" \"tests/*.mjs\" \"*.js\" package.json capacitor.config.json README.md AGENTS.md \"docs/*.md\""
+    "check": "npm run lint && npm test && npm run test:data && npm run test:review && npm run build",
+    "format": "prettier --write \"src/**/*.{js,jsx,css}\" \"tests/*.mjs\" \"*.js\" package.json capacitor.config.json README.md AGENTS.md \"docs/*.md\"",
+    "review": "npm run build && python3 tools/review/server.py",
+    "test:review": "python3 tests/review/test_review.py"
   },
   "dependencies": {
     "@capacitor/android": "^8.5.2",

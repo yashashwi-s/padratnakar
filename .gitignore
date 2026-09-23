@@ -43,3 +43,6 @@ data/print-layout/
 *.keystore
 *.p12
 *.mobileprovision
+
+# Local format-review comments (never delete without exporting)
+.review/
