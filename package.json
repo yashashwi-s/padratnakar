@@ -1,20 +1,32 @@
 {
-  "name": "temp_app",
+  "name": "pad-ratnakar",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "update-index": "source .venv/bin/activate && python3 scripts/retag_hymns.py"
+    "test": "node --test tests/*.test.mjs",
+    "test:data": "python3 tests/data/test_corpus.py && python3 tests/data/test_layout.py",
+    "data:rebuild": "python3 scripts/corpus/build.py",
+    "native:sync": "npm run build && cap sync",
+    "android:open": "cap open android",
+    "ios:open": "cap open ios",
+    "check": "npm run lint && npm test && npm run test:data && npm run build",
+    "format": "prettier --write \"src/**/*.{js,jsx,css}\" \"tests/*.mjs\" \"*.js\" package.json capacitor.config.json README.md AGENTS.md \"docs/*.md\""
   },
   "dependencies": {
+    "@capacitor/android": "^8.5.2",
+    "@capacitor/app": "^8.1.1",
+    "@capacitor/core": "^8.5.2",
+    "@capacitor/ios": "^8.5.2",
     "react": "^19.2.6",
     "react-dom": "^19.2.6"
   },
   "devDependencies": {
+    "@capacitor/cli": "^8.5.2",
     "@eslint/js": "^10.0.1",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
@@ -23,6 +35,7 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.6.0",
+    "prettier": "^3.9.8",
     "vite": "^8.0.12"
   }
 }

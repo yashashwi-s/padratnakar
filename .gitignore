@@ -22,3 +22,24 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local credentials, Python environments, native build output
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+*.pyc
+android/.gradle/
+android/local.properties
+android/**/build/
+ios/App/Pods/
+ios/App/build/
+
+# Reproducible research output and native signing material
+data/generated/
+data/print-layout/
+*.jks
+*.keystore
+*.p12
+*.mobileprovision

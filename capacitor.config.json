@@ -1,0 +1,8 @@
+{
+  "appId": "org.padratnakar.reader",
+  "appName": "पद रत्नाकर",
+  "webDir": "dist",
+  "backgroundColor": "#f4efe4",
+  "ios": { "contentInset": "automatic", "preferredContentMode": "mobile" },
+  "android": { "backgroundColor": "#f4efe4", "allowMixedContent": false }
+}

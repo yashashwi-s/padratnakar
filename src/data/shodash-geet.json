@@ -1,0 +1,146 @@
+{
+  "invocation": "श्रीराधाकृष्णाभ्यां नमः",
+  "bookTitle": "श्रीराधा-माधव-रस-सुधा",
+  "title": "षोडशगीत",
+  "items": [
+    {
+      "role": "opening",
+      "padId": 1,
+      "title": "महाभाव-रसराज-वन्दना"
+    },
+    {
+      "role": "song",
+      "number": 1,
+      "padId": 550,
+      "voice": "श्रीकृष्ण",
+      "title": "श्रीकृष्णके प्रेमोद्गार—श्रीराधाके प्रति"
+    },
+    {
+      "role": "song",
+      "number": 2,
+      "padId": 608,
+      "voice": "श्रीराधा",
+      "title": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति",
+      "openingLines": [
+        "हौं तो दासी नित्य तिहारी।"
+      ],
+      "suppressSourceHeadingLines": [
+        "हौं तो दासी नित्य तिहारी"
+      ],
+      "openingLinesProvenance": "provided Shodash Geet song 2 image; collection display only"
+    },
+    {
+      "role": "song",
+      "number": 3,
+      "padId": 551,
+      "voice": "श्रीकृष्ण",
+      "title": "श्रीकृष्णके प्रेमोद्गार—श्रीराधाके प्रति"
+    },
+    {
+      "role": "song",
+      "number": 4,
+      "padId": 609,
+      "voice": "श्रीराधा",
+      "title": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति"
+    },
+    {
+      "role": "song",
+      "number": 5,
+      "padId": 552,
+      "voice": "श्रीकृष्ण",
+      "title": "श्रीकृष्णके प्रेमोद्गार—श्रीराधाके प्रति"
+    },
+    {
+      "role": "song",
+      "number": 6,
+      "padId": 610,
+      "voice": "श्रीराधा",
+      "title": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति"
+    },
+    {
+      "role": "song",
+      "number": 7,
+      "padId": 553,
+      "voice": "श्रीकृष्ण",
+      "title": "श्रीकृष्णके प्रेमोद्गार—श्रीराधाके प्रति"
+    },
+    {
+      "role": "song",
+      "number": 8,
+      "padId": 611,
+      "voice": "श्रीराधा",
+      "title": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति"
+    },
+    {
+      "role": "song",
+      "number": 9,
+      "padId": 554,
+      "voice": "श्रीकृष्ण",
+      "title": "श्रीकृष्णके प्रेमोद्गार—श्रीराधाके प्रति"
+    },
+    {
+      "role": "song",
+      "number": 10,
+      "padId": 612,
+      "voice": "श्रीराधा",
+      "title": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति"
+    },
+    {
+      "role": "song",
+      "number": 11,
+      "padId": 555,
+      "voice": "श्रीकृष्ण",
+      "title": "श्रीकृष्णके प्रेमोद्गार—श्रीराधाके प्रति"
+    },
+    {
+      "role": "song",
+      "number": 12,
+      "padId": 613,
+      "voice": "श्रीराधा",
+      "title": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति"
+    },
+    {
+      "role": "song",
+      "number": 13,
+      "padId": 556,
+      "voice": "श्रीकृष्ण",
+      "title": "श्रीकृष्णके प्रेमोद्गार—श्रीराधाके प्रति"
+    },
+    {
+      "role": "song",
+      "number": 14,
+      "padId": 614,
+      "voice": "श्रीराधा",
+      "title": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति"
+    },
+    {
+      "role": "song",
+      "number": 15,
+      "padId": 557,
+      "voice": "श्रीकृष्ण",
+      "title": "श्रीकृष्णके प्रेमोद्गार—श्रीराधाके प्रति"
+    },
+    {
+      "role": "song",
+      "number": 16,
+      "padId": 615,
+      "voice": "श्रीराधा",
+      "title": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति"
+    },
+    {
+      "role": "closing",
+      "padId": 1508,
+      "title": "पुष्पिका"
+    }
+  ],
+  "closingDedication": "श्रीराधाकृष्णचरणकमलेभ्योऽर्पितम्।",
+  "rendering": {
+    "numberStanzas": true,
+    "stanzaNumberStyle": "॥{n}॥",
+    "suppressMusicalHeadingForRoles": [
+      "opening",
+      "closing"
+    ],
+    "songHeadings": "show"
+  }
+}

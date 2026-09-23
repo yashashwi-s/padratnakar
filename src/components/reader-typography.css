@@ -1,0 +1,160 @@
+/* The book's inner reading treatment is independent of the surrounding app UI. */
+.pad-text .pad-typography {
+  color: #000;
+  background: #fff;
+  font-weight: 500;
+  font-synthesis: none;
+}
+.pad-typography .poem-heading {
+  text-align: center;
+  margin-block: 0 1.75em;
+  break-after: avoid;
+}
+.pad-typography .pad-number {
+  font-size: 1em;
+  font-weight: 500;
+  margin-block: 0 0.65em;
+  line-height: 1.7;
+}
+.pad-typography .musical-heading {
+  font-size: 0.84em;
+  font-weight: 500;
+  line-height: 1.9;
+  margin: 0.35em 0 0;
+}
+.pad-typography .extra-heading {
+  font-size: 1em;
+  font-weight: 650;
+  line-height: 1.8;
+  margin: 0.6em 0;
+}
+.pad-typography .poem-measure {
+  container: poem / inline-size;
+  max-width: 28em;
+  margin-inline: auto;
+}
+.pad-typography .verse-body {
+  max-width: none;
+}
+.pad-typography .stanza {
+  margin-block: 0 1.25em;
+  break-inside: avoid;
+}
+.pad-typography .stanza:last-child {
+  margin-bottom: 0;
+}
+.pad-typography .verse-line {
+  margin: 0;
+  padding: 0;
+  line-height: 1.95;
+  word-spacing: 0.015em;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+}
+.pad-typography .verse-line + .verse-line {
+  margin-top: 0.08em;
+}
+.pad-typography .verse-segment {
+  white-space: pre-wrap;
+}
+.pad-typography .verse-citation {
+  text-align: right;
+  font-size: 0.8em;
+  font-weight: 400;
+  margin-top: 0.5em;
+}
+.pad-typography .verse-centered {
+  text-align: center;
+}
+/* Source indentation and separated groups apply only when there is room at
+   the current reading size. Enlarging type naturally switches to reflow. */
+@container poem (min-width: 22em) {
+  .pad-typography .verse-line:not(.verse-citation):not(.verse-centered) {
+    text-align: justify;
+    text-align-last: justify;
+    margin-inline-start: var(--source-indent, 0%);
+    width: min(
+      var(--source-width, 100%),
+      calc(100% - var(--source-indent, 0%))
+    );
+  }
+  .pad-typography .verse-grouped {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    column-gap: 0.25em;
+  }
+  .pad-typography .verse-grouped .verse-segment {
+    max-width: 100%;
+    flex: 0 1 auto;
+  }
+  .pad-typography .verse-centered {
+    justify-content: center;
+    column-gap: 0.3em;
+  }
+}
+.pad-typography .footnotes {
+  max-width: 41.25em;
+  margin: 2.5em auto 0;
+  padding-top: 1em;
+  border-top: 1px solid #000;
+  font-size: 0.8em;
+  font-weight: 400;
+  line-height: 1.85;
+}
+.pad-typography .footnotes h2 {
+  font-weight: 600;
+  margin-bottom: 0.9em;
+}
+.pad-typography .footnote {
+  margin-block: 0 1em;
+}
+.pad-typography .footnote:last-child {
+  margin-bottom: 0;
+}
+.pad-typography .footnote p {
+  margin: 0 0 0.3em;
+  overflow-wrap: anywhere;
+}
+.pad-typography .collection-heading {
+  font-size: 1.02em;
+  font-weight: 700;
+  line-height: 1.85;
+  margin: 0;
+}
+.pad-typography .collection-number {
+  font-size: 1em;
+  margin: 0 0 0.75em;
+}
+.pad-typography .collection-number:empty {
+  display: none;
+}
+.pad-typography .speaker-heading {
+  border-block: 1px solid #000;
+  padding: 0.5em 0.35em 0.3em;
+  margin-bottom: 0.7em;
+}
+.pad-typography .closing-dedication {
+  font-size: 1.22em;
+  font-weight: 750;
+  line-height: 1.85;
+  margin: 1.65em 0 0;
+  text-align: center;
+}
+@media print {
+  .pad-typography .poem-heading {
+    break-after: avoid;
+  }
+  .pad-typography .verse-line {
+    orphans: 2;
+    widows: 2;
+  }
+}
+
+.pad-typography .verse-raised {
+  font-size: 0.72em;
+  line-height: 0;
+  vertical-align: super;
+}
