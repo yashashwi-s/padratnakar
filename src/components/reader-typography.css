@@ -1,198 +1,51 @@
-/* The book's inner reading treatment is independent of the surrounding app UI. */
-.pad-text .pad-typography {
-  color: #000;
+/* A fixed book page. Browser width changes scale it; they never wrap its lines. */
+.pad-text .print-viewport {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
   background: #fff;
-  font-weight: 700;
-  font-synthesis: none;
+  color: #000;
+  overscroll-behavior-x: contain;
+  touch-action: pan-x pan-y pinch-zoom;
+  scrollbar-width: thin;
 }
-.pad-typography .poem-heading {
-  text-align: center;
-  margin-block: 0 1.75em;
-  break-after: avoid;
-}
-.pad-typography .pad-number {
-  font-size: 1em;
-  font-weight: 700;
-  margin-block: 0 0.65em;
-  line-height: 1.7;
-}
-.pad-typography .musical-heading {
-  font-size: 0.84em;
-  font-weight: 700;
-  line-height: 1.9;
-  margin: 0.35em 0 0;
-}
-.pad-typography .extra-heading {
-  font-size: 1em;
-  font-weight: 700;
-  line-height: 1.8;
-  margin: 0.6em 0;
-}
-.pad-typography .poem-measure {
-  min-inline-size: 0;
-  max-width: 28em;
-  margin-inline: auto;
-}
-.pad-typography .verse-body {
+.print-page {
+  display: block;
   max-width: none;
-}
-.pad-typography .stanza {
-  margin-block: 0 1.25em;
-  break-inside: avoid;
-}
-.pad-typography .stanza:last-child {
-  margin-bottom: 0;
-}
-.pad-typography .verse-line {
-  margin: 0;
-  padding: 0;
-  line-height: 1.95;
-  word-spacing: 0.015em;
-  white-space: normal;
-  overflow-wrap: anywhere;
-  text-wrap: pretty;
-}
-.pad-typography .verse-line + .verse-line {
-  margin-top: 0.08em;
-}
-.pad-typography .verse-segment {
-  white-space: pre-wrap;
-}
-.pad-typography .verse-citation {
-  text-align: right;
-  font-size: 0.8em;
-  font-weight: 400;
-  margin-top: 0.5em;
-}
-.pad-typography .verse-centered {
-  text-align: center;
-}
-/* Each line opts into print spacing only when the current font really fits. */
-.pad-typography .verse-row {
-  position: relative;
-  min-inline-size: 0;
-}
-.pad-typography .verse-row + .verse-row {
-  margin-top: 0.08em;
-}
-.pad-typography .line-metric {
-  position: absolute;
-  visibility: hidden;
-  pointer-events: none;
-  inset: 0 auto auto 0;
-  inline-size: max-content;
-  word-spacing: 0.015em;
-  white-space: pre;
-  line-height: 1.95;
-}
-.pad-typography .line-metric .verse-segment {
-  white-space: pre;
-}
-.pad-typography .verse-line {
-  white-space: normal;
-  text-align: start;
-  text-align-last: auto;
-}
-.pad-typography .verse-segment {
-  white-space: normal;
-}
-.pad-typography .verse-row[data-fit="aligned"] .verse-line,
-.pad-typography .verse-row[data-fit="justify"] .verse-line,
-.pad-typography .verse-row[data-fit="groups"] .verse-line {
-  margin-inline-start: var(--line-indent);
-  inline-size: var(--line-width);
-}
-.pad-typography .verse-row[data-fit="justify"] .verse-line {
-  text-align: justify;
-  text-align-last: justify;
-}
-.pad-typography .verse-row[data-fit="groups"] .verse-line {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  flex-wrap: nowrap;
-}
-.pad-typography .verse-row[data-fit="groups"] .verse-segment {
-  white-space: pre;
   flex: none;
+  margin-inline: auto;
+  background: #fff;
+  overflow: visible;
+  font-family: "Noto Serif Devanagari", serif;
+  font-weight: 600;
+  font-synthesis: none;
+  fill: #000;
+  user-select: text;
 }
-.pad-typography .verse-row[data-fit="center"] .verse-line {
-  text-align: center;
+.print-page text {
+  white-space: pre;
 }
-.pad-typography .verse-row[data-citation="true"] {
-  font-size: 0.8em;
+.print-heading,
+.print-number {
+  font-weight: 600;
+}
+.print-footnote,
+.print-citation {
   font-weight: 400;
-  margin-top: 0.5em;
 }
-.pad-typography .verse-row[data-citation="true"] .verse-line {
-  text-align: right;
-}
-.pad-typography .footnotes {
-  max-width: 41.25em;
-  margin: 2.5em auto 0;
-  padding-top: 1em;
-  border-top: 1px solid #000;
-  font-size: 0.8em;
-  font-weight: 400;
-  line-height: 1.85;
-}
-.pad-typography .footnote {
-  margin-block: 0 1em;
-}
-.pad-typography .footnote:last-child {
-  margin-bottom: 0;
-}
-.pad-typography .footnote p {
-  margin: 0 0 0.3em;
-  overflow-wrap: anywhere;
-}
-.pad-typography .collection-heading {
-  font-size: 1.02em;
-  font-weight: 700;
-  line-height: 1.85;
-  margin: 0;
-}
-.pad-typography .collection-number {
-  font-size: 1em;
-  margin: 0 0 0.75em;
-}
-.pad-typography .collection-number:empty {
-  display: none;
-}
-.pad-typography .speaker-heading {
-  border-block: 1px solid #000;
-  padding: 0.5em 0.35em 0.3em;
-  margin-bottom: 0.7em;
-}
-.pad-typography .closing-dedication {
-  font-size: 1.22em;
+.print-dedication {
   font-weight: 750;
-  line-height: 1.85;
-  margin: 1.65em 0 0;
-  text-align: center;
+}
+.pad-text:has(.print-viewport) {
+  padding: 4px 0
+    calc(var(--reader-bottom-height) + 24px + env(safe-area-inset-bottom));
 }
 @media print {
-  .pad-typography .poem-heading {
-    break-after: avoid;
+  .print-page {
+    width: 100% !important;
+    height: auto !important;
   }
-  .pad-typography .verse-line {
-    orphans: 2;
-    widows: 2;
+  .print-viewport {
+    overflow: visible !important;
   }
-}
-
-.pad-typography .verse-raised {
-  font-size: 0.72em;
-  font-weight: 400;
-  line-height: 0;
-  vertical-align: super;
-}
-
-.pad-typography .line-metric-clip {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  visibility: hidden;
-  pointer-events: none;
-  contain: strict;
 }

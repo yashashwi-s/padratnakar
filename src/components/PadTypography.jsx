@@ -1,157 +1,151 @@
-import { useEffect, useMemo, useState, useRef } from "react";
-import { getFootnotes, shodashCollection } from "../lib/corpus";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { getPrintLayout } from "../lib/print-layout";
-import {
-  normalizeOpeningQuotes,
-  normalizeTypographyStanzas,
-  normalizeTextLines,
-  typographyModel,
-} from "../lib/typography";
-import { devanagariNumber as dn } from "../lib/search";
+import { fixedPrintModel, pageDimensions } from "../lib/fixed-print";
 import "./reader-typography.css";
-import { useReaderLayout } from "./useReaderLayout";
 
-export default function PadTypography({ pad, collectionItem: item }) {
+export default function PadTypography({
+  pad,
+  collectionItem: item,
+  size = 1,
+  zoom = 1,
+}) {
   const [layout, setLayout] = useState(null);
+  const [available, setAvailable] = useState(390);
+  const viewport = useRef(null);
   useEffect(() => {
     let active = true;
     getPrintLayout(pad.id)
       .then((value) => {
         if (active) setLayout(value);
       })
-      .catch(() => {
-        /* The complete text remains readable without geometry. */
-      });
+      .catch(() => {});
     return () => {
       active = false;
     };
   }, [pad.id]);
-  const currentLayout = layout?.padId === pad.id ? layout : null;
-  const stanzas = useMemo(
-    () => typographyModel(pad, currentLayout, item),
-    [pad, currentLayout, item],
+  useLayoutEffect(() => {
+    const element = viewport.current;
+    const update = () => setAvailable(element.clientWidth);
+    update();
+    const observer = new ResizeObserver(update);
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+  useEffect(() => {
+    viewport.current.scrollLeft = 0;
+  }, [pad.id, zoom]);
+  const current = layout?.padId === pad.id ? layout : null;
+  const page = useMemo(
+    () => fixedPrintModel(pad, current, item),
+    [pad, current, item],
   );
-  const displayStanzas = useMemo(
-    () => normalizeTypographyStanzas(stanzas),
-    [stanzas],
-  );
-  const measureRef = useRef(null);
-  useReaderLayout(measureRef, displayStanzas);
-  const notes = getFootnotes(pad);
-  const headings = item?.headings || pad.headings;
+  const dimensions = pageDimensions(available, size, zoom);
   return (
     <div
-      className="pad-typography"
-      data-layout={currentLayout ? "source" : "flow"}
+      className="print-viewport"
+      ref={viewport}
+      data-zoom={zoom}
+      tabIndex={0}
+      role="region"
+      aria-label="पद का पाठ"
     >
-      {item?.role === "opening" && (
-        <header className="shodash-front">
-          <p className="invocation">
-            {normalizeOpeningQuotes(shodashCollection.invocation)}
-          </p>
-          <h1>{shodashCollection.bookTitle}</h1>
-          <p className="book-subtitle">
-            [ {normalizeOpeningQuotes(shodashCollection.title)} ]
-          </p>
-        </header>
-      )}
-      <header className="poem-heading">
-        {item ? (
-          <>
-            <div className="collection-number">
-              {item.number ? `(${dn(item.number)})` : null}
-            </div>
-            <h2
-              className={`collection-heading ${item.role === "song" ? "speaker-heading" : ""}`}
-            >
-              {normalizeOpeningQuotes(item.title)}
-            </h2>
-          </>
-        ) : (
-          <h1 className="pad-number">[ {dn(pad.id)} ]</h1>
-        )}
-        {headings.map((heading, index) => (
-          <p
-            key={index}
-            className={
-              /^\(/u.test(heading) ? "musical-heading" : "extra-heading"
-            }
-          >
-            {normalizeOpeningQuotes(heading)}
-          </p>
+      <svg
+        className="print-page"
+        role="document"
+        aria-label={item?.title || `पद ${pad.id}`}
+        viewBox={`-12 0 ${page.width + 24} ${page.height}`}
+        width={dimensions.width}
+        height={(dimensions.width * page.height) / (page.width + 24)}
+        data-layout={current ? "source" : "fallback"}
+      >
+        {page.decorations.map((box, i) => (
+          <rect key={i} {...box} fill="none" stroke="black" strokeWidth=".65" />
         ))}
-      </header>
-      <div className="poem-measure" ref={measureRef}>
-        <div className="verse-body">
-          {displayStanzas.map((stanza, i) => (
-            <div className="stanza" key={i}>
-              {stanza.map((line, j) => (
-                <div
-                  className="verse-row"
-                  key={j}
-                  data-inset={line.inset}
-                  data-extent={line.extent}
-                  data-centered={Boolean(line.centered)}
-                  data-citation={Boolean(line.citation)}
-                  data-groups={line.segments.length}
-                  data-words={line.text.trim().split(/\s+/u).length}
-                >
-                  <p
-                    className="verse-line"
-                    data-source-page={line.source?.pdfPage}
-                  >
-                    <LineContent segments={line.segments} />
-                  </p>
-                  <div className="line-metric-clip" aria-hidden="true">
-                    <div className="line-metric">
-                      <LineContent segments={line.segments} />
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
-      </div>
-      {notes.length > 0 && item?.role !== "closing" && (
-        <aside className="footnotes" aria-label="पाद-टिप्पणियाँ">
-          {notes.map((note, index) => (
-            <div
-              className="footnote"
-              key={`${note.ownerPadId}-${note.noteIndex}-${index}`}
-            >
-              <div>
-                {normalizeTextLines(note.lines).map((line, j) => (
-                  <p key={j}>{normalizeOpeningQuotes(line)}</p>
-                ))}
-              </div>
-            </div>
-          ))}
-        </aside>
-      )}
-      {item?.role === "closing" && (
-        <p className="closing-dedication">
-          {normalizeOpeningQuotes(shodashCollection.closingDedication)}
-        </p>
-      )}
+        {page.ruleY && (
+          <line
+            x1="26"
+            x2={page.width - 26}
+            y1={page.ruleY}
+            y2={page.ruleY}
+            stroke="black"
+            strokeWidth=".5"
+          />
+        )}
+        {page.lines.map((line, index) => (
+          <g
+            key={index}
+            className={`print-line print-${line.role}`}
+            role={line.role === "number" ? "heading" : undefined}
+            aria-level={line.role === "number" ? 1 : undefined}
+            data-baseline={line.y}
+            data-source-page={line.source?.pdfPage}
+          >
+            <PrintLine line={line} width={page.width} />
+          </g>
+        ))}
+      </svg>
     </div>
   );
 }
 
-function LineContent({ segments }) {
-  return segments.map((segment, k) => (
-    <span className="verse-segment" key={k}>
-      {segment.runs
-        ? segment.runs.map((run, n) =>
-            run.raised ? (
-              <sup key={n} className="verse-raised">
+function PrintLine({ line, width }) {
+  if (line.centered)
+    return (
+      <text
+        x={line.x}
+        y={line.y}
+        textAnchor="middle"
+        fontSize={line.fontSize}
+        textLength={line.text.length > 29 ? width - 64 : undefined}
+        lengthAdjust="spacingAndGlyphs"
+      >
+        {line.text}
+      </text>
+    );
+  if (!line.segments)
+    return (
+      <text
+        x={line.x}
+        y={line.y}
+        fontSize={line.fontSize}
+        textLength={line.length}
+        lengthAdjust="spacingAndGlyphs"
+      >
+        {line.text}
+      </text>
+    );
+  return line.segments.map((segment, index) => {
+    const box = segment.bbox || line.source?.bbox;
+    const x = box?.[0] ?? line.x;
+    const length = box ? box[2] - box[0] : width - 52;
+    const mixed = segment.runs?.some((run) => !run.raised);
+    const baseline =
+      line.y +
+      (segment.baseline != null && line.source
+        ? segment.baseline - line.source.baseline
+        : 0);
+    return (
+      <text
+        key={index}
+        x={x}
+        y={baseline}
+        fontSize={segment.fontSize || line.fontSize}
+        textLength={length}
+        lengthAdjust="spacingAndGlyphs"
+        xmlSpace="preserve"
+      >
+        {segment.runs
+          ? segment.runs.map((run, i) => (
+              <tspan
+                key={i}
+                baselineShift={run.raised && mixed ? "super" : undefined}
+                fontSize={run.raised && mixed ? 9 : undefined}
+              >
                 {run.text}
-              </sup>
-            ) : (
-              <span key={n}>{run.text}</span>
-            ),
-          )
-        : segment.text}
-    </span>
-  ));
+              </tspan>
+            ))
+          : segment.text}
+      </text>
+    );
+  });
 }

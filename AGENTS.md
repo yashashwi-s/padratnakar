@@ -8,7 +8,7 @@
 - Read `docs/data-corpus.md` and `docs/print-layout.md` before changing data. The layout test requires every canonical heading/verse line to have a source position.
 - Keep Shodash Geet display rules separate from canonical pads. Use `src/lib/corpus.js`; resolve shared footnotes through `getFootnotes`.
 - `src/lib/print-layout.js` lazily loads 16 geometry chunks. Do not insert repeated spaces into canonical text to simulate print alignment.
-- `src/components/PadTypography.jsx` and `src/lib/typography.js` implement responsive source-informed line grouping, indentation, headings and footnotes. Preserve natural wrapping on narrow screens and at larger accessibility sizes; do not describe it as exact PDF font matching or a facsimile.
+- `src/components/PadTypography.jsx` and `src/lib/fixed-print.js` render fixed source-positioned Unicode lines. The user explicitly replaced wrapping with fit-to-width (80–100%) and whole-page zoom (100–300%). Preserve printed line endings, source baseline gaps, margins and horizontal zoom panning. Do not describe Noto Serif Devanagari as an exact PDF font match or facsimile.
 - White reading surface, black text, paper-colored surround, supplied logo; no dark mode or gradients. Preserve accessibility font scaling.
 - Native directories are development shells, not signed/tested releases. `npm run native:sync` copies current web assets; it does not test native builds.
 - Never read or commit `.env`, SDK machine paths, signing secrets, or external research archives. No credentials are needed here.

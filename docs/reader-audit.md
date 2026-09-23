@@ -1,5 +1,7 @@
 # Reader audit — 23 September 2026
 
+This records the earlier wrapping-based renderer. It has since been replaced at the user’s request by the [fixed source-positioned page and zoom controls](print-layout.md#reader-implementation). The APK described below predates that change.
+
 The current visual design and existing corpus edits were preserved. This pass focused on responsive inner typography, navigation, and an Android testing build.
 
 ## Fixes

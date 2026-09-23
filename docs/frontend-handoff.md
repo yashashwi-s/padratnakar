@@ -6,7 +6,7 @@ Pad Ratnakar is an offline static React application. All runtime reading data is
 
 The data layer covers 1,565 canonical pads, 33 source notes, 17 user-verified pads, and the 18-entry _Shodash Geet_ collection. Corpus provenance and recovery details are documented in [data-corpus.md](data-corpus.md). The source layout model and its limits are documented in [print-layout.md](print-layout.md).
 
-The inner pad reading surface is implemented in `src/components/PadTypography.jsx` and `src/components/reader-typography.css`. It applies the source-backed hierarchy and geometry to headings, verses, grouped lines, citations, stanza gaps, and footnotes while preserving natural responsive flow. The surrounding navigation and application interface now have a revised design; the responsive reader audit is recorded in [reader-audit.md](reader-audit.md). Native Capacitor projects are present. Android debug compilation is verified; physical-device behavior and store release builds still need testing. Neither platform is release signed.
+The inner pad reading surface is implemented in `src/components/PadTypography.jsx` and `src/components/reader-typography.css`. It applies the source-backed hierarchy and geometry to headings, verses, grouped lines, citations, stanza gaps, and footnotes while preserving fixed source line endings with fit and zoom controls. The surrounding navigation and application interface now have a revised design; the responsive reader audit is recorded in [reader-audit.md](reader-audit.md). Native Capacitor projects are present. Android debug compilation is verified; physical-device behavior and store release builds still need testing. Neither platform is release signed.
 
 ## Runtime data
 
@@ -33,9 +33,9 @@ The materialized collection already applies its display-only stanza numbering, i
 
 `getPrintLayout(id)` loads layout metadata only when a reader needs it. Runtime chunks live at `public/data/layout/1.json` through `public/data/layout/16.json`, with about 100 pads per chunk.
 
-Layout records preserve printed line relationships such as grouping, indentation, and alignment evidence. Treat them as semantic hints. PDF coordinates and extracted whitespace should not be copied directly into CSS or rendered as literal spaces. Long lines must wrap cleanly at narrow widths while keeping stanza structure readable.
+Layout records preserve printed line relationships such as grouping, indentation, and alignment evidence. Treat them as semantic hints. PDF coordinates and extracted whitespace should not be copied directly into CSS or rendered as literal spaces. The current user-approved direction preserves every printed line at narrow widths by scaling the fixed page, with whole-page zoom for enlargement. Do not restore line wrapping.
 
-`PadTypography` loads this metadata asynchronously and falls back to ordinary stanza flow when it is unavailable. `typographyModel` in `src/lib/typography.js` maps accepted Unicode lines to their source rows. At widths that can support the relationship, the reader retains measured indentation, centering, and separated text groups. Narrow containers and enlarged font settings allow the same canonical text to wrap naturally. Independently decoded segment text is never substituted for the accepted corpus.
+`PadTypography` loads this metadata asynchronously and falls back to a simple fixed-line page when it is unavailable. `typographyModel` in `src/lib/typography.js` maps accepted Unicode lines to their source rows. At widths that can support the relationship, the reader retains measured indentation, centering, and separated text groups. Narrow containers fit the complete fixed page; separate zoom enlarges the geometry without wrapping. See the current implementation in `src/lib/fixed-print.js`. Independently decoded segment text is never substituted for the accepted corpus.
 
 This treatment is source informed rather than a facsimile. The bundled Unicode font has different metrics from the PDF's legacy subsets, and the responsive page intentionally does not reproduce fixed PDF page boundaries.
 
@@ -59,7 +59,7 @@ The inner poem typography is complete as a design foundation. Further frontend a
 1. Clear navigation among pad number, search results, sections, and _Shodash Geet_.
 2. A coherent menu, search, bookmarks, controls, and paper-colored surround around the white reader.
 3. Accessible focus, keyboard, screen-reader, font scaling, and touch behavior across the complete interface.
-4. Useful loading and failure feedback while retaining the typography component's ordinary-flow fallback.
+4. Useful loading and failure feedback while retaining the typography component's fixed-line fallback.
 5. Device QA for safe areas, back navigation, links, offline behavior, and the full supported font-size range.
 
 Keep speculative features out of the first redesign. Additional ideas are tracked in [future-suggestions.md](future-suggestions.md).
@@ -95,8 +95,10 @@ npm run native:sync
 
 A successful browser build does not establish native release readiness. Before release, test both platforms on physical devices, verify offline assets and fonts, configure signing, and complete platform-specific packaging and store checks.
 
-## Verification baseline
+## Original handoff baseline (before the fixed-page change)
 
 The handoff passed lint, 20 JavaScript behavior tests, all-corpus JSON checks, all 21,672 heading/verse position checks, and the Vite production build. Runtime dependency audit reports zero advisories. The Capacitor CLI development dependency chain still reports three moderate advisories; avoid forced downgrades as a substitute for a tested tooling update. The build also warns about the eagerly imported full corpus size; loading/splitting this for the final frontend is a performance task, not missing content.
 
 Browser checks covered the opening pad, Shodash song 2, and pad 1504’s continued footnote. At a 390px viewport, the maximum 176% reader size had no horizontally clipped verse lines or document overflow. Phone-width Shodash headings and numbering remained readable. These browser checks do not replace physical-device QA.
+
+The current fixed-page implementation passes 29 JavaScript tests, 4 review-store/PDF tests, corpus validation, and the production build. Its layout checks cover all canonical verses and notes, all collection entries, and ordered source baselines. Browser checks confirmed unchanged line geometry from 320 to 1440px and horizontal page zoom without document overflow. The review UI and comment store were unchanged.

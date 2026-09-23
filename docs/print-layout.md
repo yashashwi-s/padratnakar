@@ -10,7 +10,7 @@ Direct PDF inspection also confirmed three phantom/duplicated headings around pa
 
 ## Runtime contract
 
-Call `getPrintLayout(padId)` from `src/lib/print-layout.js`. It fetches and caches one of 16 static JSON chunks under `public/data/layout/`, with 100 pads per chunk except the last. These are local assets in the native app. A failed request can be retried. The UI should fall back to ordinary text flow if a layout file cannot load.
+Call `getPrintLayout(padId)` from `src/lib/print-layout.js`. It fetches and caches one of 16 static JSON chunks under `public/data/layout/`, with 100 pads per chunk except the last. These are local assets in the native app. A failed request can be retried. The UI should fall back to a simple fixed-line page if a layout file cannot load.
 
 Each pad contains:
 
@@ -27,13 +27,17 @@ When `segmentTextAligned` is false, segment text is `null`: do not guess a word-
 
 ## Reader implementation
 
-The inner reading view is implemented in `src/components/PadTypography.jsx`, `src/lib/typography.js`, and `src/components/reader-typography.css`. The clean spacing comes from measured positions and gaps, not a string of spaces. Canonical Unicode remains unchanged for search, copying, shaping, and accessibility.
+The reader now uses a fixed, source-positioned Unicode page in `src/lib/fixed-print.js` and `src/components/PadTypography.jsx`. This replaces the earlier wrapping and justification approach at the user's request. The former fit-line hook has been removed.
 
-The typography model uses whole-line positions to infer relative indentation and centering. Where aligned source fragments safely partition the accepted line, it can retain separated printed groups without substituting fragment text for the canonical string. Fragment boundaries inside a Devanagari word are joined so shaping is preserved. Citations, headings, stanza gaps, and footnotes have distinct roles.
+Canonical headings and verses retain their printed horizontal positions and baseline gaps. Safe text groups use their individual source boxes; unaligned fragments use the complete accepted line. SVG text lengths fit those groups into the measured boxes without inserting spaces into the corpus. Every canonical verse remains one displayed line. Source page continuations join using the median printed line leading, without book page headers. There are no invented stanza margins in canonical pads. Shodash retains its separate heading, numbering, stanza-spacing and dedication treatment.
 
-At wider reading measures the component keeps source-supported indentation and grouping. The reader measures each rendered line with the current font. It uses source spacing only when the complete line fits and limits the extra space between groups. Lines that do not fit use the full reading width and natural wrapping; their last wrapped line is never forcibly justified. ResizeObserver updates these decisions when the available width or font metrics change. Short poems have a centered reading measure instead of stretching across a desktop. Layout loading is asynchronous; ordinary stanza flow remains available when a chunk cannot load. Do not shrink text to force an enlarged setting into the original width.
+The page includes an additional 12 source units of white margin on each side. It fits the available viewport up to a 560 CSS-pixel reading width. The smaller/larger text controls scale the fixed page between 80% and 100% of that fit size. The enlargement cap prevents reflow; separate 100–300% zoom controls enlarge the whole page. Horizontal scrolling stays inside the white reading surface, and pad-swipe navigation is disabled while zoomed. The percentage control resets to fit. Browser pinch zoom remains enabled.
 
-The PDF's embedded legacy-font subsets are not ordinary Unicode web fonts. The bundled Noto Serif Devanagari is an offline, licensed alternative, but its glyph metrics differ. This is a responsive, source-informed reading layout; it does not claim exact PDF typography or facsimile pages. Exact facsimile rendering uses the original PDF.
+Headings, verses, raised note markers and footnotes are selectable SVG text, not page screenshots. Footnote positions and relative sizes come from the source spans. If source geometry cannot load, accepted text remains visible in a simple fixed-line fallback.
+
+The font is still the licensed Unicode Noto Serif Devanagari, not the PDF's legacy ChanakyaBold subsets. Source widths and vertical geometry are followed, but the glyph outlines are not identical to the PDF. This is not a claim of an exact font match or a facsimile. Enlarging text changes the complete page scale rather than line breaking; this is the user's requested tradeoff for preserving the book layout.
+
+Validation covers every canonical verse, footnote text and finite ordered baseline across all 1,565 pads, plus all 18 Shodash entries. Browser checks covered widths 320–1440, source-positioned groups, raised notes and whole-page zoom. The review tool and its saved comments were not changed.
 
 ## Rebuilding and provenance
 

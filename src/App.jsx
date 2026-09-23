@@ -234,12 +234,12 @@ export default function App() {
   const [searchOrigin, setSearchOrigin] = useState("pad");
   const [size, setSize] = useState(() => {
     const previous = stored();
-    const value = previous.readerSize;
-    if (previous.readerSizeVersion !== 4 && value === 1.1) return 1.25;
-    return typeof value === "number" && Number.isFinite(value)
-      ? Math.max(1, Math.min(2.2, value))
-      : 1.25;
+    return previous.readerSizeVersion === 5 &&
+      Number.isFinite(previous.readerSize)
+      ? Math.max(0.8, Math.min(1, previous.readerSize))
+      : 1;
   });
+  const [zoom, setZoom] = useState(1);
   const [bookmarks, setBookmarks] = useState(() => {
     const values = stored().bookmarks;
     return Array.isArray(values) ? values.filter((id) => byId.has(id)) : [];
@@ -279,6 +279,7 @@ export default function App() {
   function startSwipe(event) {
     swipeStart.current = null;
     if (
+      zoom > 1 ||
       event.touches.length !== 1 ||
       event.target.closest(
         'button,a,input,select,textarea,[contenteditable="true"]',
@@ -361,7 +362,7 @@ export default function App() {
           ...stored(),
           bookmarks,
           readerSize: size,
-          readerSizeVersion: 4,
+          readerSizeVersion: 5,
           route: `#/${route.mode}/${route.id}`,
         }),
       );
@@ -373,6 +374,7 @@ export default function App() {
     function keys(event) {
       if (
         view !== "reader" ||
+        zoom > 1 ||
         event.ctrlKey ||
         event.metaKey ||
         event.altKey ||
@@ -395,7 +397,7 @@ export default function App() {
     }
     window.addEventListener("keydown", keys);
     return () => window.removeEventListener("keydown", keys);
-  }, [view, position, count, route.mode]);
+  }, [view, position, count, route.mode, zoom]);
   useEffect(() => {
     if (!Capacitor.isNativePlatform()) return;
     let cancelled = false;
@@ -485,6 +487,10 @@ export default function App() {
           <main
             id="main-content"
             className="reader-surround"
+            style={{
+              touchAction:
+                zoom > 1 ? "pan-x pan-y pinch-zoom" : "pan-y pinch-zoom",
+            }}
             tabIndex="-1"
             onTouchStart={startSwipe}
             onTouchEnd={endSwipe}
@@ -505,10 +511,10 @@ export default function App() {
                 <button
                   className="toolbar-action size-smaller"
                   aria-label="अक्षर छोटे करें"
-                  disabled={size <= 1}
+                  disabled={size <= 0.8}
                   onClick={() =>
                     setSize((n) =>
-                      Math.max(1, Math.round((n - 0.1) * 100) / 100),
+                      Math.max(0.8, Math.round((n - 0.05) * 100) / 100),
                     )
                   }
                 >
@@ -518,15 +524,41 @@ export default function App() {
                 <button
                   className="toolbar-action size-larger"
                   aria-label="अक्षर बड़े करें"
-                  disabled={size >= 2.2}
+                  disabled={size >= 1}
                   onClick={() =>
                     setSize((n) =>
-                      Math.min(2.2, Math.round((n + 0.1) * 100) / 100),
+                      Math.min(1, Math.round((n + 0.05) * 100) / 100),
                     )
                   }
                 >
                   <span>अ</span>
                   <Icon name="plus" width="12" height="12" />
+                </button>
+                <button
+                  className="toolbar-action"
+                  aria-label="ज़ूम घटाएँ"
+                  disabled={zoom <= 1}
+                  onClick={() => setZoom((n) => Math.max(1, n - 0.25))}
+                >
+                  −
+                </button>
+                <button
+                  className="toolbar-action zoom-reset"
+                  aria-label="पूरा पृष्ठ दिखाएँ"
+                  onClick={() => {
+                    setZoom(1);
+                    setSize(1);
+                  }}
+                >
+                  {Math.round(zoom * 100)}%
+                </button>
+                <button
+                  className="toolbar-action"
+                  aria-label="ज़ूम बढ़ाएँ"
+                  disabled={zoom >= 3}
+                  onClick={() => setZoom((n) => Math.min(3, n + 0.25))}
+                >
+                  +
                 </button>
                 <button
                   className={`toolbar-action save-action ${saved ? "is-saved" : ""}`}
@@ -546,10 +578,15 @@ export default function App() {
             <div className="reading-page">
               <article
                 className="pad-text"
-                style={{ fontSize: `${size}rem` }}
+
                 key={`${route.mode}-${route.id}`}
               >
-                <PadTypography pad={pad} collectionItem={item} />
+                <PadTypography
+                  pad={pad}
+                  collectionItem={item}
+                  size={size}
+                  zoom={zoom}
+                />
               </article>
             </div>
           </main>

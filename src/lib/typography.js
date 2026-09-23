@@ -5,7 +5,7 @@ const citationPattern = /^\s*\((?:गीता\s*|[०-९0-9]+।|कवीन�
 // quotation marks with a typographic opening mark. A quote before Hindi at
 // a word boundary is an opener even when a multi-line speech has no closer.
 export function normalizeOpeningQuotes(text) {
-  return text.replace(/(?<![\p{L}\p{N}\p{M}])'(?=[\u0900-\u097F‘])/gu, "‘");
+  return text.replace(/(?<![\p{L}\p{N}\p{M}])'(?=['‘]*[\u0900-\u097F])/gu, "‘");
 }
 
 export function normalizeTextLines(lines) {

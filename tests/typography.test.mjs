@@ -14,6 +14,11 @@ const chunks = new Map();
 
 test("normalizes paired Hindi opening quotes for display only", () => {
   assert.equal(normalizeOpeningQuotes("'राधा’"), "‘राधा’");
+  assert.equal(normalizeOpeningQuotes("''हरि"), "‘‘हरि");
+  assert.equal(
+    normalizeOpeningQuotes(normalizeOpeningQuotes("''हरि")),
+    "‘‘हरि",
+  );
   assert.equal(
     normalizeOpeningQuotes("कहते—'खोलो द्वार’ और 'जाओ’॥"),
     "कहते—‘खोलो द्वार’ और ‘जाओ’॥",
