@@ -16,6 +16,25 @@ test("all pads are addressable without confusing missing ids", () => {
   assert.equal(getPad("unknown"), undefined);
 });
 
+test("pad 175 begins with a verse after its musical heading", () => {
+  const pad = getPad(175);
+  assert.deepEqual(pad.headings, ["(राग भैरव—ताल कहरवा)"]);
+  assert.equal(pad.verses[0], pad.title);
+  assert.equal(pad.stanzas[0][0], pad.title);
+});
+
+test("corrected opening lines are verses, not standalone headings", () => {
+  for (const id of [
+    38, 242, 268, 282, 608, 710, 719, 735, 796, 1069, 1197, 1358,
+  ]) {
+    const pad = getPad(id);
+    assert.equal(pad.verses[0], pad.title, `pad ${id}`);
+    assert.equal(pad.stanzas[0][0], pad.title, `pad ${id}`);
+    assert(!pad.headings.includes(pad.title), `pad ${id}`);
+  }
+  assert.equal(getPad(608).verses[0], "हौं तो दासी नित्य तिहारी");
+});
+
 test("shared notes resolve on every named pad to one owning record", () => {
   for (const id of [269, 270, 271]) {
     const notes = getFootnotes(id);
@@ -74,5 +93,10 @@ test("collection bookends suppress doha while songs retain musical headings", ()
     second.stanzas.flat().filter((line) => line.startsWith("हौं तो दासी"))
       .length,
     1,
+  );
+  assert.equal(getPad(1508).verses.at(-1).endsWith("॥*"), true);
+  assert.equal(
+    getShodashItem("closing").stanzas.at(-1).at(-1).endsWith("*"),
+    false,
   );
 });

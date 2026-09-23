@@ -63,7 +63,7 @@ After a successful web build, synchronize the generated assets into the Capacito
 npm run native:sync
 ```
 
-Platform testing, device QA, signing, store metadata, and release packaging remain outstanding.
+The Android debug APK build is available for testing. See [the reader audit](docs/reader-audit.md) for the build command and verification limits. Physical-device QA, store signing, store metadata, and release packaging remain outstanding.
 
 ## Frontend direction
 

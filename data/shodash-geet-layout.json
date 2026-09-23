@@ -100,13 +100,9 @@
       "padId": 608,
       "voice": "श्रीराधा",
       "title": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति",
-      "openingLines": [
-        "हौं तो दासी नित्य तिहारी।"
-      ],
-      "suppressSourceHeadingLines": [
-        "हौं तो दासी नित्य तिहारी"
-      ],
-      "openingLinesProvenance": "provided Shodash Geet song 2 image; collection display only",
+      "openingLineSource": "हौं तो दासी नित्य तिहारी",
+      "openingLineDisplay": "हौं तो दासी नित्य तिहारी।",
+      "openingLineProvenance": "provided Shodash Geet song 2 image; collection display only",
       "headings": [
         "(राग रागेश्वरी—ताल दादरा)"
       ],
@@ -800,7 +796,7 @@
         ],
         [
           "राधा-माधव-प्रेम-रस वाचा-चित्त-अतीत।",
-          "करते शाखाचन्द्र-से इंगित सोलह गीत॥५॥*"
+          "करते शाखाचन्द्र-से इंगित सोलह गीत॥५॥"
         ]
       ],
       "sourceLayout": {

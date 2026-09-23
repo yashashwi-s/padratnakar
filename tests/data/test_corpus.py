@@ -15,8 +15,8 @@ assert a['verifiedReviewsPreserved']==sum(x['textStatus']=='human-verified' for 
 assert [x['padId'] for x in m['items']]==[1,550,608,551,609,552,610,553,611,554,612,555,613,556,614,557,615,1508]
 assert m['rendering']['numberStanzas'] is True
 assert m['rendering']['suppressMusicalHeadingForRoles']==['opening','closing']
-assert [x for x in m['items'] if x['padId']==608][0]['openingLines']==['हौं तो दासी नित्य तिहारी।']
-assert all(x['openingLines']==['हौं तो दासी नित्य तिहारी।'] if x['padId']==608 else 'openingLines' not in x for x in m['items'])
+assert [x for x in m['items'] if x['padId']==608][0]['openingLineDisplay']=='हौं तो दासी नित्य तिहारी।'
+assert all(('openingLineDisplay' in x)==(x['padId']==608) for x in m['items'])
 assert any(f['sourcePages']==[915,916,917] for f in h[1503]['footnotes'])
 assert any(f['sourcePages']==[918] for f in h[1507]['footnotes'])
 assert not h[1509]['footnotes']

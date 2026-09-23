@@ -18,11 +18,17 @@ The 12-point Gita citations on pages 652–662 and source attributions on pages 
 
 The manifest's `rendering.numberStanzas` adds Devanagari stanza numbers to the end of each displayed stanza for this collection only, replacing the final bare `॥` with `॥१॥`, `॥२॥`, and so on. No canonical pad verse is changed. The opening and closing printed images omit the generic `(दोहा)` label, so `suppressMusicalHeadingForRoles` hides that label for those two collection entries only. Song entries keep their printed rāg/tāl headings.
 
-The supplied image for song 2 (pad 608) shows `हौं तो दासी नित्य तिहारी।` as its first verse line. The PDF decoder classified the same words, without the danda, as a heading. The manifest provides the image-backed `openingLines` and `suppressSourceHeadingLines` for this one entry, preventing omission or duplication. The other 15 songs use their baseline first verse and heading as decoded; no unseen variant text is supplied.
+The closing पुष्पिका also omits the final footnote asterisk in this collection's display. Canonical pad 1508 retains the printed asterisk and its footnote.
+
+The supplied image for song 2 (pad 608) shows `हौं तो दासी नित्य तिहारी।` as its first verse line. The canonical pad now classifies the decoded words, without the danda, as its first verse line. The manifest adds the image-backed danda to that line in षोडशगीत only, without duplicating the line. The other 15 songs use their baseline first verse and heading as decoded; no unseen variant text is supplied.
 
 ## Source corrections and limitations
 
 The final position audit removed phantom/duplicated headings from pads 982, 984 and 985, restored the visible comma in pad 984’s Gita citation, and moved the numbered meanings printed beneath pad 105 to the footnotes of pad 104, where the raised markers appear. Each change has a physical-page reference and reason in `data-footnote-audit.json`. The candidate snapshot is unchanged, so the before/after remains reproducible.
+
+Pad 175’s line beginning “मधुर-सुमधुर” is classified as the first verse line after its rāg/tāl heading. The source catalog previously marked it as a heading; the accepted words and PDF position remain unchanged.
+
+The opening text lines of pads 38, 242, 268, 282, 608, 710, 719, 735, 796, 1069, 1197 and 1358 are also classified as first verse lines rather than standalone headings. Their wording and source positions remain unchanged; musical/form headings stay in place.
 
 The contextual association of the page 218 note with pads 333 and 349 remains explicitly labelled as inferred; it is not an outstanding line-position failure. Do not present acceptance of PDF decoding as independent verification of every spelling.
 

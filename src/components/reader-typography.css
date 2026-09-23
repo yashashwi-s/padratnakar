@@ -2,7 +2,7 @@
 .pad-text .pad-typography {
   color: #000;
   background: #fff;
-  font-weight: 500;
+  font-weight: 700;
   font-synthesis: none;
 }
 .pad-typography .poem-heading {
@@ -12,24 +12,24 @@
 }
 .pad-typography .pad-number {
   font-size: 1em;
-  font-weight: 500;
+  font-weight: 700;
   margin-block: 0 0.65em;
   line-height: 1.7;
 }
 .pad-typography .musical-heading {
   font-size: 0.84em;
-  font-weight: 500;
+  font-weight: 700;
   line-height: 1.9;
   margin: 0.35em 0 0;
 }
 .pad-typography .extra-heading {
   font-size: 1em;
-  font-weight: 650;
+  font-weight: 700;
   line-height: 1.8;
   margin: 0.6em 0;
 }
 .pad-typography .poem-measure {
-  container: poem / inline-size;
+  min-inline-size: 0;
   max-width: 28em;
   margin-inline: auto;
 }
@@ -67,33 +67,65 @@
 .pad-typography .verse-centered {
   text-align: center;
 }
-/* Source indentation and separated groups apply only when there is room at
-   the current reading size. Enlarging type naturally switches to reflow. */
-@container poem (min-width: 22em) {
-  .pad-typography .verse-line:not(.verse-citation):not(.verse-centered) {
-    text-align: justify;
-    text-align-last: justify;
-    margin-inline-start: var(--source-indent, 0%);
-    width: min(
-      var(--source-width, 100%),
-      calc(100% - var(--source-indent, 0%))
-    );
-  }
-  .pad-typography .verse-grouped {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    flex-wrap: wrap;
-    column-gap: 0.25em;
-  }
-  .pad-typography .verse-grouped .verse-segment {
-    max-width: 100%;
-    flex: 0 1 auto;
-  }
-  .pad-typography .verse-centered {
-    justify-content: center;
-    column-gap: 0.3em;
-  }
+/* Each line opts into print spacing only when the current font really fits. */
+.pad-typography .verse-row {
+  position: relative;
+  min-inline-size: 0;
+}
+.pad-typography .verse-row + .verse-row {
+  margin-top: 0.08em;
+}
+.pad-typography .line-metric {
+  position: absolute;
+  visibility: hidden;
+  pointer-events: none;
+  inset: 0 auto auto 0;
+  inline-size: max-content;
+  word-spacing: 0.015em;
+  white-space: pre;
+  line-height: 1.95;
+}
+.pad-typography .line-metric .verse-segment {
+  white-space: pre;
+}
+.pad-typography .verse-line {
+  white-space: normal;
+  text-align: start;
+  text-align-last: auto;
+}
+.pad-typography .verse-segment {
+  white-space: normal;
+}
+.pad-typography .verse-row[data-fit="aligned"] .verse-line,
+.pad-typography .verse-row[data-fit="justify"] .verse-line,
+.pad-typography .verse-row[data-fit="groups"] .verse-line {
+  margin-inline-start: var(--line-indent);
+  inline-size: var(--line-width);
+}
+.pad-typography .verse-row[data-fit="justify"] .verse-line {
+  text-align: justify;
+  text-align-last: justify;
+}
+.pad-typography .verse-row[data-fit="groups"] .verse-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: nowrap;
+}
+.pad-typography .verse-row[data-fit="groups"] .verse-segment {
+  white-space: pre;
+  flex: none;
+}
+.pad-typography .verse-row[data-fit="center"] .verse-line {
+  text-align: center;
+}
+.pad-typography .verse-row[data-citation="true"] {
+  font-size: 0.8em;
+  font-weight: 400;
+  margin-top: 0.5em;
+}
+.pad-typography .verse-row[data-citation="true"] .verse-line {
+  text-align: right;
 }
 .pad-typography .footnotes {
   max-width: 41.25em;
@@ -103,10 +135,6 @@
   font-size: 0.8em;
   font-weight: 400;
   line-height: 1.85;
-}
-.pad-typography .footnotes h2 {
-  font-weight: 600;
-  margin-bottom: 0.9em;
 }
 .pad-typography .footnote {
   margin-block: 0 1em;
@@ -155,6 +183,16 @@
 
 .pad-typography .verse-raised {
   font-size: 0.72em;
+  font-weight: 400;
   line-height: 0;
   vertical-align: super;
+}
+
+.pad-typography .line-metric-clip {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  visibility: hidden;
+  pointer-events: none;
+  contain: strict;
 }

@@ -31,7 +31,7 @@ The inner reading view is implemented in `src/components/PadTypography.jsx`, `sr
 
 The typography model uses whole-line positions to infer relative indentation and centering. Where aligned source fragments safely partition the accepted line, it can retain separated printed groups without substituting fragment text for the canonical string. Fragment boundaries inside a Devanagari word are joined so shaping is preserved. Citations, headings, stanza gaps, and footnotes have distinct roles.
 
-At wider reading measures the component keeps source-supported indentation and grouping. Container queries release those constraints when space is limited, so narrow screens and larger accessibility settings wrap naturally. Layout loading is asynchronous; ordinary stanza flow remains available when a chunk cannot load. Do not shrink text to force an enlarged setting into the original width.
+At wider reading measures the component keeps source-supported indentation and grouping. The reader measures each rendered line with the current font. It uses source spacing only when the complete line fits and limits the extra space between groups. Lines that do not fit use the full reading width and natural wrapping; their last wrapped line is never forcibly justified. ResizeObserver updates these decisions when the available width or font metrics change. Short poems have a centered reading measure instead of stretching across a desktop. Layout loading is asynchronous; ordinary stanza flow remains available when a chunk cannot load. Do not shrink text to force an enlarged setting into the original width.
 
 The PDF's embedded legacy-font subsets are not ordinary Unicode web fonts. The bundled Noto Serif Devanagari is an offline, licensed alternative, but its glyph metrics differ. This is a responsive, source-informed reading layout; it does not claim exact PDF typography or facsimile pages. Exact facsimile rendering uses the original PDF.
 
@@ -42,3 +42,5 @@ The PDF's embedded legacy-font subsets are not ordinary Unicode web fonts. The b
 For font-decoder research, `python3 scripts/corpus/extract_print_layout.py --raw-output /path/outside/repo` additionally saves raw character origins, bounding boxes and font names. These bulky intermediate records are intentionally absent from version control. The PDF and decoder inputs are retained, so they can be reproduced.
 
 `data/shodash-geet-layout.json` contains the 18-entry collection's display-only headings, speaker alternation, stanza numbers and dedication style role. Its coordinates reference the original Pad Ratnakar, not invented coordinates for the supplied Shodash scans. See [the frontend handoff](frontend-handoff.md).
+
+Hindi opening quotation marks are normalized for display (`\'राधा’` becomes `‘राधा’`). Canonical source strings, search data, and provenance remain unchanged. The visible line and its hidden measurement copy use the same display treatment.

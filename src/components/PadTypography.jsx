@@ -1,9 +1,15 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useRef } from "react";
 import { getFootnotes, shodashCollection } from "../lib/corpus";
 import { getPrintLayout } from "../lib/print-layout";
-import { typographyModel } from "../lib/typography";
+import {
+  normalizeOpeningQuotes,
+  normalizeTypographyStanzas,
+  normalizeTextLines,
+  typographyModel,
+} from "../lib/typography";
 import { devanagariNumber as dn } from "../lib/search";
 import "./reader-typography.css";
+import { useReaderLayout } from "./useReaderLayout";
 
 export default function PadTypography({ pad, collectionItem: item }) {
   const [layout, setLayout] = useState(null);
@@ -25,6 +31,12 @@ export default function PadTypography({ pad, collectionItem: item }) {
     () => typographyModel(pad, currentLayout, item),
     [pad, currentLayout, item],
   );
+  const displayStanzas = useMemo(
+    () => normalizeTypographyStanzas(stanzas),
+    [stanzas],
+  );
+  const measureRef = useRef(null);
+  useReaderLayout(measureRef, displayStanzas);
   const notes = getFootnotes(pad);
   const headings = item?.headings || pad.headings;
   return (
@@ -34,9 +46,13 @@ export default function PadTypography({ pad, collectionItem: item }) {
     >
       {item?.role === "opening" && (
         <header className="shodash-front">
-          <p className="invocation">{shodashCollection.invocation}</p>
+          <p className="invocation">
+            {normalizeOpeningQuotes(shodashCollection.invocation)}
+          </p>
           <h1>{shodashCollection.bookTitle}</h1>
-          <p className="book-subtitle">[ {shodashCollection.title} ]</p>
+          <p className="book-subtitle">
+            [ {normalizeOpeningQuotes(shodashCollection.title)} ]
+          </p>
         </header>
       )}
       <header className="poem-heading">
@@ -48,7 +64,7 @@ export default function PadTypography({ pad, collectionItem: item }) {
             <h2
               className={`collection-heading ${item.role === "song" ? "speaker-heading" : ""}`}
             >
-              {item.title}
+              {normalizeOpeningQuotes(item.title)}
             </h2>
           </>
         ) : (
@@ -61,56 +77,52 @@ export default function PadTypography({ pad, collectionItem: item }) {
               /^\(/u.test(heading) ? "musical-heading" : "extra-heading"
             }
           >
-            {heading}
+            {normalizeOpeningQuotes(heading)}
           </p>
         ))}
       </header>
-      <div className="poem-measure">
+      <div className="poem-measure" ref={measureRef}>
         <div className="verse-body">
-          {stanzas.map((stanza, i) => (
+          {displayStanzas.map((stanza, i) => (
             <div className="stanza" key={i}>
               {stanza.map((line, j) => (
-                <p
+                <div
+                  className="verse-row"
                   key={j}
-                  className={`verse-line ${line.citation ? "verse-citation" : ""} ${line.centered ? "verse-centered" : ""} ${line.segments.length > 1 ? "verse-grouped" : ""}`}
-                  style={{
-                    "--source-indent": `${Math.min(line.inset, 0.45) * 100}%`,
-                    "--source-width": `${Math.max(line.extent, 0.45) * 100}%`,
-                  }}
-                  data-source-page={line.source?.pdfPage}
+                  data-inset={line.inset}
+                  data-extent={line.extent}
+                  data-centered={Boolean(line.centered)}
+                  data-citation={Boolean(line.citation)}
+                  data-groups={line.segments.length}
+                  data-words={line.text.trim().split(/\s+/u).length}
                 >
-                  {line.segments.map((segment, k) => (
-                    <span className="verse-segment" key={k}>
-                      {segment.runs
-                        ? segment.runs.map((run, n) =>
-                            run.raised ? (
-                              <sup key={n} className="verse-raised">
-                                {run.text}
-                              </sup>
-                            ) : (
-                              <span key={n}>{run.text}</span>
-                            ),
-                          )
-                        : segment.text}
-                    </span>
-                  ))}
-                </p>
+                  <p
+                    className="verse-line"
+                    data-source-page={line.source?.pdfPage}
+                  >
+                    <LineContent segments={line.segments} />
+                  </p>
+                  <div className="line-metric-clip" aria-hidden="true">
+                    <div className="line-metric">
+                      <LineContent segments={line.segments} />
+                    </div>
+                  </div>
+                </div>
               ))}
             </div>
           ))}
         </div>
       </div>
-      {notes.length > 0 && (
+      {notes.length > 0 && item?.role !== "closing" && (
         <aside className="footnotes" aria-label="पाद-टिप्पणियाँ">
-          <h2>पाद-टिप्पणी</h2>
           {notes.map((note, index) => (
             <div
               className="footnote"
               key={`${note.ownerPadId}-${note.noteIndex}-${index}`}
             >
               <div>
-                {note.lines.map((line, j) => (
-                  <p key={j}>{line}</p>
+                {normalizeTextLines(note.lines).map((line, j) => (
+                  <p key={j}>{normalizeOpeningQuotes(line)}</p>
                 ))}
               </div>
             </div>
@@ -119,9 +131,27 @@ export default function PadTypography({ pad, collectionItem: item }) {
       )}
       {item?.role === "closing" && (
         <p className="closing-dedication">
-          {shodashCollection.closingDedication}
+          {normalizeOpeningQuotes(shodashCollection.closingDedication)}
         </p>
       )}
     </div>
   );
+}
+
+function LineContent({ segments }) {
+  return segments.map((segment, k) => (
+    <span className="verse-segment" key={k}>
+      {segment.runs
+        ? segment.runs.map((run, n) =>
+            run.raised ? (
+              <sup key={n} className="verse-raised">
+                {run.text}
+              </sup>
+            ) : (
+              <span key={n}>{run.text}</span>
+            ),
+          )
+        : segment.text}
+    </span>
+  ));
 }

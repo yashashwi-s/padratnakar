@@ -1,20 +1,56 @@
+import { swipeDirection } from "./lib/reader-layout";
 import { useEffect, useMemo, useRef, useState } from "react";
-import hymns from "./data/hymns.json";
-import { shodashCollection as shodash } from "./lib/corpus";
-import indexMap from "./data/index_map.json";
-import Icon from "./components/Icon";
-import PadTypography from "./components/PadTypography";
 import { App as NativeApp } from "@capacitor/app";
 import { Capacitor } from "@capacitor/core";
+import hymns from "./data/hymns.json";
+import indexMap from "./data/index_map.json";
+import { shodashCollection as shodash } from "./lib/corpus";
 import {
   devanagariNumber as dn,
   makeSearchIndex,
   searchPads,
 } from "./lib/search";
+import { findSectionMatches, matchesSectionName } from "./lib/sections";
+import Icon from "./components/Icon";
+import PadTypography from "./components/PadTypography";
 
-const index = makeSearchIndex(hymns);
-const byId = new Map(hymns.map((p) => [p.id, p]));
 const STORAGE = "pad-ratnakar-reader-v3";
+const byId = new Map(hymns.map((pad) => [pad.id, pad]));
+const mainIndex = makeSearchIndex(hymns);
+const songPosition = new Map(shodash.items.map((item, i) => [item.padId, i]));
+const songIndex = makeSearchIndex(
+  hymns.map((pad) => {
+    const item = shodash.items[songPosition.get(pad.id)];
+    return item
+      ? {
+          ...pad,
+          title: item.title,
+          section: shodash.title,
+          headings: [...(item.headings || []), item.title],
+        }
+      : pad;
+  }),
+).filter((entry) => songPosition.has(entry.pad.id));
+const collections = [
+  {
+    mode: "pad",
+    name: "पद रत्नाकर",
+    index: mainIndex,
+    routeId: (id) => id,
+    displayNumber: (id) => dn(id),
+  },
+  {
+    mode: "shodash",
+    name: "षोडशगीत",
+    index: songIndex,
+    routeId: (id) => songPosition.get(id),
+    displayNumber: (id) => {
+      const entry = shodash.items[songPosition.get(id)];
+      return entry.number ? dn(entry.number) : "";
+    },
+  },
+];
+
 function stored() {
   try {
     return (
@@ -26,257 +62,212 @@ function stored() {
   }
 }
 function validRoute(hash) {
-  let m = hash.match(/^#\/pad\/(\d+)$/);
-  if (m && byId.has(Number(m[1]))) return { mode: "pad", id: Number(m[1]) };
-  m = hash.match(/^#\/shodash\/(\d+)$/);
-  if (m && Number(m[1]) < shodash.items.length)
-    return { mode: "shodash", id: Number(m[1]) };
+  let match = hash.match(/^#\/pad\/(\d+)$/);
+  if (match && byId.has(Number(match[1])))
+    return { mode: "pad", id: Number(match[1]) };
+  match = hash.match(/^#\/shodash\/(\d+)$/);
+  if (match && Number(match[1]) < shodash.items.length)
+    return { mode: "shodash", id: Number(match[1]) };
   return null;
 }
 function loadRoute() {
-  const saved = stored();
   return (
     validRoute(location.hash) ||
-    validRoute(saved.route || "") || { mode: "pad", id: 1 }
+    validRoute(stored().route || "") || { mode: "pad", id: 1 }
   );
 }
-function Modal({ children, onClose, className, label }) {
-  const ref = useRef(null);
-  useEffect(() => {
-    const el = ref.current;
-    const previous = document.activeElement;
-    el.showModal();
-    return () => {
-      el.close();
-      previous?.focus();
-    };
-  }, []);
+function SectionBar({ children }) {
+  return <div className="section-bar">{children}</div>;
+}
+function PadRow({ number, text, onClick }) {
   return (
-    <dialog
-      ref={ref}
-      className={className}
-      aria-label={label}
-      onCancel={(e) => {
-        e.preventDefault();
-        onClose();
-      }}
-      onClick={(e) => {
-        if (e.target === e.currentTarget) {
-          const r = e.currentTarget.getBoundingClientRect();
-          if (
-            e.clientX < r.left ||
-            e.clientX > r.right ||
-            e.clientY < r.top ||
-            e.clientY > r.bottom
-          )
-            onClose();
-        }
-      }}
-    >
-      {children}
-    </dialog>
+    <button className="pad-row" onClick={onClick}>
+      <span className="row-number">{number ? `${number}.` : ""}</span>
+      <span className="row-text">{text}</span>
+    </button>
   );
 }
-
-function Search({ onClose, onOpen, bookmarks, initialView = "search" }) {
-  const [query, setQuery] = useState("");
-  const [section, setSection] = useState("");
-  const [phrase, setPhrase] = useState(false);
-  const [limit, setLimit] = useState(60);
-  const [cursor, setCursor] = useState(0);
-  const [view, setView] = useState(initialView);
-  const results = useMemo(() => {
-    const found = searchPads(index, query, { section, phrase });
-    return view === "bookmarks"
-      ? found.filter((r) => bookmarks.includes(r.pad.id))
-      : found;
-  }, [query, section, phrase, view, bookmarks]);
-  function changeQuery(q) {
-    setQuery(q);
-    setLimit(60);
-    setCursor(0);
+function isMusicalLabel(line) {
+  return /^\s*\((?:राग|तर्ज|ताल|दोहा|सोरठा)(?:[\s—–-]|\))/u.test(line);
+}
+function padPreview(pad) {
+  return (
+    pad.verses
+      .filter((line) => !isMusicalLabel(line))
+      .slice(0, 8)
+      .join(" ") || pad.title
+  );
+}
+function collectionPreview(item) {
+  return (
+    item.stanzas
+      .flat()
+      .filter((line) => !isMusicalLabel(line))
+      .slice(0, 8)
+      .join(" ") || item.title
+  );
+}
+function searchPreview(mode, result) {
+  const pad = result.pad;
+  if (mode === "shodash") {
+    const item = shodash.items[songPosition.get(pad.id)];
+    const lines = item.stanzas.flat();
+    const start = lines.indexOf(result.snippet);
+    return start >= 0 && !isMusicalLabel(result.snippet)
+      ? lines
+          .slice(start)
+          .filter((line) => !isMusicalLabel(line))
+          .slice(0, 8)
+          .join(" ")
+      : collectionPreview(item);
   }
+  const start = pad.verses.indexOf(result.snippet);
+  if (start >= 0 && !isMusicalLabel(result.snippet))
+    return pad.verses
+      .slice(start)
+      .filter((line) => !isMusicalLabel(line))
+      .slice(0, 8)
+      .join(" ");
+  if (pad.headings.includes(result.snippet)) return padPreview(pad);
+  return [result.snippet, padPreview(pad)].filter(Boolean).join(" ");
+}
+function SearchResults({ query, origin, onOpen, onOpenSection }) {
+  const [limit, setLimit] = useState(60);
+  const sectionMatches = useMemo(
+    () => findSectionMatches(indexMap.topics, query),
+    [query],
+  );
+  const groups = useMemo(
+    () =>
+      [...collections]
+        .sort((a, b) => (a.mode === origin ? -1 : b.mode === origin ? 1 : 0))
+        .map((collection) => ({
+          ...collection,
+          found: searchPads(collection.index, query),
+        })),
+    [query, origin],
+  );
+  if (
+    !groups.some(
+      (group) =>
+        group.found.length ||
+        matchesSectionName(group.name, query) ||
+        (group.mode === "pad" && sectionMatches.length),
+    )
+  )
+    return (
+      <p className="empty-state">कोई पद नहीं मिला। दूसरे शब्दों से खोजें।</p>
+    );
   return (
-    <Modal className="search-dialog" label="पद खोजें" onClose={onClose}>
-      <header className="dialog-header">
-        <h2>{view === "bookmarks" ? "सहेजे हुए पद" : "पद खोजें"}</h2>
-        <button
-          className="icon-button"
-          onClick={onClose}
-          aria-label="खोज बन्द करें"
-        >
-          <Icon name="close" />
-        </button>
-      </header>
-      <div className="search-field">
-        <Icon name="search" />
-        <input
-          autoFocus
-          aria-label="पद संख्या या शब्द"
-          placeholder="पद संख्या, शब्द या पंक्ति…"
-          value={query}
-          onChange={(e) => changeQuery(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "ArrowDown") {
-              e.preventDefault();
-              setCursor((i) =>
-                Math.min(i + 1, Math.min(limit, results.length) - 1),
-              );
-            }
-            if (e.key === "ArrowUp") {
-              e.preventDefault();
-              setCursor((i) => Math.max(0, i - 1));
-            }
-            if (e.key === "Enter" && results[cursor])
-              onOpen(results[cursor].pad.id);
-          }}
-          aria-controls="search-results"
-          aria-activedescendant={
-            results[cursor] ? "result-" + results[cursor].pad.id : undefined
-          }
-        />
-        {query && (
-          <button
-            className="icon-button"
-            aria-label="खोज साफ करें"
-            onClick={() => changeQuery("")}
-          >
-            <Icon name="close" />
-          </button>
-        )}
-      </div>
-      <p className="search-help">
-        हिन्दी, English में लिखे हिन्दी शब्द, या १२३ / 123
-      </p>
-      <div className="search-filters">
-        <label>
-          <span className="sr-only">विषय</span>
-          <select
-            value={section}
-            onChange={(e) => {
-              setSection(e.target.value);
-              setLimit(60);
-              setCursor(0);
-            }}
-          >
-            <option value="">सभी विषय</option>
-            {indexMap.topics.map((t) => (
-              <option key={t.name}>{t.name}</option>
-            ))}
-          </select>
-        </label>
-        <label className="check-label">
-          <input
-            type="checkbox"
-            checked={phrase}
-            onChange={(e) => {
-              setPhrase(e.target.checked);
-              setCursor(0);
-            }}
-          />
-          पूरा वाक्य
-        </label>
-        {view === "bookmarks" && (
-          <button className="text-button" onClick={() => setView("search")}>
-            सभी पद
-          </button>
-        )}
-      </div>
-      <div className="result-count" aria-live="polite">
-        {dn(results.length)} पद {query ? "मिले" : ""}
-      </div>
-      <div className="search-results" id="search-results">
-        {!query && !section && view === "search" ? (
-          <>
-            <div className="topic-caption">विषयानुसार पढ़ें</div>
-            {indexMap.topics.map((t) => (
-              <details className="topic" key={t.name}>
-                <summary>
-                  {t.name}
-                  <span>
-                    {dn(t.startPad)}–{dn(t.endPad)}
-                  </span>
-                </summary>
-                <button onClick={() => onOpen(t.startPad)}>
-                  यहाँ से पढ़ें <Icon name="right" />
+    <div className="list-content" aria-live="polite">
+      {groups.map((group) =>
+        group.found.length ||
+        matchesSectionName(group.name, query) ||
+        (group.mode === "pad" && sectionMatches.length) ? (
+          <section key={group.mode}>
+            <SectionBar>{group.name}</SectionBar>
+            {matchesSectionName(group.name, query) && (
+              <button
+                className="section-row search-section-row"
+                onClick={() =>
+                  onOpenSection(
+                    group.mode === "shodash" ? { mode: "shodash" } : null,
+                  )
+                }
+              >
+                {group.name}
+              </button>
+            )}
+            {group.mode === "pad" &&
+              sectionMatches.map(({ section, subtopic }) => (
+                <button
+                  className="section-row search-section-row"
+                  key={`${section.name}-${subtopic?.name || ""}`}
+                  onClick={() =>
+                    onOpenSection(
+                      subtopic
+                        ? {
+                            ...section,
+                            startPad: subtopic.startPad,
+                            endPad: subtopic.endPad,
+                            activeSubtopic: subtopic.name,
+                          }
+                        : section,
+                    )
+                  }
+                >
+                  {section.name}
+                  {subtopic ? ` — ${subtopic.name}` : ""}
                 </button>
-                {t.subtopics?.map((s) => (
-                  <button key={s.name} onClick={() => onOpen(s.startPad)}>
-                    {s.name}
-                    <span>
-                      {dn(s.startPad)}–{dn(s.endPad)}
-                    </span>
-                  </button>
-                ))}
-              </details>
-            ))}
-          </>
-        ) : results.length ? (
-          results.slice(0, limit).map((r, i) => (
-            <button
-              id={"result-" + r.pad.id}
-              className={
-                "search-result " +
-                (query && i === cursor ? "keyboard-current" : "")
-              }
-              key={r.pad.id}
-              onClick={() => onOpen(r.pad.id)}
-            >
-              <span className="result-number">{dn(r.pad.id)}</span>
-              <span>
-                <strong>{r.pad.title}</strong>
-                <span className="result-snippet">
-                  {r.snippet !== r.pad.title ? r.snippet : r.pad.section}
-                </span>
-              </span>
-              <Icon name="right" />
-            </button>
-          ))
-        ) : (
-          <div className="empty-message">
-            {view === "bookmarks" && !query
-              ? "पढ़ते समय सहेजें बटन से पद यहाँ जोड़ें।"
-              : "कोई पद नहीं मिला। कम शब्दों से फिर खोजें।"}
-          </div>
-        )}
-        {(query || section || view === "bookmarks") &&
-          results.length > limit && (
-            <button
-              className="more-results"
-              onClick={() => setLimit((n) => n + 60)}
-            >
-              अगले {dn(Math.min(60, results.length - limit))} पद दिखाएँ
-            </button>
-          )}
-      </div>
-    </Modal>
+              ))}
+            {group.found.slice(0, limit).map((result) => {
+              const id = result.pad.id;
+              return (
+                <PadRow
+                  key={group.mode + id}
+                  number={group.displayNumber(id)}
+                  text={searchPreview(group.mode, result)}
+                  onClick={() => onOpen(group.mode, group.routeId(id))}
+                />
+              );
+            })}
+            {group.found.length > limit && (
+              <button
+                className="more-button"
+                onClick={() => setLimit((n) => n + 60)}
+              >
+                और पद देखें
+              </button>
+            )}
+          </section>
+        ) : null,
+      )}
+    </div>
   );
 }
 
 export default function App() {
   const [route, setRoute] = useState(loadRoute);
-  const [overlay, setOverlay] = useState(null);
+  const [view, setView] = useState("reader");
+  const [selectedSection, setSelectedSection] = useState(null);
+  const [query, setQuery] = useState("");
+  const [searchOrigin, setSearchOrigin] = useState("pad");
   const [size, setSize] = useState(() => {
-    const s = stored().readerSize;
-    return typeof s === "number" && Number.isFinite(s)
-      ? Math.max(1, Math.min(2.2, s))
+    const previous = stored();
+    const value = previous.readerSize;
+    if (previous.readerSizeVersion !== 4 && value === 1.1) return 1.25;
+    return typeof value === "number" && Number.isFinite(value)
+      ? Math.max(1, Math.min(2.2, value))
       : 1.25;
   });
   const [bookmarks, setBookmarks] = useState(() => {
-    const b = stored().bookmarks;
-    return Array.isArray(b) ? b.filter((id) => byId.has(id)) : [];
+    const values = stored().bookmarks;
+    return Array.isArray(values) ? values.filter((id) => byId.has(id)) : [];
   });
   const [notice, setNotice] = useState("");
+  const swipeStart = useRef(null);
   const item = route.mode === "shodash" ? shodash.items[route.id] : null;
   const pad = byId.get(item?.padId || route.id) || hymns[0];
   const saved = bookmarks.includes(pad.id);
   const position = route.mode === "shodash" ? route.id : pad.id - 1;
   const count = route.mode === "shodash" ? shodash.items.length : hymns.length;
+
+  function showView(next, section = null) {
+    if (view === next) return;
+    history.pushState(
+      { view: next, section, origin: route.mode },
+      "",
+      location.href,
+    );
+    setView(next);
+    if (next !== "browse") window.scrollTo(0, 0);
+  }
   function go(mode, id) {
     const hash = `#/${mode}/${id}`;
-    if (location.hash !== hash) history.pushState(null, "", hash);
+    if (location.hash !== hash || view !== "reader")
+      history.pushState(null, "", hash);
     setRoute({ mode, id });
-    setOverlay(null);
+    setView("reader");
     setNotice("");
     window.scrollTo({ top: 0, behavior: "instant" });
   }
@@ -285,10 +276,74 @@ export default function App() {
     if (next >= 0 && next < count)
       go(route.mode, route.mode === "shodash" ? next : hymns[next].id);
   }
+  function startSwipe(event) {
+    swipeStart.current = null;
+    if (
+      event.touches.length !== 1 ||
+      event.target.closest(
+        'button,a,input,select,textarea,[contenteditable="true"]',
+      ) ||
+      !window.getSelection()?.isCollapsed ||
+      (window.visualViewport?.scale || 1) > 1.01
+    )
+      return;
+    const touch = event.touches[0];
+    swipeStart.current = {
+      x: touch.clientX,
+      y: touch.clientY,
+      time: event.timeStamp,
+    };
+  }
+  function endSwipe(event) {
+    const start = swipeStart.current;
+    swipeStart.current = null;
+    if (!start || event.changedTouches.length !== 1) return;
+    const touch = event.changedTouches[0];
+    if (event.touches.length) return;
+    const direction = swipeDirection(
+      start,
+      { x: touch.clientX, y: touch.clientY, time: event.timeStamp },
+      {
+        selection: !window.getSelection()?.isCollapsed,
+        scale: window.visualViewport?.scale || 1,
+      },
+    );
+    if (direction) step(direction);
+  }
+  function moveSwipe(event) {
+    const start = swipeStart.current;
+    if (!start) return;
+    if (event.touches.length !== 1) {
+      swipeStart.current = null;
+      return;
+    }
+    const touch = event.touches[0];
+    const dx = Math.abs(touch.clientX - start.x),
+      dy = Math.abs(touch.clientY - start.y);
+    if (dy > 16 && dy > dx) swipeStart.current = null;
+  }
+
+  function openBrowse() {
+    setSearchOrigin(route.mode);
+    showView("browse");
+  }
+  function openQuery() {
+    setSearchOrigin(route.mode);
+    setQuery("");
+    showView("query");
+    window.scrollTo(0, 0);
+  }
+  function openSection(section) {
+    setSelectedSection(section);
+    showView("section", section);
+    window.scrollTo(0, 0);
+  }
   useEffect(() => {
     const update = () => {
       setRoute(validRoute(location.hash) || { mode: "pad", id: 1 });
-      setOverlay(null);
+      setView(history.state?.view || "reader");
+      setSelectedSection(history.state?.section || null);
+      if (history.state?.origin) setSearchOrigin(history.state.origin);
       window.scrollTo(0, 0);
     };
     window.addEventListener("popstate", update);
@@ -300,38 +355,38 @@ export default function App() {
   }, []);
   useEffect(() => {
     try {
-      const old = stored();
       localStorage.setItem(
         STORAGE,
         JSON.stringify({
-          ...old,
+          ...stored(),
           bookmarks,
           readerSize: size,
+          readerSizeVersion: 4,
           route: `#/${route.mode}/${route.id}`,
         }),
       );
     } catch {
-      /* Reading stays available when storage is unavailable. */
+      /* Reading remains available without storage. */
     }
   }, [bookmarks, size, route]);
   useEffect(() => {
-    function keys(e) {
+    function keys(event) {
       if (
-        overlay ||
-        e.ctrlKey ||
-        e.metaKey ||
-        e.altKey ||
+        view !== "reader" ||
+        event.ctrlKey ||
+        event.metaKey ||
+        event.altKey ||
         ["INPUT", "TEXTAREA", "SELECT", "BUTTON", "A", "SUMMARY"].includes(
-          e.target.tagName,
+          event.target.tagName,
         ) ||
-        e.target.isContentEditable
+        event.target.isContentEditable
       )
         return;
-      if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
-        e.preventDefault();
-        const n = position + (e.key === "ArrowLeft" ? -1 : 1);
-        if (n >= 0 && n < count) {
-          const id = route.mode === "shodash" ? n : hymns[n].id;
+      if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+        event.preventDefault();
+        const next = position + (event.key === "ArrowLeft" ? -1 : 1);
+        if (next >= 0 && next < count) {
+          const id = route.mode === "shodash" ? next : hymns[next].id;
           history.pushState(null, "", `#/${route.mode}/${id}`);
           setRoute({ mode: route.mode, id });
           window.scrollTo(0, 0);
@@ -340,14 +395,15 @@ export default function App() {
     }
     window.addEventListener("keydown", keys);
     return () => window.removeEventListener("keydown", keys);
-  }, [overlay, position, count, route.mode]);
+  }, [view, position, count, route.mode]);
   useEffect(() => {
     if (!Capacitor.isNativePlatform()) return;
     let cancelled = false;
     let listener;
     NativeApp.addListener("backButton", ({ canGoBack }) => {
-      if (overlay) setOverlay(null);
+      if (view !== "reader") window.history.back();
       else if (canGoBack) window.history.back();
+      else NativeApp.minimizeApp();
     }).then((handle) => {
       if (cancelled) handle.remove();
       else listener = handle;
@@ -356,244 +412,388 @@ export default function App() {
       cancelled = true;
       listener?.remove();
     };
-  }, [overlay]);
+  }, [view]);
+  useEffect(() => {
+    if (view === "reader") return;
+    const escape = (event) => {
+      if (event.key === "Escape") history.back();
+    };
+    window.addEventListener("keydown", escape);
+    return () => window.removeEventListener("keydown", escape);
+  }, [view]);
   function toggleBookmark() {
-    setBookmarks((b) =>
-      b.includes(pad.id) ? b.filter((x) => x !== pad.id) : [...b, pad.id],
+    setBookmarks((values) =>
+      values.includes(pad.id)
+        ? values.filter((id) => id !== pad.id)
+        : [...values, pad.id],
     );
     setNotice(saved ? "पद सहेजे हुए पदों से हटाया गया।" : "पद सहेज लिया गया।");
   }
+  const selectedPads =
+    selectedSection && !selectedSection.mode
+      ? hymns.filter(
+          (entry) =>
+            entry.id >= selectedSection.startPad &&
+            entry.id <= selectedSection.endPad,
+        )
+      : [];
+  let subtopic = "";
+
   return (
     <div className="app-shell">
-      <title>{(item?.title || "पद " + dn(pad.id)) + " · पद रत्नाकर"}</title>
-      <a className="skip-link" href="#reading">
-        पद पर जाएँ
+      <title>
+        {(view === "reader"
+          ? item?.title || `पद ${dn(pad.id)}`
+          : view === "saved"
+            ? "सहेजे हुए पद"
+            : view === "query"
+              ? "पद खोजें"
+              : "संग्रह") + " · पद रत्नाकर"}
+      </title>
+      <a className="skip-link" href="#main-content">
+        मुख्य भाग पर जाएँ
       </a>
       <header className="app-header">
         <div className="header-inner">
           <button
-            className="icon-button menu-button"
-            aria-label="सूची खोलें"
-            onClick={() => setOverlay("menu")}
+            className="header-action"
+            aria-label="संग्रह खोलें"
+            onClick={() => showView("menu")}
           >
             <Icon name="menu" />
           </button>
           <button
-            className="brand"
+            className="brand-wordmark"
+            aria-label="पहले पद पर जाएँ"
             onClick={() => go("pad", 1)}
-            aria-label="पद रत्नाकर — पहला पद"
           >
-            <img src="/brand/pad-ratnakar.png" alt="" />
-            <span>
-              <strong>पद रत्नाकर</strong>
-              <small>श्रीहनुमानप्रसाद पोद्दार</small>
-            </span>
+            <span className="word-pad" aria-hidden="true" />
+            <span className="word-ratnakar" aria-hidden="true" />
           </button>
           <button
-            className="search-trigger"
-            onClick={() => setOverlay("search")}
+            className="header-action"
+            aria-label="पद खोजें"
+            onClick={openBrowse}
           >
             <Icon name="search" />
-            <span>पद खोजें</span>
           </button>
         </div>
       </header>
-      <div className="reader-surround">
-        <div className="reading-context">
-          <span>{item ? "श्रीराधा-माधव-रस-सुधा · षोडशगीत" : pad.section}</span>
-          <span>
-            {dn(position + 1)} / {dn(count)}
-          </span>
-        </div>
-        <main id="reading" className="reading-page" tabIndex="-1">
-          <div className="reading-toolbar">
-            <div
-              className="text-size"
-              role="group"
-              aria-label="अक्षरों का आकार"
+
+      {view === "reader" && (
+        <>
+          <main
+            id="main-content"
+            className="reader-surround"
+            tabIndex="-1"
+            onTouchStart={startSwipe}
+            onTouchEnd={endSwipe}
+            onTouchMove={moveSwipe}
+            onTouchCancel={() => {
+              swipeStart.current = null;
+            }}
+          >
+            <div className="reader-chrome">
+              <div className="reader-topline">
+                <span>{item ? shodash.title : pad.section}</span>
+              </div>
+              <div
+                className="reading-toolbar"
+                role="group"
+                aria-label="पढ़ने के विकल्प"
+              >
+                <button
+                  className="toolbar-action size-smaller"
+                  aria-label="अक्षर छोटे करें"
+                  disabled={size <= 1}
+                  onClick={() =>
+                    setSize((n) =>
+                      Math.max(1, Math.round((n - 0.1) * 100) / 100),
+                    )
+                  }
+                >
+                  <span>अ</span>
+                  <Icon name="minus" width="12" height="12" />
+                </button>
+                <button
+                  className="toolbar-action size-larger"
+                  aria-label="अक्षर बड़े करें"
+                  disabled={size >= 2.2}
+                  onClick={() =>
+                    setSize((n) =>
+                      Math.min(2.2, Math.round((n + 0.1) * 100) / 100),
+                    )
+                  }
+                >
+                  <span>अ</span>
+                  <Icon name="plus" width="12" height="12" />
+                </button>
+                <button
+                  className={`toolbar-action save-action ${saved ? "is-saved" : ""}`}
+                  aria-label={
+                    saved ? "सहेजे हुए पदों से हटाएँ" : "यह पद सहेजें"
+                  }
+                  aria-pressed={saved}
+                  onClick={toggleBookmark}
+                >
+                  <Icon
+                    name="bookmark"
+                    fill={saved ? "currentColor" : "none"}
+                  />
+                </button>
+              </div>
+            </div>
+            <div className="reading-page">
+              <article
+                className="pad-text"
+                style={{ fontSize: `${size}rem` }}
+                key={`${route.mode}-${route.id}`}
+              >
+                <PadTypography pad={pad} collectionItem={item} />
+              </article>
+            </div>
+          </main>
+          <nav className="bottom-nav" aria-label="पद बदलें">
+            <button
+              className="saved-nav"
+              aria-label="सहेजे हुए पद"
+              onClick={() => showView("saved")}
             >
+              <Icon name="bookmarks" />
+            </button>
+            <div className="nav-center">
               <button
-                aria-label="अक्षर छोटे करें"
-                disabled={size <= 1}
-                onClick={() =>
-                  setSize((n) => Math.max(1, Math.round((n - 0.1) * 100) / 100))
-                }
+                aria-label="पिछला पद"
+                disabled={position === 0}
+                onClick={() => step(-1)}
               >
-                <span>अ</span>
-                <Icon name="minus" width="12" height="12" />
+                <Icon name="left" />
               </button>
               <button
-                className="size-reset"
-                title="सामान्य आकार"
-                aria-label="सामान्य अक्षर आकार"
-                onClick={() => setSize(1.25)}
+                aria-label="संग्रह देखें"
+                onClick={() => showView("collections")}
               >
-                {Math.round((size / 1.25) * 100)}%
+                <Icon name="flower" />
               </button>
               <button
-                aria-label="अक्षर बड़े करें"
-                disabled={size >= 2.2}
-                onClick={() =>
-                  setSize((n) =>
-                    Math.min(2.2, Math.round((n + 0.1) * 100) / 100),
-                  )
-                }
+                aria-label="अगला पद"
+                disabled={position === count - 1}
+                onClick={() => step(1)}
               >
-                <span>अ</span>
-                <Icon name="plus" width="12" height="12" />
+                <Icon name="right" />
               </button>
             </div>
-            <button
-              className={"bookmark-button " + (saved ? "is-saved" : "")}
-              onClick={toggleBookmark}
-              aria-pressed={saved}
-              aria-label={saved ? "सहेजे हुए पदों से हटाएँ" : "यह पद सहेजें"}
-            >
-              <Icon name="bookmark" fill={saved ? "currentColor" : "none"} />
-              <span>{saved ? "सहेजा गया" : "सहेजें"}</span>
+          </nav>
+        </>
+      )}
+
+      {view === "browse" && (
+        <div className="browse-backdrop" onClick={() => history.back()}>
+          <section
+            className="browse-sheet"
+            role="dialog"
+            aria-modal="true"
+            aria-label="विषय और संग्रह"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="sheet-handle" />
+            <button autoFocus className="search-prompt" onClick={openQuery}>
+              <Icon name="search" />
+              <span>पद खोजें…</span>
             </button>
-          </div>
-          <article
-            className="pad-text"
-            style={{ fontSize: `${size}rem` }}
-            key={`${route.mode}-${route.id}`}
-          >
-            <PadTypography pad={pad} collectionItem={item} />
-          </article>
-          <footer className="page-end">
-            <span>
-              {item
-                ? `पद रत्नाकर · मूल पद ${dn(pad.id)}`
-                : pad.subtopic || "पद रत्नाकर"}
-            </span>
-            {pad.source?.pages?.length > 0 && (
-              <span>PDF पृष्ठ {pad.source.pages.map(dn).join(", ")}</span>
-            )}
-          </footer>
-        </main>
-        <nav className="pad-navigation" aria-label="पद बदलें">
-          <button disabled={position === 0} onClick={() => step(-1)}>
-            <Icon name="left" />
-            <span>पिछला पद</span>
-          </button>
-          <button
-            className="position-button"
-            onClick={() => setOverlay(item ? "contents" : "search")}
-          >
-            {item
-              ? item.role === "opening"
-                ? "वन्दना"
-                : item.role === "closing"
-                  ? "पुष्पिका"
-                  : `गीत ${dn(item.number)}`
-              : `पद ${dn(pad.id)}`}
-            <small>{item ? "क्रम देखें" : "खोजें / विषय देखें"}</small>
-          </button>
-          <button disabled={position === count - 1} onClick={() => step(1)}>
-            <span>अगला पद</span>
-            <Icon name="right" />
-          </button>
-        </nav>
-        <div className="reading-help">
-          अक्षर बड़े करने से पंक्तियाँ सहज रूप से अगली पंक्ति में आएँगी।
+            <div className="sheet-scroll">
+              <SectionBar>संग्रह</SectionBar>
+              <button className="section-row" onClick={() => openSection(null)}>
+                पद रत्नाकर
+              </button>
+              <button
+                className="section-row"
+                onClick={() => openSection({ mode: "shodash" })}
+              >
+                षोडशगीत
+              </button>
+              <SectionBar>पद रत्नाकर के विषय</SectionBar>
+              {indexMap.topics.map((topic) => (
+                <button
+                  className="section-row"
+                  key={topic.name}
+                  onClick={() => openSection(topic)}
+                >
+                  {topic.name}
+                </button>
+              ))}
+            </div>
+          </section>
         </div>
-      </div>
+      )}
+
+      {view === "query" && (
+        <main id="main-content" className="list-page">
+          <div className="list-heading">
+            <button
+              className="back-action"
+              aria-label="विषयों पर लौटें"
+              onClick={() => history.back()}
+            >
+              <Icon name="left" />
+            </button>
+            <label className="query-field">
+              <Icon name="search" />
+              <input
+                autoFocus
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                placeholder="पद खोजें…"
+                aria-label="पद खोजें"
+              />
+              {query && (
+                <button aria-label="खोज साफ करें" onClick={() => setQuery("")}>
+                  <Icon name="close" />
+                </button>
+              )}
+            </label>
+          </div>
+          {query.trim() ? (
+            <SearchResults
+              key={query}
+              query={query}
+              origin={searchOrigin}
+              onOpen={go}
+              onOpenSection={openSection}
+            />
+          ) : (
+            <p className="search-hint">शब्द, पंक्ति या पद संख्या लिखें।</p>
+          )}
+        </main>
+      )}
+
+      {view === "section" && (
+        <main id="main-content" className="list-page">
+          <div className="list-heading">
+            <button
+              className="back-action"
+              aria-label="विषयों पर लौटें"
+              onClick={() => history.back()}
+            >
+              <Icon name="left" />
+            </button>
+            <h1>
+              {selectedSection?.mode === "shodash"
+                ? "षोडशगीत"
+                : selectedSection?.activeSubtopic
+                  ? `${selectedSection.name} — ${selectedSection.activeSubtopic}`
+                  : selectedSection?.name || "पद रत्नाकर"}
+            </h1>
+          </div>
+          <div className="list-content">
+            <SectionBar>
+              {selectedSection?.mode === "shodash" ? "षोडशगीत" : "पद रत्नाकर"}
+            </SectionBar>
+            {selectedSection?.mode === "shodash"
+              ? shodash.items.map((entry, i) => (
+                  <PadRow
+                    key={i}
+                    number={entry.number ? dn(entry.number) : ""}
+                    text={collectionPreview(entry)}
+                    onClick={() => go("shodash", i)}
+                  />
+                ))
+              : selectedSection
+                ? selectedPads.map((entry) => {
+                    const label = entry.subtopic || "";
+                    const showSubtopic = label && label !== subtopic;
+                    subtopic = label;
+                    return (
+                      <div key={entry.id}>
+                        {showSubtopic && !selectedSection.activeSubtopic && (
+                          <SectionBar>
+                            {selectedSection.name} — {label}
+                          </SectionBar>
+                        )}
+                        <PadRow
+                          number={dn(entry.id)}
+                          text={padPreview(entry)}
+                          onClick={() => go("pad", entry.id)}
+                        />
+                      </div>
+                    );
+                  })
+                : hymns.map((entry) => (
+                    <PadRow
+                      key={entry.id}
+                      number={dn(entry.id)}
+                      text={padPreview(entry)}
+                      onClick={() => go("pad", entry.id)}
+                    />
+                  ))}
+          </div>
+        </main>
+      )}
+
+      {view === "saved" && (
+        <main id="main-content" className="list-page">
+          <div className="list-heading">
+            <button
+              className="back-action"
+              aria-label="पद पर लौटें"
+              onClick={() => history.back()}
+            >
+              <Icon name="left" />
+            </button>
+            <h1 className="sr-only">सहेजे हुए पद</h1>
+          </div>
+          {bookmarks.length ? (
+            <div className="list-content">
+              <SectionBar>पद रत्नाकर</SectionBar>
+              {[...bookmarks]
+                .sort((a, b) => a - b)
+                .map((id) => (
+                  <PadRow
+                    key={id}
+                    number={dn(id)}
+                    text={padPreview(byId.get(id))}
+                    onClick={() => go("pad", id)}
+                  />
+                ))}
+            </div>
+          ) : (
+            <p className="empty-state">पढ़ते समय पद सहेजें। वे यहाँ दिखेंगे।</p>
+          )}
+        </main>
+      )}
+
+      {(view === "menu" || view === "collections") && (
+        <main id="main-content" className="list-page">
+          <div className="list-heading collection-heading-bar">
+            <button
+              className="back-action"
+              aria-label="पद पर लौटें"
+              onClick={() => history.back()}
+            >
+              <Icon name="left" />
+            </button>
+            <h1 className="sr-only">संग्रह</h1>
+          </div>
+          <div className="list-content">
+            <button className="section-row" onClick={() => go("pad", pad.id)}>
+              पद रत्नाकर
+            </button>
+            <button className="section-row" onClick={() => go("shodash", 0)}>
+              षोडशगीत
+            </button>
+            {view === "menu" && (
+              <>
+                <button className="section-row" onClick={openBrowse}>
+                  विषय देखें
+                </button>
+              </>
+            )}
+          </div>
+        </main>
+      )}
       <div className="sr-only" role="status" aria-live="polite">
         {notice}
       </div>
-      {["search", "bookmarks"].includes(overlay) && (
-        <Search
-          initialView={overlay}
-          bookmarks={bookmarks}
-          onClose={() => setOverlay(null)}
-          onOpen={(id) => go("pad", id)}
-        />
-      )}
-      {overlay === "menu" && (
-        <Modal
-          className="drawer"
-          label="मुख्य सूची"
-          onClose={() => setOverlay(null)}
-        >
-          <header className="drawer-header">
-            <img src="/brand/pad-ratnakar.png" alt="पद रत्नाकर" />
-            <button
-              className="icon-button"
-              aria-label="सूची बन्द करें"
-              onClick={() => setOverlay(null)}
-            >
-              <Icon name="close" />
-            </button>
-          </header>
-          <div className="drawer-title">पद रत्नाकर</div>
-          <p className="drawer-author">श्रीहनुमानप्रसाद पोद्दार</p>
-          <nav className="drawer-nav">
-            <button
-              className={route.mode === "pad" ? "current" : ""}
-              onClick={() => go("pad", pad.id)}
-            >
-              <Icon name="book" />
-              <span>
-                पद रत्नाकर<small>सम्पूर्ण {dn(hymns.length)} पद</small>
-              </span>
-            </button>
-            <button
-              className={item ? "current" : ""}
-              onClick={() => go("shodash", 0)}
-            >
-              <Icon name="book" />
-              <span>
-                षोडशगीत<small>वन्दना · सोलह गीत · पुष्पिका</small>
-              </span>
-            </button>
-            <button onClick={() => setOverlay("search")}>
-              <Icon name="search" />
-              <span>खोजें और विषय देखें</span>
-            </button>
-            <button onClick={() => setOverlay("bookmarks")}>
-              <Icon name="bookmark" />
-              <span>
-                सहेजे हुए पद<small>{dn(bookmarks.length)} पद</small>
-              </span>
-            </button>
-          </nav>
-          <p className="drawer-note">शब्द वही, जो पुस्तक में हैं।</p>
-        </Modal>
-      )}
-      {overlay === "contents" && (
-        <Modal
-          className="contents-dialog"
-          label="षोडशगीत क्रम"
-          onClose={() => setOverlay(null)}
-        >
-          <header className="dialog-header">
-            <h2>षोडशगीत</h2>
-            <button
-              className="icon-button"
-              aria-label="क्रम बन्द करें"
-              onClick={() => setOverlay(null)}
-            >
-              <Icon name="close" />
-            </button>
-          </header>
-          <div className="collection-contents">
-            {shodash.items.map((entry, i) => (
-              <button
-                key={i}
-                className={route.id === i ? "current" : ""}
-                onClick={() => go("shodash", i)}
-              >
-                <span>{entry.number ? dn(entry.number) : "—"}</span>
-                <span>
-                  {entry.title}
-                  <small>मूल पद {dn(entry.padId)}</small>
-                </span>
-                <Icon name="right" />
-              </button>
-            ))}
-          </div>
-        </Modal>
-      )}
     </div>
   );
 }

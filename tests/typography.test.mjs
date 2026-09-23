@@ -1,9 +1,53 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { typographyModel, printSegments } from "../src/lib/typography.js";
+import {
+  normalizeOpeningQuotes,
+  normalizeSegmentsForDisplay,
+  normalizeTextLines,
+  normalizeTypographyStanzas,
+  typographyModel,
+  printSegments,
+} from "../src/lib/typography.js";
 import { getPad, shodashCollection } from "../src/lib/corpus.js";
 const chunks = new Map();
+
+test("normalizes paired Hindi opening quotes for display only", () => {
+  assert.equal(normalizeOpeningQuotes("'राधा’"), "‘राधा’");
+  assert.equal(
+    normalizeOpeningQuotes("कहते—'खोलो द्वार’ और 'जाओ’॥"),
+    "कहते—‘खोलो द्वार’ और ‘जाओ’॥",
+  );
+  assert.equal(normalizeOpeningQuotes("can't 'test"), "can't 'test");
+  assert.equal(normalizeOpeningQuotes("'राधा"), "‘राधा");
+  assert.equal(normalizeOpeningQuotes("राम'ही"), "राम'ही");
+  assert.deepEqual(
+    normalizeSegmentsForDisplay([
+      { text: "'रा", runs: [{ text: "'रा", raised: false }] },
+      { text: "धा’", runs: [{ text: "धा’", raised: false }] },
+    ]),
+    [
+      { text: "‘रा", runs: [{ text: "‘रा", raised: false }] },
+      { text: "धा’", runs: [{ text: "धा’", raised: false }] },
+    ],
+  );
+  assert.deepEqual(normalizeTextLines(["'राधा", "’ तक"]), ["‘राधा", "’ तक"]);
+  const pad62 = typographyModel(getPad(62), layout(62));
+  const display62 = normalizeTypographyStanzas(pad62);
+  assert.equal(
+    display62
+      .flat()
+      .map((line) => line.text)
+      .join("\n")
+      .includes("'मैं"),
+    false,
+  );
+  const display94 = normalizeTypographyStanzas(
+    typographyModel(getPad(94), layout(94)),
+  );
+  assert.equal(display94.flat()[0].text.startsWith("‘विपदा"), true);
+});
+
 function layout(id) {
   const chunk = Math.floor((id - 1) / 100) + 1;
   if (!chunks.has(chunk))
@@ -33,7 +77,7 @@ test("typographic grouping preserves every canonical line exactly across all 156
     );
   }
 });
-test("collection typography preserves numbering and the added opening line", () => {
+test("collection typography preserves numbering and its displayed opening line", () => {
   for (const item of shodashCollection.items) {
     const model = typographyModel(getPad(item.padId), layout(item.padId), item);
     assert.deepEqual(

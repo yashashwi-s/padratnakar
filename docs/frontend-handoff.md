@@ -6,7 +6,7 @@ Pad Ratnakar is an offline static React application. All runtime reading data is
 
 The data layer covers 1,565 canonical pads, 33 source notes, 17 user-verified pads, and the 18-entry _Shodash Geet_ collection. Corpus provenance and recovery details are documented in [data-corpus.md](data-corpus.md). The source layout model and its limits are documented in [print-layout.md](print-layout.md).
 
-The inner pad reading surface is implemented in `src/components/PadTypography.jsx` and `src/components/reader-typography.css`. It applies the source-backed hierarchy and geometry to headings, verses, grouped lines, citations, stanza gaps, and footnotes while preserving natural responsive flow. The surrounding navigation and application interface still need a focused design pass. Native Capacitor projects are present, though device behavior and release builds have not been fully tested. Neither platform is release signed.
+The inner pad reading surface is implemented in `src/components/PadTypography.jsx` and `src/components/reader-typography.css`. It applies the source-backed hierarchy and geometry to headings, verses, grouped lines, citations, stanza gaps, and footnotes while preserving natural responsive flow. The surrounding navigation and application interface now have a revised design; the responsive reader audit is recorded in [reader-audit.md](reader-audit.md). Native Capacitor projects are present. Android debug compilation is verified; physical-device behavior and store release builds still need testing. Neither platform is release signed.
 
 ## Runtime data
 
@@ -54,7 +54,7 @@ Avoid dark presentation, gradients, glass effects, and ornamental motion. Preser
 
 ## Main frontend work
 
-The inner poem typography is complete as a design foundation. The next frontend pass should concentrate on the surrounding product experience:
+The inner poem typography is complete as a design foundation. Further frontend and device QA should concentrate on:
 
 1. Clear navigation among pad number, search results, sections, and _Shodash Geet_.
 2. A coherent menu, search, bookmarks, controls, and paper-colored surround around the white reader.

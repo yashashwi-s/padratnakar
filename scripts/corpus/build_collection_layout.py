@@ -13,11 +13,14 @@ def main():
     for entry in manifest['items']:
         h=hymns[entry['padId']]
         stanzas=[list(s) for s in h['stanzas']]
-        if entry.get('openingLines'):
-            stanzas[0]=entry['openingLines']+stanzas[0]
+        if entry.get('openingLineDisplay'):
+            assert stanzas[0][0]==entry['openingLineSource']
+            stanzas[0][0]=entry['openingLineDisplay']
         for i,s in enumerate(stanzas,1):
             s[-1]=re.sub(r'॥(\*?)$',lambda m:'॥'+str(i).translate(digits)+'॥'+m[1],s[-1])
-        headings=[s for s in h['headings'] if s not in entry.get('suppressSourceHeadingLines',[])]
+        if entry['role']=='closing':
+            stanzas[-1][-1]=stanzas[-1][-1].removesuffix('*')
+        headings=list(h['headings'])
         if entry['role'] in manifest['rendering']['suppressMusicalHeadingForRoles']:
             headings=[s for s in headings if not re.match(r'^\((?:राग|दोहा)(?:[ )—–-])',s)]
         result['items'].append({**entry,'headings':headings,'stanzas':stanzas,
