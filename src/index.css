@@ -950,21 +950,11 @@ body {
 }
 .brand-wordmark span {
   display: block;
-  flex: none;
-  height: 44px;
-  background-image: url("/brand/pad-ratnakar.png");
-  background-repeat: no-repeat;
-}
-.brand-wordmark .word-pad {
-  width: 78px;
-  background-size: 200px 200px;
-  background-position: -58px -53px;
-  transform: translateY(-2px);
-}
-.brand-wordmark .word-ratnakar {
-  width: 128px;
-  background-size: 169px 169px;
-  background-position: -22px -83px;
+  white-space: nowrap;
+  font-family: "Noto Serif Devanagari", serif;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.5;
 }
 .reader-surround {
   max-width: 860px;

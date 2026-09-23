@@ -99,7 +99,7 @@ test("musical heading-to-body spacing is uniform, including Shodash", () => {
   }
 });
 test("collection corrections do not inherit canonical stanza boundaries or repeated stars", () => {
-  for (const number of [5, 6])
+  for (const number of [5, 6, 13])
     assert.deepEqual(
       shodashCollection.items[number].stanzas.map((s) => s.length),
       [2, 2, 2, 2],
@@ -118,4 +118,14 @@ test("pad 54 separates its three-line opening stanza", () => {
   const body = page.lines.filter((line) => line.role === "verse");
   const originalGap = body[3].source.baseline - body[2].source.baseline;
   assert.equal(body[3].y - body[2].y, Math.max(10, originalGap) + 11);
+});
+
+test("Pushpika separates the title, verses and final dedication", () => {
+  const item = shodashCollection.items.at(-1);
+  const page = fixedPrintModel(getPad(item.padId), layout(item.padId), item);
+  const title = page.lines.find((line) => line.text === item.title);
+  const verses = page.lines.filter((line) => line.role === "verse");
+  const dedication = page.lines.find((line) => line.role === "dedication");
+  assert.equal(verses[0].y - title.y, 60);
+  assert.equal(dedication.y - verses.at(-1).y, 60);
 });

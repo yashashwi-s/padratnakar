@@ -116,7 +116,16 @@
       "number": 13,
       "padId": 556,
       "voice": "श्रीकृष्ण",
-      "title": "श्रीकृष्णके प्रेमोद्गार—श्रीराधाके प्रति"
+      "title": "श्रीकृष्णके प्रेमोद्गार—श्रीराधाके प्रति",
+      "stanzaLineCounts": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "displayProvenance": "Supplied song 13 scan: first line belongs to the first couplet; four numbered couplets.",
+      "openingLineSource": "राधे! तू ही चित्तरंजनी, तू ही चेतनता मेरी॥",
+      "openingLineDisplay": "राधे! तू ही चित्तरंजनी, तू ही चेतनता मेरी।"
     },
     {
       "role": "song",

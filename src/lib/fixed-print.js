@@ -71,7 +71,7 @@ export function fixedPrintModel(pad, layout, item = null) {
     if (item.role === "song")
       decorations.push({ x: 20, y: y - 17, width: width - 40, height: 26 });
     centered(item.title, item.role === "song" ? 14 : 15);
-    y += 22;
+    y += item.role === "closing" ? 60 : 22;
   } else {
     centered(
       `[ ${String(pad.id).replace(/\d/g, (d) => "०१२३४५६७८९"[d])} ]`,
@@ -162,7 +162,7 @@ export function fixedPrintModel(pad, layout, item = null) {
     y += 22;
   }
   if (item?.role === "closing") {
-    y += 30;
+    y += 60;
     centered(shodashCollection.closingDedication, 16, "dedication");
   }
   return { width, height: y + 26, lines, ruleY, leading, decorations };

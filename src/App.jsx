@@ -502,8 +502,7 @@ export default function App() {
             aria-label="पहले पद पर जाएँ"
             onClick={() => go("pad", 1)}
           >
-            <span className="word-pad" aria-hidden="true" />
-            <span className="word-ratnakar" aria-hidden="true" />
+            <span aria-hidden="true">पद रत्नाकर</span>
           </button>
           <button
             className="header-action"

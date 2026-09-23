@@ -62,3 +62,11 @@ This supersedes the September 23 artifact above. `npm run check` passes: lint, 3
 - Browser checks confirmed the marker location, removed size controls, non-selectable text, full-pad image generation and the embedded-font PNG appearance with footer. The review interface and saved comments were not changed.
 
 This remains a debug APK for phone testing. Physical-device pinch, swipe, clipboard and native share-sheet behavior have not been exercised here; no iOS build or store-signed release is claimed. Share destinations use reserved placeholder links until real app and reader URLs are available.
+
+## September 24 revision 2
+
+`pad-ratnakar-2026-09-24-r2-debug.apk` supersedes the earlier build. All 34 JavaScript tests, corpus/layout checks, four review tests and production build pass. Android compilation and signature verification pass; bundled web assets match `dist/` and all five adaptive icon foreground densities are present.
+
+Sharing attaches one PNG and sends app/download text as a separate caption; caption presentation belongs to the recipient app. Song 13 has four couplets; canonical corpus text is unchanged. Pushpika has 60-unit gaps after its title and before its dedication. The in-app title uses equal-weight text; the original approved artwork is retained for launcher icons, including adaptive icons.
+
+APK size: 13,755,163 bytes. SHA-256: `872a783155b4ecb88d51c22ad9baffe5b32fa85816d005771801e8418323b467`. Physical-device sharing and icon appearance remain to be checked; this is still a debug build.

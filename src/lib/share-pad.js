@@ -35,10 +35,10 @@ async function embeddedFont() {
 }
 
 /** Export the same positioned Unicode SVG, including footnotes, into one full-pad PNG. */
-export async function padImage(svg, link) {
+export async function padImage(svg) {
   const clone = svg.cloneNode(true);
   const { x, y, width, height } = svg.viewBox.baseVal;
-  const totalHeight = height + 90;
+  const totalHeight = height;
   const ns = "http://www.w3.org/2000/svg";
   clone.setAttribute("xmlns", ns);
   clone.setAttribute("viewBox", `${x} ${y} ${width} ${totalHeight}`);
@@ -73,23 +73,6 @@ export async function padImage(svg, link) {
   }))
     background.setAttribute(key, String(value));
   clone.prepend(background);
-  const footer = [
-    "पद रत्नाकर",
-    link,
-    "Download the app Pad Ratnakar (links coming soon)",
-    `Android: ${DOWNLOADS.android}`,
-    `iOS: ${DOWNLOADS.ios}`,
-  ];
-  footer.forEach((line, i) => {
-    const text = document.createElementNS(ns, "text");
-    text.setAttribute("x", String(x + width / 2));
-    text.setAttribute("y", String(height + 12 + i * 14));
-    text.setAttribute("text-anchor", "middle");
-    text.setAttribute("font-size", i ? "7" : "12");
-    if (i) text.setAttribute("font-family", "sans-serif");
-    text.textContent = line;
-    clone.append(text);
-  });
   const url = URL.createObjectURL(
     new Blob([new XMLSerializer().serializeToString(clone)], {
       type: "image/svg+xml;charset=utf-8",
@@ -123,7 +106,7 @@ export async function padImage(svg, link) {
 export async function sharePad(svg, mode, id) {
   const link = shareLink(mode, id),
     title = "पद रत्नाकर";
-  const blob = await padImage(svg, link);
+  const blob = await padImage(svg);
   const name = `pad-ratnakar-${mode}-${id}.png`;
   const text = `${link}\nDownload the app Pad Ratnakar (placeholder links):\nAndroid: ${DOWNLOADS.android}\niOS: ${DOWNLOADS.ios}`;
   if (Capacitor.isNativePlatform()) {

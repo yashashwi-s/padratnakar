@@ -37,3 +37,5 @@ The rebuild reads a fixed metadata catalog rather than its own previous output. 
 ## September 24 reader corrections
 
 Pad 24's opening line is now a verse, not a heading; its accepted words and source geometry are unchanged. Shodash songs 5 and 6 have explicit four-couplet grouping in the manifest (song 5 follows the supplied scan; song 6 follows the user's collection-format correction). Collection numbering replaces terminal punctuation where required without changing canonical pads 552 or 610. Song 10 strips repeated display asterisks and retains one after the third numbered couplet, immediately after भगवान॥३॥, as requested; canonical pad 612 and the attached footnote remain unchanged. These display exceptions are reproducible through the collection builder.
+
+Song 13 now follows the supplied scan’s four two-line couplets. Its first line gets a collection-only single danda instead of a stanza-ending double danda; canonical pad 556 remains unchanged. Pushpika has a 60-source-unit gap after its title and before the final dedication.
