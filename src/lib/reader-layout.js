@@ -11,7 +11,7 @@ export function swipeDirection(
   if (
     duration < 40 ||
     duration > 700 ||
-    Math.abs(dx) < 72 ||
+    Math.abs(dx) < (duration <= 300 ? 28 : 40) ||
     Math.abs(dy) > 48 ||
     Math.abs(dx) < Math.abs(dy) * 2
   )

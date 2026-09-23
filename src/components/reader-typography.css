@@ -5,8 +5,8 @@
   overflow-y: hidden;
   background: #fff;
   color: #000;
-  overscroll-behavior-x: contain;
-  touch-action: pan-x pan-y pinch-zoom;
+  overscroll-behavior: none;
+  touch-action: pan-x pan-y;
   scrollbar-width: thin;
 }
 .print-page {
@@ -17,17 +17,19 @@
   background: #fff;
   overflow: visible;
   font-family: "Noto Serif Devanagari", serif;
-  font-weight: 600;
+  font-weight: 700;
   font-synthesis: none;
   fill: #000;
-  user-select: text;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
 }
 .print-page text {
   white-space: pre;
 }
 .print-heading,
 .print-number {
-  font-weight: 600;
+  font-weight: 700;
 }
 .print-footnote,
 .print-citation {
@@ -48,4 +50,8 @@
   .print-viewport {
     overflow: visible !important;
   }
+}
+
+.print-viewport[data-zoom="1"] {
+  touch-action: pan-y;
 }

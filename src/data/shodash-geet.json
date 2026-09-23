@@ -44,14 +44,28 @@
       "number": 5,
       "padId": 552,
       "voice": "श्रीकृष्ण",
-      "title": "श्रीकृष्णके प्रेमोद्गार—श्रीराधाके प्रति"
+      "title": "श्रीकृष्णके प्रेमोद्गार—श्रीराधाके प्रति",
+      "stanzaLineCounts": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "displayProvenance": "User correction: collection couplets; song 5 supplied scan, song 6 canonical pad 610 remains unchanged."
     },
     {
       "role": "song",
       "number": 6,
       "padId": 610,
       "voice": "श्रीराधा",
-      "title": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति"
+      "title": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति",
+      "stanzaLineCounts": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "displayProvenance": "User correction: collection couplets; song 5 supplied scan, song 6 canonical pad 610 remains unchanged."
     },
     {
       "role": "song",
@@ -79,7 +93,9 @@
       "number": 10,
       "padId": 612,
       "voice": "श्रीराधा",
-      "title": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति"
+      "title": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति",
+      "displayProvenance": "User confirmed: one asterisk immediately after भगवान॥३॥, the third numbered couplet.",
+      "footnoteMarkerAfterStanza": 3
     },
     {
       "role": "song",

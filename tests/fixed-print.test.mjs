@@ -50,19 +50,19 @@ test("fixed print preserves every canonical verse and finite ordered baselines i
     );
   }
 });
-test("pad 1 keeps PDF baseline gaps and original separated text positions", () => {
+test("pad 1 adds line and stanza breathing room while preserving horizontal positions", () => {
   const page = fixedPrintModel(getPad(1), layout(1));
   const body = page.lines.filter((l) => l.role === "verse");
-  assert(Math.abs(body[1].y - body[0].y - 16.92) < 0.001);
-  assert(Math.abs(body[2].y - body[1].y - 16.92) < 0.001);
+  assert(Math.abs(body[1].y - body[0].y - 19.92) < 0.001);
+  assert(Math.abs(body[2].y - body[1].y - 27.92) < 0.001);
   assert.equal(body[2].segments.length, 4);
   assert.equal(body[2].segments[0].bbox[0], 26.04);
 });
-test("fit size is capped and zoom enlarges the entire fixed page without changing its model", () => {
-  assert.equal(pageDimensions(390, 1, 1).width, 390);
-  assert.equal(pageDimensions(320, 2, 1).width, 320);
-  assert.equal(pageDimensions(390, 1, 2).width, 780);
-  assert.equal(pageDimensions(1440, 1, 1).width, 560);
+test("fixed page fits the viewport with a reading-width cap", () => {
+  assert.equal(pageDimensions(390).width, 390);
+  assert.equal(pageDimensions(320).width, 320);
+  assert.equal(pageDimensions(390).width, 390);
+  assert.equal(pageDimensions(1440).width, 560);
 });
 test("all collection entries keep their own headings, verse numbering and closing dedication", () => {
   for (const item of shodashCollection.items) {
@@ -79,4 +79,43 @@ test("all collection entries keep their own headings, verse numbering and closin
       assert(!page.lines.some((l) => l.role === "footnote"));
     }
   }
+});
+
+test("musical heading-to-body spacing is uniform, including Shodash", () => {
+  const entries = Array.from({ length: 1565 }, (_, i) => [getPad(i + 1), null]);
+  entries.push(
+    ...shodashCollection.items.map((item) => [getPad(item.padId), item]),
+  );
+  for (const [pad, item] of entries) {
+    const page = fixedPrintModel(pad, layout(pad.id), item);
+    const first = page.lines.findIndex((l) =>
+      ["verse", "citation"].includes(l.role),
+    );
+    if ((item?.headings || pad.headings).length)
+      assert(
+        Math.abs(page.lines[first].y - page.lines[first - 1].y - 60) < 0.00001,
+        `Gap ${pad.id}`,
+      );
+  }
+});
+test("collection corrections do not inherit canonical stanza boundaries or repeated stars", () => {
+  for (const number of [5, 6])
+    assert.deepEqual(
+      shodashCollection.items[number].stanzas.map((s) => s.length),
+      [2, 2, 2, 2],
+    );
+  const lines = shodashCollection.items[10].stanzas.flat();
+  assert.equal(lines.join("").split("*").length - 1, 1);
+  assert(lines[5].endsWith("भगवान॥३॥*"));
+  assert.equal(getPad(24).headings.length, 1);
+  assert(getPad(24).verses[0].startsWith("राधा-नयन"));
+});
+
+test("pad 54 separates its three-line opening stanza", () => {
+  const pad = getPad(54),
+    page = fixedPrintModel(pad, layout(54));
+  assert.equal(pad.stanzas[0].length, 3);
+  const body = page.lines.filter((line) => line.role === "verse");
+  const originalGap = body[3].source.baseline - body[2].source.baseline;
+  assert.equal(body[3].y - body[2].y, Math.max(10, originalGap) + 11);
 });

@@ -33,3 +33,7 @@ The opening text lines of pads 38, 242, 268, 282, 608, 710, 719, 735, 796, 1069,
 The contextual association of the page 218 note with pads 333 and 349 remains explicitly labelled as inferred; it is not an outstanding line-position failure. Do not present acceptance of PDF decoding as independent verification of every spelling.
 
 The rebuild reads a fixed metadata catalog rather than its own previous output. This prevents heading/title classification from changing on successive builds, including the unclosed musical heading in pad 1464. Its printed wording is retained as a heading; no closing character is invented.
+
+## September 24 reader corrections
+
+Pad 24's opening line is now a verse, not a heading; its accepted words and source geometry are unchanged. Shodash songs 5 and 6 have explicit four-couplet grouping in the manifest (song 5 follows the supplied scan; song 6 follows the user's collection-format correction). Collection numbering replaces terminal punctuation where required without changing canonical pads 552 or 610. Song 10 strips repeated display asterisks and retains one after the third numbered couplet, immediately after भगवान॥३॥, as requested; canonical pad 612 and the attached footnote remain unchanged. These display exceptions are reproducible through the collection builder.

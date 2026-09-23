@@ -2,16 +2,13 @@ import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { getPrintLayout } from "../lib/print-layout";
 import { fixedPrintModel, pageDimensions } from "../lib/fixed-print";
 import "./reader-typography.css";
+import { useReaderTouch } from "../lib/use-reader-touch";
 
-export default function PadTypography({
-  pad,
-  collectionItem: item,
-  size = 1,
-  zoom = 1,
-}) {
+export default function PadTypography({ pad, collectionItem: item, onCopy }) {
   const [layout, setLayout] = useState(null);
   const [available, setAvailable] = useState(390);
   const viewport = useRef(null);
+  const zoom = useReaderTouch(viewport, onCopy);
   useEffect(() => {
     let active = true;
     getPrintLayout(pad.id)
@@ -33,13 +30,13 @@ export default function PadTypography({
   }, []);
   useEffect(() => {
     viewport.current.scrollLeft = 0;
-  }, [pad.id, zoom]);
+  }, [pad.id]);
   const current = layout?.padId === pad.id ? layout : null;
   const page = useMemo(
     () => fixedPrintModel(pad, current, item),
     [pad, current, item],
   );
-  const dimensions = pageDimensions(available, size, zoom);
+  const dimensions = pageDimensions(available);
   return (
     <div
       className="print-viewport"
@@ -54,8 +51,8 @@ export default function PadTypography({
         role="document"
         aria-label={item?.title || `पद ${pad.id}`}
         viewBox={`-12 0 ${page.width + 24} ${page.height}`}
-        width={dimensions.width}
-        height={(dimensions.width * page.height) / (page.width + 24)}
+        width={dimensions.width * zoom}
+        height={(dimensions.width * zoom * page.height) / (page.width + 24)}
         data-layout={current ? "source" : "fallback"}
       >
         {page.decorations.map((box, i) => (

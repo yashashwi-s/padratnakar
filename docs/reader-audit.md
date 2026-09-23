@@ -49,3 +49,16 @@ Native signing for store distribution and iOS device testing remain outstanding.
 - Delivery filename: `pad-ratnakar-2026-09-23-debug.apk`
 
 The artifact is kept outside Git. No store signing credentials were used. The one-time 18:15 IST continuation ran on 23 September 2026; no further recurring run was requested.
+
+## Latest build: 24 September 2026
+
+This supersedes the September 23 artifact above. `npm run check` passes: lint, 33 JavaScript tests, corpus and all 21,672 geometry associations, four review tests, and production build. Android debug compilation and v2 signature verification pass. All bundled web assets match the final web build byte-for-byte.
+
+- Artifact: `pad-ratnakar-2026-09-24-debug.apk` (outside Git).
+- Size: 13,755,163 bytes.
+- SHA-256: `a9325d803e083a39d1aacda7abbd772436892df74bd39a7f1411cb30b1b51438`.
+- Includes inner-page pinch zoom, shorter swipes, copy on long press, full-pad PNG sharing, the earlier 700-weight reading font, line/stanza spacing, and collection corrections. Native page zoom is disabled so app controls stay fixed; the custom inner-page pinch handles enlargement.
+- Shodash 10 has one verse asterisk, immediately after भगवान॥३॥, explicitly confirmed by the user. Canonical pads 552/610/612 remain unchanged. Pad 24's first verse is reclassified without changing words.
+- Browser checks confirmed the marker location, removed size controls, non-selectable text, full-pad image generation and the embedded-font PNG appearance with footer. The review interface and saved comments were not changed.
+
+This remains a debug APK for phone testing. Physical-device pinch, swipe, clipboard and native share-sheet behavior have not been exercised here; no iOS build or store-signed release is claimed. Share destinations use reserved placeholder links until real app and reader URLs are available.

@@ -1340,3 +1340,23 @@ body {
     padding: 0;
   }
 }
+
+/* Quiet touch feedback; keyboard focus remains visible. */
+html,
+body {
+  overscroll-behavior: none;
+}
+button,
+a,
+summary {
+  -webkit-tap-highlight-color: transparent;
+}
+button {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Pinch is handled by the reading page, never by the surrounding controls. */
+body {
+  touch-action: pan-x pan-y;
+}

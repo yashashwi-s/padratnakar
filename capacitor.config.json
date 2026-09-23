@@ -3,6 +3,14 @@
   "appName": "पद रत्नाकर",
   "webDir": "dist",
   "backgroundColor": "#f4efe4",
-  "ios": { "contentInset": "automatic", "preferredContentMode": "mobile" },
-  "android": { "backgroundColor": "#f4efe4", "allowMixedContent": false }
+  "ios": {
+    "contentInset": "automatic",
+    "preferredContentMode": "mobile",
+    "zoomEnabled": false
+  },
+  "android": {
+    "backgroundColor": "#f4efe4",
+    "allowMixedContent": false,
+    "zoomEnabled": false
+  }
 }

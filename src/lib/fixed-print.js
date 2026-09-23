@@ -81,9 +81,12 @@ export function fixedPrintModel(pad, layout, item = null) {
     y += 25;
   }
   function place(text, source, segments, role) {
-    if (previous && source && previous.pdfPage === source.pdfPage)
-      y += Math.max(10, source.baseline - previous.baseline);
-    else if (previous) y += leading;
+    if (previous && item?.role === "song" && role === "verse") y += 22;
+    else if (previous && source && previous.pdfPage === source.pdfPage)
+      y +=
+        Math.max(10, source.baseline - previous.baseline) +
+        (role === "verse" ? 3 : 0);
+    else if (previous) y += leading + (role === "verse" ? 3 : 0);
     const fontSize = source
       ? Math.max(...source.segments.map((s) => s.fontSize))
       : 15;
@@ -116,9 +119,12 @@ export function fixedPrintModel(pad, layout, item = null) {
     }
   }
   // Give the musical heading breathing room without changing verse leading.
-  if (headings.length) y += 8;
+  if (headings.length) {
+    y = lines.at(-1).y + 60;
+    previous = null;
+  }
   for (const [stanzaIndex, stanza] of stanzas.entries()) {
-    if (item && stanzaIndex) y += item.role === "song" ? 6 : 9;
+    if (stanzaIndex) y += item ? (item.role === "song" ? 12 : 9) : 8;
     for (const line of stanza)
       place(
         line.text,
@@ -162,11 +168,7 @@ export function fixedPrintModel(pad, layout, item = null) {
   return { width, height: y + 26, lines, ruleY, leading, decorations };
 }
 
-export function pageDimensions(available, size = 1, zoom = 1) {
+export function pageDimensions(available) {
   const fit = Math.max(1, Math.min(560, available));
-  return {
-    fit,
-    width:
-      fit * Math.max(0.8, Math.min(1, size)) * Math.max(1, Math.min(3, zoom)),
-  };
+  return { fit, width: fit };
 }

@@ -1,3 +1,4 @@
+import { sharePad, copyPad } from "./lib/share-pad";
 import { swipeDirection } from "./lib/reader-layout";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { App as NativeApp } from "@capacitor/app";
@@ -232,19 +233,12 @@ export default function App() {
   const [selectedSection, setSelectedSection] = useState(null);
   const [query, setQuery] = useState("");
   const [searchOrigin, setSearchOrigin] = useState("pad");
-  const [size, setSize] = useState(() => {
-    const previous = stored();
-    return previous.readerSizeVersion === 5 &&
-      Number.isFinite(previous.readerSize)
-      ? Math.max(0.8, Math.min(1, previous.readerSize))
-      : 1;
-  });
-  const [zoom, setZoom] = useState(1);
   const [bookmarks, setBookmarks] = useState(() => {
     const values = stored().bookmarks;
     return Array.isArray(values) ? values.filter((id) => byId.has(id)) : [];
   });
   const [notice, setNotice] = useState("");
+  const [sharing, setSharing] = useState(false);
   const swipeStart = useRef(null);
   const item = route.mode === "shodash" ? shodash.items[route.id] : null;
   const pad = byId.get(item?.padId || route.id) || hymns[0];
@@ -279,7 +273,9 @@ export default function App() {
   function startSwipe(event) {
     swipeStart.current = null;
     if (
-      zoom > 1 ||
+      Number(
+        event.currentTarget.querySelector(".print-viewport")?.dataset.zoom || 1,
+      ) > 1.01 ||
       event.touches.length !== 1 ||
       event.target.closest(
         'button,a,input,select,textarea,[contenteditable="true"]',
@@ -298,7 +294,16 @@ export default function App() {
   function endSwipe(event) {
     const start = swipeStart.current;
     swipeStart.current = null;
-    if (!start || event.changedTouches.length !== 1) return;
+    if (
+      !start ||
+      event.changedTouches.length !== 1 ||
+      event.currentTarget.querySelector(".print-viewport")?.dataset.held ===
+        "true" ||
+      Number(
+        event.currentTarget.querySelector(".print-viewport")?.dataset.zoom || 1,
+      ) > 1.01
+    )
+      return;
     const touch = event.changedTouches[0];
     if (event.touches.length) return;
     const direction = swipeDirection(
@@ -321,7 +326,7 @@ export default function App() {
     const touch = event.touches[0];
     const dx = Math.abs(touch.clientX - start.x),
       dy = Math.abs(touch.clientY - start.y);
-    if (dy > 16 && dy > dx) swipeStart.current = null;
+    if (dy > 10 && dy > dx) swipeStart.current = null;
   }
 
   function openBrowse() {
@@ -361,20 +366,18 @@ export default function App() {
         JSON.stringify({
           ...stored(),
           bookmarks,
-          readerSize: size,
-          readerSizeVersion: 5,
           route: `#/${route.mode}/${route.id}`,
         }),
       );
     } catch {
       /* Reading remains available without storage. */
     }
-  }, [bookmarks, size, route]);
+  }, [bookmarks, route]);
   useEffect(() => {
     function keys(event) {
       if (
         view !== "reader" ||
-        zoom > 1 ||
+        (window.visualViewport?.scale || 1) > 1.01 ||
         event.ctrlKey ||
         event.metaKey ||
         event.altKey ||
@@ -397,7 +400,7 @@ export default function App() {
     }
     window.addEventListener("keydown", keys);
     return () => window.removeEventListener("keydown", keys);
-  }, [view, position, count, route.mode, zoom]);
+  }, [view, position, count, route.mode]);
   useEffect(() => {
     if (!Capacitor.isNativePlatform()) return;
     let cancelled = false;
@@ -423,6 +426,36 @@ export default function App() {
     window.addEventListener("keydown", escape);
     return () => window.removeEventListener("keydown", escape);
   }, [view]);
+  async function shareCurrentPad() {
+    if (sharing) return;
+    const svg = document.querySelector(".print-page");
+    if (!svg || svg.dataset.layout !== "source") {
+      setNotice("पद तैयार हो रहा है, कृपया फिर प्रयास करें।");
+      return;
+    }
+    setSharing(true);
+    try {
+      const result = await sharePad(svg, route.mode, route.id);
+      if (result === "downloaded")
+        setNotice("पद की पूरी तस्वीर डाउनलोड हो गई।");
+    } catch (error) {
+      if (error?.name !== "AbortError" && !/cancel/i.test(error?.message || ""))
+        setNotice("साझा नहीं हो सका। कृपया फिर प्रयास करें।");
+    } finally {
+      setSharing(false);
+    }
+  }
+  async function copyCurrentPad() {
+    const lines = [...document.querySelectorAll(".print-line")].map(
+      (line) => line.textContent,
+    );
+    try {
+      await copyPad(lines.join("\n"));
+      setNotice("पद कॉपी हो गया।");
+    } catch {
+      setNotice("कॉपी नहीं हो सका। कृपया फिर प्रयास करें।");
+    }
+  }
   function toggleBookmark() {
     setBookmarks((values) =>
       values.includes(pad.id)
@@ -487,10 +520,6 @@ export default function App() {
           <main
             id="main-content"
             className="reader-surround"
-            style={{
-              touchAction:
-                zoom > 1 ? "pan-x pan-y pinch-zoom" : "pan-y pinch-zoom",
-            }}
             tabIndex="-1"
             onTouchStart={startSwipe}
             onTouchEnd={endSwipe}
@@ -509,56 +538,12 @@ export default function App() {
                 aria-label="पढ़ने के विकल्प"
               >
                 <button
-                  className="toolbar-action size-smaller"
-                  aria-label="अक्षर छोटे करें"
-                  disabled={size <= 0.8}
-                  onClick={() =>
-                    setSize((n) =>
-                      Math.max(0.8, Math.round((n - 0.05) * 100) / 100),
-                    )
-                  }
-                >
-                  <span>अ</span>
-                  <Icon name="minus" width="12" height="12" />
-                </button>
-                <button
-                  className="toolbar-action size-larger"
-                  aria-label="अक्षर बड़े करें"
-                  disabled={size >= 1}
-                  onClick={() =>
-                    setSize((n) =>
-                      Math.min(1, Math.round((n + 0.05) * 100) / 100),
-                    )
-                  }
-                >
-                  <span>अ</span>
-                  <Icon name="plus" width="12" height="12" />
-                </button>
-                <button
                   className="toolbar-action"
-                  aria-label="ज़ूम घटाएँ"
-                  disabled={zoom <= 1}
-                  onClick={() => setZoom((n) => Math.max(1, n - 0.25))}
+                  aria-label="पद की तस्वीर साझा करें"
+                  disabled={sharing}
+                  onClick={shareCurrentPad}
                 >
-                  −
-                </button>
-                <button
-                  className="toolbar-action zoom-reset"
-                  aria-label="पूरा पृष्ठ दिखाएँ"
-                  onClick={() => {
-                    setZoom(1);
-                    setSize(1);
-                  }}
-                >
-                  {Math.round(zoom * 100)}%
-                </button>
-                <button
-                  className="toolbar-action"
-                  aria-label="ज़ूम बढ़ाएँ"
-                  disabled={zoom >= 3}
-                  onClick={() => setZoom((n) => Math.min(3, n + 0.25))}
-                >
-                  +
+                  <Icon name="share" />
                 </button>
                 <button
                   className={`toolbar-action save-action ${saved ? "is-saved" : ""}`}
@@ -584,8 +569,7 @@ export default function App() {
                 <PadTypography
                   pad={pad}
                   collectionItem={item}
-                  size={size}
-                  zoom={zoom}
+                  onCopy={copyCurrentPad}
                 />
               </article>
             </div>

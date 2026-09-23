@@ -1,5 +1,13 @@
 export default function Icon({ name, ...props }) {
   const shapes = {
+    share: (
+      <>
+        <circle cx="18" cy="5" r="3" />
+        <circle cx="6" cy="12" r="3" />
+        <circle cx="18" cy="19" r="3" />
+        <path d="m9 10 6-4M9 14l6 4" />
+      </>
+    ),
     menu: (
       <>
         <path d="M4 6h16M4 12h16M4 18h16" />

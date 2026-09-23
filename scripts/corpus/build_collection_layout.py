@@ -16,6 +16,19 @@ def main():
         if entry.get('openingLineDisplay'):
             assert stanzas[0][0]==entry['openingLineSource']
             stanzas[0][0]=entry['openingLineDisplay']
+        if entry.get('stanzaLineCounts'):
+            lines=[line for stanza in stanzas for line in stanza]
+            assert sum(entry['stanzaLineCounts'])==len(lines)
+            stanzas=[]
+            offset=0
+            for count in entry['stanzaLineCounts']:
+                stanza=lines[offset:offset+count]
+                stanza[-1]=re.sub(r'[।॥!]+$', '', stanza[-1])+'॥'
+                stanzas.append(stanza)
+                offset+=count
+        if entry.get('footnoteMarkerAfterStanza'):
+            stanzas=[[line.removesuffix('*') for line in stanza] for stanza in stanzas]
+            stanzas[entry['footnoteMarkerAfterStanza']-1][-1]+='*'
         for i,s in enumerate(stanzas,1):
             s[-1]=re.sub(r'॥(\*?)$',lambda m:'॥'+str(i).translate(digits)+'॥'+m[1],s[-1])
         if entry['role']=='closing':
