@@ -66,7 +66,7 @@ export function fixedPrintModel(pad, layout, item = null) {
         `(${String(item.number).replace(/\d/g, (d) => "०१२३४५६७८९"[d])})`,
         13,
       );
-      y += 24;
+      y += 32;
     }
     if (item.role === "song")
       decorations.push({ x: 20, y: y - 17, width: width - 40, height: 26 });
@@ -78,7 +78,7 @@ export function fixedPrintModel(pad, layout, item = null) {
       13,
       "number",
     );
-    y += 17;
+    y += 25;
   }
   function place(text, source, segments, role) {
     if (previous && source && previous.pdfPage === source.pdfPage)
@@ -115,6 +115,8 @@ export function fixedPrintModel(pad, layout, item = null) {
       previous = null;
     }
   }
+  // Give the musical heading breathing room without changing verse leading.
+  if (headings.length) y += 8;
   for (const [stanzaIndex, stanza] of stanzas.entries()) {
     if (item && stanzaIndex) y += item.role === "song" ? 6 : 9;
     for (const line of stanza)
