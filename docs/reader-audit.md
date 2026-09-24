@@ -88,3 +88,9 @@ Three adjacent pages form a translated strip, with interactive horizontal draggi
 Browser checks confirmed canonical boundary navigation in both directions and vertical scrolling on pad 550 (312.5px). The final extra check of navigation from a scrolled page could not run because automatic browser approval review hit its usage limit. Physical-device swipe feel is not verified. The existing local Shodash 10 marker edit remains preserved and included in the APK, but excluded from this implementation commit.
 
 An unsigned release bundle also builds: `pad-ratnakar-2026-09-24-r4-unsigned.aab`; 8,113,073 bytes; SHA-256 `6f634264b520d962bf0dc49a98bef7c0a65e677bebee9f595ba9d9d939233508`. All bundled web assets match. Neither artifact contains native `.so` libraries. This does not replace device testing or release signing; the AAB is not upload-ready. See `docs/release/README.md`.
+
+## September 24 revision 5: rapid swipe takeover
+
+Settling motion now yields immediately to another gesture, preserving the strip's visible position while rebasing onto the accepted pad. Stale completion callbacks cannot navigate twice. Rapid button presses are accepted too. Settling uses remaining distance and flick speed (70–180 ms); taps at rest do not animate. Very fast deliberate flicks are no longer rejected by a 40 ms minimum. Browser back/hash navigation cancels pending motion.
+
+Full checks pass: 40 JavaScript tests including rapid repeat/reverse/cancel/button regressions, corpus/layout checks, four review tests, lint and build. Debug APK compilation, signature verification and packaged web-asset comparison pass. Artifact: `pad-ratnakar-2026-09-24-r5-debug.apk`; SHA-256 `b5fb21705493d51c294763f80b97d476da5ee2f0c4cdde7a4922a100a4a809bb`. Physical-device gesture feel remains unverified. Existing local Shodash marker edit is preserved, included in the APK and excluded from the implementation commit.

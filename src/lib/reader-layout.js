@@ -9,7 +9,7 @@ export function swipeDirection(
     dy = end.y - start.y,
     duration = end.time - start.time;
   if (
-    duration < 40 ||
+    duration < 0 ||
     duration > 700 ||
     Math.abs(dx) < (duration <= 300 ? 28 : 40) ||
     Math.abs(dy) > 48 ||

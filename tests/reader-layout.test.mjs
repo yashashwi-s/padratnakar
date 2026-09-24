@@ -9,7 +9,6 @@ test("swipes advance left and go back right; reject scrolls, taps, selection and
   for (const end of [
     { x: 180, y: 100, time: 300 },
     { x: 100, y: 170, time: 300 },
-    { x: 100, y: 100, time: 110 },
     { x: 100, y: 100, time: 1000 },
   ])
     assert.equal(swipeDirection(start, end), 0);
@@ -40,4 +39,14 @@ test("both navigation directions wrap at collection boundaries", () => {
     assert.equal(wrappedPosition(0, 1, count), 1);
     assert.equal(wrappedPosition(4, -1, count), 3);
   }
+});
+
+test("very fast deliberate flicks are not rejected by an artificial minimum duration", () => {
+  assert.equal(
+    swipeDirection(
+      { x: 200, y: 100, time: 100 },
+      { x: 155, y: 102, time: 120 },
+    ),
+    1,
+  );
 });

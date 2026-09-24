@@ -327,7 +327,12 @@ export default function App() {
         scale: window.visualViewport?.scale || 1,
       },
     );
-    if (direction) step(direction);
+    if (direction)
+      slider.slide(
+        direction,
+        Math.abs(touch.clientX - start.x) /
+          Math.max(1, event.timeStamp - start.time),
+      );
     else slider.slide(0);
   }
   function moveSwipe(event) {
