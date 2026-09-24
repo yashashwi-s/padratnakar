@@ -42,7 +42,7 @@ export async function padImage(svg) {
   const ns = "http://www.w3.org/2000/svg";
   clone.setAttribute("xmlns", ns);
   clone.setAttribute("viewBox", `${x} ${y} ${width} ${totalHeight}`);
-  const scale = Math.min(4, 14000 / totalHeight);
+  const scale = Math.min(3, 12000 / totalHeight);
   clone.setAttribute("width", String(Math.ceil(width * scale)));
   clone.setAttribute("height", String(Math.ceil(totalHeight * scale)));
   clone.removeAttribute("class");
@@ -103,24 +103,47 @@ export async function padImage(svg) {
     URL.revokeObjectURL(url);
   }
 }
+// Keep just the two most recently prepared pictures, not the entire corpus.
+const prepared = new Map();
+export function preparePadShare(svg, key) {
+  if (prepared.has(key)) return prepared.get(key);
+  const result = padImage(svg)
+    .then(async (blob) => ({
+      blob,
+      data: Capacitor.isNativePlatform()
+        ? (await asDataUrl(blob)).split(",")[1]
+        : null,
+      uri: null,
+    }))
+    .catch((error) => {
+      prepared.delete(key);
+      throw error;
+    });
+  prepared.set(key, result);
+  while (prepared.size > 2) prepared.delete(prepared.keys().next().value);
+  return result;
+}
 export async function sharePad(svg, mode, id) {
   const link = shareLink(mode, id),
     title = "पद रत्नाकर";
-  const blob = await padImage(svg);
+  const picture = await preparePadShare(svg, `${mode}-${id}`);
+  const { blob } = picture;
   const name = `pad-ratnakar-${mode}-${id}.png`;
   const text = `${link}\nDownload the app Pad Ratnakar (placeholder links):\nAndroid: ${DOWNLOADS.android}\niOS: ${DOWNLOADS.ios}`;
   if (Capacitor.isNativePlatform()) {
-    const data = await asDataUrl(blob);
-    const saved = await Filesystem.writeFile({
-      path: `shared/${name}`,
-      data: data.split(",")[1],
-      directory: Directory.Cache,
-      recursive: true,
-    });
+    if (!picture.uri) {
+      const saved = await Filesystem.writeFile({
+        path: `shared/${name}`,
+        data: picture.data,
+        directory: Directory.Cache,
+        recursive: true,
+      });
+      picture.uri = saved.uri;
+    }
     await Share.share({
       title,
       text,
-      files: [saved.uri],
+      files: [picture.uri],
       dialogTitle: "पद साझा करें",
     });
     return "shared";

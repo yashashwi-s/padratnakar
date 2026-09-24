@@ -569,6 +569,7 @@ export default function App() {
                   pad={pad}
                   collectionItem={item}
                   onCopy={copyCurrentPad}
+                  shareKey={`${route.mode}-${route.id}`}
                 />
               </article>
             </div>

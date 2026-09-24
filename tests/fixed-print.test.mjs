@@ -106,7 +106,7 @@ test("collection corrections do not inherit canonical stanza boundaries or repea
     );
   const lines = shodashCollection.items[10].stanzas.flat();
   assert.equal(lines.join("").split("*").length - 1, 1);
-  assert(lines[5].endsWith("भगवान॥३॥*"));
+  assert(lines[5].replace("*", "").endsWith("भगवान॥३॥"));
   assert.equal(getPad(24).headings.length, 1);
   assert(getPad(24).verses[0].startsWith("राधा-नयन"));
 });

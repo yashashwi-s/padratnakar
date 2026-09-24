@@ -70,3 +70,11 @@ This remains a debug APK for phone testing. Physical-device pinch, swipe, clipbo
 Sharing attaches one PNG and sends app/download text as a separate caption; caption presentation belongs to the recipient app. Song 13 has four couplets; canonical corpus text is unchanged. Pushpika has 60-unit gaps after its title and before its dedication. The in-app title uses equal-weight text; the original approved artwork is retained for launcher icons, including adaptive icons.
 
 APK size: 13,755,163 bytes. SHA-256: `872a783155b4ecb88d51c22ad9baffe5b32fa85816d005771801e8418323b467`. Physical-device sharing and icon appearance remain to be checked; this is still a debug build.
+
+## September 24 revision 3: scrolling and performance
+
+Artifact: `pad-ratnakar-2026-09-24-r3-debug.apk`; 13,755,163 bytes; SHA-256 `5f4d3f96cb5f72043191eeaf12e8f9af7ddec5989b0fd2bbecce4dc093e80cae`. Android debug build and signature verification pass, and all packaged web assets match `dist/`. Full checks pass (34 JavaScript tests, corpus/layout checks, four review tests, lint/build).
+
+Fixed vertical scroll chaining from the inner horizontal viewport, replaced per-frame SVG/React resizing with transform compositing, added idle preparation and a two-picture sharing cache, restricted hover backgrounds to mouse-like pointers, and extended the white reader surface. Browser scrolling over pad 550 reached its document bottom (442 px), and prepared sharing produced a download in the next observed UI state. These observations are desktop-browser checks, not a claim of phone gesture latency measurements.
+
+The existing uncommitted local Shodash 10 edit (asterisk before the third couplet's number) was preserved and is included in this build; it was not overwritten or bundled into this UI commit. Physical-device pinch smoothness and native sharing speed still need verification.

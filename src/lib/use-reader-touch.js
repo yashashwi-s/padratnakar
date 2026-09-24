@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef } from "react";
 
 const distance = (a, b) =>
   Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
@@ -8,46 +8,73 @@ const midpoint = (a, b) => ({
 });
 export const clampZoom = (value) => Math.max(1, Math.min(3, value));
 
-/** Local page zoom: app chrome never scales. Native scroll handles one-finger panning. */
-export function useReaderTouch(viewport, onCopy) {
-  const [zoom, setZoom] = useState(1);
-  const zoomRef = useRef(1);
-  const pending = useRef(null);
-  const copy = useRef(onCopy);
+/** Composite the already-laid-out SVG; never rerender its text during a pinch. */
+export function useReaderTouch(viewport, onCopy, width, height) {
+  const zoom = useRef(1),
+    copy = useRef(onCopy);
   useLayoutEffect(() => {
     copy.current = onCopy;
   }, [onCopy]);
   useLayoutEffect(() => {
-    const element = viewport.current;
-    const svg = element.querySelector("svg");
+    const element = viewport.current,
+      canvas = element.querySelector(".print-canvas"),
+      svg = element.querySelector("svg");
+    const apply = (value) => {
+      canvas.style.setProperty("width", `${width * value}px`);
+      canvas.style.setProperty("height", `${height * value}px`);
+      svg.style.setProperty("transform", `scale(${value})`);
+      element.setAttribute("data-zoom", String(value));
+    };
+    apply(zoom.current);
     let pinch = null,
       press = null,
       timer = null,
-      frame = null;
+      frame = null,
+      pending = null;
     const cancelPress = () => {
       clearTimeout(timer);
       timer = null;
       press = null;
     };
+    const paint = () => {
+      frame = null;
+      if (!pending) return;
+      const { value, center, anchor } = pending;
+      pending = null;
+      zoom.current = value;
+      apply(value);
+      const rect = canvas.getBoundingClientRect();
+      element.scrollBy({
+        left: rect.left + anchor.x * value - center.x,
+        top: 0,
+        behavior: "instant",
+      });
+      window.scrollBy({
+        left: 0,
+        top: rect.top + anchor.y * value - center.y,
+        behavior: "instant",
+      });
+    };
     const start = (event) => {
       cancelPress();
-      element.dataset.held = "false";
+      element.setAttribute("data-held", "false");
       if (event.touches.length === 2) {
-        event.preventDefault();
-        const [a, b] = event.touches;
-        const center = midpoint(a, b),
+        if (event.cancelable) event.preventDefault();
+        const [a, b] = event.touches,
+          center = midpoint(a, b),
           rect = svg.getBoundingClientRect();
         pinch = {
           distance: distance(a, b),
-          zoom: zoomRef.current,
-          x: (center.x - rect.left) / zoomRef.current,
-          y: (center.y - rect.top) / zoomRef.current,
+          zoom: zoom.current,
+          x: (center.x - rect.left) / zoom.current,
+          y: (center.y - rect.top) / zoom.current,
         };
+        svg.style.setProperty("will-change", "transform");
       } else if (event.touches.length === 1 && !pinch) {
         const touch = event.touches[0];
         press = { x: touch.clientX, y: touch.clientY };
         timer = setTimeout(() => {
-          element.dataset.held = "true";
+          element.setAttribute("data-held", "true");
           copy.current?.();
           cancelPress();
         }, 550);
@@ -55,25 +82,31 @@ export function useReaderTouch(viewport, onCopy) {
     };
     const move = (event) => {
       if (pinch && event.touches.length === 2) {
-        event.preventDefault();
+        if (event.cancelable) event.preventDefault();
         cancelPress();
         const [a, b] = event.touches;
-        const next = clampZoom(
-          (pinch.zoom * distance(a, b)) / Math.max(1, pinch.distance),
-        );
-        pending.current = { ...pinch, center: midpoint(a, b) };
-        zoomRef.current = next;
-        cancelAnimationFrame(frame);
-        frame = requestAnimationFrame(() => setZoom(next));
+        pending = {
+          value: clampZoom(
+            (pinch.zoom * distance(a, b)) / Math.max(1, pinch.distance),
+          ),
+          center: midpoint(a, b),
+          anchor: pinch,
+        };
+        if (frame === null) frame = requestAnimationFrame(paint);
       } else if (press && event.touches.length === 1) {
-        const touch = event.touches[0];
-        if (Math.hypot(touch.clientX - press.x, touch.clientY - press.y) > 8)
+        const t = event.touches[0];
+        if (Math.hypot(t.clientX - press.x, t.clientY - press.y) > 8)
           cancelPress();
       }
     };
     const end = (event) => {
       cancelPress();
-      if (!event.touches.length) pinch = null;
+      if (event.touches.length < 2 && pinch) {
+        cancelAnimationFrame(frame);
+        paint();
+        pinch = null;
+        svg.style.removeProperty("will-change");
+      }
     };
     const context = (event) => event.preventDefault();
     element.addEventListener("touchstart", start, { passive: false });
@@ -90,23 +123,5 @@ export function useReaderTouch(viewport, onCopy) {
       element.removeEventListener("touchcancel", end);
       element.removeEventListener("contextmenu", context);
     };
-  }, [viewport]);
-  useLayoutEffect(() => {
-    const anchor = pending.current;
-    if (!anchor) return;
-    pending.current = null;
-    const element = viewport.current;
-    const rect = element.querySelector("svg").getBoundingClientRect();
-    element.scrollBy({
-      left: rect.left + anchor.x * zoom - anchor.center.x,
-      top: 0,
-      behavior: "instant",
-    });
-    window.scrollBy({
-      left: 0,
-      top: rect.top + anchor.y * zoom - anchor.center.y,
-      behavior: "instant",
-    });
-  }, [zoom, viewport]);
-  return zoom;
+  }, [viewport, width, height]);
 }

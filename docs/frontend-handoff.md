@@ -110,3 +110,9 @@ The reading page pinches independently (1–3×); toolbar and bottom navigation 
 Sharing exports the full positioned pad and footnotes to PNG with an embedded font. The app/download links are a separate share caption, never painted into the image. Capacitor Share/Filesystem handle mobile attachments, Clipboard handles copying. Desktop browsers download the PNG. `src/lib/share-pad.js` contains explicitly reserved placeholder app and reader links; replace them before release. A shared image contains the whole pad, not just the visible/zoomed portion. iOS has its file timestamp privacy declaration; its build and device gestures remain unverified.
 
 The in-app title uses one Noto Serif Devanagari 700-weight text run so both words have consistent thickness. The launcher retains the approved original artwork; both legacy and adaptive Android icons use it. Receiving apps control how the shared image caption is displayed.
+
+## Touch performance follow-up
+
+The print viewport allows vertical scroll chaining (`overscroll-behavior-y: auto`); blocking it traps scroll in the horizontal viewport. Root/native overscroll feedback remains disabled. Ancestor touch-action allows horizontal panning as well as vertical scrolling. During pinch, one animation frame composites an SVG transform and updates its containing box; SVG dimensions and React text nodes are not rebuilt per gesture frame. Source geometry and fixed app controls remain unchanged.
+
+Share images are prepared after a brief idle delay and retained in a bounded two-picture cache. Native base64 preparation is included; a previously shared native file URI is reused. Export density is 3× with a 12,000-pixel height cap. Mouse hover backgrounds apply only to fine pointers with hover support; keyboard focus remains visible. The white reader covers the space down to the fixed navigation bar.

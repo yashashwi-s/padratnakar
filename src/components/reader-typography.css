@@ -5,7 +5,8 @@
   overflow-y: hidden;
   background: #fff;
   color: #000;
-  overscroll-behavior: none;
+  overscroll-behavior-x: none;
+  overscroll-behavior-y: auto;
   touch-action: pan-x pan-y;
   scrollbar-width: thin;
 }
@@ -13,7 +14,8 @@
   display: block;
   max-width: none;
   flex: none;
-  margin-inline: auto;
+  margin: 0;
+  transform-origin: 0 0;
   background: #fff;
   overflow: visible;
   font-family: "Noto Serif Devanagari", serif;
@@ -54,4 +56,9 @@
 
 .print-viewport[data-zoom="1"] {
   touch-action: pan-y;
+}
+
+.print-canvas {
+  margin-inline: auto;
+  position: relative;
 }

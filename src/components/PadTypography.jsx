@@ -2,13 +2,18 @@ import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { getPrintLayout } from "../lib/print-layout";
 import { fixedPrintModel, pageDimensions } from "../lib/fixed-print";
 import "./reader-typography.css";
+import { preparePadShare } from "../lib/share-pad";
 import { useReaderTouch } from "../lib/use-reader-touch";
 
-export default function PadTypography({ pad, collectionItem: item, onCopy }) {
+export default function PadTypography({
+  pad,
+  collectionItem: item,
+  onCopy,
+  shareKey,
+}) {
   const [layout, setLayout] = useState(null);
   const [available, setAvailable] = useState(390);
   const viewport = useRef(null);
-  const zoom = useReaderTouch(viewport, onCopy);
   useEffect(() => {
     let active = true;
     getPrintLayout(pad.id)
@@ -36,51 +41,78 @@ export default function PadTypography({ pad, collectionItem: item, onCopy }) {
     () => fixedPrintModel(pad, current, item),
     [pad, current, item],
   );
+  useEffect(() => {
+    if (!current || !shareKey) return;
+    let idle;
+    const timer = setTimeout(() => {
+      const prepare = () => {
+        const svg = viewport.current?.querySelector("svg");
+        if (svg) preparePadShare(svg, shareKey).catch(() => {});
+      };
+      if (window.requestIdleCallback)
+        idle = window.requestIdleCallback(prepare, { timeout: 1500 });
+      else prepare();
+    }, 500);
+    return () => {
+      clearTimeout(timer);
+      if (idle) window.cancelIdleCallback(idle);
+    };
+  }, [current, shareKey]);
   const dimensions = pageDimensions(available);
+  const pageHeight = (dimensions.width * page.height) / (page.width + 24);
+  useReaderTouch(viewport, onCopy, dimensions.width, pageHeight);
   return (
     <div
       className="print-viewport"
       ref={viewport}
-      data-zoom={zoom}
+      data-zoom="1"
       tabIndex={0}
       role="region"
       aria-label="पद का पाठ"
     >
-      <svg
-        className="print-page"
-        role="document"
-        aria-label={item?.title || `पद ${pad.id}`}
-        viewBox={`-12 0 ${page.width + 24} ${page.height}`}
-        width={dimensions.width * zoom}
-        height={(dimensions.width * zoom * page.height) / (page.width + 24)}
-        data-layout={current ? "source" : "fallback"}
-      >
-        {page.decorations.map((box, i) => (
-          <rect key={i} {...box} fill="none" stroke="black" strokeWidth=".65" />
-        ))}
-        {page.ruleY && (
-          <line
-            x1="26"
-            x2={page.width - 26}
-            y1={page.ruleY}
-            y2={page.ruleY}
-            stroke="black"
-            strokeWidth=".5"
-          />
-        )}
-        {page.lines.map((line, index) => (
-          <g
-            key={index}
-            className={`print-line print-${line.role}`}
-            role={line.role === "number" ? "heading" : undefined}
-            aria-level={line.role === "number" ? 1 : undefined}
-            data-baseline={line.y}
-            data-source-page={line.source?.pdfPage}
-          >
-            <PrintLine line={line} width={page.width} />
-          </g>
-        ))}
-      </svg>
+      <div className="print-canvas">
+        <svg
+          className="print-page"
+          role="document"
+          aria-label={item?.title || `पद ${pad.id}`}
+          viewBox={`-12 0 ${page.width + 24} ${page.height}`}
+          width={dimensions.width}
+          height={pageHeight}
+          data-layout={current ? "source" : "fallback"}
+        >
+          {page.decorations.map((box, i) => (
+            <rect
+              key={i}
+              {...box}
+              fill="none"
+              stroke="black"
+              strokeWidth=".65"
+            />
+          ))}
+          {page.ruleY && (
+            <line
+              x1="26"
+              x2={page.width - 26}
+              y1={page.ruleY}
+              y2={page.ruleY}
+              stroke="black"
+              strokeWidth=".5"
+            />
+          )}
+          {page.lines.map((line, index) => (
+            <g
+              key={index}
+              className={`print-line print-${line.role}`}
+              role={line.role === "number" ? "heading" : undefined}
+              aria-level={line.role === "number" ? 1 : undefined}
+              data-baseline={line.y}
+              data-source-page={line.source?.pdfPage}
+            >
+              <PrintLine line={line} width={page.width} />
+            </g>
+          ))}
+        </svg>
+      </div>
     </div>
   );
 }
