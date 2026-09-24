@@ -1379,3 +1379,23 @@ body {
 .reader-surround {
   background: #fff;
 }
+
+/* Adjacent pads slide as one continuous strip, without becoming a scroll trap. */
+.reader-strip {
+  overflow: clip;
+}
+.reader-track {
+  position: relative;
+}
+.reader-panel {
+  width: 100%;
+  background: #fff;
+}
+.reader-panel.is-current {
+  position: relative;
+}
+.reader-panel.is-neighbour {
+  position: absolute;
+  top: 0;
+  pointer-events: none;
+}

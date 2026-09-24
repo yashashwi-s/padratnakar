@@ -9,7 +9,13 @@ const midpoint = (a, b) => ({
 export const clampZoom = (value) => Math.max(1, Math.min(3, value));
 
 /** Composite the already-laid-out SVG; never rerender its text during a pinch. */
-export function useReaderTouch(viewport, onCopy, width, height) {
+export function useReaderTouch(
+  viewport,
+  onCopy,
+  width,
+  height,
+  interactive = true,
+) {
   const zoom = useRef(1),
     copy = useRef(onCopy);
   useLayoutEffect(() => {
@@ -25,7 +31,9 @@ export function useReaderTouch(viewport, onCopy, width, height) {
       svg.style.setProperty("transform", `scale(${value})`);
       element.setAttribute("data-zoom", String(value));
     };
+    if (!interactive) zoom.current = 1;
     apply(zoom.current);
+    if (!interactive) return;
     let pinch = null,
       press = null,
       timer = null,
@@ -123,5 +131,5 @@ export function useReaderTouch(viewport, onCopy, width, height) {
       element.removeEventListener("touchcancel", end);
       element.removeEventListener("contextmenu", context);
     };
-  }, [viewport, width, height]);
+  }, [viewport, width, height, interactive]);
 }

@@ -78,3 +78,13 @@ Artifact: `pad-ratnakar-2026-09-24-r3-debug.apk`; 13,755,163 bytes; SHA-256 `5f4
 Fixed vertical scroll chaining from the inner horizontal viewport, replaced per-frame SVG/React resizing with transform compositing, added idle preparation and a two-picture sharing cache, restricted hover backgrounds to mouse-like pointers, and extended the white reader surface. Browser scrolling over pad 550 reached its document bottom (442 px), and prepared sharing produced a download in the next observed UI state. These observations are desktop-browser checks, not a claim of phone gesture latency measurements.
 
 The existing uncommitted local Shodash 10 edit (asterisk before the third couplet's number) was preserved and is included in this build; it was not overwritten or bundled into this UI commit. Physical-device pinch smoothness and native sharing speed still need verification.
+
+## September 24 revision 4: sliding pages and borderless icon
+
+Artifact: `pad-ratnakar-2026-09-24-r4-debug.apk`; 13,755,163 bytes; SHA-256 `3cc7445867a6e2bdd6093d83233a3766df8851049dd5331b6f7a5b611adb0aff`. Debug signature verification passes; all 25 bundled web files match `dist/`. Full checks pass: 35 JavaScript tests, corpus/layout validation, four review tests, lint and production build.
+
+Three adjacent pages form a translated strip, with interactive horizontal dragging and a short settling animation. Buttons share the transition. Previous from the first entry opens the last; next from the last opens the first, in both collections. Reduced-motion preference skips animation. Icon borders were removed in Android, iOS and the 512px store icon.
+
+Browser checks confirmed canonical boundary navigation in both directions and vertical scrolling on pad 550 (312.5px). The final extra check of navigation from a scrolled page could not run because automatic browser approval review hit its usage limit. Physical-device swipe feel is not verified. The existing local Shodash 10 marker edit remains preserved and included in the APK, but excluded from this implementation commit.
+
+An unsigned release bundle also builds: `pad-ratnakar-2026-09-24-r4-unsigned.aab`; 8,113,073 bytes; SHA-256 `6f634264b520d962bf0dc49a98bef7c0a65e677bebee9f595ba9d9d939233508`. All bundled web assets match. Neither artifact contains native `.so` libraries. This does not replace device testing or release signing; the AAB is not upload-ready. See `docs/release/README.md`.

@@ -18,3 +18,7 @@ export function swipeDirection(
     return 0;
   return dx < 0 ? 1 : -1;
 }
+
+export function wrappedPosition(position, direction, count) {
+  return (((position + direction) % count) + count) % count;
+}

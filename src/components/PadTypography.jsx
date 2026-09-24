@@ -10,6 +10,7 @@ export default function PadTypography({
   collectionItem: item,
   onCopy,
   shareKey,
+  interactive = true,
 }) {
   const [layout, setLayout] = useState(null);
   const [available, setAvailable] = useState(390);
@@ -60,7 +61,7 @@ export default function PadTypography({
   }, [current, shareKey]);
   const dimensions = pageDimensions(available);
   const pageHeight = (dimensions.width * page.height) / (page.width + 24);
-  useReaderTouch(viewport, onCopy, dimensions.width, pageHeight);
+  useReaderTouch(viewport, onCopy, dimensions.width, pageHeight, interactive);
   return (
     <div
       className="print-viewport"

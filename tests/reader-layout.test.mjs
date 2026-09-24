@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { swipeDirection } from "../src/lib/reader-layout.js";
+import { swipeDirection, wrappedPosition } from "../src/lib/reader-layout.js";
 
 test("swipes advance left and go back right; reject scrolls, taps, selection and pinch", () => {
   const start = { x: 200, y: 100, time: 100 };
@@ -31,4 +31,13 @@ test("short deliberate flicks work without requiring a long drag", () => {
   assert.equal(swipeDirection(start, { x: 170, y: 104, time: 650 }), 0);
   assert.equal(swipeDirection(start, { x: 155, y: 104, time: 650 }), 1);
   assert.equal(swipeDirection(start, { x: 170, y: 120, time: 240 }), 0);
+});
+
+test("both navigation directions wrap at collection boundaries", () => {
+  for (const count of [1565, 18]) {
+    assert.equal(wrappedPosition(0, -1, count), count - 1);
+    assert.equal(wrappedPosition(count - 1, 1, count), 0);
+    assert.equal(wrappedPosition(0, 1, count), 1);
+    assert.equal(wrappedPosition(4, -1, count), 3);
+  }
 });

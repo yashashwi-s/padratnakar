@@ -1,5 +1,6 @@
 import { sharePad, copyPad } from "./lib/share-pad";
-import { swipeDirection } from "./lib/reader-layout";
+import { useReaderSlider } from "./lib/use-reader-slider";
+import { swipeDirection, wrappedPosition } from "./lib/reader-layout";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { App as NativeApp } from "@capacitor/app";
 import { Capacitor } from "@capacitor/core";
@@ -246,7 +247,14 @@ export default function App() {
   const position = route.mode === "shodash" ? route.id : pad.id - 1;
   const count = route.mode === "shodash" ? shodash.items.length : hymns.length;
 
+  const trackRef = useRef(null);
+  const slider = useReaderSlider(trackRef, (direction) => {
+    const next = wrappedPosition(position, direction, count);
+    go(route.mode, route.mode === "shodash" ? next : hymns[next].id);
+  });
+
   function showView(next, section = null) {
+    slider.reset();
     if (view === next) return;
     history.pushState(
       { view: next, section, origin: route.mode },
@@ -257,6 +265,7 @@ export default function App() {
     if (next !== "browse") window.scrollTo(0, 0);
   }
   function go(mode, id) {
+    slider.reset();
     const hash = `#/${mode}/${id}`;
     if (location.hash !== hash || view !== "reader")
       history.pushState(null, "", hash);
@@ -266,15 +275,16 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: "instant" });
   }
   function step(direction) {
-    const next = position + direction;
-    if (next >= 0 && next < count)
-      go(route.mode, route.mode === "shodash" ? next : hymns[next].id);
+    slider.slide(direction);
   }
   function startSwipe(event) {
     swipeStart.current = null;
+    if (event.touches.length !== 1) slider.reset();
     if (
       Number(
-        event.currentTarget.querySelector(".print-viewport")?.dataset.zoom || 1,
+        event.currentTarget.querySelector(
+          '[data-current="true"] .print-viewport',
+        )?.dataset.zoom || 1,
       ) > 1.01 ||
       event.touches.length !== 1 ||
       event.target.closest(
@@ -284,6 +294,7 @@ export default function App() {
       (window.visualViewport?.scale || 1) > 1.01
     )
       return;
+    if (!slider.prepare()) return;
     const touch = event.touches[0];
     swipeStart.current = {
       x: touch.clientX,
@@ -297,10 +308,12 @@ export default function App() {
     if (
       !start ||
       event.changedTouches.length !== 1 ||
-      event.currentTarget.querySelector(".print-viewport")?.dataset.held ===
-        "true" ||
+      event.currentTarget.querySelector('[data-current="true"] .print-viewport')
+        ?.dataset.held === "true" ||
       Number(
-        event.currentTarget.querySelector(".print-viewport")?.dataset.zoom || 1,
+        event.currentTarget.querySelector(
+          '[data-current="true"] .print-viewport',
+        )?.dataset.zoom || 1,
       ) > 1.01
     )
       return;
@@ -315,18 +328,23 @@ export default function App() {
       },
     );
     if (direction) step(direction);
+    else slider.slide(0);
   }
   function moveSwipe(event) {
     const start = swipeStart.current;
     if (!start) return;
     if (event.touches.length !== 1) {
       swipeStart.current = null;
+      slider.reset();
       return;
     }
     const touch = event.touches[0];
     const dx = Math.abs(touch.clientX - start.x),
       dy = Math.abs(touch.clientY - start.y);
-    if (dy > 10 && dy > dx) swipeStart.current = null;
+    if (dy > 10 && dy > dx) {
+      swipeStart.current = null;
+      slider.reset();
+    } else if (dx > 8 && dx > dy * 1.5) slider.drag(touch.clientX - start.x);
   }
 
   function openBrowse() {
@@ -389,7 +407,11 @@ export default function App() {
         return;
       if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
         event.preventDefault();
-        const next = position + (event.key === "ArrowLeft" ? -1 : 1);
+        const next = wrappedPosition(
+          position,
+          event.key === "ArrowLeft" ? -1 : 1,
+          count,
+        );
         if (next >= 0 && next < count) {
           const id = route.mode === "shodash" ? next : hymns[next].id;
           history.pushState(null, "", `#/${route.mode}/${id}`);
@@ -428,7 +450,7 @@ export default function App() {
   }, [view]);
   async function shareCurrentPad() {
     if (sharing) return;
-    const svg = document.querySelector(".print-page");
+    const svg = document.querySelector('[data-current="true"] .print-page');
     if (!svg || svg.dataset.layout !== "source") {
       setNotice("पद तैयार हो रहा है, कृपया फिर प्रयास करें।");
       return;
@@ -446,9 +468,9 @@ export default function App() {
     }
   }
   async function copyCurrentPad() {
-    const lines = [...document.querySelectorAll(".print-line")].map(
-      (line) => line.textContent,
-    );
+    const lines = [
+      ...document.querySelectorAll('[data-current="true"] .print-line'),
+    ].map((line) => line.textContent);
     try {
       await copyPad(lines.join("\n"));
       setNotice("पद कॉपी हो गया।");
@@ -525,6 +547,7 @@ export default function App() {
             onTouchMove={moveSwipe}
             onTouchCancel={() => {
               swipeStart.current = null;
+              slider.reset();
             }}
           >
             <div className="reader-chrome">
@@ -559,19 +582,36 @@ export default function App() {
                 </button>
               </div>
             </div>
-            <div className="reading-page">
-              <article
-                className="pad-text"
-
-                key={`${route.mode}-${route.id}`}
-              >
-                <PadTypography
-                  pad={pad}
-                  collectionItem={item}
-                  onCopy={copyCurrentPad}
-                  shareKey={`${route.mode}-${route.id}`}
-                />
-              </article>
+            <div className="reading-page reader-strip">
+              <div className="reader-track" ref={trackRef}>
+                {[-1, 0, 1].map((delta) => {
+                  const index = wrappedPosition(position, delta, count);
+                  const entry =
+                    route.mode === "shodash" ? shodash.items[index] : null;
+                  const entryPad = entry ? byId.get(entry.padId) : hymns[index];
+                  const current = delta === 0;
+                  return (
+                    <article
+                      key={`${route.mode}-${index}`}
+                      className={`pad-text reader-panel ${current ? "is-current" : "is-neighbour"}`}
+                      data-current={String(current)}
+                      aria-hidden={!current}
+                      inert={!current}
+                      style={{ left: current ? undefined : `${delta * 100}%` }}
+                    >
+                      <PadTypography
+                        pad={entryPad}
+                        collectionItem={entry}
+                        interactive={current}
+                        onCopy={current ? copyCurrentPad : undefined}
+                        shareKey={
+                          current ? `${route.mode}-${route.id}` : undefined
+                        }
+                      />
+                    </article>
+                  );
+                })}
+              </div>
             </div>
           </main>
           <nav className="bottom-nav" aria-label="पद बदलें">
@@ -583,11 +623,7 @@ export default function App() {
               <Icon name="bookmarks" />
             </button>
             <div className="nav-center">
-              <button
-                aria-label="पिछला पद"
-                disabled={position === 0}
-                onClick={() => step(-1)}
-              >
+              <button aria-label="पिछला पद" onClick={() => step(-1)}>
                 <Icon name="left" />
               </button>
               <button
@@ -596,11 +632,7 @@ export default function App() {
               >
                 <Icon name="flower" />
               </button>
-              <button
-                aria-label="अगला पद"
-                disabled={position === count - 1}
-                onClick={() => step(1)}
-              >
+              <button aria-label="अगला पद" onClick={() => step(1)}>
                 <Icon name="right" />
               </button>
             </div>
