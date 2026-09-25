@@ -3,14 +3,15 @@ import { Share } from "@capacitor/share";
 import { Filesystem, Directory } from "@capacitor/filesystem";
 import { Clipboard } from "@capacitor/clipboard";
 
-// Reserved placeholder domains: replace with published links before release.
+export const SITE_ORIGIN = "https://padratnakar.vercel.app";
 export const DOWNLOADS = {
-  android: "https://padratnakar.example/android",
-  ios: "https://padratnakar.example/ios",
+  android: `${SITE_ORIGIN}/android`,
+  ios: `${SITE_ORIGIN}/ios`,
 };
 export function shareLink(mode, id) {
-  return `https://padratnakar.example/#/${mode}/${id}`;
+  return `${SITE_ORIGIN}/${mode}/${id}`;
 }
+
 function asDataUrl(blob) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -126,40 +127,42 @@ export function preparePadShare(svg, key) {
 export async function sharePad(svg, mode, id) {
   const link = shareLink(mode, id),
     title = "पद रत्नाकर";
-  const picture = await preparePadShare(svg, `${mode}-${id}`);
-  const { blob } = picture;
-  const name = `pad-ratnakar-${mode}-${id}.png`;
-  const text = `${link}\nDownload the app Pad Ratnakar (placeholder links):\nAndroid: ${DOWNLOADS.android}\niOS: ${DOWNLOADS.ios}`;
-  if (Capacitor.isNativePlatform()) {
-    if (!picture.uri) {
-      const saved = await Filesystem.writeFile({
-        path: `shared/${name}`,
-        data: picture.data,
-        directory: Directory.Cache,
-        recursive: true,
-      });
-      picture.uri = saved.uri;
+
+  // Website/PWA: share or copy the readable pad text + canonical web link.
+  // Do NOT generate or attach a PNG on the web.
+  if (!Capacitor.isNativePlatform()) {
+    const padText = [...svg.querySelectorAll(".print-line")]
+      .map((line) => line.textContent)
+      .join("\n");
+    const text = `${padText}\n\n${link}`;
+    if (navigator.share) {
+      await navigator.share({ title, text });
+      return "shared";
     }
-    await Share.share({
-      title,
-      text,
-      files: [picture.uri],
-      dialogTitle: "पद साझा करें",
+    await Clipboard.write({ string: text });
+    return "copied";
+  }
+
+  // Native Android/iOS: keep existing image share behavior.
+  const picture = await preparePadShare(svg, `${mode}-${id}`);
+  const name = `pad-ratnakar-${mode}-${id}.png`;
+  const text = `${link}\nपद रत्नाकर: ${SITE_ORIGIN}`;
+  if (!picture.uri) {
+    const saved = await Filesystem.writeFile({
+      path: `shared/${name}`,
+      data: picture.data,
+      directory: Directory.Cache,
+      recursive: true,
     });
-    return "shared";
+    picture.uri = saved.uri;
   }
-  const file = new File([blob], name, { type: "image/png" });
-  if (navigator.maxTouchPoints > 0 && navigator.canShare?.({ files: [file] })) {
-    await navigator.share({ title, text, files: [file] });
-    return "shared";
-  }
-  const url = URL.createObjectURL(blob),
-    anchor = document.createElement("a");
-  anchor.href = url;
-  anchor.download = name;
-  anchor.click();
-  setTimeout(() => URL.revokeObjectURL(url), 60000);
-  return "downloaded";
+  await Share.share({
+    title,
+    text,
+    files: [picture.uri],
+    dialogTitle: "पद साझा करें",
+  });
+  return "shared";
 }
 export async function copyPad(text) {
   await Clipboard.write({ string: text });

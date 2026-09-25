@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/pad/:id", "destination": "/index.html" },
+    { "source": "/shodash/:id", "destination": "/index.html" }
+  ]
+}

@@ -63,18 +63,56 @@ function stored() {
     return {};
   }
 }
-function validRoute(hash) {
-  let match = hash.match(/^#\/pad\/(\d+)$/);
+function routePath(mode, id) {
+  return `/${mode}/${id}`;
+}
+function routeUrl(mode, id) {
+  const path = routePath(mode, id);
+  return Capacitor.isNativePlatform() ? `#${path}` : path;
+}
+function validRoute(value) {
+  const path = (value || "").replace(/^#/, "");
+  let match = path.match(/^\/pad\/(\d+)\/?$/);
   if (match && byId.has(Number(match[1])))
     return { mode: "pad", id: Number(match[1]) };
-  match = hash.match(/^#\/shodash\/(\d+)$/);
+  match = path.match(/^\/shodash\/(\d+)\/?$/);
   if (match && Number(match[1]) < shodash.items.length)
     return { mode: "shodash", id: Number(match[1]) };
   return null;
 }
+function routeFromLocation() {
+  const pathRoute = validRoute(location.pathname);
+  const hashRoute = validRoute(location.hash);
+
+  if (!Capacitor.isNativePlatform()) {
+    if (pathRoute) {
+      // Pretty web routes are canonical. Strip any stale hash fragment.
+      if (location.hash)
+        history.replaceState(
+          history.state,
+          "",
+          `${location.pathname}${location.search}`,
+        );
+      return pathRoute;
+    }
+    if (hashRoute) {
+      // One-time compatibility for old /#/pad/... links: redirect without reload.
+      history.replaceState(
+        history.state,
+        "",
+        `${routePath(hashRoute.mode, hashRoute.id)}${location.search}`,
+      );
+      return hashRoute;
+    }
+    if (location.pathname === "/") return { mode: "pad", id: 1 };
+    return null;
+  }
+
+  return hashRoute || pathRoute;
+}
 function loadRoute() {
   return (
-    validRoute(location.hash) ||
+    routeFromLocation() ||
     validRoute(stored().route || "") || { mode: "pad", id: 1 }
   );
 }
@@ -266,10 +304,24 @@ export default function App() {
   }
   function go(mode, id) {
     slider.reset();
-    const hash = `#/${mode}/${id}`;
-    if (location.hash !== hash || view !== "reader")
-      history.pushState(null, "", hash);
+    const url = routeUrl(mode, id);
+    const current = Capacitor.isNativePlatform()
+      ? location.hash
+      : location.pathname;
+    if (current !== url || view !== "reader") history.pushState(null, "", url);
     setRoute({ mode, id });
+    setView("reader");
+    setNotice("");
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }
+  function goHome() {
+    slider.reset();
+    const url = Capacitor.isNativePlatform() ? "#/pad/1" : "/";
+    const current = Capacitor.isNativePlatform()
+      ? location.hash
+      : `${location.pathname}${location.hash}`;
+    if (current !== url || view !== "reader") history.pushState(null, "", url);
+    setRoute({ mode: "pad", id: 1 });
     setView("reader");
     setNotice("");
     window.scrollTo({ top: 0, behavior: "instant" });
@@ -369,7 +421,7 @@ export default function App() {
   }
   useEffect(() => {
     const update = () => {
-      setRoute(validRoute(location.hash) || { mode: "pad", id: 1 });
+      setRoute(routeFromLocation() || { mode: "pad", id: 1 });
       setView(history.state?.view || "reader");
       setSelectedSection(history.state?.section || null);
       if (history.state?.origin) setSearchOrigin(history.state.origin);
@@ -389,7 +441,7 @@ export default function App() {
         JSON.stringify({
           ...stored(),
           bookmarks,
-          route: `#/${route.mode}/${route.id}`,
+          route: routePath(route.mode, route.id),
         }),
       );
     } catch {
@@ -419,7 +471,7 @@ export default function App() {
         );
         if (next >= 0 && next < count) {
           const id = route.mode === "shodash" ? next : hymns[next].id;
-          history.pushState(null, "", `#/${route.mode}/${id}`);
+          history.pushState(null, "", routeUrl(route.mode, id));
           setRoute({ mode: route.mode, id });
           window.scrollTo(0, 0);
         }
@@ -463,7 +515,8 @@ export default function App() {
     setSharing(true);
     try {
       const result = await sharePad(svg, route.mode, route.id);
-      if (result === "downloaded")
+      if (result === "copied") setNotice("पद और लिंक कॉपी हो गए।");
+      else if (result === "downloaded")
         setNotice("पद की पूरी तस्वीर डाउनलोड हो गई।");
     } catch (error) {
       if (error?.name !== "AbortError" && !/cancel/i.test(error?.message || ""))
@@ -527,7 +580,7 @@ export default function App() {
           <button
             className="brand-wordmark"
             aria-label="पहले पद पर जाएँ"
-            onClick={() => go("pad", 1)}
+            onClick={goHome}
           >
             <span aria-hidden="true">पद रत्नाकर</span>
           </button>
