@@ -906,7 +906,7 @@ export default function App() {
       <div className="sr-only" role="status" aria-live="polite">
         {notice}
       </div>
-      <Analytics />
+      {!Capacitor.isNativePlatform() && <Analytics />}
     </div>
   );
 }

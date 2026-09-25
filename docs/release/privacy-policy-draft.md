@@ -20,6 +20,10 @@ Bookmarks and reading-related preferences are kept on the device. The bundled re
 
 The native app stores its reading content locally and includes an Internet permission. Its share caption includes a link to the public website. The website/PWA downloads app files and stores them in browser caches for offline use; hosting providers receive ordinary connection information when serving those requests. This is separate from the offline native reader. Website sharing sends selected pad text and a link; native sharing sends a pad image and caption through the chosen receiving app.
 
+## Website analytics
+
+The website/PWA uses Vercel Web Analytics. It can send usage events and technical visit information to Vercel; therefore the website is not covered by the native app’s no-analytics statement. This integration is disabled in Capacitor Android/iOS apps. Publisher must review Vercel’s current data handling when finalizing the hosted website policy.
+
 ## Sharing and copying
 
 At your request, the app can create a PNG image containing a full pad and its notes, or copy displayed text. When you choose a receiving app or person through the system share sheet, that recipient handles the shared material under its own terms and privacy practices. Pad Ratnakar does not operate the receiving app or service.
