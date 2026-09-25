@@ -4,6 +4,7 @@ import { swipeDirection, wrappedPosition } from "./lib/reader-layout";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { App as NativeApp } from "@capacitor/app";
 import { Capacitor } from "@capacitor/core";
+import { Analytics } from "@vercel/analytics/react";
 import hymns from "./data/hymns.json";
 import indexMap from "./data/index_map.json";
 import { shodashCollection as shodash } from "./lib/corpus";
@@ -905,6 +906,7 @@ export default function App() {
       <div className="sr-only" role="status" aria-live="polite">
         {notice}
       </div>
+      <Analytics />
     </div>
   );
 }
