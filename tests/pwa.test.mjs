@@ -1,10 +1,4 @@
-/**
- * Tests that the PWA build artifacts exist and are correctly configured.
- * Runs against the dist/ directory — requires `npm run build` first.
- * The `npm run check` command always ends with `npm run build`, so on the
- * second and subsequent runs these tests see a fresh build output.
- * On the very first run (no dist/ yet) the dist-dependent tests are skipped.
- */
+// Build before testing: npm run check ensures fresh release artifacts.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
@@ -15,7 +9,8 @@ const root = new URL("../", import.meta.url).pathname;
 
 // Skip all dist-dependent checks if there is no build yet.
 const distExists = fs.existsSync(dist);
-const skipIfNoDist = distExists ? {} : { skip: "dist/ not built yet" };
+assert(distExists, "Run npm run build before npm test");
+const skipIfNoDist = {};
 
 function distFile(rel) {
   return path.join(dist, rel);
@@ -116,11 +111,12 @@ test("sw.js is emitted in dist", skipIfNoDist, () => {
   assert(fs.existsSync(distFile("sw.js")), "dist/sw.js missing");
 });
 
-test("sw.js does not precache layout JSON corpus files", skipIfNoDist, () => {
+test("all layout chunks are revisioned for complete offline reading", () => {
   const sw = fs.readFileSync(distFile("sw.js"), "utf8");
+  for (let i = 1; i <= 16; i++) assert(sw.includes(`data/layout/${i}.json`));
   assert(
-    !sw.includes("data/layout"),
-    "sw.js must not precache layout corpus chunks",
+    !sw.includes("pad-layout-v1"),
+    "Never serve stale year-long runtime geometry",
   );
 });
 
@@ -164,9 +160,6 @@ test("vercel.json rewrites for SPA still present", () => {
 // ─── No placeholder domain (always runnable) ────────────────────────────────
 
 test("share-pad.js contains no padratnakar.example placeholder", () => {
-  const src = fs.readFileSync(
-    path.join(root, "src/lib/share-pad.js"),
-    "utf8",
-  );
+  const src = fs.readFileSync(path.join(root, "src/lib/share-pad.js"), "utf8");
   assert(!src.includes("padratnakar.example"), ".example domain must be gone");
 });

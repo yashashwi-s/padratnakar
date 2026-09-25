@@ -1,3 +1,11 @@
+# Current release: 1.0.0 / version code 2
+
+Start with [UPLOAD-FIRST.md](UPLOAD-FIRST.md). A signed APK for direct distribution, signed AAB, store graphics, listing copy and policy draft are prepared in the task workspace’s `play-release-1.0.0` folder and ZIP. Private signing material is outside that package and Git. The user reports testing completed. PWA verification limits are in [pwa-audit.md](pwa-audit.md).
+
+Pending owner input: public publisher/support contact, rights confirmation, Console account type, audience/ratings declarations and privacy-policy hosting. Signed artifacts are prepared; nothing has been uploaded to Play Console.
+
+The earlier planning snapshot below is historical; use the upload guide for current state.
+
 # Google Play release packet — पद रत्नाकर
 
 Prepared 24 September 2026. This packet is a release-preparation record, not a publishing instruction. It does not create a build, account, key, credential, listing, or Play Console release.

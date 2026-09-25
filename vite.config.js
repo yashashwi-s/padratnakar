@@ -9,41 +9,16 @@ export default defineConfig({
     VitePWA({
       // Write the service worker to sw.js at the root of the output.
       filename: "sw.js",
-      // Register it automatically via a tiny injected script — skip for
-      // Capacitor WebViews because we detect native in main.jsx.
-      injectRegister: null, // we register manually in main.jsx
-      // Triggers a skipWaiting + clients.claim on activation so users
-      // always get the latest build without needing a manual refresh.
-      registerType: "autoUpdate",
-      // Only precache the app-shell: JS, CSS, HTML, fonts, icons.
-      // The 16 layout JSON files (8 MB total) are runtime-cached instead
-      // so first install stays lean.
+      injectRegister: null,
+      // Activate updates on the next visit, without replacing a reading session.
+      registerType: "prompt",
       workbox: {
-        // Precache everything Vite emits EXCEPT the large layout corpus.
+        // Revisioned geometry is part of the offline book, including unread pads.
         globPatterns: [
           "**/*.{js,css,html,woff,woff2,ttf}",
           "icons/*.png",
           "brand/pad-ratnakar.png",
-        ],
-        globIgnores: ["**/data/layout/**"],
-        // Runtime caching for layout JSON chunks (corpus data).
-        runtimeCaching: [
-          {
-            urlPattern: /\/data\/layout\/\d+\.json$/,
-            handler: "CacheFirst",
-            options: {
-              cacheName: "pad-layout-v1",
-              expiration: {
-                // Keep up to 16 entries (all chunks) indefinitely;
-                // they are regenerated only on data:rebuild.
-                maxEntries: 20,
-                maxAgeSeconds: 60 * 60 * 24 * 365, // 1 year
-              },
-              cacheableResponse: {
-                statuses: [200],
-              },
-            },
-          },
+          "data/layout/*.json",
         ],
         // SPA navigation fallback: serve index.html for any
         // non-asset navigation request so /pad/N and /shodash/N
@@ -63,8 +38,8 @@ export default defineConfig({
         maximumFileSizeToCacheInBytes: 8 * 1024 * 1024,
         // Clean stale caches from previous SW versions on activation.
         cleanupOutdatedCaches: true,
-        // Skip waiting so the new SW activates immediately.
-        skipWaiting: true,
+        // Keep the current reader and its cache version together until closed.
+        skipWaiting: false,
         clientsClaim: true,
       },
       manifest: {
@@ -91,9 +66,8 @@ export default defineConfig({
             type: "image/png",
           },
           {
-            // Maskable variant re-uses the same image; the 1254×1254
-            // source has ample safe-zone for the 80% mask circle.
-            src: "/icons/icon-512.png",
+            // Dedicated padded icon keeps lettering inside adaptive masks.
+            src: "/icons/icon-maskable-512.png",
             sizes: "512x512",
             type: "image/png",
             purpose: "maskable",

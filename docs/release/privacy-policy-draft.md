@@ -18,7 +18,7 @@ Based on the current application design, Pad Ratnakar does not require an accoun
 
 Bookmarks and reading-related preferences are kept on the device. The bundled reading text, notes, and fonts are also stored with the app. Removing the app may remove locally stored settings, subject to the device’s backup and operating-system behaviour.
 
-The Android app declares Internet permission. In the current source, the sharing feature includes reserved placeholder web links in the caption. Those links must be replaced with approved published URLs or removed before public release. This policy must be revised if the final app uses the network for any purpose.
+The native app stores its reading content locally and includes an Internet permission. Its share caption includes a link to the public website. The website/PWA downloads app files and stores them in browser caches for offline use; hosting providers receive ordinary connection information when serving those requests. This is separate from the offline native reader. Website sharing sends selected pad text and a link; native sharing sends a pad image and caption through the chosen receiving app.
 
 ## Sharing and copying
 
