@@ -1386,6 +1386,8 @@ body {
 }
 .reader-track {
   position: relative;
+  overflow-anchor: none;
+  transform: translate3d(0, 0, 0);
 }
 .reader-panel {
   width: 100%;

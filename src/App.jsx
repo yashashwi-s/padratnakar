@@ -347,12 +347,12 @@ export default function App() {
       (window.visualViewport?.scale || 1) > 1.01
     )
       return;
-    if (!slider.prepare()) return;
     const touch = event.touches[0];
     swipeStart.current = {
       x: touch.clientX,
       y: touch.clientY,
       time: event.timeStamp,
+      horizontal: false,
     };
   }
   function endSwipe(event) {
@@ -380,6 +380,7 @@ export default function App() {
         scale: window.visualViewport?.scale || 1,
       },
     );
+    if (!start.horizontal) return;
     if (direction)
       slider.slide(
         direction,
@@ -402,7 +403,13 @@ export default function App() {
     if (dy > 10 && dy > dx) {
       swipeStart.current = null;
       slider.reset();
-    } else if (dx > 8 && dx > dy * 1.5) slider.drag(touch.clientX - start.x);
+    } else if (dx > 8 && dx > dy * 1.5) {
+      if (!start.horizontal) {
+        if (!slider.prepare()) return;
+        start.horizontal = true;
+      }
+      slider.drag(touch.clientX - start.x);
+    }
   }
 
   function openBrowse() {

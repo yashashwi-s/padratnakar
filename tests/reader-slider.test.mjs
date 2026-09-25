@@ -5,7 +5,16 @@ import { createReaderSlider } from "../src/lib/reader-slider.js";
 function fixture() {
   const styles = new Map(),
     motions = [],
-    steps = [];
+    steps = [],
+    panelStyles = new Map([["padding-top", "4px"]]);
+  const panels = [
+    {
+      style: {
+        setProperty: (k, v) => panelStyles.set(k, v),
+        removeProperty: (k) => panelStyles.delete(k),
+      },
+    },
+  ];
   const track = {
     clientWidth: 400,
     clientHeight: 800,
@@ -13,7 +22,7 @@ function fixture() {
       setProperty: (k, v) => styles.set(k, v),
       removeProperty: (k) => styles.delete(k),
     },
-    querySelectorAll: () => [],
+    querySelectorAll: () => panels,
     animate(frames, options) {
       let resolve;
       const motion = {
@@ -39,7 +48,14 @@ function fixture() {
     reducedMotion: () => false,
     translateX: () => visible,
   });
-  return { slider, styles, motions, steps, setVisible: (x) => (visible = x) };
+  return {
+    slider,
+    styles,
+    motions,
+    steps,
+    panelStyles,
+    setVisible: (x) => (visible = x),
+  };
 }
 test("rapid repeated swipes take over at the same visual position and commit once each", async () => {
   const f = fixture();
@@ -90,4 +106,14 @@ test("rapid buttons are accepted while the previous transition is running", asyn
   await Promise.resolve();
   assert.deepEqual(f.steps, [1, 1]);
   assert.ok(f.motions.every((m) => m.options.duration <= 180));
+});
+
+test("touch preparation never increases document height or replaces source padding", () => {
+  const f = fixture();
+  f.slider.prepare();
+  assert.equal(f.styles.has("min-height"), false);
+  assert.equal(f.panelStyles.get("padding-top"), "4px");
+  f.slider.reset();
+  assert.equal(f.panelStyles.get("padding-top"), "4px");
+  assert.equal(f.panelStyles.has("translate"), false);
 });

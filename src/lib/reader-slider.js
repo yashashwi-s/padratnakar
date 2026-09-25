@@ -3,24 +3,24 @@ export function createReaderSlider({
   element,
   commit,
   scrollY,
-  viewportHeight,
   reducedMotion,
   translateX,
 }) {
+  let committing = false;
   let offset = 0,
     origin = 0,
     active = null;
   function reset() {
+    if (committing) return;
     const previous = active;
     active = null;
     previous?.motion.cancel();
     offset = origin = 0;
     const track = element();
     track?.style.removeProperty("transform");
-    track?.style.removeProperty("min-height");
     track
       ?.querySelectorAll(".reader-panel")
-      .forEach((panel) => panel.style.removeProperty("padding-top"));
+      .forEach((panel) => panel.style.removeProperty("translate"));
   }
   function paint() {
     element()?.style.setProperty("transform", `translate3d(${offset}px,0,0)`);
@@ -35,22 +35,27 @@ export function createReaderSlider({
       const visible = translateX(track);
       const width = track.clientWidth;
       active = null;
+      committing = true;
+      try {
+        if (previous.direction) commit(previous.direction);
+      } finally {
+        committing = false;
+      }
       previous.motion.cancel();
-      if (previous.direction) commit(previous.direction);
       offset = visible + previous.direction * width;
       paint();
       track = element();
       if (!track) return false;
     }
+    track
+      .querySelectorAll(".reader-panel")
+      .forEach((panel) => panel.style.removeProperty("translate"));
     origin = offset;
-    track.style.setProperty(
-      "min-height",
-      `${Math.max(track.clientHeight, scrollY() + viewportHeight())}px`,
-    );
+    // Translation preserves the exact source padding and document scroll extent.
     track
       .querySelectorAll('[data-current="false"]')
       .forEach((panel) =>
-        panel.style.setProperty("padding-top", `${scrollY()}px`),
+        panel.style.setProperty("translate", `0 ${scrollY()}px`),
       );
     return true;
   }
@@ -96,8 +101,14 @@ export function createReaderSlider({
       .then(() => {
         if (active !== pending) return;
         active = null;
+        // Keep the final frame held while React adopts the incoming page.
+        committing = true;
+        try {
+          if (direction) commit(direction);
+        } finally {
+          committing = false;
+        }
         motion.cancel();
-        if (direction) commit(direction);
         reset();
       })
       .catch(() => {});

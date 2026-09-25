@@ -3,7 +3,7 @@
 Usage: python3 scripts/release/sign.py --private-dir /secure/path --output /release/path [--create-key]
 Requires JAVA_HOME and ANDROID_HOME; create-key is explicit and never overwrites keys.
 """
-import argparse, hashlib, os, secrets, shutil, subprocess
+import argparse, hashlib, os, secrets, shutil, subprocess, re
 from pathlib import Path
 p = argparse.ArgumentParser()
 p.add_argument('--private-dir', type=Path, required=True)
@@ -30,7 +30,8 @@ if a.create_key:
 else:
     if not key.exists() or not password.exists(): raise SystemExit('Signing material missing; explicit --create-key required for first release.')
     env['PAD_SIGN_PASSWORD'] = password.read_text()
-apk = out/'pad-ratnakar-1.0.0.apk'; bundle = out/'pad-ratnakar-1.0.0.aab'
+version = re.search(r'versionName "([^"]+)"', (root/'android/app/build.gradle').read_text()).group(1)
+apk = out/f'pad-ratnakar-{version}.apk'; bundle = out/f'pad-ratnakar-{version}.aab'
 unsigned = root/'android/app/build/outputs/apk/release/app-release-unsigned.apk'
 run([tools/'zipalign','-f','-p','4',unsigned,apk])
 run([tools/'apksigner','sign','--ks',key,'--ks-key-alias','padratnakar','--ks-pass','env:PAD_SIGN_PASSWORD','--key-pass','env:PAD_SIGN_PASSWORD',apk])

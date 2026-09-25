@@ -13,7 +13,6 @@ export function useReaderSlider(track, onStep) {
       element: () => track.current,
       commit: (direction) => flushSync(() => commit.current(direction)),
       scrollY: () => window.scrollY,
-      viewportHeight: () => window.innerHeight,
       reducedMotion: () =>
         window.matchMedia("(prefers-reduced-motion: reduce)").matches,
       translateX: (element) =>
