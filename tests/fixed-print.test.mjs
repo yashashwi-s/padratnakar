@@ -26,8 +26,16 @@ test("fixed print preserves every canonical verse and finite ordered baselines i
       ["verse", "citation"].includes(l.role),
     );
     assert.deepEqual(
-      body.map((l) => l.text),
-      pad.verses.map(normalizeOpeningQuotes),
+      body.map((l) =>
+        [271, 363, 414, 612, 1547, 1556].includes(id)
+          ? l.text.replaceAll("*", "")
+          : l.text,
+      ),
+      pad.verses.map((text) =>
+        [271, 363, 414, 612, 1547, 1556].includes(id)
+          ? normalizeOpeningQuotes(text).replaceAll("*", "")
+          : normalizeOpeningQuotes(text),
+      ),
       `Text ${id}`,
     );
     assert(
@@ -128,4 +136,22 @@ test("Pushpika separates the title, verses and final dedication", () => {
   const dedication = page.lines.find((line) => line.role === "dedication");
   assert.equal(verses[0].y - title.y, 60);
   assert.equal(dedication.y - verses.at(-1).y, 60);
+});
+
+test("single-note pads retain one displayed reference and all note content", () => {
+  for (const id of [271, 363, 414, 612, 1547, 1556]) {
+    const page = fixedPrintModel(getPad(id), layout(id));
+    const marked = page.lines.filter(
+      (line) => line.role === "verse" && line.text.includes("*"),
+    );
+    assert.equal(marked.length, 1, `pad ${id}`);
+    if (id === 612) assert.match(marked[0].text, /भगवान/);
+    for (const line of page.lines.filter(
+      (line) => line.role === "verse" && !line.text.includes("*"),
+    ))
+      for (const segment of line.segments || []) {
+        assert(!segment.text?.includes("*"));
+        assert(!(segment.runs || []).some((run) => run.text.includes("*")));
+      }
+  }
 });

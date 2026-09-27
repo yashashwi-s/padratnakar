@@ -23,3 +23,18 @@ createRoot(document.getElementById("root")).render(
     <App />
   </StrictMode>,
 );
+
+// A single quiet handoff after fonts and the first reader frame are ready.
+Promise.all([
+  document.fonts.ready,
+  new Promise((resolve) => setTimeout(resolve, 450)),
+]).then(() => {
+  requestAnimationFrame(() =>
+    requestAnimationFrame(() => {
+      const screen = document.getElementById("launch-screen");
+      if (!screen) return;
+      screen.style.opacity = "0";
+      setTimeout(() => screen.remove(), 320);
+    }),
+  );
+});

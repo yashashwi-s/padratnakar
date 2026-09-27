@@ -279,6 +279,7 @@ export default function App() {
   });
   const [notice, setNotice] = useState("");
   const [sharing, setSharing] = useState(false);
+  const [exitOpen, setExitOpen] = useState(false);
   const swipeStart = useRef(null);
   const item = route.mode === "shodash" ? shodash.items[route.id] : null;
   const pad = byId.get(item?.padId || route.id) || hymns[0];
@@ -419,6 +420,7 @@ export default function App() {
   function openQuery() {
     setSearchOrigin(route.mode);
     setQuery("");
+    history.replaceState(null, "", location.href);
     showView("query");
     window.scrollTo(0, 0);
   }
@@ -492,10 +494,12 @@ export default function App() {
     if (!Capacitor.isNativePlatform()) return;
     let cancelled = false;
     let listener;
-    NativeApp.addListener("backButton", ({ canGoBack }) => {
-      if (view !== "reader") window.history.back();
-      else if (canGoBack) window.history.back();
-      else NativeApp.minimizeApp();
+    NativeApp.addListener("backButton", () => {
+      if (exitOpen) setExitOpen(false);
+      else if (view !== "reader") {
+        history.replaceState(null, "", location.href);
+        setView("reader");
+      } else setExitOpen(true);
     }).then((handle) => {
       if (cancelled) handle.remove();
       else listener = handle;
@@ -504,7 +508,7 @@ export default function App() {
       cancelled = true;
       listener?.remove();
     };
-  }, [view]);
+  }, [view, exitOpen]);
   useEffect(() => {
     if (view === "reader") return;
     const escape = (event) => {
@@ -595,7 +599,7 @@ export default function App() {
           <button
             className="header-action"
             aria-label="पद खोजें"
-            onClick={openBrowse}
+            onClick={openQuery}
           >
             <Icon name="search" />
           </button>
@@ -751,8 +755,11 @@ export default function App() {
           <div className="list-heading">
             <button
               className="back-action"
-              aria-label="विषयों पर लौटें"
-              onClick={() => history.back()}
+              aria-label="पद पर लौटें"
+              onClick={() => {
+                history.replaceState(null, "", location.href);
+                setView("reader");
+              }}
             >
               <Icon name="left" />
             </button>
@@ -913,6 +920,23 @@ export default function App() {
       <div className="sr-only" role="status" aria-live="polite">
         {notice}
       </div>
+      {exitOpen && (
+        <div className="exit-overlay" onClick={() => setExitOpen(false)}>
+          <section
+            role="alertdialog"
+            aria-modal="true"
+            aria-labelledby="exit-title"
+            className="exit-dialog"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <h2 id="exit-title">Exit app?</h2>
+            <button autoFocus onClick={() => setExitOpen(false)}>
+              Cancel
+            </button>
+            <button onClick={() => NativeApp.exitApp()}>Exit</button>
+          </section>
+        </div>
+      )}
       {!Capacitor.isNativePlatform() && <Analytics />}
     </div>
   );

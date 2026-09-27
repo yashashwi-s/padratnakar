@@ -100,3 +100,9 @@ Full checks pass: 40 JavaScript tests including rapid repeat/reverse/cancel/butt
 Removed temporary min-height and padding-top mutations from the slider. Touchdown no longer prepares a strip: only horizontal intent does, so vertical scrolling/taps cannot manufacture extra scroll extent. Neighbours use translation to compensate vertical scroll without replacing their 4px source padding. Navigation completion holds the animation until the React commit completes; nested route reset cannot clear it during commit. Scroll anchoring is disabled for the strip and its base transform remains stable.
 
 70 JS tests plus corpus/layout, review, lint and build pass. Added regression checks for unchanged source padding/document height. Signed APK/AAB with the existing release key; every packaged web asset matches dist. Actual Android compositor smoothness remains a phone-verification item; automated tests do not prove perceived smoothness. Artifacts in task workspace `play-release-1.0.1`.
+
+## September 27 release 1.0.2 (code 4)
+
+Android Back from the reader asks “Exit app?” with Cancel/Exit instead of traversing pad history. Back from auxiliary screens returns to the current pad. Search icon opens the query directly; its on-screen Back returns to the reader. Added a centered logo startup cover with a short opacity handoff after font readiness and two rendered frames, respecting reduced motion; Android launch theme uses matching paper background and launcher art. Six repeated single-note marker cases normalized in display only (see data-corpus.md).
+
+Shared web/native reader code keeps these corrections consistent. Android PWA manifest, standalone display, revisioned offline data, and Apple home-screen metadata remain present. Actual Safari/Android installation prompts are not device-verified.

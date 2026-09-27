@@ -165,6 +165,31 @@ export function fixedPrintModel(pad, layout, item = null) {
     y += 60;
     centered(shodashCollection.closingDedication, 16, "dedication");
   }
+  // Display correction: repeated extraction markers point to one note.
+  // Keep raw decoded text and provenance unchanged.
+  if (!item && getFootnotes(pad).length === 1) {
+    const marked = lines.filter(
+      (line) => line.role === "verse" && line.text.includes("*"),
+    );
+    if (marked.length > 1) {
+      const keep =
+        pad.id === 612
+          ? marked.find((line) => line.text.includes("भगवान"))
+          : marked.at(-1);
+      for (const line of marked)
+        if (line !== keep) {
+          line.text = line.text.replaceAll("*", "");
+          line.segments = line.segments?.map((segment) => ({
+            ...segment,
+            text: segment.text?.replaceAll("*", ""),
+            runs: segment.runs?.map((run) => ({
+              ...run,
+              text: run.text.replaceAll("*", ""),
+            })),
+          }));
+        }
+    }
+  }
   return { width, height: y + 26, lines, ruleY, leading, decorations };
 }
 
