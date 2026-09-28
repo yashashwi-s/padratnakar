@@ -17,6 +17,13 @@ import { findSectionMatches, matchesSectionName } from "./lib/sections";
 import Icon from "./components/Icon";
 import PadTypography from "./components/PadTypography";
 
+import { jayanti, jayantiShortcuts } from "./lib/jayanti";
+import {
+  readerCollections,
+  collectionPad,
+  collectionBookmark,
+} from "./lib/reader-collections";
+
 const STORAGE = "pad-ratnakar-reader-v3";
 const byId = new Map(hymns.map((pad) => [pad.id, pad]));
 const mainIndex = makeSearchIndex(hymns);
@@ -35,6 +42,15 @@ const songIndex = makeSearchIndex(
   }),
 ).filter((entry) => songPosition.has(entry.pad.id));
 const collections = [
+  ...Object.entries(readerCollections).map(([mode, collection]) => ({
+    mode,
+    name: collection.title,
+    sections: collection.sections,
+    index: makeSearchIndex(collection.pads),
+    routeId: (id) => id,
+    displayNumber: (id) =>
+      collectionPad(mode, id)?.printedNumber ? dn(id) : "",
+  })),
   {
     mode: "pad",
     name: "पद रत्नाकर",
@@ -79,6 +95,9 @@ function validRoute(value) {
   match = path.match(/^\/shodash\/(\d+)\/?$/);
   if (match && Number(match[1]) < shodash.items.length)
     return { mode: "shodash", id: Number(match[1]) };
+  match = path.match(/^\/(jayanti|kallolini)\/(\d+)\/?$/);
+  if (match && collectionPad(match[1], Number(match[2])))
+    return { mode: match[1], id: Number(match[2]) };
   return null;
 }
 function routeFromLocation() {
@@ -185,6 +204,9 @@ function SearchResults({ query, origin, onOpen, onOpenSection }) {
         .map((collection) => ({
           ...collection,
           found: searchPads(collection.index, query),
+          matchedSections: (collection.sections || []).filter((section) =>
+            matchesSectionName(section.name, query),
+          ),
         })),
     [query, origin],
   );
@@ -192,6 +214,7 @@ function SearchResults({ query, origin, onOpen, onOpenSection }) {
     !groups.some(
       (group) =>
         group.found.length ||
+        group.matchedSections.length ||
         matchesSectionName(group.name, query) ||
         (group.mode === "pad" && sectionMatches.length),
     )
@@ -203,6 +226,7 @@ function SearchResults({ query, origin, onOpen, onOpenSection }) {
     <div className="list-content" aria-live="polite">
       {groups.map((group) =>
         group.found.length ||
+        group.matchedSections.length ||
         matchesSectionName(group.name, query) ||
         (group.mode === "pad" && sectionMatches.length) ? (
           <section key={group.mode}>
@@ -212,13 +236,24 @@ function SearchResults({ query, origin, onOpen, onOpenSection }) {
                 className="section-row search-section-row"
                 onClick={() =>
                   onOpenSection(
-                    group.mode === "shodash" ? { mode: "shodash" } : null,
+                    group.mode !== "pad" ? { mode: group.mode } : null,
                   )
                 }
               >
                 {group.name}
               </button>
             )}
+            {group.matchedSections.map((section) => (
+              <button
+                className="section-row search-section-row"
+                key={section.id}
+                onClick={() =>
+                  onOpenSection({ mode: group.mode, sectionId: section.id })
+                }
+              >
+                {section.name}
+              </button>
+            ))}
             {group.mode === "pad" &&
               sectionMatches.map(({ section, subtopic }) => (
                 <button
@@ -275,27 +310,36 @@ export default function App() {
   const [searchOrigin, setSearchOrigin] = useState("pad");
   const [bookmarks, setBookmarks] = useState(() => {
     const values = stored().bookmarks;
-    return Array.isArray(values) ? values.filter((id) => byId.has(id)) : [];
+    return Array.isArray(values)
+      ? values.filter((id) => byId.has(id) || collectionBookmark(id))
+      : [];
   });
   const [notice, setNotice] = useState("");
   const [sharing, setSharing] = useState(false);
   const [exitOpen, setExitOpen] = useState(false);
   const swipeStart = useRef(null);
   const item = route.mode === "shodash" ? shodash.items[route.id] : null;
-  const pad = byId.get(item?.padId || route.id) || hymns[0];
-  const saved = bookmarks.includes(pad.id);
+  const activeCollection = readerCollections[route.mode];
+  const pad = activeCollection
+    ? collectionPad(route.mode, route.id)
+    : byId.get(item?.padId || route.id) || hymns[0];
+  const bookmarkId = activeCollection ? `${route.mode}:${pad.id}` : pad.id;
+  const saved = bookmarks.includes(bookmarkId);
   const position = route.mode === "shodash" ? route.id : pad.id - 1;
-  const count = route.mode === "shodash" ? shodash.items.length : hymns.length;
+  const count =
+    route.mode === "shodash"
+      ? shodash.items.length
+      : activeCollection?.pads.length || hymns.length;
 
   const trackRef = useRef(null);
   const slider = useReaderSlider(trackRef, (direction) => {
     const next = wrappedPosition(position, direction, count);
-    go(route.mode, route.mode === "shodash" ? next : hymns[next].id);
+    go(route.mode, route.mode === "shodash" ? next : next + 1);
   });
 
   function showView(next, section = null) {
     slider.reset();
-    if (view === next) return;
+    if (view === next && next !== "section") return;
     history.pushState(
       { view: next, section, origin: route.mode },
       "",
@@ -480,7 +524,7 @@ export default function App() {
           count,
         );
         if (next >= 0 && next < count) {
-          const id = route.mode === "shodash" ? next : hymns[next].id;
+          const id = route.mode === "shodash" ? next : next + 1;
           history.pushState(null, "", routeUrl(route.mode, id));
           setRoute({ mode: route.mode, id });
           window.scrollTo(0, 0);
@@ -550,9 +594,9 @@ export default function App() {
   }
   function toggleBookmark() {
     setBookmarks((values) =>
-      values.includes(pad.id)
-        ? values.filter((id) => id !== pad.id)
-        : [...values, pad.id],
+      values.includes(bookmarkId)
+        ? values.filter((id) => id !== bookmarkId)
+        : [...values, bookmarkId],
     );
     setNotice(saved ? "पद सहेजे हुए पदों से हटाया गया।" : "पद सहेज लिया गया।");
   }
@@ -564,13 +608,17 @@ export default function App() {
             entry.id <= selectedSection.endPad,
         )
       : [];
+  const selectedCollection = readerCollections[selectedSection?.mode];
+  const selectedCollectionSection = selectedCollection?.sections.find(
+    (section) => section.id === selectedSection?.sectionId,
+  );
   let subtopic = "";
 
   return (
     <div className="app-shell">
       <title>
         {(view === "reader"
-          ? item?.title || `पद ${dn(pad.id)}`
+          ? item?.title || (activeCollection ? pad.title : `पद ${dn(pad.id)}`)
           : view === "saved"
             ? "सहेजे हुए पद"
             : view === "query"
@@ -622,7 +670,31 @@ export default function App() {
           >
             <div className="reader-chrome">
               <div className="reader-topline">
-                <span>{item ? shodash.title : pad.section}</span>
+                <span className="topline-collection">
+                  {item
+                    ? shodash.title
+                    : activeCollection?.title || "पद रत्नाकर"}
+                </span>
+                {!item &&
+                  (!activeCollection ||
+                    activeCollection.sections.length > 0) && (
+                    <button
+                      className="topline-section"
+                      aria-label="विषय और उपविषय खोलें"
+                      onClick={() =>
+                        activeCollection
+                          ? openSection({ mode: route.mode })
+                          : openBrowse()
+                      }
+                    >
+                      <span>
+                        {[pad.section, pad.subtopic]
+                          .filter(Boolean)
+                          .join(" · ")}
+                      </span>
+                      <Icon name="down" className="section-chevron" />
+                    </button>
+                  )}
               </div>
               <div
                 className="reading-toolbar"
@@ -658,7 +730,11 @@ export default function App() {
                   const index = wrappedPosition(position, delta, count);
                   const entry =
                     route.mode === "shodash" ? shodash.items[index] : null;
-                  const entryPad = entry ? byId.get(entry.padId) : hymns[index];
+                  const entryPad = entry
+                    ? byId.get(entry.padId)
+                    : activeCollection
+                      ? activeCollection.pads[index]
+                      : hymns[index];
                   const current = delta === 0;
                   return (
                     <article
@@ -725,16 +801,6 @@ export default function App() {
               <span>पद खोजें…</span>
             </button>
             <div className="sheet-scroll">
-              <SectionBar>संग्रह</SectionBar>
-              <button className="section-row" onClick={() => openSection(null)}>
-                पद रत्नाकर
-              </button>
-              <button
-                className="section-row"
-                onClick={() => openSection({ mode: "shodash" })}
-              >
-                षोडशगीत
-              </button>
               <SectionBar>पद रत्नाकर के विषय</SectionBar>
               {indexMap.topics.map((topic) => (
                 <button
@@ -804,54 +870,111 @@ export default function App() {
               <Icon name="left" />
             </button>
             <h1>
-              {selectedSection?.mode === "shodash"
-                ? "षोडशगीत"
-                : selectedSection?.activeSubtopic
-                  ? `${selectedSection.name} — ${selectedSection.activeSubtopic}`
-                  : selectedSection?.name || "पद रत्नाकर"}
+              {readerCollections[selectedSection?.mode]
+                ? selectedCollectionSection?.name ||
+                  readerCollections[selectedSection.mode].title
+                : selectedSection?.mode === "shodash"
+                  ? "षोडशगीत"
+                  : selectedSection?.activeSubtopic
+                    ? `${selectedSection.name} — ${selectedSection.activeSubtopic}`
+                    : selectedSection?.name || "पद रत्नाकर"}
             </h1>
           </div>
           <div className="list-content">
             <SectionBar>
-              {selectedSection?.mode === "shodash" ? "षोडशगीत" : "पद रत्नाकर"}
+              {readerCollections[selectedSection?.mode]
+                ? selectedCollectionSection?.name ||
+                  readerCollections[selectedSection.mode].title
+                : selectedSection?.mode === "shodash"
+                  ? "षोडशगीत"
+                  : "पद रत्नाकर"}
             </SectionBar>
-            {selectedSection?.mode === "shodash"
-              ? shodash.items.map((entry, i) => (
-                  <PadRow
-                    key={i}
-                    number={entry.number ? dn(entry.number) : ""}
-                    text={collectionPreview(entry)}
-                    onClick={() => go("shodash", i)}
-                  />
-                ))
-              : selectedSection
-                ? selectedPads.map((entry) => {
-                    const label = entry.subtopic || "";
-                    const showSubtopic = label && label !== subtopic;
-                    subtopic = label;
-                    return (
-                      <div key={entry.id}>
-                        {showSubtopic && !selectedSection.activeSubtopic && (
-                          <SectionBar>
-                            {selectedSection.name} — {label}
-                          </SectionBar>
-                        )}
-                        <PadRow
-                          number={dn(entry.id)}
-                          text={padPreview(entry)}
-                          onClick={() => go("pad", entry.id)}
-                        />
-                      </div>
-                    );
-                  })
-                : hymns.map((entry) => (
+            {readerCollections[selectedSection?.mode]
+              ? selectedCollection.sections.length && !selectedSection.sectionId
+                ? selectedCollection.sections.map((section) => (
+                    <button
+                      className="section-row"
+                      key={section.id}
+                      onClick={() =>
+                        openSection({
+                          mode: selectedSection.mode,
+                          sectionId: section.id,
+                        })
+                      }
+                    >
+                      {section.name}
+                    </button>
+                  ))
+                : selectedCollection.pads
+                    .filter(
+                      (entry) =>
+                        !selectedSection.sectionId ||
+                        entry.sectionId === selectedSection.sectionId,
+                    )
+                    .map((entry) => (
+                      <PadRow
+                        key={entry.id}
+                        number={entry.printedNumber ? dn(entry.id) : ""}
+                        text={entry.title}
+                        onClick={() => go(selectedSection.mode, entry.id)}
+                      />
+                    ))
+              : selectedSection?.mode === "shodash"
+                ? shodash.items.map((entry, i) => (
                     <PadRow
-                      key={entry.id}
-                      number={dn(entry.id)}
-                      text={padPreview(entry)}
-                      onClick={() => go("pad", entry.id)}
+                      key={i}
+                      number={entry.number ? dn(entry.number) : ""}
+                      text={collectionPreview(entry)}
+                      onClick={() => go("shodash", i)}
                     />
-                  ))}
+                  ))
+                : selectedSection
+                  ? selectedSection.subtopics?.length &&
+                    !selectedSection.activeSubtopic
+                    ? selectedSection.subtopics.map((sub) => (
+                        <button
+                          className="section-row"
+                          key={sub.name}
+                          onClick={() =>
+                            openSection({
+                              ...selectedSection,
+                              startPad: sub.startPad,
+                              endPad: sub.endPad,
+                              activeSubtopic: sub.name,
+                            })
+                          }
+                        >
+                          {sub.name}
+                        </button>
+                      ))
+                    : selectedPads.map((entry) => {
+                        const label = entry.subtopic || "";
+                        const showSubtopic = label && label !== subtopic;
+                        subtopic = label;
+                        return (
+                          <div key={entry.id}>
+                            {showSubtopic &&
+                              !selectedSection.activeSubtopic && (
+                                <SectionBar>
+                                  {selectedSection.name} — {label}
+                                </SectionBar>
+                              )}
+                            <PadRow
+                              number={dn(entry.id)}
+                              text={padPreview(entry)}
+                              onClick={() => go("pad", entry.id)}
+                            />
+                          </div>
+                        );
+                      })
+                  : hymns.map((entry) => (
+                      <PadRow
+                        key={entry.id}
+                        number={dn(entry.id)}
+                        text={padPreview(entry)}
+                        onClick={() => go("pad", entry.id)}
+                      />
+                    ))}
           </div>
         </main>
       )}
@@ -870,15 +993,26 @@ export default function App() {
           </div>
           {bookmarks.length ? (
             <div className="list-content">
-              <SectionBar>पद रत्नाकर</SectionBar>
+              <SectionBar>सहेजे हुए पद</SectionBar>
               {[...bookmarks]
                 .sort((a, b) => a - b)
                 .map((id) => (
                   <PadRow
                     key={id}
-                    number={dn(id)}
-                    text={padPreview(byId.get(id))}
-                    onClick={() => go("pad", id)}
+                    number={typeof id === "number" ? dn(id) : ""}
+                    text={
+                      typeof id === "number"
+                        ? padPreview(byId.get(id))
+                        : `${collectionBookmark(id).title} — ${collectionBookmark(id).pad.title}`
+                    }
+                    onClick={() =>
+                      typeof id === "number"
+                        ? go("pad", id)
+                        : go(
+                            collectionBookmark(id).mode,
+                            collectionBookmark(id).id,
+                          )
+                    }
                   />
                 ))}
             </div>
@@ -901,12 +1035,27 @@ export default function App() {
             <h1 className="sr-only">संग्रह</h1>
           </div>
           <div className="list-content">
-            <button className="section-row" onClick={() => go("pad", pad.id)}>
+            <button className="section-row" onClick={() => go("pad", 1)}>
               पद रत्नाकर
             </button>
             <button className="section-row" onClick={() => go("shodash", 0)}>
               षोडशगीत
             </button>
+            <button className="section-row" onClick={() => go("jayanti", 1)}>
+              {jayanti.title}
+            </button>
+            <button className="section-row" onClick={() => go("kallolini", 1)}>
+              {readerCollections.kallolini.title}
+            </button>
+            {jayantiShortcuts.map((entry) => (
+              <button
+                key={entry.id}
+                className="section-row"
+                onClick={() => go("jayanti", entry.id)}
+              >
+                {entry.title}
+              </button>
+            ))}
             {view === "menu" && (
               <>
                 <button className="section-row" onClick={openBrowse}>

@@ -89,7 +89,7 @@ test("all collection entries keep their own headings, verse numbering and closin
   }
 });
 
-test("musical heading-to-body spacing is uniform, including Shodash", () => {
+test("musical heading spacing follows the collection-specific design", () => {
   const entries = Array.from({ length: 1565 }, (_, i) => [getPad(i + 1), null]);
   entries.push(
     ...shodashCollection.items.map((item) => [getPad(item.padId), item]),
@@ -101,7 +101,11 @@ test("musical heading-to-body spacing is uniform, including Shodash", () => {
     );
     if ((item?.headings || pad.headings).length)
       assert(
-        Math.abs(page.lines[first].y - page.lines[first - 1].y - 60) < 0.00001,
+        Math.abs(
+          page.lines[first].y -
+            page.lines[first - 1].y -
+            (item?.role === "song" ? 44 : 60),
+        ) < 0.00001,
         `Gap ${pad.id}`,
       );
   }

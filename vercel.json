@@ -1,6 +1,20 @@
 {
   "rewrites": [
-    { "source": "/pad/:id", "destination": "/index.html" },
-    { "source": "/shodash/:id", "destination": "/index.html" }
+    {
+      "source": "/pad/:id",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/shodash/:id",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/jayanti/:id",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/kallolini/:id",
+      "destination": "/index.html"
+    }
   ]
 }

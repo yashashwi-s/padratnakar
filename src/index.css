@@ -15,6 +15,8 @@
   --ink: #382b20;
   --muted: #786954;
   --rule: #d6cbb8;
+  font-synthesis: none;
+  font-kerning: normal;
   --font-reading: "Noto Serif Devanagari", serif;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
@@ -231,7 +233,7 @@ html {
 }
 .musical-heading {
   font-size: 0.82em;
-  font-weight: 450;
+  font-weight: 400;
   margin-top: 10px;
   line-height: 1.8;
 }
@@ -335,13 +337,13 @@ html {
 }
 .shodash-front .invocation {
   font-size: 0.8em;
-  font-weight: 650;
+  font-weight: 600;
   margin-bottom: 20px;
 }
 .shodash-front h1 {
   font-size: 1.23em;
   line-height: 1.8;
-  font-weight: 750;
+  font-weight: 700;
 }
 .book-subtitle {
   display: inline-block;
@@ -353,7 +355,7 @@ html {
 .collection-heading {
   font-size: 0.93em;
   line-height: 1.9;
-  font-weight: 650;
+  font-weight: 600;
 }
 .collection-number {
   display: block;
@@ -516,7 +518,7 @@ body:has(dialog[open]) {
   padding-top: 2px;
 }
 .search-result strong {
-  font-weight: 550;
+  font-weight: 600;
   font-size: 1rem;
 }
 .result-snippet {
@@ -614,7 +616,7 @@ body:has(dialog[open]) {
 }
 .drawer-title {
   font-size: 1.65rem;
-  font-weight: 650;
+  font-weight: 600;
   margin-top: 12px;
 }
 .drawer-author {
@@ -750,7 +752,7 @@ body:has(dialog[open]) {
   }
   .pad-text {
     padding: 26px 18px 32px;
-    font-weight: 450;
+    font-weight: 400;
   }
   .verse-line {
     line-height: 2.1;
@@ -1115,7 +1117,7 @@ body {
 .list-heading h1 {
   font-size: 1.02rem;
   line-height: 1.5;
-  font-weight: 650;
+  font-weight: 600;
   transform: translateY(0.2em);
   white-space: nowrap;
   overflow: hidden;
@@ -1166,7 +1168,7 @@ body {
   background: #eeefee;
   color: #565656;
   font-size: 0.68rem;
-  font-weight: 550;
+  font-weight: 600;
   line-height: 1.5;
   text-align: left;
 }
@@ -1211,7 +1213,7 @@ body {
   border-bottom: 1px solid #d8d8d8;
   background: #fff;
   color: #111;
-  font-weight: 650;
+  font-weight: 600;
   font-size: 1rem;
   line-height: 1.65;
 }
@@ -1419,14 +1421,63 @@ body {
 }
 .exit-dialog h2 {
   margin: 0 0 20px;
-  font: 600 20px system-ui;
+  font: 600 20px var(--font-reading);
 }
 .exit-dialog button {
   padding: 12px 20px;
-  font: 16px system-ui;
+  font: 400 16px var(--font-reading);
 }
 @media (prefers-reduced-motion: reduce) {
   #launch-screen {
     transition: none !important;
+  }
+}
+
+/* Collection identity and section navigation occupy opposite ends of the bar. */
+.reader-topline {
+  align-items: center;
+  gap: 16px;
+  padding: 3px 16px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  font-weight: 600;
+}
+.reader-surround {
+  padding-inline: 0;
+}
+.reader-topline .topline-collection {
+  flex: 0 1 auto;
+}
+.topline-section {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  min-width: 0;
+  min-height: 30px;
+  padding: 0;
+  margin-left: auto;
+  max-width: 65%;
+  text-align: right;
+  font: inherit;
+}
+.topline-section span:first-child {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.section-chevron {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  stroke-width: 2;
+  transform: translateY(-0.12em);
+}
+@media (max-width: 480px) {
+  .reader-topline {
+    gap: 8px;
+  }
+  .reader-topline .topline-collection {
+    max-width: 48%;
+    white-space: normal;
   }
 }

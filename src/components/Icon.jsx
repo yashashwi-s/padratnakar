@@ -22,6 +22,7 @@ export default function Icon({ name, ...props }) {
     close: <path d="m6 6 12 12M6 18 18 6" />,
     left: <path d="m14 5-7 7 7 7" />,
     right: <path d="m10 5 7 7-7 7" />,
+    down: <path d="m6 9 6 6 6-6" />,
     bookmark: <path d="M6 4h12v17l-6-4-6 4z" />,
     book: (
       <>

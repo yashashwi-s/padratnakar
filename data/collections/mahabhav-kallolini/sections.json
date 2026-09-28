@@ -1,0 +1,24 @@
+{
+  "title": "महाभाव-कल्लोलिनी",
+  "status": "contents-visually-checked",
+  "contentsPdfPages": [9, 10, 11, 12],
+  "printedPageOffset": 12,
+  "sections": [
+    {"id":"vandana","name":"वन्दना एवं प्रार्थना","firstPad":1,"lastPad":17,"printedPages":[1,11]},
+    {"id":"jaygaan","name":"जय-गान","firstPad":18,"lastPad":26,"printedPages":[11,19]},
+    {"id":"avirbhav","name":"आविर्भाव एवं बधाई","firstPad":27,"lastPad":78,"printedPages":[20,49]},
+    {"id":"saubhagya","name":"सौभाग्य-वर्णन","firstPad":79,"lastPad":82,"printedPages":[50,51]},
+    {"id":"palna","name":"पलना-झूलन","firstPad":83,"lastPad":87,"printedPages":[52,53]},
+    {"id":"radha-stavan","name":"श्रीराधा-स्तवन","firstPad":88,"lastPad":109,"printedPages":[54,60]},
+    {"id":"priti","name":"श्रीराधा-माधव-प्रीति-सम्बन्धी स्फुट पद","firstPad":110,"lastPad":116,"printedPages":[61,65]},
+    {"id":"aarti","name":"श्रीराधाकुमारीकी आरती","subtitle":"आरति श्रीवृषभानुसुताकी","firstPad":null,"lastPad":null,"printedPages":[66,66]}
+  ],
+  "nonPadMaterial": [
+    {"pdfPages":[1,4],"kind":"cover-title-publication"},
+    {"pdfPages":[5,7],"kind":"preface","title":"नम्र निवेदन"},
+    {"pdfPages":[8,8],"kind":"illustration"},
+    {"pdfPages":[9,12],"kind":"contents"},
+    {"pdfPages":[79,82],"kind":"appended-prose"},
+    {"pdfPages":[83,84],"kind":"blank-and-publisher-directory"}
+  ]
+}

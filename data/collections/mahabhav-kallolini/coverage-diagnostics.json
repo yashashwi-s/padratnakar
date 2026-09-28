@@ -1,0 +1,530 @@
+[
+  {
+    "pdfPage": 13,
+    "proofLines": 18,
+    "ocrRows": 17,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 14,
+    "proofLines": 24,
+    "ocrRows": 22,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 15,
+    "proofLines": 25,
+    "ocrRows": 25,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 16,
+    "proofLines": 25,
+    "ocrRows": 21,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 17,
+    "proofLines": 24,
+    "ocrRows": 17,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": [
+      {
+        "ocr": "है, ०! हे 2] २ बे नीलकण्ठ-पक्षीके कुझ. रुचिर वसन तपे धारे सोनेके शुच्ि रँंगके अड्ड  रख्ड। ॥",
+        "bbox": [
+          137,
+          752,
+          994,
+          933
+        ],
+        "similarity": 0.44
+      }
+    ]
+  },
+  {
+    "pdfPage": 18,
+    "proofLines": 21,
+    "ocrRows": 14,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": [
+      {
+        "ocr": "ही ८ 0 2 ॥॥| /! गा । ५ नीति-नाव्य-गान्धर्व-शास्त्र- निपुणा अतिशय रस-आचार्या सरस सदा अभिराम अविराम ॥ ।",
+        "bbox": [
+          158,
+          452,
+          1064,
+          623
+        ],
+        "similarity": 0.46
+      }
+    ]
+  },
+  {
+    "pdfPage": 19,
+    "proofLines": 25,
+    "ocrRows": 25,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 20,
+    "proofLines": 25,
+    "ocrRows": 24,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 21,
+    "proofLines": 25,
+    "ocrRows": 23,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 22,
+    "proofLines": 24,
+    "ocrRows": 22,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 23,
+    "proofLines": 23,
+    "ocrRows": 23,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": [
+      {
+        "ocr": "चतततन और नतनतन",
+        "bbox": [
+          455,
+          375,
+          698,
+          409
+        ],
+        "similarity": 0.23
+      }
+    ]
+  },
+  {
+    "pdfPage": 24,
+    "proofLines": 25,
+    "ocrRows": 25,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 25,
+    "proofLines": 27,
+    "ocrRows": 27,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 26,
+    "proofLines": 26,
+    "ocrRows": 26,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 27,
+    "proofLines": 26,
+    "ocrRows": 26,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 28,
+    "proofLines": 25,
+    "ocrRows": 25,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 29,
+    "proofLines": 26,
+    "ocrRows": 26,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 30,
+    "proofLines": 29,
+    "ocrRows": 29,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 31,
+    "proofLines": 23,
+    "ocrRows": 23,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 32,
+    "proofLines": 16,
+    "ocrRows": 16,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 33,
+    "proofLines": 20,
+    "ocrRows": 21,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": [
+      {
+        "ocr": "नतततन और ततततर+",
+        "bbox": [
+          422,
+          1440,
+          663,
+          1473
+        ],
+        "similarity": 0.26
+      }
+    ]
+  },
+  {
+    "pdfPage": 34,
+    "proofLines": 25,
+    "ocrRows": 25,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 35,
+    "proofLines": 26,
+    "ocrRows": 26,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 36,
+    "proofLines": 25,
+    "ocrRows": 25,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 37,
+    "proofLines": 26,
+    "ocrRows": 26,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 38,
+    "proofLines": 24,
+    "ocrRows": 24,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 39,
+    "proofLines": 26,
+    "ocrRows": 26,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 40,
+    "proofLines": 24,
+    "ocrRows": 24,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 41,
+    "proofLines": 23,
+    "ocrRows": 23,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 42,
+    "proofLines": 25,
+    "ocrRows": 25,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 43,
+    "proofLines": 24,
+    "ocrRows": 24,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 44,
+    "proofLines": 25,
+    "ocrRows": 25,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 45,
+    "proofLines": 26,
+    "ocrRows": 26,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 46,
+    "proofLines": 24,
+    "ocrRows": 24,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 47,
+    "proofLines": 23,
+    "ocrRows": 23,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 48,
+    "proofLines": 24,
+    "ocrRows": 24,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 49,
+    "proofLines": 26,
+    "ocrRows": 21,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 50,
+    "proofLines": 28,
+    "ocrRows": 19,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 51,
+    "proofLines": 27,
+    "ocrRows": 20,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 52,
+    "proofLines": 24,
+    "ocrRows": 21,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 53,
+    "proofLines": 24,
+    "ocrRows": 24,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 54,
+    "proofLines": 25,
+    "ocrRows": 25,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 55,
+    "proofLines": 25,
+    "ocrRows": 25,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 56,
+    "proofLines": 25,
+    "ocrRows": 25,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 57,
+    "proofLines": 25,
+    "ocrRows": 25,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 58,
+    "proofLines": 25,
+    "ocrRows": 25,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 59,
+    "proofLines": 25,
+    "ocrRows": 20,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 60,
+    "proofLines": 26,
+    "ocrRows": 24,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 61,
+    "proofLines": 21,
+    "ocrRows": 21,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 62,
+    "proofLines": 25,
+    "ocrRows": 25,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 63,
+    "proofLines": 26,
+    "ocrRows": 26,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 64,
+    "proofLines": 21,
+    "ocrRows": 21,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 65,
+    "proofLines": 27,
+    "ocrRows": 28,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": [
+      {
+        "ocr": "ब्न्ननन और ततततत",
+        "bbox": [
+          456,
+          1627,
+          701,
+          1662
+        ],
+        "similarity": 0.22
+      }
+    ]
+  },
+  {
+    "pdfPage": 66,
+    "proofLines": 21,
+    "ocrRows": 21,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 67,
+    "proofLines": 24,
+    "ocrRows": 24,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 68,
+    "proofLines": 24,
+    "ocrRows": 24,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 69,
+    "proofLines": 24,
+    "ocrRows": 24,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 70,
+    "proofLines": 24,
+    "ocrRows": 24,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 71,
+    "proofLines": 24,
+    "ocrRows": 23,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 72,
+    "proofLines": 23,
+    "ocrRows": 23,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 73,
+    "proofLines": 23,
+    "ocrRows": 24,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": [
+      {
+        "ocr": "श्रीराधा-माधव-प्रीति-सम्बन्धी स्फुट पद",
+        "bbox": [
+          131,
+          158,
+          1017,
+          221
+        ],
+        "similarity": 0.31
+      }
+    ]
+  },
+  {
+    "pdfPage": 74,
+    "proofLines": 24,
+    "ocrRows": 24,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 75,
+    "proofLines": 24,
+    "ocrRows": 24,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 76,
+    "proofLines": 23,
+    "ocrRows": 23,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 77,
+    "proofLines": 19,
+    "ocrRows": 19,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  },
+  {
+    "pdfPage": 78,
+    "proofLines": 20,
+    "ocrRows": 19,
+    "reviewStatus": "direct-visual-transcription-complete",
+    "potentialOmissions": []
+  }
+]

@@ -1,9 +1,12 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { kalloliniPage } from "../lib/kallolini";
+import { jayantiPage } from "../lib/jayanti";
 import { getPrintLayout } from "../lib/print-layout";
 import { fixedPrintModel, pageDimensions } from "../lib/fixed-print";
 import "./reader-typography.css";
 import { preparePadShare } from "../lib/share-pad";
 import { useReaderTouch } from "../lib/use-reader-touch";
+import { loadReaderFont, READER_FONT } from "../lib/reader-font";
 
 export default function PadTypography({
   pad,
@@ -13,10 +16,30 @@ export default function PadTypography({
   interactive = true,
 }) {
   const [layout, setLayout] = useState(null);
+  const [collectionMetrics, setCollectionMetrics] = useState(null);
+  useEffect(() => {
+    if (!pad.collection) return;
+    let active = true;
+    loadReaderFont()
+      .catch(() => {})
+      .then(() => {
+        if (!active) return;
+        const context = document.createElement("canvas").getContext("2d");
+        context.font = READER_FONT;
+        setCollectionMetrics({
+          id: `${pad.collection}:${pad.id}`,
+          widths: pad.verses.map((text) => context.measureText(text).width),
+        });
+      });
+    return () => {
+      active = false;
+    };
+  }, [pad]);
   const [available, setAvailable] = useState(390);
   const viewport = useRef(null);
   useEffect(() => {
     let active = true;
+    if (pad.collection) return;
     getPrintLayout(pad.id)
       .then((value) => {
         if (active) setLayout(value);
@@ -25,7 +48,7 @@ export default function PadTypography({
     return () => {
       active = false;
     };
-  }, [pad.id]);
+  }, [pad.id, pad.collection]);
   useLayoutEffect(() => {
     const element = viewport.current;
     const update = () => setAvailable(element.clientWidth);
@@ -36,14 +59,22 @@ export default function PadTypography({
   }, []);
   useEffect(() => {
     viewport.current.scrollLeft = 0;
-  }, [pad.id]);
+  }, [pad.id, pad.collection]);
   const current = layout?.padId === pad.id ? layout : null;
   const page = useMemo(
-    () => fixedPrintModel(pad, current, item),
-    [pad, current, item],
+    () =>
+      pad.collection
+        ? (pad.collection === "kallolini" ? kalloliniPage : jayantiPage)(
+            pad,
+            collectionMetrics?.id === `${pad.collection}:${pad.id}`
+              ? collectionMetrics.widths
+              : null,
+          )
+        : fixedPrintModel(pad, current, item),
+    [pad, current, item, collectionMetrics],
   );
   useEffect(() => {
-    if (!current || !shareKey) return;
+    if ((!current && !pad.collection) || !shareKey) return;
     let idle;
     const timer = setTimeout(() => {
       const prepare = () => {
@@ -58,7 +89,7 @@ export default function PadTypography({
       clearTimeout(timer);
       if (idle) window.cancelIdleCallback(idle);
     };
-  }, [current, shareKey]);
+  }, [current, shareKey, pad.collection, collectionMetrics]);
   const dimensions = pageDimensions(available);
   const pageHeight = (dimensions.width * page.height) / (page.width + 24);
   useReaderTouch(viewport, onCopy, dimensions.width, pageHeight, interactive);
@@ -75,11 +106,13 @@ export default function PadTypography({
         <svg
           className="print-page"
           role="document"
-          aria-label={item?.title || `पद ${pad.id}`}
+          aria-label={
+            item?.title || (pad.collection ? pad.title : `पद ${pad.id}`)
+          }
           viewBox={`-12 0 ${page.width + 24} ${page.height}`}
           width={dimensions.width}
           height={pageHeight}
-          data-layout={current ? "source" : "fallback"}
+          data-layout={current || pad.collection ? "source" : "fallback"}
         >
           {page.decorations.map((box, i) => (
             <rect
@@ -139,6 +172,7 @@ function PrintLine({ line, width }) {
         y={line.y}
         fontSize={line.fontSize}
         textLength={line.length}
+        wordSpacing={line.wordSpacing}
         lengthAdjust="spacingAndGlyphs"
       >
         {line.text}

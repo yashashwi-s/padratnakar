@@ -45,13 +45,30 @@
         pointer-events: none;
       "
     >
-      <img
-        src="/brand/pad-ratnakar.png"
-        alt=""
-        width="160"
-        height="160"
-        style="object-fit: contain"
-      />
+      <div
+        style="
+          width: 152px;
+          height: 152px;
+          overflow: hidden;
+          border-radius: 22%;
+          isolation: isolate;
+        "
+      >
+        <img
+          src="/brand/pad-ratnakar.png"
+          alt=""
+          width="160"
+          height="160"
+          style="
+            display: block;
+            width: 116%;
+            height: 116%;
+            max-width: none;
+            margin: -8%;
+            object-fit: cover;
+          "
+        />
+      </div>
     </div>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>

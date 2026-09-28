@@ -1,0 +1,9 @@
+[
+  {
+    "pdfPage": 13,
+    "lineIndex": 17,
+    "before": "हरि-रसना अकुलात अति तजि दुर्यश श्रुति-सेतु॥४॥",
+    "after": "हरि-रसना अकुलात अति तजि दुस्त्यज श्रुति-सेतु॥४॥",
+    "reason": "Parent visual reinspection: printed दुस्त्यज, not दुर्यश. Resolved locally, no human question needed."
+  }
+]

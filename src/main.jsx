@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
 import { Capacitor } from "@capacitor/core";
+import { loadReaderFont } from "./lib/reader-font";
 
 // Register the PWA service worker only in a real browser environment.
 // Capacitor WebViews do not need it and it can interfere with their
@@ -26,7 +27,7 @@ createRoot(document.getElementById("root")).render(
 
 // A single quiet handoff after fonts and the first reader frame are ready.
 Promise.all([
-  document.fonts.ready,
+  loadReaderFont().catch(() => {}),
   new Promise((resolve) => setTimeout(resolve, 450)),
 ]).then(() => {
   requestAnimationFrame(() =>

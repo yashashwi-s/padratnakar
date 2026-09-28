@@ -1,0 +1,8 @@
+{
+  "title": "महाभाव-कल्लोलिनी",
+  "pageCount": 84,
+  "sha256": "a82b2278962c2593ee898c6cf9f6d701ab1578a634079c6dfe98a25176106b9a",
+  "status": "raw-ocr-unverified",
+  "method": "Tesseract hin+eng, automatic segmentation, grayscale 216 dpi; page-level source coordinates in TSV",
+  "embeddedTextCharacters": 0
+}

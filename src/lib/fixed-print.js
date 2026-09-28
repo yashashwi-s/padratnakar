@@ -71,7 +71,7 @@ export function fixedPrintModel(pad, layout, item = null) {
     if (item.role === "song")
       decorations.push({ x: 20, y: y - 17, width: width - 40, height: 26 });
     centered(item.title, item.role === "song" ? 14 : 15);
-    y += item.role === "closing" ? 60 : 22;
+    y += item.role === "closing" ? 60 : item.role === "song" ? 38 : 22;
   } else {
     centered(
       `[ ${String(pad.id).replace(/\d/g, (d) => "०१२३४५६७८९"[d])} ]`,
@@ -120,7 +120,7 @@ export function fixedPrintModel(pad, layout, item = null) {
   }
   // Give the musical heading breathing room without changing verse leading.
   if (headings.length) {
-    y = lines.at(-1).y + 60;
+    y = lines.at(-1).y + (item?.role === "song" ? 44 : 60);
     previous = null;
   }
   for (const [stanzaIndex, stanza] of stanzas.entries()) {
