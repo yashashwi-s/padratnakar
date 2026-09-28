@@ -21,3 +21,13 @@ test("search finds navigable sections and subsections in Hindi or romanized Hind
     );
   }
 });
+test("section search tolerates common short and long Latin vowels", () => {
+  for (const query of ["bal lila", "baal leela", "बाल lila"]) {
+    assert(
+      findSectionMatches(indexMap.topics, query).some(
+        (m) => m.section.startPad === 200,
+      ),
+      query,
+    );
+  }
+});

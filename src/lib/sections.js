@@ -1,13 +1,5 @@
-import { normalize, romanize } from "./search.js";
-
-export function matchesSectionName(name, query) {
-  const term = normalize(query);
-  if (!term) return false;
-  return (
-    normalize(name).includes(term) ||
-    (/[a-z]/.test(term) && romanize(name).includes(term))
-  );
-}
+import { matchesSearchName } from "./search.js";
+export const matchesSectionName = matchesSearchName;
 
 export function findSectionMatches(topics, query) {
   return topics.flatMap((section) => {

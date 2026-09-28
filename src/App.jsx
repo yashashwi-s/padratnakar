@@ -8,16 +8,15 @@ import { Analytics } from "@vercel/analytics/react";
 import hymns from "./data/hymns.json";
 import indexMap from "./data/index_map.json";
 import { shodashCollection as shodash } from "./lib/corpus";
-import {
-  devanagariNumber as dn,
-  makeSearchIndex,
-  searchPads,
-} from "./lib/search";
+import { devanagariNumber as dn } from "./lib/search";
+import { searchCollections as collections } from "./lib/search-catalog";
+import { useSearch } from "./lib/use-search";
 import { findSectionMatches, matchesSectionName } from "./lib/sections";
 import Icon from "./components/Icon";
+import ExitDialog from "./components/ExitDialog";
 import PadTypography from "./components/PadTypography";
 
-import { jayanti, jayantiShortcuts } from "./lib/jayanti";
+import { routePath, validRoute } from "./lib/collection-routes";
 import {
   readerCollections,
   collectionPad,
@@ -26,49 +25,6 @@ import {
 
 const STORAGE = "pad-ratnakar-reader-v3";
 const byId = new Map(hymns.map((pad) => [pad.id, pad]));
-const mainIndex = makeSearchIndex(hymns);
-const songPosition = new Map(shodash.items.map((item, i) => [item.padId, i]));
-const songIndex = makeSearchIndex(
-  hymns.map((pad) => {
-    const item = shodash.items[songPosition.get(pad.id)];
-    return item
-      ? {
-          ...pad,
-          title: item.title,
-          section: shodash.title,
-          headings: [...(item.headings || []), item.title],
-        }
-      : pad;
-  }),
-).filter((entry) => songPosition.has(entry.pad.id));
-const collections = [
-  ...Object.entries(readerCollections).map(([mode, collection]) => ({
-    mode,
-    name: collection.title,
-    sections: collection.sections,
-    index: makeSearchIndex(collection.pads),
-    routeId: (id) => id,
-    displayNumber: (id) =>
-      collectionPad(mode, id)?.printedNumber ? dn(id) : "",
-  })),
-  {
-    mode: "pad",
-    name: "पद रत्नाकर",
-    index: mainIndex,
-    routeId: (id) => id,
-    displayNumber: (id) => dn(id),
-  },
-  {
-    mode: "shodash",
-    name: "षोडशगीत",
-    index: songIndex,
-    routeId: (id) => songPosition.get(id),
-    displayNumber: (id) => {
-      const entry = shodash.items[songPosition.get(id)];
-      return entry.number ? dn(entry.number) : "";
-    },
-  },
-];
 
 function stored() {
   try {
@@ -80,25 +36,9 @@ function stored() {
     return {};
   }
 }
-function routePath(mode, id) {
-  return `/${mode}/${id}`;
-}
 function routeUrl(mode, id) {
   const path = routePath(mode, id);
   return Capacitor.isNativePlatform() ? `#${path}` : path;
-}
-function validRoute(value) {
-  const path = (value || "").replace(/^#/, "");
-  let match = path.match(/^\/pad\/(\d+)\/?$/);
-  if (match && byId.has(Number(match[1])))
-    return { mode: "pad", id: Number(match[1]) };
-  match = path.match(/^\/shodash\/(\d+)\/?$/);
-  if (match && Number(match[1]) < shodash.items.length)
-    return { mode: "shodash", id: Number(match[1]) };
-  match = path.match(/^\/(jayanti|kallolini)\/(\d+)\/?$/);
-  if (match && collectionPad(match[1], Number(match[2])))
-    return { mode: match[1], id: Number(match[2]) };
-  return null;
 }
 function routeFromLocation() {
   const pathRoute = validRoute(location.pathname);
@@ -167,32 +107,18 @@ function collectionPreview(item) {
       .join(" ") || item.title
   );
 }
-function searchPreview(mode, result) {
-  const pad = result.pad;
-  if (mode === "shodash") {
-    const item = shodash.items[songPosition.get(pad.id)];
-    const lines = item.stanzas.flat();
-    const start = lines.indexOf(result.snippet);
-    return start >= 0 && !isMusicalLabel(result.snippet)
-      ? lines
-          .slice(start)
-          .filter((line) => !isMusicalLabel(line))
-          .slice(0, 8)
-          .join(" ")
-      : collectionPreview(item);
-  }
-  const start = pad.verses.indexOf(result.snippet);
-  if (start >= 0 && !isMusicalLabel(result.snippet))
-    return pad.verses
-      .slice(start)
-      .filter((line) => !isMusicalLabel(line))
-      .slice(0, 8)
-      .join(" ");
-  if (pad.headings.includes(result.snippet)) return padPreview(pad);
-  return [result.snippet, padPreview(pad)].filter(Boolean).join(" ");
-}
-function SearchResults({ query, origin, onOpen, onOpenSection }) {
-  const [limit, setLimit] = useState(60);
+function SearchResults({
+  query,
+  origin,
+  onOpen,
+  onOpenSection,
+  scope,
+  setScope,
+  limits,
+  setLimits,
+}) {
+  const { results, loading, error, retry } = useSearch(query);
+  const limitsByGroup = limits.query === query ? limits.counts : {};
   const sectionMatches = useMemo(
     () => findSectionMatches(indexMap.topics, query),
     [query],
@@ -203,102 +129,168 @@ function SearchResults({ query, origin, onOpen, onOpenSection }) {
         .sort((a, b) => (a.mode === origin ? -1 : b.mode === origin ? 1 : 0))
         .map((collection) => ({
           ...collection,
-          found: searchPads(collection.index, query),
+          found: results?.[collection.mode] || [],
           matchedSections: (collection.sections || []).filter((section) =>
             matchesSectionName(section.name, query),
           ),
         })),
-    [query, origin],
+    [query, origin, results],
   );
-  if (
-    !groups.some(
-      (group) =>
-        group.found.length ||
-        group.matchedSections.length ||
-        matchesSectionName(group.name, query) ||
-        (group.mode === "pad" && sectionMatches.length),
-    )
-  )
-    return (
-      <p className="empty-state">कोई पद नहीं मिला। दूसरे शब्दों से खोजें।</p>
-    );
+  const visibleGroups = groups.filter(
+    (group) => scope === "all" || group.mode === scope,
+  );
+  const groupsWithMatches = visibleGroups.filter(
+    (group) =>
+      group.found.length ||
+      group.matchedSections.length ||
+      matchesSectionName(group.name, query) ||
+      (group.mode === "pad" && sectionMatches.length),
+  );
+  const padCount = groupsWithMatches.reduce(
+    (count, group) => count + group.found.length,
+    0,
+  );
   return (
-    <div className="list-content" aria-live="polite">
-      {groups.map((group) =>
-        group.found.length ||
-        group.matchedSections.length ||
-        matchesSectionName(group.name, query) ||
-        (group.mode === "pad" && sectionMatches.length) ? (
-          <section key={group.mode}>
-            <SectionBar>{group.name}</SectionBar>
-            {matchesSectionName(group.name, query) && (
-              <button
-                className="section-row search-section-row"
-                onClick={() =>
-                  onOpenSection(
-                    group.mode !== "pad" ? { mode: group.mode } : null,
-                  )
-                }
-              >
-                {group.name}
-              </button>
-            )}
-            {group.matchedSections.map((section) => (
-              <button
-                className="section-row search-section-row"
-                key={section.id}
-                onClick={() =>
-                  onOpenSection({ mode: group.mode, sectionId: section.id })
-                }
-              >
-                {section.name}
-              </button>
+    <>
+      <div className="search-controls">
+        <label>
+          <span>संग्रह</span>
+          <select
+            value={scope}
+            onChange={(event) => setScope(event.target.value)}
+          >
+            <option value="all">सभी संग्रह</option>
+            {collections.map((c) => (
+              <option key={c.mode} value={c.mode}>
+                {c.name}
+              </option>
             ))}
-            {group.mode === "pad" &&
-              sectionMatches.map(({ section, subtopic }) => (
+          </select>
+        </label>
+      </div>
+      <p className="search-status" role="status">
+        {loading
+          ? "खोज रहे हैं…"
+          : error
+            ? "खोज नहीं खुल सकी। फिर प्रयास करें।"
+            : groupsWithMatches.length
+              ? padCount
+                ? `${dn(padCount)} पद मिले · ${dn(groupsWithMatches.length)} संग्रह`
+                : "संबंधित संग्रह या विषय मिले।"
+              : "कोई पद नहीं मिला। दूसरे शब्दों से खोजें।"}
+      </p>
+      {error ? (
+        <button className="more-button" onClick={retry}>
+          फिर प्रयास करें
+        </button>
+      ) : loading ? null : groupsWithMatches.length ? (
+        <div className="list-content">
+          {groupsWithMatches.map((group) => (
+            <section key={group.mode}>
+              <SectionBar>{`${group.name} · ${dn(group.found.length)} पद`}</SectionBar>
+              {matchesSectionName(group.name, query) && (
                 <button
                   className="section-row search-section-row"
-                  key={`${section.name}-${subtopic?.name || ""}`}
                   onClick={() =>
-                    onOpenSection(
-                      subtopic
-                        ? {
-                            ...section,
-                            startPad: subtopic.startPad,
-                            endPad: subtopic.endPad,
-                            activeSubtopic: subtopic.name,
-                          }
-                        : section,
+                    onOpen(
+                      group.mode,
+                      readerCollections[group.mode]?.firstId ??
+                        (group.mode === "shodash" ? 0 : 1),
                     )
                   }
                 >
+                  {group.name}
+                </button>
+              )}
+              {group.matchedSections.map((section) => (
+                <button
+                  className="section-row search-section-row"
+                  key={section.id}
+                  onClick={() =>
+                    onOpenSection({ mode: group.mode, sectionId: section.id })
+                  }
+                >
                   {section.name}
-                  {subtopic ? ` — ${subtopic.name}` : ""}
                 </button>
               ))}
-            {group.found.slice(0, limit).map((result) => {
-              const id = result.pad.id;
-              return (
-                <PadRow
-                  key={group.mode + id}
-                  number={group.displayNumber(id)}
-                  text={searchPreview(group.mode, result)}
-                  onClick={() => onOpen(group.mode, group.routeId(id))}
-                />
-              );
-            })}
-            {group.found.length > limit && (
-              <button
-                className="more-button"
-                onClick={() => setLimit((n) => n + 60)}
-              >
-                और पद देखें
-              </button>
-            )}
-          </section>
-        ) : null,
-      )}
-    </div>
+              {group.mode === "pad" &&
+                sectionMatches.map(({ section, subtopic }) => (
+                  <button
+                    className="section-row search-section-row"
+                    key={`${section.name}-${subtopic?.name || ""}`}
+                    onClick={() =>
+                      onOpenSection(
+                        subtopic
+                          ? {
+                              ...section,
+                              startPad: subtopic.startPad,
+                              endPad: subtopic.endPad,
+                              activeSubtopic: subtopic.name,
+                            }
+                          : section,
+                      )
+                    }
+                  >
+                    {section.name}
+                    {subtopic ? ` — ${subtopic.name}` : ""}
+                  </button>
+                ))}
+              {group.found
+                .slice(0, limitsByGroup[group.mode] || 20)
+                .map((result) => {
+                  const id = result.pad.id;
+                  return (
+                    <PadRow
+                      key={group.mode + id}
+                      number={group.displayNumber(id)}
+                      text={
+                        <span className="search-result-text">
+                          <span className="search-snippet">
+                            {result.snippet || result.pad.title}
+                          </span>
+                          {result.snippetKind !== "verse" &&
+                            result.pad.verses.find(
+                              (line) => !isMusicalLabel(line),
+                            ) !== result.snippet && (
+                              <span className="search-context">
+                                {result.pad.verses.find(
+                                  (line) => !isMusicalLabel(line),
+                                )}
+                              </span>
+                            )}
+                          {result.snippetKind === "footnote" && (
+                            <small>टिप्पणी में मिला</small>
+                          )}
+                          {result.matchKind === "approximate" && (
+                            <small>मिलती-जुलती वर्तनी</small>
+                          )}
+                        </span>
+                      }
+                      onClick={() => onOpen(group.mode, group.routeId(id))}
+                    />
+                  );
+                })}
+              {group.found.length > (limitsByGroup[group.mode] || 20) && (
+                <button
+                  className="more-button"
+                  onClick={() =>
+                    setLimits({
+                      query,
+                      counts: {
+                        ...limitsByGroup,
+                        [group.mode]: (limitsByGroup[group.mode] || 20) + 20,
+                      },
+                    })
+                  }
+                >
+                  और पद देखें
+                </button>
+              )}
+            </section>
+          ))}
+        </div>
+      ) : null}
+    </>
   );
 }
 
@@ -307,6 +299,8 @@ export default function App() {
   const [view, setView] = useState("reader");
   const [selectedSection, setSelectedSection] = useState(null);
   const [query, setQuery] = useState("");
+  const [searchScope, setSearchScope] = useState("all");
+  const [searchLimits, setSearchLimits] = useState({ query: "", counts: {} });
   const [searchOrigin, setSearchOrigin] = useState("pad");
   const [bookmarks, setBookmarks] = useState(() => {
     const values = stored().bookmarks;
@@ -318,6 +312,7 @@ export default function App() {
   const [sharing, setSharing] = useState(false);
   const [exitOpen, setExitOpen] = useState(false);
   const swipeStart = useRef(null);
+  const queryInputRef = useRef(null);
   const item = route.mode === "shodash" ? shodash.items[route.id] : null;
   const activeCollection = readerCollections[route.mode];
   const pad = activeCollection
@@ -325,7 +320,12 @@ export default function App() {
     : byId.get(item?.padId || route.id) || hymns[0];
   const bookmarkId = activeCollection ? `${route.mode}:${pad.id}` : pad.id;
   const saved = bookmarks.includes(bookmarkId);
-  const position = route.mode === "shodash" ? route.id : pad.id - 1;
+  const position =
+    route.mode === "shodash"
+      ? route.id
+      : activeCollection
+        ? activeCollection.indexById.get(pad.id)
+        : pad.id - 1;
   const count =
     route.mode === "shodash"
       ? shodash.items.length
@@ -334,7 +334,12 @@ export default function App() {
   const trackRef = useRef(null);
   const slider = useReaderSlider(trackRef, (direction) => {
     const next = wrappedPosition(position, direction, count);
-    go(route.mode, route.mode === "shodash" ? next : next + 1);
+    go(
+      route.mode,
+      route.mode === "shodash"
+        ? next
+        : (activeCollection?.pads[next]?.id ?? next + 1),
+    );
   });
 
   function showView(next, section = null) {
@@ -462,8 +467,14 @@ export default function App() {
     showView("browse");
   }
   function openQuery() {
+    if (view === "query") {
+      queryInputRef.current?.focus();
+      return;
+    }
     setSearchOrigin(route.mode);
     setQuery("");
+    setSearchScope("all");
+    setSearchLimits({ query: "", counts: {} });
     history.replaceState(null, "", location.href);
     showView("query");
     window.scrollTo(0, 0);
@@ -506,6 +517,7 @@ export default function App() {
     function keys(event) {
       if (
         view !== "reader" ||
+        exitOpen ||
         (window.visualViewport?.scale || 1) > 1.01 ||
         event.ctrlKey ||
         event.metaKey ||
@@ -524,7 +536,10 @@ export default function App() {
           count,
         );
         if (next >= 0 && next < count) {
-          const id = route.mode === "shodash" ? next : next + 1;
+          const id =
+            route.mode === "shodash"
+              ? next
+              : (activeCollection?.pads[next]?.id ?? next + 1);
           history.pushState(null, "", routeUrl(route.mode, id));
           setRoute({ mode: route.mode, id });
           window.scrollTo(0, 0);
@@ -533,7 +548,7 @@ export default function App() {
     }
     window.addEventListener("keydown", keys);
     return () => window.removeEventListener("keydown", keys);
-  }, [view, position, count, route.mode]);
+  }, [view, exitOpen, position, count, route.mode, activeCollection]);
   useEffect(() => {
     if (!Capacitor.isNativePlatform()) return;
     let cancelled = false;
@@ -726,7 +741,7 @@ export default function App() {
             </div>
             <div className="reading-page reader-strip">
               <div className="reader-track" ref={trackRef}>
-                {[-1, 0, 1].map((delta) => {
+                {(count === 1 ? [0] : [-1, 0, 1]).map((delta) => {
                   const index = wrappedPosition(position, delta, count);
                   const entry =
                     route.mode === "shodash" ? shodash.items[index] : null;
@@ -738,7 +753,7 @@ export default function App() {
                   const current = delta === 0;
                   return (
                     <article
-                      key={`${route.mode}-${index}`}
+                      key={`${route.mode}-${index}${count < 3 ? `-${delta}` : ""}`}
                       className={`pad-text reader-panel ${current ? "is-current" : "is-neighbour"}`}
                       data-current={String(current)}
                       aria-hidden={!current}
@@ -818,6 +833,7 @@ export default function App() {
 
       {view === "query" && (
         <main id="main-content" className="list-page">
+          <h1 className="sr-only">पद खोजें</h1>
           <div className="list-heading">
             <button
               className="back-action"
@@ -833,13 +849,24 @@ export default function App() {
               <Icon name="search" />
               <input
                 autoFocus
+                ref={queryInputRef}
+                type="search"
+                autoComplete="off"
+                spellCheck={false}
+                enterKeyHint="search"
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
                 placeholder="पद खोजें…"
                 aria-label="पद खोजें"
               />
               {query && (
-                <button aria-label="खोज साफ करें" onClick={() => setQuery("")}>
+                <button
+                  aria-label="खोज साफ करें"
+                  onClick={() => {
+                    setQuery("");
+                    requestAnimationFrame(() => queryInputRef.current?.focus());
+                  }}
+                >
                   <Icon name="close" />
                 </button>
               )}
@@ -847,14 +874,20 @@ export default function App() {
           </div>
           {query.trim() ? (
             <SearchResults
-              key={query}
               query={query}
+              scope={searchScope}
+              setScope={setSearchScope}
+              limits={searchLimits}
+              setLimits={setSearchLimits}
               origin={searchOrigin}
               onOpen={go}
               onOpenSection={openSection}
             />
           ) : (
-            <p className="search-hint">शब्द, पंक्ति या पद संख्या लिखें।</p>
+            <p className="search-hint">
+              हिन्दी, English में शब्द या पद संख्या लिखें। पूरी पंक्ति खोजने के
+              लिए उसे “ ” में लिखें।
+            </p>
           )}
         </main>
       )}
@@ -914,7 +947,9 @@ export default function App() {
                     .map((entry) => (
                       <PadRow
                         key={entry.id}
-                        number={entry.printedNumber ? dn(entry.id) : ""}
+                        number={
+                          entry.printedNumber ? dn(entry.printedNumber) : ""
+                        }
                         text={entry.title}
                         onClick={() => go(selectedSection.mode, entry.id)}
                       />
@@ -995,7 +1030,9 @@ export default function App() {
             <div className="list-content">
               <SectionBar>सहेजे हुए पद</SectionBar>
               {[...bookmarks]
-                .sort((a, b) => a - b)
+                .sort((a, b) =>
+                  String(a).localeCompare(String(b), "en", { numeric: true }),
+                )
                 .map((id) => (
                   <PadRow
                     key={id}
@@ -1041,20 +1078,24 @@ export default function App() {
             <button className="section-row" onClick={() => go("shodash", 0)}>
               षोडशगीत
             </button>
-            <button className="section-row" onClick={() => go("jayanti", 1)}>
-              {jayanti.title}
-            </button>
-            <button className="section-row" onClick={() => go("kallolini", 1)}>
-              {readerCollections.kallolini.title}
-            </button>
-            {jayantiShortcuts.map((entry) => (
-              <button
-                key={entry.id}
-                className="section-row"
-                onClick={() => go("jayanti", entry.id)}
-              >
-                {entry.title}
-              </button>
+            {Object.entries(readerCollections).map(([mode, collection]) => (
+              <div key={mode}>
+                <button
+                  className="section-row"
+                  onClick={() => go(mode, collection.firstId)}
+                >
+                  {collection.title}
+                </button>
+                {(collection.shortcuts || []).map((entry) => (
+                  <button
+                    key={entry.id}
+                    className="section-row"
+                    onClick={() => go(mode, entry.id)}
+                  >
+                    {entry.title}
+                  </button>
+                ))}
+              </div>
             ))}
             {view === "menu" && (
               <>
@@ -1070,21 +1111,10 @@ export default function App() {
         {notice}
       </div>
       {exitOpen && (
-        <div className="exit-overlay" onClick={() => setExitOpen(false)}>
-          <section
-            role="alertdialog"
-            aria-modal="true"
-            aria-labelledby="exit-title"
-            className="exit-dialog"
-            onClick={(event) => event.stopPropagation()}
-          >
-            <h2 id="exit-title">Exit app?</h2>
-            <button autoFocus onClick={() => setExitOpen(false)}>
-              Cancel
-            </button>
-            <button onClick={() => NativeApp.exitApp()}>Exit</button>
-          </section>
-        </div>
+        <ExitDialog
+          onCancel={() => setExitOpen(false)}
+          onExit={() => NativeApp.exitApp()}
+        />
       )}
       {!Capacitor.isNativePlatform() && <Analytics />}
     </div>

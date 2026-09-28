@@ -98,3 +98,110 @@ test("shared footnotes are searchable on each referenced pad", () => {
   const found = searchPads(index, line, { phrase: true }).map((r) => r.pad.id);
   for (const id of [269, 270, 271]) assert(found.includes(id));
 });
+
+test("punctuation-only input does not list the entire corpus", () => {
+  for (const query of ["!!!", "॥", "—", "***", "😊"])
+    assert.equal(searchPads(index, query).length, 0);
+});
+test("short roman words do not match inside unrelated words", () => {
+  const tiny = makeSearchIndex([
+    { id: 1, verses: ["परम प्रेम भ्रम"] },
+    { id: 2, verses: ["राम नाम"] },
+  ]);
+  assert.deepEqual(
+    searchPads(tiny, "ram").map((r) => r.pad.id),
+    [2],
+  );
+  assert.deepEqual(
+    searchPads(tiny, "raam").map((r) => r.pad.id),
+    [2],
+  );
+});
+test("Hindi and romanized terms can be combined", () => {
+  const tiny = makeSearchIndex([
+    { id: 1, verses: ["राधा प्रेम"] },
+    { id: 2, verses: ["राधा नाम"] },
+  ]);
+  for (const q of [
+    "radha प्रेम",
+    "राधा prem",
+    "radhaa prem",
+    '"radha प्रेम"',
+  ]) {
+    assert.deepEqual(
+      searchPads(tiny, q).map((r) => r.pad.id),
+      [1],
+      q,
+    );
+  }
+});
+test("exact matches outrank explicitly labelled spelling approximations", () => {
+  const tiny = makeSearchIndex([
+    { id: 1, title: "राधिका", verses: ["राधिका नाम"] },
+    { id: 2, verses: ["राधिके प्रेम"] },
+  ]);
+  const results = searchPads(tiny, "radhike");
+  assert.equal(results[0].pad.id, 2);
+  assert.equal(results[0].matchKind, "exact");
+  assert.equal(results[1].matchKind, "approximate");
+  assert.equal(searchPads(tiny, '"radhike"').length, 1);
+});
+test("phrases cannot be fabricated across unrelated metadata", () => {
+  const tiny = makeSearchIndex([
+    {
+      id: 1,
+      title: "राम",
+      section: "श्याम",
+      verses: ["दयालु नाम", "प्रेम धाम"],
+    },
+  ]);
+  assert.equal(searchPads(tiny, '"राम श्याम"').length, 0);
+  assert.equal(searchPads(tiny, '"नाम प्रेम"').length, 1);
+});
+test("snippets prefer the line containing all terms and retain footnote context", () => {
+  const tiny = makeSearchIndex([
+    {
+      id: 1,
+      verses: ["राधा नाम", "राधा प्रेम"],
+      footnotes: [{ lines: ["विशेष टिप्पणी"] }],
+    },
+  ]);
+  assert.equal(searchPads(tiny, "राधा प्रेम")[0].snippet, "राधा प्रेम");
+  assert.equal(searchPads(tiny, "टिप्पणी")[0].snippetKind, "footnote");
+});
+test("canonical-equivalent nukta spellings and shaping controls match", () => {
+  const tiny = makeSearchIndex([{ id: 1, verses: ["बड़े भगवान्‌का"] }]);
+  assert.equal(searchPads(tiny, "बड़े भगवान्का").length, 1);
+});
+test("number labels and collection-specific numbers are unambiguous", () => {
+  const tiny = makeSearchIndex([
+    { id: 610, searchNumber: 6, verses: ["गीत"] },
+    { id: 1, searchNumber: null, verses: ["वन्दना"] },
+  ]);
+  for (const q of ["6", "६", "pad 6", "पद संख्या ६"])
+    assert.equal(searchPads(tiny, q)[0].pad.id, 610);
+  assert.equal(searchPads(tiny, "610").length, 0);
+  assert.equal(searchPads(tiny, "1").length, 0);
+});
+test("roman searches recognize joined Shri honorifics without substring noise", () => {
+  const tiny = makeSearchIndex([
+    { id: 1, verses: ["श्रीराधा श्रीकृष्ण श्रीराम"] },
+    { id: 2, verses: ["परम नाम"] },
+  ]);
+  for (const q of ["radha", "krishna", "shri krishna", "ram"])
+    assert.deepEqual(
+      searchPads(tiny, q).map((r) => r.pad.id),
+      [1],
+      q,
+    );
+});
+test("every canonical pad is discoverable by its complete last verse line", () => {
+  for (const pad of pads) {
+    assert(
+      searchPads(index, pad.verses.at(-1), { phrase: true }).some(
+        (r) => r.pad.id === pad.id,
+      ),
+      `Pad ${pad.id}`,
+    );
+  }
+});

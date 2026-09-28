@@ -70,7 +70,7 @@ export function normalize(text = "") {
     .replace(/[०-९]/g, (d) => String("०१२३४५६७८९".indexOf(d)))
     .replace(/\u200c|\u200d|\u093c/g, "")
     .toLowerCase()
-    .replace(/[।॥.,!?;:'"‘’“”()[\]{}—–-]/g, " ")
+    .replace(/[\p{P}\p{S}]/gu, " ")
     .replace(/\s+/g, " ")
     .trim();
 }
@@ -87,16 +87,53 @@ export function romanize(text = "") {
   }
   return normalize(out).replace(/a\b/g, "");
 }
-function phonetic(s) {
+// Common keyboard spellings, not editorial changes to the source text.
+function foldRoman(s) {
   return s
     .replace(/aa/g, "a")
     .replace(/ee|ii/g, "i")
     .replace(/oo|uu/g, "u")
     .replace(/w/g, "v")
     .replace(/sh/g, "s")
-    .replace(/ph/g, "f")
-    .replace(/[aeiou]/g, "")
-    .replace(/(.)\1+/g, "$1");
+    .replace(/ph/g, "f");
+}
+function phonetic(s) {
+  return foldRoman(s).replace(/[aeiou]/g, "");
+}
+function field(text, kind) {
+  const normal = normalize(text);
+  const roman = foldRoman(romanize(text));
+  const words = roman.split(" ");
+  const stems = words.map((w) => w.replace(/a$/, ""));
+  const sourceWords = normal.split(" ");
+  const searchStems = stems.flatMap((stem, i) =>
+    sourceWords[i]?.startsWith("श्री") &&
+    stem.startsWith("sri") &&
+    stem.length > 3
+      ? [stem, "sri", stem.slice(3)]
+      : [stem],
+  );
+  return {
+    text,
+    kind,
+    normal,
+    roman,
+    words,
+    stems,
+    searchStems,
+    sounds: searchStems.map(phonetic),
+  };
+}
+function combine(fields, kind) {
+  return {
+    kind,
+    text: fields.map((f) => f.text).join(" "),
+    normal: fields.map((f) => f.normal).join(" "),
+    words: fields.flatMap((f) => f.words),
+    stems: fields.flatMap((f) => f.stems),
+    searchStems: fields.flatMap((f) => f.searchStems),
+    sounds: fields.flatMap((f) => f.sounds),
+  };
 }
 export function makeSearchIndex(pads) {
   const byId = new Map(pads.map((p) => [p.id, p]));
@@ -106,26 +143,71 @@ export function makeSearchIndex(pads) {
           .map((r) => byId.get(r.ownerPadId)?.footnotes?.[r.noteIndex])
           .filter(Boolean)
       : p.footnotes || [];
-    const lines = [
-      ...(p.headings || []),
-      ...(p.verses || []),
-      ...notes.flatMap((f) => f.lines || []),
+    const fields = [
+      field(p.title || "", "title"),
+      ...[p.section, p.subtopic, p.raag, p.taal, p.form]
+        .filter(Boolean)
+        .map((s) => field(s, "metadata")),
+      ...(p.headings || []).map((s) => field(s, "heading")),
+      ...(p.verses || []).map((s) => field(s, "verse")),
+      ...notes.flatMap((f) => f.lines || []).map((s) => field(s, "footnote")),
     ];
-    const title = p.title || lines[0] || "";
-    const meta = [p.section, p.subtopic, p.raag, p.taal, p.form]
-      .filter(Boolean)
-      .join(" ");
-    const whole = [title, meta, ...lines].join(" ");
+    // Phrase matching may cross printed line breaks, but not unrelated metadata.
+    const body = fields.filter((f) => f.kind === "verse");
+    const joined = combine(body, "body");
     return {
       pad: p,
-      title: normalize(title),
-      body: normalize(whole),
-      roman: romanize(whole),
-      sound: phonetic(romanize(whole)),
-      lines,
-      meta: normalize(meta),
+      fields,
+      joined,
+      whole: combine(fields, "all"),
+      lines: fields
+        .filter((f) => ["heading", "verse", "footnote"].includes(f.kind))
+        .map((f) => f.text),
     };
   });
+}
+function queryTerm(text) {
+  const latin = /^[a-z]+$/.test(text);
+  const roman = foldRoman(text).replace(/a$/, "");
+  return { text, latin, roman, sound: phonetic(text) };
+}
+function matchTerm(f, term, approximate = true) {
+  if (!term.latin) return f.normal.includes(term.text) ? 3 : 0;
+  // Short Latin words must match whole words, never 'ram' inside 'param'.
+  if (
+    f.searchStems.some((stem) => {
+      return (
+        stem === term.roman ||
+        (term.roman.length >= 4 && stem.startsWith(term.roman))
+      );
+    })
+  )
+    return 2;
+  if (
+    approximate &&
+    term.text.length >= 4 &&
+    term.sound.length >= 3 &&
+    f.sounds.includes(term.sound)
+  )
+    return 1;
+  return 0;
+}
+function phraseMatches(f, terms) {
+  if (terms.every((t) => !t.latin))
+    return f.normal.includes(terms.map((t) => t.text).join(" "));
+  const words = f.normal.split(" ");
+  // Mixed-script phrases compare each source word in place.
+  return words.some((_, start) =>
+    terms.every((term, offset) => {
+      const word = words[start + offset];
+      return (
+        word !== undefined &&
+        (term.latin
+          ? f.stems[start + offset] === term.roman
+          : word === term.text)
+      );
+    }),
+  );
 }
 export function searchPads(
   index,
@@ -135,49 +217,77 @@ export function searchPads(
   const q = normalize(query);
   const pool = section ? index.filter((x) => x.pad.section === section) : index;
   if (!q)
-    return pool.map((x) => ({
-      pad: x.pad,
-      snippet: x.lines[0] || "",
-      score: 0,
-    }));
-  if (/^\d+$/.test(q))
+    return String(query).trim()
+      ? []
+      : pool.map((x) => ({ pad: x.pad, snippet: x.lines[0] || "", score: 0 }));
+  const number = /^(?:(?:pad|पद)(?: (?:number|संख्या))? )?(\d+)$/.exec(q);
+  if (number)
     return pool
-      .filter((x) => x.pad.id === Number(q))
-      .map((x) => ({ pad: x.pad, snippet: x.lines[0] || "", score: 1000 }));
-  const latin = /[a-z]/.test(q),
-    terms = phrase ? [q] : q.split(" ");
-  return pool
-    .map((x) => {
-      const exact = terms.every((t) => x.body.includes(t));
-      const roman =
-        latin && terms.every((t) => x.roman.includes(t.replace(/a\b/g, "")));
-      const approximate =
-        latin &&
-        !phrase &&
-        terms.every((t) => {
-          const sound = phonetic(t);
-          return sound.length >= 2 && x.sound.includes(sound);
-        });
-      if (!exact && !roman && !approximate) return null;
-      const score =
-        (exact ? 100 : roman ? 60 : 20) +
-        (x.title.includes(q) ? 90 : 0) +
-        (terms.every((t) => x.title.includes(t)) ? 40 : 0) +
-        (x.body.includes(q) ? 20 : 0);
-      const snippet =
-        x.lines.find((l) => terms.some((t) => normalize(l).includes(t))) ||
-        x.lines.find(
-          (l) =>
-            latin &&
-            terms.some((t) => {
-              const sound = phonetic(t);
-              return sound.length >= 2 && phonetic(romanize(l)).includes(sound);
-            }),
-        ) ||
-        x.lines[0] ||
-        "";
-      return { pad: x.pad, snippet, score };
-    })
-    .filter(Boolean)
-    .sort((a, b) => b.score - a.score || a.pad.id - b.pad.id);
+      .filter(
+        (x) =>
+          ("searchNumber" in x.pad ? x.pad.searchNumber : x.pad.id) ===
+          Number(number[1]),
+      )
+      .map((x) => ({
+        pad: x.pad,
+        snippet: x.pad.title || x.lines[0] || "",
+        score: 1000,
+        matchKind: "number",
+      }));
+  phrase ||= /^["“].*["”]$/.test(String(query).trim());
+  const terms = q.split(" ").map(queryTerm);
+  const results = [];
+  for (const x of pool) {
+    if (!terms.every((t) => matchTerm(x.whole, t, !phrase))) continue;
+    const strengths = terms.map(() => 0);
+    let snippet = null;
+    let snippetScore = -1;
+    let titleMatches = false;
+    for (const f of x.fields) {
+      const values = terms.map((term) => matchTerm(f, term, !phrase));
+      values.forEach((value, i) => {
+        strengths[i] = Math.max(strengths[i], value);
+      });
+      const all = values.every(Boolean);
+      if (f.kind === "title" && all) titleMatches = true;
+      const localScore =
+        values.filter(Boolean).length * 10 +
+        values.reduce((a, b) => a + b, 0) +
+        (f.kind === "verse" ? 1 : 0);
+      if (values.some(Boolean) && localScore > snippetScore) {
+        snippet = f;
+        snippetScore = localScore;
+      }
+    }
+    if (!strengths.every(Boolean)) continue;
+    if (phrase && ![...x.fields, x.joined].some((f) => phraseMatches(f, terms)))
+      continue;
+    const quality = Math.min(...strengths);
+    const phraseBonus = [x.fields[0], x.joined].some((f) =>
+      phraseMatches(f, terms),
+    )
+      ? 20
+      : 0;
+    results.push({
+      pad: x.pad,
+      snippet: snippet?.text || x.lines[0] || "",
+      snippetKind: snippet?.kind,
+      matchKind: quality === 1 ? "approximate" : "exact",
+      score: quality * 100 + (titleMatches ? 50 : 0) + phraseBonus,
+    });
+  }
+  return results.sort((a, b) => b.score - a.score || a.pad.id - b.pad.id);
+}
+
+// Section names use the same keyboard spelling rules, without fuzzy matches.
+const nameFields = new Map();
+export function matchesSearchName(name, query) {
+  const q = normalize(query);
+  if (!q) return false;
+  let f = nameFields.get(name);
+  if (!f) {
+    f = field(name, "name");
+    nameFields.set(name, f);
+  }
+  return q.split(" ").every((t) => matchTerm(f, queryTerm(t), false));
 }

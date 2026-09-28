@@ -1,35 +1,29 @@
-# Upload guide — 1.0.0 (version code 2)
+# Release handoff — 1.0.7 (version code 9)
 
-## Ready files
+## Distribution files
 
-- `pad-ratnakar-1.0.0.apk`: signed release for direct Android distribution.
-- `pad-ratnakar-1.0.0.aab`: signed bundle for Play Console.
-- `store-assets/`: icon, feature graphic and actual app web-renderer screenshots at phone proportions. These are not native device captures; review against the tested phone before upload.
-- `store-listing.md`: Hindi and English descriptions.
-- `privacy-policy-draft.md`: only publisher/contact/hosting details remain to fill.
-- `SHA256SUMS.txt`: file verification hashes.
+- `pad-ratnakar-1.0.7.apk`: signed Android release for external distribution.
+- `pad-ratnakar-1.0.7.aab`: signed Play bundle.
+- `signing-certificate.pem`: public certificate only.
+- `SHA256SUMS.txt`: artifact hashes.
+- `RELEASE.md`: build/source record and verification limits.
 
-## Your remaining steps
+Files are produced outside Git; use the actual release packet and verify its hashes. Never distribute the private signing folder.
 
-1. Supply public publisher name, support email and rights confirmation. Host the completed policy at a public URL (the existing Vercel site can host it).
-2. Create the app in Play Console: app, Books & Reference, Hindi default language, free if intended. Add the listing and prepared graphics.
-3. App content: no ads; no login/restricted access. Native app has no analytics or user-data collection. Confirm Data safety, audience and content-rating answers against the actual book; do not invent a rating.
-4. Signing: use **your existing app-signing key**, not a newly Google-generated key, if users of the external APK should receive Play updates without reinstalling. Console supplies its PEPK export tool and encryption key; use those to import the private signing key. Never upload the raw private key/password as listing assets. Public certificate is included. A separate upload key can be registered afterward.
-5. Upload the AAB, use the release notes below, and complete Console review/rollout. A newer personal account may still require 12 opted-in testers for 14 continuous days. Your completed phone testing does not replace this account-specific Google requirement.
+## What changed
 
-## Release notes
+Improved offline search across Pad Ratnakar, Shodash Geet, Bhaiji Jayanti and Mahabhav-Kallolini; collection-specific numbering, mixed Hindi/Latin queries and clearer results. Search work no longer delays reader startup. Refined exit confirmation, sharing readiness and measured headings. Collection registration and documentation were consolidated.
 
-<hi-IN>
-पद रत्नाकर का प्रथम संस्करण: 1,565 पद, षोडश गीत, ऑफ़लाइन पाठ, खोज, बुकमार्क, पिंच ज़ूम और पद-चित्र साझा करना।
-</hi-IN>
-<en-US>
-First release: 1,565 pads, Shodash Geet, offline reading, search, bookmarks, pinch zoom and image sharing.
-</en-US>
+## Owner steps before Play submission
 
-## Direct installation
+1. Establish the Play developer account and public publisher identity. Proposed support contact: `yashashwisinghania@gmail.com`; confirm before publishing it.
+2. Finalize and host the [privacy policy](privacy-policy-draft.md), confirm distribution rights, and review the [listing](store-listing.md).
+3. Choose a Play signing setup compatible with the externally distributed APK if updates without reinstalling are required. Follow current Console instructions; never upload the raw private key/password as listing material.
+4. Upload the AAB to the appropriate test track. Complete current Console app-content declarations and any account-specific testing/verification requirements.
+5. Test the final artifact on physical devices and replace outdated store screenshots before production rollout.
 
-Share only the APK. Android may request permission to install from the receiving app. Previous debug/test APKs use a different signature and must be uninstalled first; this removes their local bookmarks. Future release updates must use this same private key and a higher version code.
+The owner previously reported phone testing complete, but that does not validate changes introduced by this candidate. No Play upload, account purchase or policy publication is performed by building this release.
 
-## Keep private
+## Direct APK installation
 
-The signing key/password are outside Git and outside this package in the task workspace’s `release-signing-private` directory. Back up both securely before distributing the first release. Losing the external signing key prevents compatible external updates. No store upload or policy publication has been performed.
+Use the APK, not the AAB. Android may ask to allow installation from the receiving app. Existing signed 1.0.x installs should update when the same signing identity is used; old debug-signed installs are incompatible. Avoid uninstalling without backing up anything important: local bookmarks can be lost. Keep the existing private key securely backed up for future external updates.

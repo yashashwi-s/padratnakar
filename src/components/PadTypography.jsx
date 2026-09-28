@@ -1,6 +1,6 @@
+import { Capacitor } from "@capacitor/core";
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import { kalloliniPage } from "../lib/kallolini";
-import { jayantiPage } from "../lib/jayanti";
+import { readerCollections } from "../lib/reader-collections";
 import { getPrintLayout } from "../lib/print-layout";
 import { fixedPrintModel, pageDimensions } from "../lib/fixed-print";
 import "./reader-typography.css";
@@ -64,7 +64,7 @@ export default function PadTypography({
   const page = useMemo(
     () =>
       pad.collection
-        ? (pad.collection === "kallolini" ? kalloliniPage : jayantiPage)(
+        ? readerCollections[pad.collection].page(
             pad,
             collectionMetrics?.id === `${pad.collection}:${pad.id}`
               ? collectionMetrics.widths
@@ -74,7 +74,13 @@ export default function PadTypography({
     [pad, current, item, collectionMetrics],
   );
   useEffect(() => {
-    if ((!current && !pad.collection) || !shareKey) return;
+    if (!Capacitor.isNativePlatform() || !interactive || !shareKey) return;
+    if (
+      pad.collection
+        ? collectionMetrics?.id !== `${pad.collection}:${pad.id}`
+        : !current
+    )
+      return;
     let idle;
     const timer = setTimeout(() => {
       const prepare = () => {
@@ -89,7 +95,14 @@ export default function PadTypography({
       clearTimeout(timer);
       if (idle) window.cancelIdleCallback(idle);
     };
-  }, [current, shareKey, pad.collection, collectionMetrics]);
+  }, [
+    current,
+    shareKey,
+    pad.collection,
+    pad.id,
+    collectionMetrics,
+    interactive,
+  ]);
   const dimensions = pageDimensions(available);
   const pageHeight = (dimensions.width * page.height) / (page.width + 24);
   useReaderTouch(viewport, onCopy, dimensions.width, pageHeight, interactive);
@@ -113,6 +126,11 @@ export default function PadTypography({
           width={dimensions.width}
           height={pageHeight}
           data-layout={current || pad.collection ? "source" : "fallback"}
+          data-share-ready={
+            pad.collection
+              ? collectionMetrics?.id === `${pad.collection}:${pad.id}`
+              : Boolean(current)
+          }
         >
           {page.decorations.map((box, i) => (
             <rect
@@ -152,6 +170,26 @@ export default function PadTypography({
 }
 
 function PrintLine({ line, width }) {
+  const headingRef = useRef(null);
+  useLayoutEffect(() => {
+    if (!line.centered) return;
+    let active = true;
+    const fit = () => {
+      const element = headingRef.current;
+      if (!active || !element) return;
+      element.removeAttribute("textLength");
+      const natural = element.getComputedTextLength();
+      if (natural > width - 64)
+        element.setAttribute("textLength", String(width - 64));
+    };
+    fit();
+    loadReaderFont()
+      .then(fit)
+      .catch(() => {});
+    return () => {
+      active = false;
+    };
+  }, [line.text, line.fontSize, line.centered, width]);
   if (line.centered)
     return (
       <text
@@ -159,7 +197,7 @@ function PrintLine({ line, width }) {
         y={line.y}
         textAnchor="middle"
         fontSize={line.fontSize}
-        textLength={line.text.length > 29 ? width - 64 : undefined}
+        ref={headingRef}
         lengthAdjust="spacingAndGlyphs"
       >
         {line.text}

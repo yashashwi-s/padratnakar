@@ -25,17 +25,17 @@ createRoot(document.getElementById("root")).render(
   </StrictMode>,
 );
 
-// A single quiet handoff after fonts and the first reader frame are ready.
-Promise.all([
+// Reveal promptly after a frame; a slow font must never hold the launch screen.
+Promise.race([
   loadReaderFont().catch(() => {}),
-  new Promise((resolve) => setTimeout(resolve, 450)),
+  new Promise((resolve) => setTimeout(resolve, 200)),
 ]).then(() => {
   requestAnimationFrame(() =>
     requestAnimationFrame(() => {
       const screen = document.getElementById("launch-screen");
       if (!screen) return;
       screen.style.opacity = "0";
-      setTimeout(() => screen.remove(), 320);
+      setTimeout(() => screen.remove(), 140);
     }),
   );
 });

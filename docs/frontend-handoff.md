@@ -1,124 +1,55 @@
 # Frontend handoff
 
-## Current state
+Pad Ratnakar is a static, offline React/Vite reader. The production app bundles all corpus data, search documents, reader fonts, and source-layout metadata; it does not call a production API or use accounts.
 
-Pad Ratnakar is an offline static React application. All runtime reading data is bundled as JSON or served as static assets; no production API, account system, or database is required.
+## Reader architecture
 
-The data layer covers 1,565 canonical pads, 33 source notes, 17 user-verified pads, and the 18-entry _Shodash Geet_ collection. Corpus provenance and recovery details are documented in [data-corpus.md](data-corpus.md). The source layout model and its limits are documented in [print-layout.md](print-layout.md).
+`src/App.jsx` owns the application views, browser/native route handling, collection navigation, saved pads, search UI, sharing, and back behavior. Keep feature logic out of the generated data files.
 
-The inner pad reading surface is implemented in `src/components/PadTypography.jsx` and `src/components/reader-typography.css`. It applies the source-backed hierarchy and geometry to headings, verses, grouped lines, citations, stanza gaps, and footnotes while preserving fixed source line endings with fit-to-width and inner-page pinch zoom. The surrounding navigation and application interface now have a revised design; the responsive reader audit is recorded in [reader-audit.md](reader-audit.md). Native Capacitor projects are present. Android debug compilation is verified; physical-device behavior and store release builds still need testing. Neither platform is release signed.
+`src/components/PadTypography.jsx` composes a reader page. `src/lib/fixed-print.js` renders the accepted Unicode text as fixed SVG rows, using source-informed positions. The page fits to its container and can pinch zoom and pan horizontally inside the reading surface. Printed line endings, spacing, indentation, and stanza relationships are part of the reader contract. Do not reflow verse lines or create alignment with repeated text spaces.
 
-## Runtime data
+The reader is source informed, not a PDF-font match or facsimile. Noto Serif Devanagari provides readable Unicode text with different metrics from the source PDF font.
 
-Use the public functions in `src/lib` rather than importing generated corpus files throughout components.
+## Collections and routes
 
-### Canonical corpus
+The app exposes four collections:
 
-`getPad(id)` returns a canonical pad with its metadata, headings, verses, stanzas, source provenance, and text status.
+| Mode        | Collection                          | Entries |
+| ----------- | ----------------------------------- | ------: |
+| `pad`       | Pad Ratnakar                        |   1,565 |
+| `shodash`   | Shodash Geet                        |      18 |
+| `jayanti`   | Shri Bhaiji Jayanti Mahotsav ke Pad |      18 |
+| `kallolini` | Mahabhav-Kallolini                  |     117 |
 
-`getFootnotes(id)` resolves note references to the single canonical note record. This matters for notes shared across ranges such as pads 269–271, 1551–1556, and 1560–1562. Render the returned notes; do not assume the note text is physically stored on the current pad.
+Canonical pads come from `src/data/hymns.json` through `src/lib/corpus.js`. Shodash Geet materializes collection-specific titles, stanzas, and display rules through `getShodashItem`; components must not repeat those transformations.
 
-`getShodashItem(selector)` returns a materialized collection entry. Supported selectors distinguish song number from pad ID:
+`src/lib/reader-collections.js` is the registry for the additional collections. A registry entry supplies its pads, fixed-page builder, sections, first entry ID, optional shortcuts, and an ID lookup. `src/lib/collection-routes.js` keeps collection route creation and validation as pure functions. Routes use `/mode/id` on the web and hash equivalents in native shells.
 
-```js
-getShodashItem({ number: 2 });
-getShodashItem({ padId: 608 });
-getShodashItem("opening");
-getShodashItem("closing");
-```
+Use [the collection guide](adding-collections.md) when adding or changing a collection so its registry, route, search catalog, reader page, navigation, and tests stay aligned.
 
-The materialized collection already applies its display-only stanza numbering, its opening and closing heading rules, and the source-backed first line for song 2. Do not apply those transformations again in components.
+## Search
 
-### Print layout
+`src/lib/search-catalog.js` defines all searchable collections and transforms each one into text-only documents. `src/lib/use-search.js` starts the module worker on demand; `src/lib/search.worker.js` builds and queries indexes outside the React UI; `src/lib/search-service.js` holds the reusable service. Never send SVG geometry or page metrics to the worker.
 
-`getPrintLayout(id)` loads layout metadata only when a reader needs it. Runtime chunks live at `public/data/layout/1.json` through `public/data/layout/16.json`, with about 100 pads per chunk.
+Search results return IDs and match details. The UI reattaches the local reader records, groups results by collection, preserves each collection's numbering and routes, and can filter by collection. Keep initialization failures and retry behavior intact.
 
-Layout records preserve printed line relationships such as grouping, indentation, and alignment evidence. Treat them as semantic hints. PDF coordinates and extracted whitespace should not be copied directly into CSS or rendered as literal spaces. The current user-approved direction preserves every printed line at narrow widths by scaling the fixed page, with whole-page zoom for enlargement. Do not restore line wrapping.
+## Sharing and native behavior
 
-`PadTypography` loads this metadata asynchronously and falls back to a simple fixed-line page when it is unavailable. `typographyModel` in `src/lib/typography.js` maps accepted Unicode lines to their source rows. At widths that can support the relationship, the reader retains measured indentation, centering, and separated text groups. Narrow containers fit the complete fixed page; inner-page pinch zoom enlarges the geometry without wrapping. See the current implementation in `src/lib/fixed-print.js`. Independently decoded segment text is never substituted for the accepted corpus.
+`src/lib/share-pad.js` builds canonical links. On the web, sharing uses the displayed text plus that link. On Android and iOS, it exports the complete positioned SVG page as a PNG and attaches it with link text. A share image represents the entire pad, independent of the current zoom or viewport.
 
-This treatment is source informed rather than a facsimile. The bundled Unicode font has different metrics from the PDF's legacy subsets, and the responsive page intentionally does not reproduce fixed PDF page boundaries.
+`npm run native:sync` builds web assets and copies them into Capacitor projects. It is not a native build or device test. Android 1.0.6 is a signed historical release; release preparation for 1.0.7 is documented under [release](release/README.md).
 
-## Reader design constraints
+## Data and visual constraints
 
-The reading view should feel like a quiet printed book:
+Read [data-corpus.md](data-corpus.md) and [print-layout.md](print-layout.md) before changing corpus or geometry data. Use `getFootnotes` so shared source notes resolve correctly. Do not use historical OCR to revise accepted text.
 
-- white and black primary reader surface;
-- restrained paper-colored space around the reader;
-- the supplied Pad Ratnakar logo used with clear spacing;
-- Devanagari typography optimized for sustained reading;
-- headings, verses, stanza breaks, and footnotes with an obvious hierarchy;
-- layouts that work from small phones through desktop widths.
+The reader surface stays white with black text, within a restrained paper-colored surround and the supplied logo. Avoid dark themes, gradients, and decorative motion. Preserve browser accessibility sizing, keyboard behavior, focus visibility, and screen-reader semantics.
 
-Avoid dark presentation, gradients, glass effects, and ornamental motion. Preserve the text as the dominant element. These constraints are implemented for the inner reading surface and continue to guide the future redesign of the surrounding application.
-
-## Main frontend work
-
-The inner poem typography is complete as a design foundation. Further frontend and device QA should concentrate on:
-
-1. Clear navigation among pad number, search results, sections, and _Shodash Geet_.
-2. A coherent menu, search, bookmarks, controls, and paper-colored surround around the white reader.
-3. Accessible focus, keyboard, screen-reader, font scaling, and touch behavior across the complete interface.
-4. Useful loading and failure feedback while retaining the typography component's fixed-line fallback.
-5. Device QA for safe areas, back navigation, links, offline behavior, and the full supported font-size range.
-
-Keep speculative features out of the first redesign. Additional ideas are tracked in [future-suggestions.md](future-suggestions.md).
-
-## Development and verification
-
-Install and run locally:
+## Verification
 
 ```sh
 npm ci
-npm run dev
-```
-
-Run the full check after changes:
-
-```sh
 npm run check
 ```
 
-The check should cover linting, JavaScript tests, corpus data tests, and the production build. Data-only checks are also available through `npm run test:data`.
-
-To rebuild generated corpus artifacts, install PyMuPDF for the active Python 3 environment and run:
-
-```sh
-npm run data:rebuild
-```
-
-To update native projects after a verified web build:
-
-```sh
-npm run native:sync
-```
-
-A successful browser build does not establish native release readiness. Before release, test both platforms on physical devices, verify offline assets and fonts, configure signing, and complete platform-specific packaging and store checks.
-
-## Original handoff baseline (before the fixed-page change)
-
-The handoff passed lint, 20 JavaScript behavior tests, all-corpus JSON checks, all 21,672 heading/verse position checks, and the Vite production build. Runtime dependency audit reports zero advisories. The Capacitor CLI development dependency chain still reports three moderate advisories; avoid forced downgrades as a substitute for a tested tooling update. The build also warns about the eagerly imported full corpus size; loading/splitting this for the final frontend is a performance task, not missing content.
-
-Browser checks covered the opening pad, Shodash song 2, and pad 1504’s continued footnote. At a 390px viewport, the maximum 176% reader size had no horizontally clipped verse lines or document overflow. Phone-width Shodash headings and numbering remained readable. These browser checks do not replace physical-device QA.
-
-The current fixed-page implementation passes 29 JavaScript tests, 4 review-store/PDF tests, corpus validation, and the production build. Its layout checks cover all canonical verses and notes, all collection entries, and ordered source baselines. Browser checks confirmed unchanged line geometry from 320 to 1440px and horizontal page zoom without document overflow. The review UI and comment store were unchanged.
-
-## September 24 touch and sharing update
-
-The reading page pinches independently (1–3×); toolbar and bottom navigation do not scale. A horizontal flick works from any vertical scroll position at fit size. Enlargement reserves horizontal movement for panning; previous/next buttons still navigate. The earlier Noto Serif Devanagari 700 weight is restored. Long press copies the whole displayed pad without selection handles. Android stretch feedback is disabled in the WebView; CSS suppresses overscroll and tap highlights while retaining keyboard focus indicators.
-
-Sharing exports the full positioned pad and footnotes to PNG with an embedded font. The app/download links are a separate share caption, never painted into the image. Capacitor Share/Filesystem handle mobile attachments, Clipboard handles copying. Desktop browsers download the PNG. `src/lib/share-pad.js` contains explicitly reserved placeholder app and reader links; replace them before release. A shared image contains the whole pad, not just the visible/zoomed portion. iOS has its file timestamp privacy declaration; its build and device gestures remain unverified.
-
-The in-app title uses one Noto Serif Devanagari 700-weight text run so both words have consistent thickness. The launcher retains the approved original artwork; both legacy and adaptive Android icons use it. Receiving apps control how the shared image caption is displayed.
-
-## Touch performance follow-up
-
-The print viewport allows vertical scroll chaining (`overscroll-behavior-y: auto`); blocking it traps scroll in the horizontal viewport. Root/native overscroll feedback remains disabled. Ancestor touch-action allows horizontal panning as well as vertical scrolling. During pinch, one animation frame composites an SVG transform and updates its containing box; SVG dimensions and React text nodes are not rebuilt per gesture frame. Source geometry and fixed app controls remain unchanged.
-
-Share images are prepared after a brief idle delay and retained in a bounded two-picture cache. Native base64 preparation is included; a previously shared native file URI is reused. Export density is 3× with a 12,000-pixel height cap. Mouse hover backgrounds apply only to fine pointers with hover support; keyboard focus remains visible. The white reader covers the space down to the fixed navigation bar.
-
-## Sliding and circular navigation
-
-The reader keeps previous/current/next panels in one strip. Horizontal dragging translates the strip; release and navigation buttons use a 240 ms slide. A canceled swipe returns in 160 ms. Reduced-motion preference skips the animation. Inactive neighbours are inert and hidden from accessibility; copying, sharing and zoom checks are scoped to the current panel. Overflow clipping keeps a tall neighbour from extending the current document's scroll height. Navigation wraps in both collections: Previous before the first opens the last, and Next after the last opens the first.
-
-The approved icon's decorative border was removed; Android legacy/adaptive and iOS icon assets were rebuilt. `release-assets/play-icon-512.png` is the 512 px store export. The in-app text wordmark is unaffected.
+Run focused tests while working, then run the full check before handoff. Do not record fixed test totals in maintained documentation: the suite is expected to grow.

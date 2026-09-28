@@ -1,13 +1,10 @@
+import { loadReaderFont } from "./reader-font.js";
 import { Capacitor } from "@capacitor/core";
 import { Share } from "@capacitor/share";
 import { Filesystem, Directory } from "@capacitor/filesystem";
 import { Clipboard } from "@capacitor/clipboard";
 
 export const SITE_ORIGIN = "https://padratnakar.vercel.app";
-export const DOWNLOADS = {
-  android: `${SITE_ORIGIN}/android`,
-  ios: `${SITE_ORIGIN}/ios`,
-};
 export function shareLink(mode, id) {
   return `${SITE_ORIGIN}/${mode}/${id}`;
 }
@@ -37,6 +34,7 @@ async function embeddedFont() {
 
 /** Export the same positioned Unicode SVG, including footnotes, into one full-pad PNG. */
 export async function padImage(svg) {
+  await loadReaderFont();
   const clone = svg.cloneNode(true);
   const { x, y, width, height } = svg.viewBox.baseVal;
   const totalHeight = height;
@@ -107,7 +105,9 @@ export async function padImage(svg) {
 // Keep just the two most recently prepared pictures, not the entire corpus.
 const prepared = new Map();
 export function preparePadShare(svg, key) {
-  if (prepared.has(key)) return prepared.get(key);
+  const revision = svg.outerHTML;
+  const cached = prepared.get(key);
+  if (cached?.revision === revision) return cached.result;
   const result = padImage(svg)
     .then(async (blob) => ({
       blob,
@@ -117,10 +117,10 @@ export function preparePadShare(svg, key) {
       uri: null,
     }))
     .catch((error) => {
-      prepared.delete(key);
+      if (prepared.get(key)?.result === result) prepared.delete(key);
       throw error;
     });
-  prepared.set(key, result);
+  prepared.set(key, { revision, result });
   while (prepared.size > 2) prepared.delete(prepared.keys().next().value);
   return result;
 }
@@ -144,6 +144,13 @@ export async function sharePad(svg, mode, id) {
   }
 
   // Native Android/iOS: keep existing image share behavior.
+  await loadReaderFont();
+  // Let font measurements and heading fitting commit before capturing the SVG.
+  await new Promise((resolve) =>
+    requestAnimationFrame(() => requestAnimationFrame(resolve)),
+  );
+  if (!svg.isConnected || svg.dataset.shareReady !== "true")
+    throw new Error("Reader layout is not ready");
   const picture = await preparePadShare(svg, `${mode}-${id}`);
   const name = `pad-ratnakar-${mode}-${id}.png`;
   const text = `${link}\nपद रत्नाकर: ${SITE_ORIGIN}`;
