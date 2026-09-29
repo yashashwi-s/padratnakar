@@ -1,0 +1,19 @@
+Pad Ratnakar is a simple offline reader for Hindi devotional literature.
+
+FOUR COLLECTIONS
+• Pad Ratnakar: 1,565 pads with source notes.
+• Shodash Geet: an opening invocation, sixteen songs and a closing composition.
+• Shri Bhaiji Jayanti Mahotsav ke Pad: 18 compositions.
+• Mahabhav-Kallolini: 117 compositions organized by section.
+
+READ COMFORTABLY
+The reading layout preserves printed line endings and stanza structure. Pinch to enlarge the page, swipe between pads and save local bookmarks. Read black text on a white page with simple navigation.
+
+FIND A PAD
+Search in Hindi, type Hindi words using English letters, combine both scripts or enter a pad number. Filter by collection and use quotation marks to search an exact phrase. Results show the matching text.
+
+SHARE AND COPY
+Share a full image of a pad and its notes through an app you choose. Long-press the text to copy it.
+
+AVAILABLE OFFLINE
+Reading text, fonts and search are included. Reading, searching and local bookmarks do not require an internet connection or login.

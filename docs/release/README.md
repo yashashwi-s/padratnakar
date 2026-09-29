@@ -31,3 +31,9 @@ Keep the existing signing identity for compatible external updates. If Play dist
 - Back/exit dialog, Cancel, repeated Back, copy and native image/caption sharing.
 - Installed PWA update and offline behavior on Android/iOS browsers separately from native Android.
 - Store account, publisher identity, content rights, support/privacy hosting, app-content declarations and any account-specific testing requirements remain owner/Console steps. No publishing is implied by a signed build.
+
+## Prepare the upload handoff
+
+Run `python3 scripts/release/prepare-play.py --release-dir <signed-release-directory> --output <new-packet-directory>`. This validates artifact hashes and listing text limits and creates a ZIP with APK/AAB, listing text, graphics, Console worksheet and closed-test runbook. Old screenshots are explicitly reference-only. It never copies private signing material or uploads anything.
+
+The intended upload account is `yashashwisinghania@gmail.com`. See [Console worksheet](console-worksheet.md) and [closed testing](closed-testing.md). Public support contact remains a separate owner decision.
