@@ -118,7 +118,9 @@ export default function AudioTransport({ id, onAdvance, onNotice }) {
             if (!state.intent)
               lowMediaVolume().then((low) => {
                 if (low)
-                  onNotice?.("आवाज़ कम है। कृपया मीडिया वॉल्यूम बढ़ाएँ।");
+                  onNotice?.(
+                    "Volume is low. Please turn up your media volume.",
+                  );
               });
             controller.current?.toggle();
           }}
@@ -155,9 +157,10 @@ export default function AudioTransport({ id, onAdvance, onNotice }) {
       </div>
       <span
         className={`audio-message ${state.error ? "has-error" : ""}`}
+        lang="en"
         role="status"
       >
-        {state.error || (state.busy ? "ऑडियो तैयार हो रहा है…" : "")}
+        {state.error || (state.busy ? "Preparing audio…" : "")}
       </span>
     </>
   );

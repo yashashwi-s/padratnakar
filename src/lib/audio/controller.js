@@ -38,7 +38,7 @@ export function createAudioController({ audio, source, onAdvance }) {
         update({
           intent: false,
           playing: false,
-          error: "चलाने के लिए फिर से प्ले दबाएँ।",
+          error: "Tap Play again to start audio.",
         });
     }
   }
@@ -76,7 +76,8 @@ export function createAudioController({ audio, source, onAdvance }) {
           busy: false,
           intent: false,
           playing: false,
-          error: "ऑडियो नहीं मिल सका। इंटरनेट जाँचकर फिर प्रयास करें।",
+          error:
+            "Could not download audio. Check your connection and try again.",
         });
     }
   }
@@ -95,7 +96,7 @@ export function createAudioController({ audio, source, onAdvance }) {
         update({
           playing: false,
           intent: false,
-          error: "ऑडियो नहीं चल सका। फिर प्रयास करें।",
+          error: "Could not play audio. Please try again.",
         });
     },
     ended: () => {

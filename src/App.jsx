@@ -169,20 +169,20 @@ function SearchResults({
           </select>
         </label>
       </div>
-      <p className="search-status" role="status">
+      <p className="search-status" role="status" lang="en">
         {loading
-          ? "खोज रहे हैं…"
+          ? "Searching…"
           : error
-            ? "खोज नहीं खुल सकी। फिर प्रयास करें।"
+            ? "Search could not load. Please try again."
             : groupsWithMatches.length
               ? padCount
-                ? `${dn(padCount)} पद मिले · ${dn(groupsWithMatches.length)} संग्रह`
-                : "संबंधित संग्रह या विषय मिले।"
-              : "कोई पद नहीं मिला। दूसरे शब्दों से खोजें।"}
+                ? `${padCount} pads found · ${groupsWithMatches.length} collections`
+                : "Related collections or sections found."
+              : "No pads found. Try different words."}
       </p>
       {error ? (
         <button className="more-button" onClick={retry}>
-          फिर प्रयास करें
+          Try again
         </button>
       ) : loading ? null : groupsWithMatches.length ? (
         <div className="list-content">
@@ -587,18 +587,17 @@ export default function App() {
     if (sharing) return;
     const svg = document.querySelector('[data-current="true"] .print-page');
     if (!svg || svg.dataset.layout !== "source") {
-      setNotice("पद तैयार हो रहा है, कृपया फिर प्रयास करें।");
+      setNotice("The pad is still loading. Please try again.");
       return;
     }
     setSharing(true);
     try {
       const result = await sharePad(svg, route.mode, route.id);
-      if (result === "copied") setNotice("पद और लिंक कॉपी हो गए।");
-      else if (result === "downloaded")
-        setNotice("पद की पूरी तस्वीर डाउनलोड हो गई।");
+      if (result === "copied") setNotice("Text and link copied to clipboard.");
+      else if (result === "downloaded") setNotice("Pad image downloaded.");
     } catch (error) {
       if (error?.name !== "AbortError" && !/cancel/i.test(error?.message || ""))
-        setNotice("साझा नहीं हो सका। कृपया फिर प्रयास करें।");
+        setNotice("Could not share. Please try again.");
     } finally {
       setSharing(false);
     }
@@ -609,9 +608,9 @@ export default function App() {
     ].map((line) => line.textContent);
     try {
       await copyPad(lines.join("\n"));
-      setNotice("पद कॉपी हो गया।");
+      setNotice("Text copied to clipboard.");
     } catch {
-      setNotice("कॉपी नहीं हो सका। कृपया फिर प्रयास करें।");
+      setNotice("Could not copy. Please try again.");
     }
   }
   function toggleBookmark() {
@@ -620,7 +619,7 @@ export default function App() {
         ? values.filter((id) => id !== bookmarkId)
         : [...values, bookmarkId],
     );
-    setNotice(saved ? "पद सहेजे हुए पदों से हटाया गया।" : "पद सहेज लिया गया।");
+    setNotice(saved ? "Bookmark removed." : "Bookmark saved.");
   }
   const selectedPads =
     selectedSection && !selectedSection.mode
@@ -901,9 +900,9 @@ export default function App() {
               onOpenSection={openSection}
             />
           ) : (
-            <p className="search-hint">
-              हिन्दी, English में शब्द या पद संख्या लिखें। पूरी पंक्ति खोजने के
-              लिए उसे “ ” में लिखें।
+            <p className="search-hint" lang="en">
+              Enter words in Hindi or English, or a pad number. Use “ ” to
+              search for an exact phrase.
             </p>
           )}
         </main>
@@ -1096,7 +1095,9 @@ export default function App() {
               })}
             </div>
           ) : (
-            <p className="empty-state">पढ़ते समय पद सहेजें। वे यहाँ दिखेंगे।</p>
+            <p className="empty-state">
+              Bookmark pads while reading. They will appear here.
+            </p>
           )}
         </main>
       )}
@@ -1151,6 +1152,7 @@ export default function App() {
       )}
       <div
         className={`reader-toast ${notice ? "is-visible" : ""}`}
+        lang="en"
         role="status"
         aria-live="polite"
       >

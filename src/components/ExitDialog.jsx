@@ -20,6 +20,7 @@ export default function ExitDialog({ onCancel, onExit }) {
       ref={dialog}
       tabIndex={-1}
       className="exit-dialog"
+      lang="en"
       role="alertdialog"
       aria-labelledby="exit-title"
       onCancel={(event) => {
