@@ -1,9 +1,9 @@
-# Release handoff — 1.0.7 (version code 9)
+# Release handoff — 1.0.8 (version code 10)
 
 ## Distribution files
 
-- `pad-ratnakar-1.0.7.apk`: signed Android release for external distribution.
-- `pad-ratnakar-1.0.7.aab`: signed Play bundle.
+- `pad-ratnakar-1.0.8.apk`: signed Android release for external distribution.
+- `pad-ratnakar-1.0.8.aab`: signed Play bundle.
 - `signing-certificate.pem`: public certificate only.
 - `SHA256SUMS.txt`: artifact hashes.
 - `RELEASE.md`: build/source record and verification limits.
@@ -12,7 +12,7 @@ Files are produced outside Git; use the actual release packet and verify its has
 
 ## What changed
 
-Improved offline search across Pad Ratnakar, Shodash Geet, Bhaiji Jayanti and Mahabhav-Kallolini; collection-specific numbering, mixed Hindi/Latin queries and clearer results. Search work no longer delays reader startup. Refined exit confirmation, sharing readiness and measured headings. Collection registration and documentation were consolidated.
+Corrected the Pad Ratnakar contents hierarchy to 19 main sections and 22 subsections, with 517 classification changes. Section and subsection lists now show pad ranges. Accepted devotional text, footnotes, review provenance and source-positioned layout are unchanged. The rebuild and regression tests enforce agreement between the hierarchy, catalog, reader and search.
 
 ## Owner steps before Play submission
 

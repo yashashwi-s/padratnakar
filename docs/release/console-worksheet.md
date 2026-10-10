@@ -1,6 +1,6 @@
 # Play Console worksheet
 
-Prepared for Android 1.0.7 (code 9). This is a preparation sheet, not a record of Console submission.
+Prepared for Android 1.0.8 (code 10). This is a preparation sheet, not a record of Console submission.
 
 ## Account and identity
 
@@ -11,7 +11,7 @@ Prepared for Android 1.0.7 (code 9). This is a preparation sheet, not a record o
 - Public support email: owner to confirm (the upload email may be reused if desired).
 - App name: पद रत्नाकर; default language: Hindi (`hi-IN`); type: App.
 - Suggested category: Books & Reference. Suggested pricing: free; owner decides before submission.
-- Package ID: `org.padratnakar.reader`; release name: `1.0.7 (9)`.
+- Package ID: `org.padratnakar.reader`; release name: `1.0.8 (10)`.
 
 ## Paste-ready listing
 

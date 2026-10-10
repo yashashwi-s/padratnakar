@@ -730,6 +730,12 @@ body {
   font-size: 0.86rem;
   font-weight: 600;
 }
+.section-range {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 400;
+  margin-top: 3px;
+}
 .collection-heading-bar {
   border-bottom: 0;
   min-height: 50px;

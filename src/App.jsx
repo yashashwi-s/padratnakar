@@ -824,6 +824,9 @@ export default function App() {
                   onClick={() => openSection(topic)}
                 >
                   {topic.name}
+                  <small className="section-range">
+                    पद {dn(topic.startPad)}–{dn(topic.endPad)}
+                  </small>
                 </button>
               ))}
             </div>
@@ -980,6 +983,9 @@ export default function App() {
                           }
                         >
                           {sub.name}
+                          <small className="section-range">
+                            पद {dn(sub.startPad)}–{dn(sub.endPad)}
+                          </small>
                         </button>
                       ))
                     : selectedPads.map((entry) => {

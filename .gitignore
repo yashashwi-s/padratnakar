@@ -46,3 +46,9 @@ data/print-layout/
 
 # Local format-review comments (never delete without exporting)
 .review/
+
+# Local Kotlin compiler state
+android/.kotlin/
+
+# Local review previews and generated deliverables
+/output/

@@ -239,6 +239,18 @@ def main():
         hym['review']={'reviewer':review.get('reviewer'),'revision':review.get('revision'),'updatedAt':review.get('updatedAt'),'textSha256':review.get('textSha256')}
         verified_count+=1
     audit['verifiedReviewsPreserved']=verified_count
+    # Navigation classifications follow the user-requested contents review.
+    # Historical review snapshots remain intact (including their old labels);
+    # this does not change reviewed text, musical metadata, or provenance.
+    topics=json.loads((ROOT/'src/data/index_map.json').read_text())['topics']
+    for hym in result:
+        sections=[s for s in topics if s['startPad']<=hym['id']<=s['endPad']]
+        assert len(sections)==1, f"Pad {hym['id']} must have exactly one section"
+        section=sections[0]
+        subs=[s for s in section['subtopics'] if s['startPad']<=hym['id']<=s['endPad']]
+        assert len(subs)==(1 if section['subtopics'] else 0), f"Pad {hym['id']} has invalid subsection coverage"
+        hym['section']=section['name']
+        hym['subtopic']=subs[0]['name'] if subs else None
     for hym in result:hym['footnoteRefs']=[]
     for owner in result:
         for note_index,note in enumerate(owner['footnotes']):

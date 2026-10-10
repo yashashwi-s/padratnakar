@@ -1,6 +1,6 @@
-# Android release workflow
+# Native release workflow
 
-Current candidate: **1.0.7 / version code 9**, package `org.padratnakar.reader`. See [UPLOAD-FIRST.md](UPLOAD-FIRST.md) for the owner handoff. Release binaries and signing material are intentionally outside Git.
+Current candidate: **1.0.8 / version code 10**, package `org.padratnakar.reader`. See [UPLOAD-FIRST.md](UPLOAD-FIRST.md) for the owner handoff. Release binaries and signing material are intentionally outside Git.
 
 ## Build and verify
 
@@ -37,3 +37,7 @@ Keep the existing signing identity for compatible external updates. If Play dist
 Run `python3 scripts/release/prepare-play.py --release-dir <signed-release-directory> --output <new-packet-directory>`. This validates artifact hashes and listing text limits and creates a ZIP with APK/AAB, listing text, graphics, Console worksheet and closed-test runbook. Old screenshots are explicitly reference-only. It never copies private signing material or uploads anything.
 
 The intended upload account is `yashashwisinghania@gmail.com`. See [Console worksheet](console-worksheet.md) and [closed testing](closed-testing.md). Public support contact remains a separate owner decision.
+
+## iPhone preparation
+
+The iPhone/iPad project uses the same four offline collections and corrected section hierarchy. Its version is 1.0.8, build 10. See [the iOS build and account handoff](ios.md) for unsigned compilation, remaining device checks, and signing after enrollment. The intended owner account is `yashashwisinghania@gmail.com`; the email is not an Apple Team ID.

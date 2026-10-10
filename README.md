@@ -15,6 +15,8 @@ The reader contains four collections:
 
 Canonical pads retain accepted Unicode text, source provenance, headings, stanzas, and shared footnotes. _Shodash Geet_ has collection-specific display rules that remain separate from canonical pad data.
 
+Pad Ratnakar navigation follows the reviewed contents: 19 main sections and 22 subsections, with visible pad ranges. The [October 10 section corrections](docs/section-corrections.md) document the reference scan, complete hierarchy, and changes to 517 pad classifications; devotional text and page geometry are unchanged.
+
 ## Develop and check
 
 Use a current Node.js installation:
@@ -49,7 +51,7 @@ After a verified web build, copy assets into the Capacitor projects with:
 npm run native:sync
 ```
 
-This synchronizes assets only; it does not build, sign, or test a native release. See the [release guide](docs/release/README.md) for the current Android candidate and signing workflow. iOS binary/device verification remains separate.
+This synchronizes assets only; it does not build, sign, or test a native release. See the [release guide](docs/release/README.md) for the current Android candidate and signing workflow. The iPhone/iPad project is being prepared in parallel; see the [iOS handoff](docs/release/ios.md) for build status and the remaining signing and device checks.
 
 ## Documentation
 

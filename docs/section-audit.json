@@ -1,0 +1,6170 @@
+{
+  "reviewDate": "2026-10-10",
+  "scope": "Section/subsection labels and pad ranges only; accepted text and source layout are unchanged.",
+  "reference": {
+    "filename": "Scanned_20261010-2106.pdf",
+    "sha256": "da5321af24c76650859c07c590f46e5e2779234e6ab19043f38dc0976aadd09d",
+    "scanPages": 20,
+    "printedPages": "13–31, 34",
+    "notes": "Scan page 8 is upside down. Scan page 19 (printed page 31) is distorted; checked against committed source PDF physical page 30. Printed pages 32–33 are absent from scan; checked source PDF physical pages 31–32 for continuation of मानवता. Source PDF uses a different बाल section title; supplied scan title takes precedence."
+  },
+  "priorTopics": [
+    {
+      "name": "वन्दना एवं प्रार्थना",
+      "startPad": 1,
+      "endPad": 152,
+      "subtopics": []
+    },
+    {
+      "name": "श्रीराधा-माधव-स्वरूप-माधुरी",
+      "startPad": 153,
+      "endPad": 199,
+      "subtopics": []
+    },
+    {
+      "name": "श्रीकृष्ण-बाल-लीला-माधुरी",
+      "startPad": 200,
+      "endPad": 232,
+      "subtopics": [
+        {
+          "name": "भैया",
+          "startPad": 200,
+          "endPad": 203
+        }
+      ]
+    },
+    {
+      "name": "श्रीराधा-माधव-लीला-माधुरी",
+      "startPad": 233,
+      "endPad": 607,
+      "subtopics": [
+        {
+          "name": "वृन्दावन-शोभा",
+          "startPad": 233,
+          "endPad": 234
+        },
+        {
+          "name": "निकुञ्ज-लीला",
+          "startPad": 235,
+          "endPad": 237
+        },
+        {
+          "name": "गोपी-प्रेम",
+          "startPad": 238,
+          "endPad": 245
+        },
+        {
+          "name": "आवनी-लीला",
+          "startPad": 246,
+          "endPad": 250
+        },
+        {
+          "name": "मुरली-ध्वनि",
+          "startPad": 251,
+          "endPad": 258
+        },
+        {
+          "name": "रस-लीला",
+          "startPad": 259,
+          "endPad": 268
+        },
+        {
+          "name": "मिलन-लीला",
+          "startPad": 269,
+          "endPad": 275
+        },
+        {
+          "name": "झूलन-लीला",
+          "startPad": 276,
+          "endPad": 286
+        },
+        {
+          "name": "नौकाविहार",
+          "startPad": 287,
+          "endPad": 287
+        },
+        {
+          "name": "होली-लीला",
+          "startPad": 288,
+          "endPad": 291
+        },
+        {
+          "name": "प्रेमवैचित्त्य-लीला",
+          "startPad": 292,
+          "endPad": 297
+        },
+        {
+          "name": "विरह एवं उद्धव-लीला",
+          "startPad": 298,
+          "endPad": 354
+        },
+        {
+          "name": "मधुर-लीला",
+          "startPad": 355,
+          "endPad": 416
+        },
+        {
+          "name": "प्रेम-समुद्रकी मधुर तरंगें",
+          "startPad": 417,
+          "endPad": 447
+        },
+        {
+          "name": "मधुर अभिलाषा",
+          "startPad": 448,
+          "endPad": 463
+        },
+        {
+          "name": "मधुर अनुभूति",
+          "startPad": 464,
+          "endPad": 472
+        },
+        {
+          "name": "प्रभु-चरणोंमें",
+          "startPad": 473,
+          "endPad": 533
+        },
+        {
+          "name": "श्रीकृष्णके प्रेमोद्गार",
+          "startPad": 534,
+          "endPad": 607
+        }
+      ]
+    },
+    {
+      "name": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति",
+      "startPad": 608,
+      "endPad": 627,
+      "subtopics": []
+    },
+    {
+      "name": "सर्वदोषमय",
+      "startPad": 628,
+      "endPad": 660,
+      "subtopics": []
+    },
+    {
+      "name": "प्रेम-तत्त्व एवं गोपी-प्रेमका महत्त्व",
+      "startPad": 661,
+      "endPad": 752,
+      "subtopics": []
+    },
+    {
+      "name": "श्रीराधा-कृष्ण-जन्म-महोत्सव एवं जय-गान",
+      "startPad": 753,
+      "endPad": 823,
+      "subtopics": []
+    },
+    {
+      "name": "श्रीराम-गुण-गान",
+      "startPad": 824,
+      "endPad": 929,
+      "subtopics": [
+        {
+          "name": "एक सत्य जो परम तत्त्व",
+          "startPad": 856,
+          "endPad": 859
+        }
+      ]
+    },
+    {
+      "name": "भगवान्‌का स्वभाव",
+      "startPad": 930,
+      "endPad": 960,
+      "subtopics": []
+    },
+    {
+      "name": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+      "startPad": 961,
+      "endPad": 997,
+      "subtopics": [
+        {
+          "name": "योगभ्रष्ट पुण्यलोकोंमें",
+          "startPad": 974,
+          "endPad": 997
+        }
+      ]
+    },
+    {
+      "name": "श्रीभगवन्नाम-महिमा",
+      "startPad": 998,
+      "endPad": 1021,
+      "subtopics": []
+    },
+    {
+      "name": "प्रबोध-चेतावनी",
+      "startPad": 1022,
+      "endPad": 1050,
+      "subtopics": []
+    },
+    {
+      "name": "अभिलाषा",
+      "startPad": 1051,
+      "endPad": 1119,
+      "subtopics": []
+    },
+    {
+      "name": "अनुभूति",
+      "startPad": 1120,
+      "endPad": 1256,
+      "subtopics": []
+    },
+    {
+      "name": "व्यवहार-परमार्थ",
+      "startPad": 1257,
+      "endPad": 1353,
+      "subtopics": [
+        {
+          "name": "भगवान्‌की सर्वव्यापकता",
+          "startPad": 1257,
+          "endPad": 1281
+        },
+        {
+          "name": "भगवत्कृपा-आश्वासन",
+          "startPad": 1282,
+          "endPad": 1310
+        },
+        {
+          "name": "सनातनधर्मकी महिमा",
+          "startPad": 1311,
+          "endPad": 1330
+        },
+        {
+          "name": "महापुरुष-वन्दना, लक्षण एवं महिमा",
+          "startPad": 1331,
+          "endPad": 1353
+        }
+      ]
+    },
+    {
+      "name": "मानवता",
+      "startPad": 1354,
+      "endPad": 1503,
+      "subtopics": []
+    },
+    {
+      "name": "प्रकीर्ण",
+      "startPad": 1504,
+      "endPad": 1565,
+      "subtopics": []
+    }
+  ],
+  "correctedTopics": [
+    {
+      "name": "वन्दना एवं प्रार्थना",
+      "startPad": 1,
+      "endPad": 152,
+      "subtopics": []
+    },
+    {
+      "name": "श्रीराधा-माधव-स्वरूप-माधुरी",
+      "startPad": 153,
+      "endPad": 203,
+      "subtopics": []
+    },
+    {
+      "name": "बाल-माधुरीकी झाँकियाँ",
+      "startPad": 204,
+      "endPad": 232,
+      "subtopics": []
+    },
+    {
+      "name": "श्रीराधा-माधव-लीला-माधुरी",
+      "startPad": 233,
+      "endPad": 416,
+      "subtopics": [
+        {
+          "name": "वृन्दावन-शोभा",
+          "startPad": 233,
+          "endPad": 234
+        },
+        {
+          "name": "निकुञ्ज-लीला",
+          "startPad": 235,
+          "endPad": 237
+        },
+        {
+          "name": "गोपी-प्रेम",
+          "startPad": 238,
+          "endPad": 245
+        },
+        {
+          "name": "आवनी-लीला",
+          "startPad": 246,
+          "endPad": 250
+        },
+        {
+          "name": "मुरली-ध्वनि",
+          "startPad": 251,
+          "endPad": 258
+        },
+        {
+          "name": "रास-लीला",
+          "startPad": 259,
+          "endPad": 268
+        },
+        {
+          "name": "मिलन-लीला",
+          "startPad": 269,
+          "endPad": 275
+        },
+        {
+          "name": "झूलन-लीला",
+          "startPad": 276,
+          "endPad": 286
+        },
+        {
+          "name": "नौकाविहार-लीला",
+          "startPad": 287,
+          "endPad": 287
+        },
+        {
+          "name": "होली-लीला",
+          "startPad": 288,
+          "endPad": 291
+        },
+        {
+          "name": "प्रेमवैचित्त्य-लीला",
+          "startPad": 292,
+          "endPad": 297
+        },
+        {
+          "name": "विरह एवं उद्धव-लीला",
+          "startPad": 298,
+          "endPad": 354
+        },
+        {
+          "name": "मधुर-लीला",
+          "startPad": 355,
+          "endPad": 416
+        }
+      ]
+    },
+    {
+      "name": "प्रेम-समुद्रकी मधुर तरंगें",
+      "startPad": 417,
+      "endPad": 533,
+      "subtopics": [
+        {
+          "name": "पूर्वराग",
+          "startPad": 417,
+          "endPad": 447
+        },
+        {
+          "name": "मधुर अभिलाषा",
+          "startPad": 448,
+          "endPad": 463
+        },
+        {
+          "name": "मधुर अनुभूति",
+          "startPad": 464,
+          "endPad": 525
+        },
+        {
+          "name": "विचित्र तरंगें",
+          "startPad": 526,
+          "endPad": 533
+        }
+      ]
+    },
+    {
+      "name": "श्रीकृष्णके प्रेमोद्गार",
+      "startPad": 534,
+      "endPad": 607,
+      "subtopics": []
+    },
+    {
+      "name": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति",
+      "startPad": 608,
+      "endPad": 660,
+      "subtopics": []
+    },
+    {
+      "name": "प्रेम-तत्त्व एवं गोपी-प्रेमका महत्त्व",
+      "startPad": 661,
+      "endPad": 752,
+      "subtopics": []
+    },
+    {
+      "name": "श्रीराधा-कृष्ण-जन्म-महोत्सव एवं जय-गान",
+      "startPad": 753,
+      "endPad": 823,
+      "subtopics": []
+    },
+    {
+      "name": "श्रीराम-गुण-गान",
+      "startPad": 824,
+      "endPad": 854,
+      "subtopics": []
+    },
+    {
+      "name": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+      "startPad": 855,
+      "endPad": 929,
+      "subtopics": []
+    },
+    {
+      "name": "भगवान्‌का स्वभाव",
+      "startPad": 930,
+      "endPad": 960,
+      "subtopics": []
+    },
+    {
+      "name": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+      "startPad": 961,
+      "endPad": 997,
+      "subtopics": []
+    },
+    {
+      "name": "श्रीभगवन्नाम-महिमा",
+      "startPad": 998,
+      "endPad": 1021,
+      "subtopics": []
+    },
+    {
+      "name": "प्रबोध-चेतावनी",
+      "startPad": 1022,
+      "endPad": 1050,
+      "subtopics": []
+    },
+    {
+      "name": "अभिलाषा",
+      "startPad": 1051,
+      "endPad": 1119,
+      "subtopics": []
+    },
+    {
+      "name": "अनुभूति",
+      "startPad": 1120,
+      "endPad": 1256,
+      "subtopics": []
+    },
+    {
+      "name": "व्यवहार-परमार्थ",
+      "startPad": 1257,
+      "endPad": 1503,
+      "subtopics": [
+        {
+          "name": "भगवान्‌की सर्वव्यापकता",
+          "startPad": 1257,
+          "endPad": 1281
+        },
+        {
+          "name": "भगवत्कृपा-आश्वासन",
+          "startPad": 1282,
+          "endPad": 1310
+        },
+        {
+          "name": "सनातनधर्मकी महिमा",
+          "startPad": 1311,
+          "endPad": 1330
+        },
+        {
+          "name": "महापुरुष-वन्दना, लक्षण एवं महिमा",
+          "startPad": 1331,
+          "endPad": 1353
+        },
+        {
+          "name": "मानवता",
+          "startPad": 1354,
+          "endPad": 1503
+        }
+      ]
+    },
+    {
+      "name": "प्रकीर्ण",
+      "startPad": 1504,
+      "endPad": 1565,
+      "subtopics": []
+    }
+  ],
+  "changedPadCount": 517,
+  "changes": [
+    {
+      "padId": 200,
+      "before": {
+        "section": "श्रीकृष्ण-बाल-लीला-माधुरी",
+        "subtopic": "भैया"
+      },
+      "after": {
+        "section": "श्रीराधा-माधव-स्वरूप-माधुरी",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 201,
+      "before": {
+        "section": "श्रीकृष्ण-बाल-लीला-माधुरी",
+        "subtopic": "भैया"
+      },
+      "after": {
+        "section": "श्रीराधा-माधव-स्वरूप-माधुरी",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 202,
+      "before": {
+        "section": "श्रीकृष्ण-बाल-लीला-माधुरी",
+        "subtopic": "भैया"
+      },
+      "after": {
+        "section": "श्रीराधा-माधव-स्वरूप-माधुरी",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 203,
+      "before": {
+        "section": "श्रीकृष्ण-बाल-लीला-माधुरी",
+        "subtopic": "भैया"
+      },
+      "after": {
+        "section": "श्रीराधा-माधव-स्वरूप-माधुरी",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 204,
+      "before": {
+        "section": "श्रीकृष्ण-बाल-लीला-माधुरी",
+        "subtopic": null
+      },
+      "after": {
+        "section": "बाल-माधुरीकी झाँकियाँ",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 205,
+      "before": {
+        "section": "श्रीकृष्ण-बाल-लीला-माधुरी",
+        "subtopic": null
+      },
+      "after": {
+        "section": "बाल-माधुरीकी झाँकियाँ",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 206,
+      "before": {
+        "section": "श्रीकृष्ण-बाल-लीला-माधुरी",
+        "subtopic": null
+      },
+      "after": {
+        "section": "बाल-माधुरीकी झाँकियाँ",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 207,
+      "before": {
+        "section": "श्रीकृष्ण-बाल-लीला-माधुरी",
+        "subtopic": null
+      },
+      "after": {
+        "section": "बाल-माधुरीकी झाँकियाँ",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 208,
+      "before": {
+        "section": "श्रीकृष्ण-बाल-लीला-माधुरी",
+        "subtopic": null
+      },
+      "after": {
+        "section": "बाल-माधुरीकी झाँकियाँ",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 209,
+      "before": {
+        "section": "श्रीकृष्ण-बाल-लीला-माधुरी",
+        "subtopic": null
+      },
+      "after": {
+        "section": "बाल-माधुरीकी झाँकियाँ",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 210,
+      "before": {
+        "section": "श्रीकृष्ण-बाल-लीला-माधुरी",
+        "subtopic": null
+      },
+      "after": {
+        "section": "बाल-माधुरीकी झाँकियाँ",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 211,
+      "before": {
+        "section": "श्रीकृष्ण-बाल-लीला-माधुरी",
+        "subtopic": null
+      },
+      "after": {
+        "section": "बाल-माधुरीकी झाँकियाँ",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 212,
+      "before": {
+        "section": "श्रीकृष्ण-बाल-लीला-माधुरी",
+        "subtopic": null
+      },
+      "after": {
+        "section": "बाल-माधुरीकी झाँकियाँ",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 213,
+      "before": {
+        "section": "श्रीकृष्ण-बाल-लीला-माधुरी",
+        "subtopic": null
+      },
+      "after": {
+        "section": "बाल-माधुरीकी झाँकियाँ",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 214,
+      "before": {
+        "section": "श्रीकृष्ण-बाल-लीला-माधुरी",
+        "subtopic": null
+      },
+      "after": {
+        "section": "बाल-माधुरीकी झाँकियाँ",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 215,
+      "before": {
+        "section": "श्रीकृष्ण-बाल-लीला-माधुरी",
+        "subtopic": null
+      },
+      "after": {
+        "section": "बाल-माधुरीकी झाँकियाँ",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 216,
+      "before": {
+        "section": "श्रीकृष्ण-बाल-लीला-माधुरी",
+        "subtopic": null
+      },
+      "after": {
+        "section": "बाल-माधुरीकी झाँकियाँ",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 217,
+      "before": {
+        "section": "श्रीकृष्ण-बाल-लीला-माधुरी",
+        "subtopic": null
+      },
+      "after": {
+        "section": "बाल-माधुरीकी झाँकियाँ",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 218,
+      "before": {
+        "section": "श्रीकृष्ण-बाल-लीला-माधुरी",
+        "subtopic": null
+      },
+      "after": {
+        "section": "बाल-माधुरीकी झाँकियाँ",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 219,
+      "before": {
+        "section": "श्रीकृष्ण-बाल-लीला-माधुरी",
+        "subtopic": null
+      },
+      "after": {
+        "section": "बाल-माधुरीकी झाँकियाँ",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 220,
+      "before": {
+        "section": "श्रीकृष्ण-बाल-लीला-माधुरी",
+        "subtopic": null
+      },
+      "after": {
+        "section": "बाल-माधुरीकी झाँकियाँ",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 221,
+      "before": {
+        "section": "श्रीकृष्ण-बाल-लीला-माधुरी",
+        "subtopic": null
+      },
+      "after": {
+        "section": "बाल-माधुरीकी झाँकियाँ",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 222,
+      "before": {
+        "section": "श्रीकृष्ण-बाल-लीला-माधुरी",
+        "subtopic": null
+      },
+      "after": {
+        "section": "बाल-माधुरीकी झाँकियाँ",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 223,
+      "before": {
+        "section": "श्रीकृष्ण-बाल-लीला-माधुरी",
+        "subtopic": null
+      },
+      "after": {
+        "section": "बाल-माधुरीकी झाँकियाँ",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 224,
+      "before": {
+        "section": "श्रीकृष्ण-बाल-लीला-माधुरी",
+        "subtopic": null
+      },
+      "after": {
+        "section": "बाल-माधुरीकी झाँकियाँ",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 225,
+      "before": {
+        "section": "श्रीकृष्ण-बाल-लीला-माधुरी",
+        "subtopic": null
+      },
+      "after": {
+        "section": "बाल-माधुरीकी झाँकियाँ",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 226,
+      "before": {
+        "section": "श्रीकृष्ण-बाल-लीला-माधुरी",
+        "subtopic": null
+      },
+      "after": {
+        "section": "बाल-माधुरीकी झाँकियाँ",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 227,
+      "before": {
+        "section": "श्रीकृष्ण-बाल-लीला-माधुरी",
+        "subtopic": null
+      },
+      "after": {
+        "section": "बाल-माधुरीकी झाँकियाँ",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 228,
+      "before": {
+        "section": "श्रीकृष्ण-बाल-लीला-माधुरी",
+        "subtopic": null
+      },
+      "after": {
+        "section": "बाल-माधुरीकी झाँकियाँ",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 229,
+      "before": {
+        "section": "श्रीकृष्ण-बाल-लीला-माधुरी",
+        "subtopic": null
+      },
+      "after": {
+        "section": "बाल-माधुरीकी झाँकियाँ",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 230,
+      "before": {
+        "section": "श्रीकृष्ण-बाल-लीला-माधुरी",
+        "subtopic": null
+      },
+      "after": {
+        "section": "बाल-माधुरीकी झाँकियाँ",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 231,
+      "before": {
+        "section": "श्रीकृष्ण-बाल-लीला-माधुरी",
+        "subtopic": null
+      },
+      "after": {
+        "section": "बाल-माधुरीकी झाँकियाँ",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 232,
+      "before": {
+        "section": "श्रीकृष्ण-बाल-लीला-माधुरी",
+        "subtopic": null
+      },
+      "after": {
+        "section": "बाल-माधुरीकी झाँकियाँ",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 259,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "रस-लीला"
+      },
+      "after": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "रास-लीला"
+      }
+    },
+    {
+      "padId": 260,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "रस-लीला"
+      },
+      "after": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "रास-लीला"
+      }
+    },
+    {
+      "padId": 261,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "रस-लीला"
+      },
+      "after": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "रास-लीला"
+      }
+    },
+    {
+      "padId": 262,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "रस-लीला"
+      },
+      "after": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "रास-लीला"
+      }
+    },
+    {
+      "padId": 263,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "रस-लीला"
+      },
+      "after": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "रास-लीला"
+      }
+    },
+    {
+      "padId": 264,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "रस-लीला"
+      },
+      "after": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "रास-लीला"
+      }
+    },
+    {
+      "padId": 265,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "रस-लीला"
+      },
+      "after": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "रास-लीला"
+      }
+    },
+    {
+      "padId": 266,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "रस-लीला"
+      },
+      "after": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "रास-लीला"
+      }
+    },
+    {
+      "padId": 267,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "रस-लीला"
+      },
+      "after": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "रास-लीला"
+      }
+    },
+    {
+      "padId": 268,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "रस-लीला"
+      },
+      "after": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "रास-लीला"
+      }
+    },
+    {
+      "padId": 287,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "नौकाविहार"
+      },
+      "after": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "नौकाविहार-लीला"
+      }
+    },
+    {
+      "padId": 417,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रेम-समुद्रकी मधुर तरंगें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "पूर्वराग"
+      }
+    },
+    {
+      "padId": 418,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रेम-समुद्रकी मधुर तरंगें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "पूर्वराग"
+      }
+    },
+    {
+      "padId": 419,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रेम-समुद्रकी मधुर तरंगें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "पूर्वराग"
+      }
+    },
+    {
+      "padId": 420,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रेम-समुद्रकी मधुर तरंगें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "पूर्वराग"
+      }
+    },
+    {
+      "padId": 421,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रेम-समुद्रकी मधुर तरंगें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "पूर्वराग"
+      }
+    },
+    {
+      "padId": 422,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रेम-समुद्रकी मधुर तरंगें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "पूर्वराग"
+      }
+    },
+    {
+      "padId": 423,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रेम-समुद्रकी मधुर तरंगें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "पूर्वराग"
+      }
+    },
+    {
+      "padId": 424,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रेम-समुद्रकी मधुर तरंगें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "पूर्वराग"
+      }
+    },
+    {
+      "padId": 425,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रेम-समुद्रकी मधुर तरंगें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "पूर्वराग"
+      }
+    },
+    {
+      "padId": 426,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रेम-समुद्रकी मधुर तरंगें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "पूर्वराग"
+      }
+    },
+    {
+      "padId": 427,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रेम-समुद्रकी मधुर तरंगें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "पूर्वराग"
+      }
+    },
+    {
+      "padId": 428,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रेम-समुद्रकी मधुर तरंगें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "पूर्वराग"
+      }
+    },
+    {
+      "padId": 429,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रेम-समुद्रकी मधुर तरंगें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "पूर्वराग"
+      }
+    },
+    {
+      "padId": 430,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रेम-समुद्रकी मधुर तरंगें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "पूर्वराग"
+      }
+    },
+    {
+      "padId": 431,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रेम-समुद्रकी मधुर तरंगें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "पूर्वराग"
+      }
+    },
+    {
+      "padId": 432,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रेम-समुद्रकी मधुर तरंगें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "पूर्वराग"
+      }
+    },
+    {
+      "padId": 433,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रेम-समुद्रकी मधुर तरंगें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "पूर्वराग"
+      }
+    },
+    {
+      "padId": 434,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रेम-समुद्रकी मधुर तरंगें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "पूर्वराग"
+      }
+    },
+    {
+      "padId": 435,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रेम-समुद्रकी मधुर तरंगें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "पूर्वराग"
+      }
+    },
+    {
+      "padId": 436,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रेम-समुद्रकी मधुर तरंगें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "पूर्वराग"
+      }
+    },
+    {
+      "padId": 437,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रेम-समुद्रकी मधुर तरंगें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "पूर्वराग"
+      }
+    },
+    {
+      "padId": 438,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रेम-समुद्रकी मधुर तरंगें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "पूर्वराग"
+      }
+    },
+    {
+      "padId": 439,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रेम-समुद्रकी मधुर तरंगें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "पूर्वराग"
+      }
+    },
+    {
+      "padId": 440,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रेम-समुद्रकी मधुर तरंगें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "पूर्वराग"
+      }
+    },
+    {
+      "padId": 441,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रेम-समुद्रकी मधुर तरंगें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "पूर्वराग"
+      }
+    },
+    {
+      "padId": 442,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रेम-समुद्रकी मधुर तरंगें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "पूर्वराग"
+      }
+    },
+    {
+      "padId": 443,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रेम-समुद्रकी मधुर तरंगें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "पूर्वराग"
+      }
+    },
+    {
+      "padId": 444,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रेम-समुद्रकी मधुर तरंगें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "पूर्वराग"
+      }
+    },
+    {
+      "padId": 445,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रेम-समुद्रकी मधुर तरंगें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "पूर्वराग"
+      }
+    },
+    {
+      "padId": 446,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रेम-समुद्रकी मधुर तरंगें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "पूर्वराग"
+      }
+    },
+    {
+      "padId": 447,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रेम-समुद्रकी मधुर तरंगें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "पूर्वराग"
+      }
+    },
+    {
+      "padId": 448,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "मधुर अभिलाषा"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अभिलाषा"
+      }
+    },
+    {
+      "padId": 449,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "मधुर अभिलाषा"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अभिलाषा"
+      }
+    },
+    {
+      "padId": 450,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "मधुर अभिलाषा"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अभिलाषा"
+      }
+    },
+    {
+      "padId": 451,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "मधुर अभिलाषा"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अभिलाषा"
+      }
+    },
+    {
+      "padId": 452,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "मधुर अभिलाषा"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अभिलाषा"
+      }
+    },
+    {
+      "padId": 453,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "मधुर अभिलाषा"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अभिलाषा"
+      }
+    },
+    {
+      "padId": 454,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "मधुर अभिलाषा"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अभिलाषा"
+      }
+    },
+    {
+      "padId": 455,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "मधुर अभिलाषा"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अभिलाषा"
+      }
+    },
+    {
+      "padId": 456,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "मधुर अभिलाषा"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अभिलाषा"
+      }
+    },
+    {
+      "padId": 457,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "मधुर अभिलाषा"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अभिलाषा"
+      }
+    },
+    {
+      "padId": 458,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "मधुर अभिलाषा"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अभिलाषा"
+      }
+    },
+    {
+      "padId": 459,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "मधुर अभिलाषा"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अभिलाषा"
+      }
+    },
+    {
+      "padId": 460,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "मधुर अभिलाषा"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अभिलाषा"
+      }
+    },
+    {
+      "padId": 461,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "मधुर अभिलाषा"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अभिलाषा"
+      }
+    },
+    {
+      "padId": 462,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "मधुर अभिलाषा"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अभिलाषा"
+      }
+    },
+    {
+      "padId": 463,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "मधुर अभिलाषा"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अभिलाषा"
+      }
+    },
+    {
+      "padId": 464,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "मधुर अनुभूति"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 465,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "मधुर अनुभूति"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 466,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "मधुर अनुभूति"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 467,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "मधुर अनुभूति"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 468,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "मधुर अनुभूति"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 469,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "मधुर अनुभूति"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 470,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "मधुर अनुभूति"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 471,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "मधुर अनुभूति"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 472,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "मधुर अनुभूति"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 473,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 474,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 475,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 476,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 477,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 478,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 479,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 480,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 481,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 482,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 483,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 484,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 485,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 486,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 487,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 488,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 489,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 490,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 491,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 492,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 493,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 494,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 495,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 496,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 497,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 498,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 499,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 500,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 501,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 502,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 503,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 504,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 505,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 506,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 507,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 508,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 509,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 510,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 511,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 512,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 513,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 514,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 515,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 516,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 517,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 518,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 519,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 520,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 521,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 522,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 523,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 524,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 525,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "मधुर अनुभूति"
+      }
+    },
+    {
+      "padId": 526,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "विचित्र तरंगें"
+      }
+    },
+    {
+      "padId": 527,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "विचित्र तरंगें"
+      }
+    },
+    {
+      "padId": 528,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "विचित्र तरंगें"
+      }
+    },
+    {
+      "padId": 529,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "विचित्र तरंगें"
+      }
+    },
+    {
+      "padId": 530,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "विचित्र तरंगें"
+      }
+    },
+    {
+      "padId": 531,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "विचित्र तरंगें"
+      }
+    },
+    {
+      "padId": 532,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "विचित्र तरंगें"
+      }
+    },
+    {
+      "padId": 533,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "प्रभु-चरणोंमें"
+      },
+      "after": {
+        "section": "प्रेम-समुद्रकी मधुर तरंगें",
+        "subtopic": "विचित्र तरंगें"
+      }
+    },
+    {
+      "padId": 534,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 535,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 536,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 537,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 538,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 539,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 540,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 541,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 542,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 543,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 544,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 545,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 546,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 547,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 548,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 549,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 550,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 551,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 552,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 553,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 554,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 555,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 556,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 557,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 558,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 559,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 560,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 561,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 562,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 563,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 564,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 565,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 566,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 567,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 568,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 569,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 570,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 571,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 572,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 573,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 574,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 575,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 576,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 577,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 578,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 579,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 580,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 581,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 582,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 583,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 584,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 585,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 586,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 587,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 588,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 589,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 590,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 591,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 592,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 593,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 594,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 595,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 596,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 597,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 598,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 599,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 600,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 601,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 602,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 603,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 604,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 605,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 606,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 607,
+      "before": {
+        "section": "श्रीराधा-माधव-लीला-माधुरी",
+        "subtopic": "श्रीकृष्णके प्रेमोद्गार"
+      },
+      "after": {
+        "section": "श्रीकृष्णके प्रेमोद्गार",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 628,
+      "before": {
+        "section": "सर्वदोषमय",
+        "subtopic": null
+      },
+      "after": {
+        "section": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 629,
+      "before": {
+        "section": "सर्वदोषमय",
+        "subtopic": null
+      },
+      "after": {
+        "section": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 630,
+      "before": {
+        "section": "सर्वदोषमय",
+        "subtopic": null
+      },
+      "after": {
+        "section": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 631,
+      "before": {
+        "section": "सर्वदोषमय",
+        "subtopic": null
+      },
+      "after": {
+        "section": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 632,
+      "before": {
+        "section": "सर्वदोषमय",
+        "subtopic": null
+      },
+      "after": {
+        "section": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 633,
+      "before": {
+        "section": "सर्वदोषमय",
+        "subtopic": null
+      },
+      "after": {
+        "section": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 634,
+      "before": {
+        "section": "सर्वदोषमय",
+        "subtopic": null
+      },
+      "after": {
+        "section": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 635,
+      "before": {
+        "section": "सर्वदोषमय",
+        "subtopic": null
+      },
+      "after": {
+        "section": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 636,
+      "before": {
+        "section": "सर्वदोषमय",
+        "subtopic": null
+      },
+      "after": {
+        "section": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 637,
+      "before": {
+        "section": "सर्वदोषमय",
+        "subtopic": null
+      },
+      "after": {
+        "section": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 638,
+      "before": {
+        "section": "सर्वदोषमय",
+        "subtopic": null
+      },
+      "after": {
+        "section": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 639,
+      "before": {
+        "section": "सर्वदोषमय",
+        "subtopic": null
+      },
+      "after": {
+        "section": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 640,
+      "before": {
+        "section": "सर्वदोषमय",
+        "subtopic": null
+      },
+      "after": {
+        "section": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 641,
+      "before": {
+        "section": "सर्वदोषमय",
+        "subtopic": null
+      },
+      "after": {
+        "section": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 642,
+      "before": {
+        "section": "सर्वदोषमय",
+        "subtopic": null
+      },
+      "after": {
+        "section": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 643,
+      "before": {
+        "section": "सर्वदोषमय",
+        "subtopic": null
+      },
+      "after": {
+        "section": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 644,
+      "before": {
+        "section": "सर्वदोषमय",
+        "subtopic": null
+      },
+      "after": {
+        "section": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 645,
+      "before": {
+        "section": "सर्वदोषमय",
+        "subtopic": null
+      },
+      "after": {
+        "section": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 646,
+      "before": {
+        "section": "सर्वदोषमय",
+        "subtopic": null
+      },
+      "after": {
+        "section": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 647,
+      "before": {
+        "section": "सर्वदोषमय",
+        "subtopic": null
+      },
+      "after": {
+        "section": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 648,
+      "before": {
+        "section": "सर्वदोषमय",
+        "subtopic": null
+      },
+      "after": {
+        "section": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 649,
+      "before": {
+        "section": "सर्वदोषमय",
+        "subtopic": null
+      },
+      "after": {
+        "section": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 650,
+      "before": {
+        "section": "सर्वदोषमय",
+        "subtopic": null
+      },
+      "after": {
+        "section": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 651,
+      "before": {
+        "section": "सर्वदोषमय",
+        "subtopic": null
+      },
+      "after": {
+        "section": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 652,
+      "before": {
+        "section": "सर्वदोषमय",
+        "subtopic": null
+      },
+      "after": {
+        "section": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 653,
+      "before": {
+        "section": "सर्वदोषमय",
+        "subtopic": null
+      },
+      "after": {
+        "section": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 654,
+      "before": {
+        "section": "सर्वदोषमय",
+        "subtopic": null
+      },
+      "after": {
+        "section": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 655,
+      "before": {
+        "section": "सर्वदोषमय",
+        "subtopic": null
+      },
+      "after": {
+        "section": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 656,
+      "before": {
+        "section": "सर्वदोषमय",
+        "subtopic": null
+      },
+      "after": {
+        "section": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 657,
+      "before": {
+        "section": "सर्वदोषमय",
+        "subtopic": null
+      },
+      "after": {
+        "section": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 658,
+      "before": {
+        "section": "सर्वदोषमय",
+        "subtopic": null
+      },
+      "after": {
+        "section": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 659,
+      "before": {
+        "section": "सर्वदोषमय",
+        "subtopic": null
+      },
+      "after": {
+        "section": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 660,
+      "before": {
+        "section": "सर्वदोषमय",
+        "subtopic": null
+      },
+      "after": {
+        "section": "श्रीराधाके प्रेमोद्गार—श्रीकृष्णके प्रति",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 855,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 856,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": "एक सत्य जो परम तत्त्व"
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 857,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": "एक सत्य जो परम तत्त्व"
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 858,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": "एक सत्य जो परम तत्त्व"
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 859,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": "एक सत्य जो परम तत्त्व"
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 860,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 861,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 862,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 863,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 864,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 865,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 866,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 867,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 868,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 869,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 870,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 871,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 872,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 873,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 874,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 875,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 876,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 877,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 878,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 879,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 880,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 881,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 882,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 883,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 884,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 885,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 886,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 887,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 888,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 889,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 890,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 891,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 892,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 893,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 894,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 895,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 896,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 897,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 898,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 899,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 900,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 901,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 902,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 903,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 904,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 905,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 906,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 907,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 908,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 909,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 910,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 911,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 912,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 913,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 914,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 915,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 916,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 917,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 918,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 919,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 920,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 921,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 922,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 923,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 924,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 925,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 926,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 927,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 928,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 929,
+      "before": {
+        "section": "श्रीराम-गुण-गान",
+        "subtopic": null
+      },
+      "after": {
+        "section": "भगवान्‌के विविध स्वरूपोंका गुण-गान",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 974,
+      "before": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": "योगभ्रष्ट पुण्यलोकोंमें"
+      },
+      "after": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 975,
+      "before": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": "योगभ्रष्ट पुण्यलोकोंमें"
+      },
+      "after": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 976,
+      "before": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": "योगभ्रष्ट पुण्यलोकोंमें"
+      },
+      "after": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 977,
+      "before": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": "योगभ्रष्ट पुण्यलोकोंमें"
+      },
+      "after": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 978,
+      "before": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": "योगभ्रष्ट पुण्यलोकोंमें"
+      },
+      "after": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 979,
+      "before": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": "योगभ्रष्ट पुण्यलोकोंमें"
+      },
+      "after": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 980,
+      "before": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": "योगभ्रष्ट पुण्यलोकोंमें"
+      },
+      "after": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 981,
+      "before": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": "योगभ्रष्ट पुण्यलोकोंमें"
+      },
+      "after": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 982,
+      "before": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": "योगभ्रष्ट पुण्यलोकोंमें"
+      },
+      "after": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 983,
+      "before": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": "योगभ्रष्ट पुण्यलोकोंमें"
+      },
+      "after": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 984,
+      "before": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": "योगभ्रष्ट पुण्यलोकोंमें"
+      },
+      "after": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 985,
+      "before": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": "योगभ्रष्ट पुण्यलोकोंमें"
+      },
+      "after": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 986,
+      "before": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": "योगभ्रष्ट पुण्यलोकोंमें"
+      },
+      "after": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 987,
+      "before": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": "योगभ्रष्ट पुण्यलोकोंमें"
+      },
+      "after": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 988,
+      "before": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": "योगभ्रष्ट पुण्यलोकोंमें"
+      },
+      "after": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 989,
+      "before": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": "योगभ्रष्ट पुण्यलोकोंमें"
+      },
+      "after": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 990,
+      "before": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": "योगभ्रष्ट पुण्यलोकोंमें"
+      },
+      "after": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 991,
+      "before": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": "योगभ्रष्ट पुण्यलोकोंमें"
+      },
+      "after": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 992,
+      "before": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": "योगभ्रष्ट पुण्यलोकोंमें"
+      },
+      "after": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 993,
+      "before": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": "योगभ्रष्ट पुण्यलोकोंमें"
+      },
+      "after": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 994,
+      "before": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": "योगभ्रष्ट पुण्यलोकोंमें"
+      },
+      "after": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 995,
+      "before": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": "योगभ्रष्ट पुण्यलोकोंमें"
+      },
+      "after": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 996,
+      "before": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": "योगभ्रष्ट पुण्यलोकोंमें"
+      },
+      "after": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 997,
+      "before": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": "योगभ्रष्ट पुण्यलोकोंमें"
+      },
+      "after": {
+        "section": "श्रीमद्‌भगवद्‌गीताके विविध प्रसंग",
+        "subtopic": null
+      }
+    },
+    {
+      "padId": 1354,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1355,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1356,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1357,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1358,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1359,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1360,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1361,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1362,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1363,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1364,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1365,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1366,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1367,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1368,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1369,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1370,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1371,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1372,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1373,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1374,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1375,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1376,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1377,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1378,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1379,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1380,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1381,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1382,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1383,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1384,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1385,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1386,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1387,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1388,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1389,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1390,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1391,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1392,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1393,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1394,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1395,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1396,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1397,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1398,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1399,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1400,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1401,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1402,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1403,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1404,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1405,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1406,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1407,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1408,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1409,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1410,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1411,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1412,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1413,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1414,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1415,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1416,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1417,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1418,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1419,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1420,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1421,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1422,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1423,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1424,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1425,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1426,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1427,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1428,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1429,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1430,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1431,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1432,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1433,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1434,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1435,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1436,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1437,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1438,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1439,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1440,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1441,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1442,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1443,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1444,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1445,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1446,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1447,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1448,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1449,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1450,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1451,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1452,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1453,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1454,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1455,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1456,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1457,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1458,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1459,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1460,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1461,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1462,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1463,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1464,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1465,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1466,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1467,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1468,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1469,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1470,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1471,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1472,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1473,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1474,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1475,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1476,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1477,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1478,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1479,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1480,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1481,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1482,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1483,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1484,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1485,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1486,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1487,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1488,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1489,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1490,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1491,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1492,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1493,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1494,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1495,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1496,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1497,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1498,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1499,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1500,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1501,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1502,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    },
+    {
+      "padId": 1503,
+      "before": {
+        "section": "मानवता",
+        "subtopic": null
+      },
+      "after": {
+        "section": "व्यवहार-परमार्थ",
+        "subtopic": "मानवता"
+      }
+    }
+  ]
+}

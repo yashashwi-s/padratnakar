@@ -1,5 +1,13 @@
 # Pad Ratnakar data integration
 
+## October 10 section review
+
+`src/data/index_map.json` is the authority for Pad Ratnakar section/subsection membership. The supplied contents scan was visually reviewed to correct names, hierarchy, and boundaries: 19 main sections, 22 subsections, and 517 changed pad classifications. See the [complete corrections and reference notes](section-corrections.md) and [per-pad before/after audit](section-audit.json). Catalog and generated reader metadata must agree with this hierarchy for every pad.
+
+The rebuild applies these classifications after historical review overrides. This explicitly supersedes old section labels only (including reviewed pad 263's रस-लीला → रास-लीला); the committed review snapshot, reviewed text, review provenance, musical metadata, and geometry remain intact. The scan is reference material, not a replacement text source.
+
+## Accepted text
+
 The repository now includes all 1,565 pads from the corrected PDF font decoding. This is the working text accepted for display; `pdf-decoded-user-accepted` does **not** claim that a person proofread every line. Seventeen pads with completed reviews in the local review database are carried over as `human-verified`, preserving the reviewer's text, metadata, revision, and checksum. The committed review snapshot preserves those decisions.
 
 Run `npm run data:rebuild` from the repository root to rebuild the accepted text, Shodash display data, compact layout assets and audits. The pipeline reads `data/source/Pad-Ratnakar-Hindi.pdf`, `data/source/decoded-candidates.jsonl` `data/source/catalog.json` (accepted classifications and heading roles), and `data/source/reviewed-overrides.json`. The build is deterministic and never discovers a private review database implicitly. To import later human corrections, deliberately update the committed review snapshot before rebuilding.
