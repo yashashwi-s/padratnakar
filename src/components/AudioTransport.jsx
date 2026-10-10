@@ -10,7 +10,7 @@ const time = (seconds) =>
 
 export default function AudioTransport({ id, onAdvance, onNotice }) {
   const controller = useRef(null);
-  const [seeking, setSeeking] = useState(false);
+  const [seekingId, setSeekingId] = useState(null);
   const advance = useRef(onAdvance);
   const [state, setState] = useState({
     ready: false,
@@ -45,11 +45,13 @@ export default function AudioTransport({ id, onAdvance, onNotice }) {
   const current = state.id === id ? state.current : 0;
   const duration = state.id === id ? state.duration : tracks[id]?.duration || 0;
   const checking = state.id !== id || state.busy;
+  const seeking = seekingId === id && !checking && state.ready;
   const percent = duration ? Math.min(100, (current / duration) * 100) : 0;
   return (
     <>
       <div
-        className="audio-progress"
+        className={`audio-progress${seeking ? " is-seeking" : ""}`}
+        onContextMenu={(event) => event.preventDefault()}
         style={{ "--audio-progress": `${percent}%` }}
       >
         <span className="audio-progress-fill" />
@@ -59,12 +61,31 @@ export default function AudioTransport({ id, onAdvance, onNotice }) {
         )}
         <input
           type="range"
-          onPointerDown={() => setSeeking(true)}
-          onPointerUp={() => setSeeking(false)}
-          onPointerCancel={() => setSeeking(false)}
-          onKeyDown={() => setSeeking(true)}
-          onKeyUp={() => setSeeking(false)}
-          onBlur={() => setSeeking(false)}
+          onPointerDown={(event) => {
+            if (event.button !== 0) return;
+            event.currentTarget.setPointerCapture(event.pointerId);
+            setSeekingId(id);
+          }}
+          onPointerUp={() => setSeekingId(null)}
+          onPointerCancel={() => setSeekingId(null)}
+          onLostPointerCapture={() => setSeekingId(null)}
+          onKeyDown={(event) => {
+            if (
+              [
+                "ArrowLeft",
+                "ArrowRight",
+                "ArrowUp",
+                "ArrowDown",
+                "Home",
+                "End",
+                "PageUp",
+                "PageDown",
+              ].includes(event.key)
+            )
+              setSeekingId(id);
+          }}
+          onKeyUp={() => setSeekingId(null)}
+          onBlur={() => setSeekingId(null)}
           min="0"
           max={duration || 1}
           step="0.1"

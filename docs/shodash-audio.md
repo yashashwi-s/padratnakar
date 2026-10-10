@@ -6,7 +6,7 @@ The user-confirmed mapping is 00 → Vandana, 01–15 → songs 1–15, 17 → s
 
 ## Playback
 
-The transport occupies the right side of the bottom navigation. Play downloads an uncached recording before playing; a small download badge on the same button becomes a percentage ring during transfer. Pause preserves position. The divider seeks, with elapsed time at the left and total duration at the right, below the bar in the beige footer; times appear after playback starts, and seeking shows a time bubble above the visible dot. Control positions remain fixed while local availability is checked.
+The transport occupies the right side of the bottom navigation. Play downloads an uncached recording before playing; a small download badge on the same button becomes a percentage ring during transfer. Pause preserves position. The divider seeks, with elapsed time at the left and total duration at the right, below the bar in the beige footer; times appear after playback starts, and the dot stays hidden during ordinary playback and appears with a time bubble while seeking. The seek control suppresses touch highlights and long-press callouts while retaining keyboard focus feedback. Control positions remain fixed while local availability is checked.
 
 While playing, changing Shodash pages loads and plays the new recording. While paused, changing pages stays paused. End-of-track advances until Pushpika, then stops without wrapping. Leaving the reader or the Shodash collection stops audio. Background/lock-screen playback is not promised or configured.
 
