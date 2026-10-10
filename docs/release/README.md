@@ -1,11 +1,11 @@
 # Native release workflow
 
-Current candidate: **1.0.8 / version code 10**, package `org.padratnakar.reader`. See [UPLOAD-FIRST.md](UPLOAD-FIRST.md) for the owner handoff. Release binaries and signing material are intentionally outside Git.
+Current candidate: **1.0.9 / version code 11**, package `org.padratnakar.reader`. See [UPLOAD-FIRST.md](UPLOAD-FIRST.md) for the owner handoff. Release binaries and signing material are intentionally outside Git.
 
 ## Build and verify
 
 1. Run `npm ci` on a clean checkout, then `npm run check`.
-2. Run `npx cap sync android` after the successful web build.
+2. Run `npm run build -- --mode native` and then `npx cap sync android`. The native build excludes downloadable Shodash MP3s; push the audio assets to GitHub first so the native audio URLs are available. See [audio delivery](../shodash-audio.md).
 3. With Java 21 and the Android SDK configured locally, run `./gradlew assembleRelease bundleRelease` from `android/`.
 4. Run `python3 scripts/release/sign.py --private-dir <existing-private-signing-directory> --output <release-directory>`. Supply `JAVA_HOME` and `ANDROID_HOME` through the local environment; never commit machine paths or secrets. Do not use `--create-key` for an existing app.
 5. The script signs/verifies APK and AAB, exports a public certificate, and writes `SHA256SUMS.txt`. Confirm package/version, certificate continuity with the previous external APK, and that the latest web/worker/font/layout assets are packaged.
@@ -40,4 +40,4 @@ The intended upload account is `yashashwisinghania@gmail.com`. See [Console work
 
 ## iPhone preparation
 
-The iPhone/iPad project uses the same four offline collections and corrected section hierarchy. Its version is 1.0.8, build 10. See [the iOS build and account handoff](ios.md) for unsigned compilation, remaining device checks, and signing after enrollment. The intended owner account is `yashashwisinghania@gmail.com`; the email is not an Apple Team ID.
+The iPhone/iPad project uses the same four offline collections and corrected section hierarchy. Its source version is 1.0.9, build 11. See [the iOS build and account handoff](ios.md) for unsigned compilation, remaining device checks, and signing after enrollment. The intended owner account is `yashashwisinghania@gmail.com`; the email is not an Apple Team ID.

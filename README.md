@@ -43,6 +43,10 @@ The inner reader renders source-positioned Unicode lines as an SVG page. It pres
 
 Web sharing sends readable pad text with its canonical link. Native sharing exports the full positioned reader page as a PNG and includes the link in the share text. See [the frontend handoff](docs/frontend-handoff.md) for module boundaries and behavior.
 
+Shodash Geet bookmarks are independent of Pad Ratnakar and appear in their own saved collection. Existing numeric bookmarks remain Pad Ratnakar bookmarks; historical data cannot identify which edition they came from.
+
+All 18 Shodash recordings can be downloaded individually and replayed offline. The bottom divider is a seek bar with elapsed and total time. Playing audio follows Shodash navigation, advances through the sequence, and stops after Pushpika. Leaving the reader stops playback. See [audio delivery and verification](docs/shodash-audio.md).
+
 ## Native shells
 
 After a verified web build, copy assets into the Capacitor projects with:

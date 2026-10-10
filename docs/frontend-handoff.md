@@ -37,7 +37,7 @@ Search results return IDs and match details. The UI reattaches the local reader 
 
 `src/lib/share-pad.js` builds canonical links. On the web, sharing uses the displayed text plus that link. On Android and iOS, it exports the complete positioned SVG page as a PNG and attaches it with link text. A share image represents the entire pad, independent of the current zoom or viewport.
 
-`npm run native:sync` builds web assets and copies them into Capacitor projects. It is not a native build or device test. Android 1.0.6 is a signed historical release; release preparation for 1.0.7 is documented under [release](release/README.md).
+`npm run native:sync` builds native web assets without downloadable recordings and copies them into Capacitor projects. It is not a native build or device test. The current release workflow is documented under [release](release/README.md).
 
 ## Data and visual constraints
 

@@ -1,5 +1,12 @@
 export default function Icon({ name, ...props }) {
   const shapes = {
+    play: <path d="m8 4 12 8-12 8z" />,
+    pause: <path d="M8 5v14M16 5v14" />,
+    download: (
+      <>
+        <path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4" />
+      </>
+    ),
     share: (
       <>
         <circle cx="18" cy="5" r="3" />

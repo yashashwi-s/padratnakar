@@ -1,0 +1,146 @@
+[
+  {
+    "id": 0,
+    "file": "/audio/shodash/00.mp3",
+    "originalFile": "00 Dou chakor.mp3",
+    "bytes": 834038,
+    "duration": 208.5095,
+    "sha256": "481346e5c82294c34913ae96a118f86aef4f88b65f9340972c1a37593b1315d5"
+  },
+  {
+    "id": 1,
+    "file": "/audio/shodash/01.mp3",
+    "originalFile": "01 Tum Mam Jeevan.mp3",
+    "bytes": 3859017,
+    "duration": 241.188563,
+    "sha256": "857407cade50f77f11258a869117f882d4f9231b1cf249556cf1be8e6f22a88b"
+  },
+  {
+    "id": 2,
+    "file": "/audio/shodash/02.mp3",
+    "originalFile": "02 Ho to Dasi.mp3",
+    "bytes": 3226644,
+    "duration": 201.66525,
+    "sha256": "79b32a27bd8fcbdcdb7c95235ddfb77251b302a10a640983a02fe541d8de5d47"
+  },
+  {
+    "id": 3,
+    "file": "/audio/shodash/03.mp3",
+    "originalFile": "03 He aradhya radhey.mp3",
+    "bytes": 3228734,
+    "duration": 201.795875,
+    "sha256": "d3e3baa8cf720dda6bf2957d6e53af0bd1ea2fd6994a41332cc3874762e45095"
+  },
+  {
+    "id": 4,
+    "file": "/audio/shodash/04.mp3",
+    "originalFile": "04 Meri is vinit.mp3",
+    "bytes": 4636421,
+    "duration": 289.776313,
+    "sha256": "8e9b04f6558c81c31180fa1bfbcc05a82884bfce9bb64904665ae1f90f42b0eb"
+  },
+  {
+    "id": 5,
+    "file": "/audio/shodash/05.mp3",
+    "originalFile": "05 He vrishbhan.mp3",
+    "bytes": 6258939,
+    "duration": 156.473475,
+    "sha256": "4f2ff11f0c90991c0eb4ffa4d5c4e785e52fa4310a10d782fa50d521aca1709f"
+  },
+  {
+    "id": 6,
+    "file": "/audio/shodash/06.mp3",
+    "originalFile": "06 Sunder Shyam.mp3",
+    "bytes": 2958733,
+    "duration": 184.920813,
+    "sha256": "1afc60fcf6a73c6ce38b1576b53d159f774dad2178bb998c7afa1146ba537596"
+  },
+  {
+    "id": 7,
+    "file": "/audio/shodash/07.mp3",
+    "originalFile": "07 He Priyatame Radike.mp3",
+    "bytes": 2910667,
+    "duration": 181.916688,
+    "sha256": "60923dcbf1875b1e9bc0aff9cc6f0987a855ea421b68d2cbea78e93b5431c88a"
+  },
+  {
+    "id": 8,
+    "file": "/audio/shodash/08.mp3",
+    "originalFile": "08 Sada Sochti rehti.mp3",
+    "bytes": 5670452,
+    "duration": 354.40325,
+    "sha256": "54f678e083de439f64ef0fee7a77cbeb05d27be994d12056a1b6ff2958483a59"
+  },
+  {
+    "id": 9,
+    "file": "/audio/shodash/09.mp3",
+    "originalFile": "09 Radhey He priyatame.mp3",
+    "bytes": 3551817,
+    "duration": 221.988563,
+    "sha256": "9199d6ad8ed3fe664cc3a36be0e845596fe9b15f0923ead91704e43797dce9ba"
+  },
+  {
+    "id": 10,
+    "file": "/audio/shodash/10.mp3",
+    "originalFile": "10 Mere Dhan Dhan Jeevan.mp3",
+    "bytes": 5374537,
+    "duration": 335.908563,
+    "sha256": "09e4a78a048ee8e01b2a63acd450fa63404c7709a6c0ab802307dfdfade799ef"
+  },
+  {
+    "id": 11,
+    "file": "/audio/shodash/11.mp3",
+    "originalFile": "11 Mera Tan Man sab tera.mp3",
+    "bytes": 7481589,
+    "duration": 467.044331,
+    "sha256": "d203ed565fc72235d2476f499d6bbfd9c538260876dcf76ead0fc1134bb33c6f"
+  },
+  {
+    "id": 12,
+    "file": "/audio/shodash/12.mp3",
+    "originalFile": "12 Tumse Sada Liya Hain.mp3",
+    "bytes": 4433293,
+    "duration": 277.080813,
+    "sha256": "bc40feaa6a92a6365b168a141ca9977d330451a0a84fc7a2e84e414a311d7de4"
+  },
+  {
+    "id": 13,
+    "file": "/audio/shodash/13.mp3",
+    "originalFile": "13 Radhey Tu Hi.mp3",
+    "bytes": 3869466,
+    "duration": 241.841625,
+    "sha256": "e457d7d5e2e76d7edde2b2613bb065cf52dfce4aad4a08ecec4521e0e47caede"
+  },
+  {
+    "id": 14,
+    "file": "/audio/shodash/14.mp3",
+    "originalFile": "14 Tum Anant Sondarya.mp3",
+    "bytes": 10284303,
+    "duration": 642.768938,
+    "sha256": "0cb6829a4fa046254c0fee6cd4341f33f03dc88a02bf9b75f996fea9dbaea88d"
+  },
+  {
+    "id": 15,
+    "file": "/audio/shodash/15.mp3",
+    "originalFile": "15 radha tumsi.mp3",
+    "bytes": 7995141,
+    "duration": 499.696313,
+    "sha256": "f28706fc0165b5e68be3d38091c1b3433b9084b2de081689c8a633dacedb4703"
+  },
+  {
+    "id": 16,
+    "file": "/audio/shodash/16.mp3",
+    "originalFile": "17  Tum Yantri.mp3",
+    "bytes": 6297391,
+    "duration": 393.586938,
+    "sha256": "f29fd7c99ba33b7b88e3c953d55c1ecf6da6526f2399a7bb9db0f1e2fcda8f9f"
+  },
+  {
+    "id": 17,
+    "file": "/audio/shodash/17.mp3",
+    "originalFile": "18 Maha Bhav Ras Raj.mp3",
+    "bytes": 3728613,
+    "duration": 233.038313,
+    "sha256": "6c934e127f2ffbb7946b9a13a46609b6ea424c41a3565b83cd8e26908cfd0a02"
+  }
+]

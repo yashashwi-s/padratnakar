@@ -15,6 +15,7 @@ import { findSectionMatches, matchesSectionName } from "./lib/sections";
 import Icon from "./components/Icon";
 import ExitDialog from "./components/ExitDialog";
 import PadTypography from "./components/PadTypography";
+import AudioTransport from "./components/AudioTransport";
 
 import { routePath, validRoute } from "./lib/collection-routes";
 import {
@@ -309,6 +310,11 @@ export default function App() {
       : [];
   });
   const [notice, setNotice] = useState("");
+  useEffect(() => {
+    if (!notice) return;
+    const timer = setTimeout(() => setNotice(""), 2800);
+    return () => clearTimeout(timer);
+  }, [notice]);
   const [sharing, setSharing] = useState(false);
   const [exitOpen, setExitOpen] = useState(false);
   const swipeStart = useRef(null);
@@ -318,7 +324,8 @@ export default function App() {
   const pad = activeCollection
     ? collectionPad(route.mode, route.id)
     : byId.get(item?.padId || route.id) || hymns[0];
-  const bookmarkId = activeCollection ? `${route.mode}:${pad.id}` : pad.id;
+  const bookmarkId =
+    route.mode === "pad" ? pad.id : `${route.mode}:${route.id}`;
   const saved = bookmarks.includes(bookmarkId);
   const position =
     route.mode === "shodash"
@@ -776,6 +783,13 @@ export default function App() {
             </div>
           </main>
           <nav className="bottom-nav" aria-label="पद बदलें">
+            {route.mode === "shodash" && (
+              <AudioTransport
+                onNotice={setNotice}
+                id={route.id}
+                onAdvance={(id) => go("shodash", id)}
+              />
+            )}
             <button
               className="saved-nav"
               aria-label="सहेजे हुए पद"
@@ -1034,30 +1048,52 @@ export default function App() {
           </div>
           {bookmarks.length ? (
             <div className="list-content">
-              <SectionBar>सहेजे हुए पद</SectionBar>
-              {[...bookmarks]
-                .sort((a, b) =>
-                  String(a).localeCompare(String(b), "en", { numeric: true }),
-                )
-                .map((id) => (
-                  <PadRow
-                    key={id}
-                    number={typeof id === "number" ? dn(id) : ""}
-                    text={
-                      typeof id === "number"
-                        ? padPreview(byId.get(id))
-                        : `${collectionBookmark(id).title} — ${collectionBookmark(id).pad.title}`
-                    }
-                    onClick={() =>
-                      typeof id === "number"
-                        ? go("pad", id)
-                        : go(
-                            collectionBookmark(id).mode,
-                            collectionBookmark(id).id,
-                          )
-                    }
-                  />
-                ))}
+              {collections.map((collection) => {
+                const savedItems = bookmarks
+                  .filter((value) =>
+                    collection.mode === "pad"
+                      ? typeof value === "number"
+                      : typeof value === "string" &&
+                        value.startsWith(`${collection.mode}:`),
+                  )
+                  .sort((a, b) =>
+                    String(a).localeCompare(String(b), "en", { numeric: true }),
+                  );
+                if (!savedItems.length) return null;
+                return (
+                  <section key={collection.mode}>
+                    <SectionBar>{collection.name}</SectionBar>
+                    {savedItems.map((value) => {
+                      const id =
+                        typeof value === "number"
+                          ? value
+                          : collectionBookmark(value).id;
+                      return (
+                        <PadRow
+                          key={value}
+                          number={
+                            collection.mode === "pad"
+                              ? dn(id)
+                              : collection.mode === "shodash"
+                                ? shodash.items[id].number
+                                  ? dn(shodash.items[id].number)
+                                  : ""
+                                : ""
+                          }
+                          text={
+                            collection.mode === "pad"
+                              ? padPreview(byId.get(id))
+                              : collection.mode === "shodash"
+                                ? collectionPreview(shodash.items[id])
+                                : collectionBookmark(value).pad.title
+                          }
+                          onClick={() => go(collection.mode, id)}
+                        />
+                      );
+                    })}
+                  </section>
+                );
+              })}
             </div>
           ) : (
             <p className="empty-state">पढ़ते समय पद सहेजें। वे यहाँ दिखेंगे।</p>
@@ -1113,7 +1149,11 @@ export default function App() {
           </div>
         </main>
       )}
-      <div className="sr-only" role="status" aria-live="polite">
+      <div
+        className={`reader-toast ${notice ? "is-visible" : ""}`}
+        role="status"
+        aria-live="polite"
+      >
         {notice}
       </div>
       {exitOpen && (

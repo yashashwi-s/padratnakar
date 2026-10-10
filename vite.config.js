@@ -1,11 +1,31 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
+import { rm } from "node:fs/promises";
+import { resolve } from "node:path";
+
+function nativeAudioExclusion() {
+  let config;
+  return {
+    name: "downloadable-native-audio",
+    configResolved(value) {
+      config = value;
+    },
+    async closeBundle() {
+      if (config.mode === "native")
+        await rm(resolve(config.root, config.build.outDir, "audio"), {
+          recursive: true,
+          force: true,
+        });
+    },
+  };
+}
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
     react(),
+    nativeAudioExclusion(),
     VitePWA({
       // Write the service worker to sw.js at the root of the output.
       filename: "sw.js",
@@ -33,6 +53,7 @@ export default defineConfig({
           /^\/brand\//,
           /^\/icons\//,
           /^\/data\//,
+          /^\/audio\//,
         ],
         // Increase precache size limit; our main JS bundle is ~6 MB.
         maximumFileSizeToCacheInBytes: 8 * 1024 * 1024,

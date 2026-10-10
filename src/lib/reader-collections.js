@@ -5,6 +5,7 @@ import {
   jayantiShortcuts,
 } from "./jayanti.js";
 import { kallolini, kalloliniPads, kalloliniPage } from "./kallolini.js";
+import { shodashCollection } from "./corpus.js";
 
 function defineCollection(collection) {
   return {
@@ -43,10 +44,21 @@ export function collectionBookmark(value) {
   const separator = value.indexOf(":");
   if (separator < 1) return null;
   const mode = value.slice(0, separator);
-  if (!Object.hasOwn(readerCollections, mode)) return null;
   const idText = value.slice(separator + 1);
   if (!/^\d+$/.test(idText)) return null;
   const id = Number(idText);
+  if (mode === "shodash") {
+    const item = shodashCollection.items[id];
+    return item
+      ? {
+          mode,
+          id,
+          pad: { title: item.stanzas[0][0] },
+          title: shodashCollection.title,
+        }
+      : null;
+  }
+  if (!Object.hasOwn(readerCollections, mode)) return null;
   const pad = collectionPad(mode, id);
   return pad ? { mode, id, pad, title: readerCollections[mode].title } : null;
 }
