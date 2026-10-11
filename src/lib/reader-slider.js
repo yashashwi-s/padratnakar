@@ -5,13 +5,22 @@ export function createReaderSlider({
   scrollY,
   reducedMotion,
   translateX,
+  requestFrame = (callback) => requestAnimationFrame(callback),
+  cancelFrame = (id) => cancelAnimationFrame(id),
 }) {
   let committing = false;
+  let width = 0,
+    frame = null;
+  function cancelPaint() {
+    if (frame !== null) cancelFrame(frame);
+    frame = null;
+  }
   let offset = 0,
     origin = 0,
     active = null;
   function reset() {
     if (committing) return;
+    cancelPaint();
     const previous = active;
     active = null;
     previous?.motion.cancel();
@@ -28,12 +37,13 @@ export function createReaderSlider({
   function prepare() {
     let track = element();
     if (!track) return false;
+    cancelPaint();
+    width = track.clientWidth;
     if (active) {
       // Rebase onto the accepted destination without moving the visible strip.
       // Old completion promises must never commit a second navigation.
       const previous = active;
       const visible = translateX(track);
-      const width = track.clientWidth;
       active = null;
       committing = true;
       try {
@@ -52,26 +62,26 @@ export function createReaderSlider({
       .forEach((panel) => panel.style.removeProperty("translate"));
     origin = offset;
     // Translation preserves the exact source padding and document scroll extent.
+    const top = scrollY();
     track
       .querySelectorAll('[data-current="false"]')
-      .forEach((panel) =>
-        panel.style.setProperty("translate", `0 ${scrollY()}px`),
-      );
+      .forEach((panel) => panel.style.setProperty("translate", `0 ${top}px`));
     return true;
   }
   function drag(dx) {
     const track = element();
     if (!track || active) return;
-    offset = Math.max(
-      -track.clientWidth,
-      Math.min(track.clientWidth, origin + dx),
-    );
-    paint();
+    offset = Math.max(-width, Math.min(width, origin + dx));
+    if (frame === null)
+      frame = requestFrame(() => {
+        frame = null;
+        paint();
+      });
   }
   function slide(direction, velocity = 0) {
     if (!prepare()) return;
     const track = element();
-    const target = -direction * track.clientWidth;
+    const target = -direction * width;
     const distance = Math.abs(target - offset);
     if (reducedMotion() || distance < 1) {
       reset();

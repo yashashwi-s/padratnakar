@@ -1109,6 +1109,7 @@ body {
   transform: translate3d(0, 0, 0);
 }
 .reader-panel {
+  contain: layout paint;
   width: 100%;
   background: #fff;
 }

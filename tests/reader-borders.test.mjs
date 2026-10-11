@@ -39,13 +39,14 @@ test("all border families export with self-contained SVG references and no exter
         readerBorders[i].name,
       );
       assert.match(markup, /clip-rule="evenodd"/);
-      assert(
-        !/undefined|NaN|Infinity|<image|<text|https?:|<script/.test(markup),
-      );
-      // Two edge definitions serve all four sides, even on very long pads.
+      assert(!/undefined|NaN|Infinity|<text|<script/.test(markup));
+      assert.equal((markup.match(/<image /g) || []).length, 5);
+      assert.equal((markup.match(/<pattern /g) || []).length, 1);
+      assert(!/href="(?!#|data:image\/svg\+xml,)/.test(markup));
+      const long = readerBorderMarkup(i, 388, 30000, `page-${i}`);
       assert.equal(
-        ids.filter((id) => /-horizontal$|-vertical$/.test(id)).length,
-        2,
+        (long.match(/<[a-z]+\b/g) || []).length,
+        (markup.match(/<[a-z]+\b/g) || []).length,
       );
     }
   }

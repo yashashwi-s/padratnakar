@@ -134,19 +134,43 @@ export default function PadTypography({
         : !current
     )
       return;
-    let idle;
-    const timer = setTimeout(() => {
-      const prepare = () => {
-        const svg = viewport.current?.querySelector("svg");
-        if (svg) preparePadShare(svg, shareKey).catch(() => {});
-      };
-      if (window.requestIdleCallback)
-        idle = window.requestIdleCallback(prepare, { timeout: 1500 });
-      else prepare();
-    }, 500);
-    return () => {
+    let idle, timer;
+    let started = false;
+    const cancel = () => {
       clearTimeout(timer);
-      if (idle) window.cancelIdleCallback(idle);
+      if (idle != null) window.cancelIdleCallback?.(idle);
+      idle = null;
+    };
+    const schedule = () => {
+      cancel();
+      if (started || document.hidden) return;
+      timer = setTimeout(() => {
+        const prepare = () => {
+          const svg = viewport.current?.querySelector("svg");
+          if (!svg || document.hidden) return;
+          started = true;
+          preparePadShare(svg, shareKey).catch(() => {});
+        };
+        // No deadline that can force PNG work into an active gesture.
+        if (window.requestIdleCallback)
+          idle = window.requestIdleCallback(prepare);
+        else prepare();
+      }, 700);
+    };
+    const events = [
+      "touchstart",
+      "touchmove",
+      "pointerdown",
+      "scroll",
+      "visibilitychange",
+    ];
+    events.forEach((type) =>
+      window.addEventListener(type, schedule, { passive: true }),
+    );
+    schedule();
+    return () => {
+      cancel();
+      events.forEach((type) => window.removeEventListener(type, schedule));
     };
   }, [
     current,

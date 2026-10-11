@@ -294,54 +294,64 @@ export function readerBorderIndex(collection, position) {
   ];
 }
 
-/** Inline, self-contained SVG: shared motifs/edges keep long pages inexpensive. */
-export function readerBorderMarkup(index, width, height, prefix) {
+// One decoded image resource per design, reused by every page and image export.
+// Six motifs cover both the alternating and three-part bird/vine rhythms.
+const tiles = new Map();
+function borderTiles(index) {
+  if (tiles.has(index)) return tiles.get(index);
   const { kind, palette } = readerBorders[index];
   const p = palettes[palette];
-  const band = 26;
-  const shape = `M0 0H${width}V${height}H0Z M${band} ${band}V${height - band}H${width - band}V${band}Z`;
-  const definitions = [];
-  const known = new Map();
-  const symbol = (name, draw) => {
-    if (!known.has(name)) {
-      const id = `${prefix}-${name}`;
-      known.set(name, id);
-      definitions.push(`<g id="${id}">${draw()}</g>`);
-    }
-    return `<use href="#${known.get(name)}"/>`;
-  };
+  const image = (width, body) =>
+    `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="26" viewBox="0 0 ${width} 26">${body}</svg>`)}`;
   const symbols = {
-    flower: (type) => symbol(`flower-${type}`, () => flower(type, p)),
-    leaves: () => symbol("leaves", () => leaves(p)),
-    bird: (type) => symbol(`bird-${type}`, () => bird(type, p)),
-    motif: (type) => symbol(`motif-${type}`, () => motif(type, p)),
+    flower: (type) => flower(type, p),
+    leaves: () => leaves(p),
+    bird: (type) => bird(type, p),
+    motif: (type) => motif(type, p),
   };
-  const horizontal = strip(kind, p, width - 52, symbols);
-  const vertical = strip(kind, p, height - 52, symbols);
-  definitions.push(
-    `<g id="${prefix}-horizontal">${horizontal}</g>`,
-    `<g id="${prefix}-vertical">${vertical}</g>`,
-  );
   const corner =
     kind === "peacock"
-      ? symbols.bird("peacock")
+      ? bird("peacock", p)
       : kind === "feather"
-        ? symbols.motif("feather")
-        : symbols.flower(
+        ? motif("feather", p)
+        : flower(
             kind === "rose" || kind === "rosevine" ? "rose" : "jasmine",
+            p,
           );
-  let art =
-    g(26, 13, `<use href="#${prefix}-horizontal"/>`) +
-    g(width - 26, height - 13, `<use href="#${prefix}-horizontal"/>`, 180) +
-    g(13, height - 26, `<use href="#${prefix}-vertical"/>`, -90) +
-    g(width - 13, 26, `<use href="#${prefix}-vertical"/>`, 90);
-  for (const [x, y, rotation] of [
-    [13, 13, 0],
-    [width - 13, 13, 90],
-    [width - 13, height - 13, 180],
-    [13, height - 13, 270],
-  ])
-    art += g(x, y, corner, rotation, 0.9);
-  // Clip every ornament to the equal-width band, including corner bird tails.
-  return `<defs>${definitions.join("")}<clipPath id="${prefix}-band"><path d="${shape}" clip-rule="evenodd"/></clipPath></defs><path d="${shape}" fill="${p[0]}" fill-rule="evenodd"/><g clip-path="url(#${prefix}-band)">${art}</g><rect x="1" y="1" width="${width - 2}" height="${height - 2}" fill="none" stroke="${p[1]}" stroke-width=".65"/><rect x="25" y="25" width="${width - 50}" height="${height - 50}" fill="none" stroke="${p[1]}" stroke-width=".6"/><rect x="29" y="29" width="${width - 58}" height="${height - 58}" fill="none" stroke="${p[4]}" stroke-width=".45"/>`;
+  const result = {
+    edge: image(150, g(0, 13, strip(kind, p, 150, symbols))),
+    corner: image(26, g(13, 13, corner, 0, 0.9)),
+  };
+  tiles.set(index, result);
+  return result;
+}
+
+/** Constant DOM size, even for book-length pads; all resources are embedded. */
+export function readerBorderMarkup(index, width, height, prefix) {
+  const p = palettes[readerBorders[index].palette];
+  const tile = borderTiles(index);
+  const shape = `M0 0H${width}V${height}H0Z M26 26V${height - 26}H${width - 26}V26Z`;
+  const edge = (length) =>
+    `<rect width="${length}" height="26" fill="url(#${prefix}-tile)"/>`;
+  const art =
+    g(26, 0, edge(width - 52)) +
+    g(width - 26, height, edge(width - 52), 180) +
+    g(0, height - 26, edge(height - 52), -90) +
+    g(width, 26, edge(height - 52), 90);
+  const corners = [
+    [0, 0, 0],
+    [width, 0, 90],
+    [width, height, 180],
+    [0, height, 270],
+  ]
+    .map(([x, y, rotation]) =>
+      g(
+        x,
+        y,
+        `<image width="26" height="26" href="${tile.corner}"/>`,
+        rotation,
+      ),
+    )
+    .join("");
+  return `<defs><pattern id="${prefix}-tile" patternUnits="userSpaceOnUse" width="150" height="26"><image width="150" height="26" href="${tile.edge}"/></pattern><clipPath id="${prefix}-band"><path d="${shape}" clip-rule="evenodd"/></clipPath></defs><path d="${shape}" fill="${p[0]}" fill-rule="evenodd"/><g clip-path="url(#${prefix}-band)">${art}${corners}</g><rect x="1" y="1" width="${width - 2}" height="${height - 2}" fill="none" stroke="${p[1]}" stroke-width=".65"/><rect x="25" y="25" width="${width - 50}" height="${height - 50}" fill="none" stroke="${p[1]}" stroke-width=".6"/><rect x="29" y="29" width="${width - 58}" height="${height - 58}" fill="none" stroke="${p[4]}" stroke-width=".45"/>`;
 }

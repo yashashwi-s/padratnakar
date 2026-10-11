@@ -68,3 +68,5 @@ This synchronizes assets only; it does not build, sign, or test a native release
 Start with the [documentation index](docs/README.md). It links the maintained guides, release material, and historical audit snapshots.
 
 Future agents: after a major product, architecture, data, or release change, review and update this README. Keep it under 200 lines.
+
+Borders reuse a cached image tile per approved design in a fixed 25-design cycle. The frame has constant DOM complexity regardless of pad length. Swipe movement batches transform writes per animation frame and measures width only when starting or settling a gesture. Each reader panel contains its own layout and paint. Native share preparation waits for a quiet moment after touch/scroll activity instead of forcing work through an idle deadline.
