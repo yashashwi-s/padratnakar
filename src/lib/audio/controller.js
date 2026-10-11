@@ -7,10 +7,12 @@ export function createAudioController({ audio, source, onAdvance }) {
     release;
   let state = {
     id: null,
+    checked: false,
     hasPlayed: false,
     progress: 0,
     ready: false,
     busy: false,
+    downloading: false,
     playing: false,
     intent: false,
     current: 0,
@@ -46,7 +48,7 @@ export function createAudioController({ audio, source, onAdvance }) {
     const ticket = ++generation;
     abort?.abort();
     abort = new AbortController();
-    update({ busy: true, progress: 0, error: "" });
+    update({ busy: true, downloading: download, progress: 0, error: "" });
     try {
       const result = await source(track, {
         download,
@@ -65,7 +67,12 @@ export function createAudioController({ audio, source, onAdvance }) {
         audio.src = result.url;
         audio.load();
       }
-      update({ ready: Boolean(result), busy: false });
+      update({
+        ready: Boolean(result),
+        checked: true,
+        busy: false,
+        downloading: false,
+      });
       if (state.intent) {
         if (result) await start();
         else await load(true);
@@ -74,6 +81,7 @@ export function createAudioController({ audio, source, onAdvance }) {
       if (ticket === generation && error.name !== "AbortError")
         update({
           busy: false,
+          downloading: false,
           intent: false,
           playing: false,
           error:
@@ -125,10 +133,12 @@ export function createAudioController({ audio, source, onAdvance }) {
       track = next;
       update({
         id: next?.id ?? null,
+        checked: false,
         hasPlayed: false,
         progress: 0,
         ready: false,
         busy: false,
+        downloading: false,
         playing: false,
         intent: keepPlaying,
         current: 0,
@@ -143,7 +153,7 @@ export function createAudioController({ audio, source, onAdvance }) {
         if (state.busy && !state.ready) {
           ++generation;
           abort?.abort();
-          update({ busy: false, progress: 0 });
+          update({ busy: false, downloading: false, progress: 0 });
         }
         pause();
         return;

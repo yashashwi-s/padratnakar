@@ -202,3 +202,50 @@ test("played state resets per track and download progress is observable and canc
   assert.equal(player.getSnapshot().hasPlayed, false);
   player.dispose();
 });
+
+test("cached navigation retains playback intent without a download state", async () => {
+  let resolveNext;
+  const { player } = setup((track) =>
+    track.id === 1
+      ? new Promise((resolve) => {
+          resolveNext = resolve;
+        })
+      : Promise.resolve({ url: `track:${track.id}` }),
+  );
+  player.setTrack(tracks[0]);
+  await tick();
+  player.toggle();
+  await tick();
+  const snapshots = [];
+  player.subscribe(() => snapshots.push(player.getSnapshot()));
+  player.setTrack(tracks[1]);
+  assert.equal(player.getSnapshot().busy, true);
+  assert.equal(player.getSnapshot().downloading, false);
+  resolveNext({ url: "track:1" });
+  await tick();
+  assert(snapshots.every((state) => state.intent && !state.downloading));
+  assert.equal(player.getSnapshot().playing, true);
+  player.dispose();
+});
+
+test("only an actual uncached transfer enters the download state", async () => {
+  let finish;
+  const { player } = setup((track, { download }) =>
+    download
+      ? new Promise((resolve) => {
+          finish = resolve;
+        })
+      : Promise.resolve(null),
+  );
+  player.setTrack(tracks[0]);
+  await tick();
+  assert.equal(player.getSnapshot().checked, true);
+  assert.equal(player.getSnapshot().downloading, false);
+  player.toggle();
+  assert.equal(player.getSnapshot().downloading, true);
+  finish({ url: "track:0" });
+  await tick();
+  assert.equal(player.getSnapshot().downloading, false);
+  assert.equal(player.getSnapshot().playing, true);
+  player.dispose();
+});

@@ -8,7 +8,7 @@ The user-confirmed mapping is 00 → Vandana, 01–15 → songs 1–15, 17 → s
 
 The transport occupies the right side of the bottom navigation. Play downloads an uncached recording before playing; a small download badge on the same button becomes a percentage ring during transfer. Pause preserves position. The divider seeks, with elapsed time at the left and total duration at the right, below the bar in the beige footer; times appear after playback starts, and the dot stays hidden during ordinary playback and appears with a time bubble while seeking. The seek control suppresses touch highlights and long-press callouts while retaining keyboard focus feedback. Control positions remain fixed while local availability is checked.
 
-While playing, changing Shodash pages loads and plays the new recording. While paused, changing pages stays paused. End-of-track advances until Pushpika, then stops without wrapping. Leaving the reader or the Shodash collection stops audio. Background/lock-screen playback is not promised or configured.
+While playing, changing Shodash pages loads and plays the new recording. While paused, changing pages stays paused. End-of-track uses the reader’s slide transition and advances until Pushpika, then stops without wrapping. Leaving the reader or the Shodash collection stops audio. Background/lock-screen playback is not promised or configured.
 
 `src/lib/audio/controller.js` owns playback intent and cancels obsolete downloads. `AudioTransport` alone subscribes to time events, avoiding whole-reader renders. Download size and SHA-256 are verified before saving. Failed downloads and blocked browser autoplay show a retry message.
 
@@ -25,3 +25,5 @@ Native recordings are fetched from `https://raw.githubusercontent.com/yashashwi-
 `tests/audio.test.mjs` verifies file identity and numbering, bookmark identity, play/pause/navigation, obsolete download races, retry, seeking, and the final stop. Run `npm run check`. Native builds still need Android/iPhone device checks for filesystem persistence, playback policies, interruptions and seeking.
 
 Android checks media volume when Play is tapped and uses a quiet toast if it is at or below 20%. Browser and iOS system volume are not inferred. Long-press copy also uses a short visible toast. No decorative artwork is included in this release.
+
+Availability for all 18 recordings is indexed using local file metadata. Cache checks are silent; playback intent keeps the pause icon stable between cached tracks. A progress ring appears only for an actual download, with no transient preparation notice.

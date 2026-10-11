@@ -1,7 +1,8 @@
 import { Capacitor } from "@capacitor/core";
 import { Directory, Filesystem } from "@capacitor/filesystem";
 
-const origin = "https://raw.githubusercontent.com/yashashwi-s/padratnakar/main/public";
+const origin =
+  "https://raw.githubusercontent.com/yashashwi-s/padratnakar/main/public";
 const cacheName = "shodash-recordings-v1";
 const asBase64 = (blob) =>
   new Promise((resolve, reject) => {
@@ -10,6 +11,38 @@ const asBase64 = (blob) =>
     reader.onerror = reject;
     reader.readAsDataURL(blob);
   });
+
+// Index just the 18 file records, without loading recordings into memory.
+export async function audioAvailability(tracks) {
+  if (Capacitor.isNativePlatform()) {
+    const entries = await Promise.all(
+      tracks.map(async (track) => {
+        try {
+          const info = await Filesystem.stat({
+            path: `audio/shodash/${track.id}-${track.sha256.slice(0, 12)}.mp3`,
+            directory: Directory.Data,
+          });
+          return [track.id, info.size === track.bytes];
+        } catch {
+          return [track.id, false];
+        }
+      }),
+    );
+    return Object.fromEntries(entries);
+  }
+  const cache = await caches.open(cacheName);
+  const keys = new Set(
+    (await cache.keys()).map(
+      (request) => new URL(request.url).pathname + new URL(request.url).search,
+    ),
+  );
+  return Object.fromEntries(
+    tracks.map((track) => [
+      track.id,
+      keys.has(`${track.file}?v=${track.sha256}`),
+    ]),
+  );
+}
 
 export async function audioSource(
   track,

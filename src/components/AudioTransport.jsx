@@ -3,13 +3,14 @@ import Icon from "./Icon";
 import tracks from "../data/shodash-audio.json";
 import { createAudioController } from "../lib/audio/controller";
 import { lowMediaVolume } from "../lib/audio/volume";
-import { audioSource } from "../lib/audio/storage";
+import { audioAvailability, audioSource } from "../lib/audio/storage";
 
 const time = (seconds) =>
   `${Math.floor(seconds / 60)}:${String(Math.floor(seconds % 60)).padStart(2, "0")}`;
 
 export default function AudioTransport({ id, onAdvance, onNotice }) {
   const controller = useRef(null);
+  const [availability, setAvailability] = useState({});
   const [seekingId, setSeekingId] = useState(null);
   const advance = useRef(onAdvance);
   const [state, setState] = useState({
@@ -32,8 +33,27 @@ export default function AudioTransport({ id, onAdvance, onNotice }) {
       onAdvance: (next) => advance.current(next),
     });
     controller.current = player;
-    const unsubscribe = player.subscribe(() => setState(player.getSnapshot()));
+    let disposed = false;
+    const observed = {};
+    audioAvailability(tracks)
+      .then((index) => {
+        if (!disposed) setAvailability({ ...index, ...observed });
+      })
+      .catch(() => {});
+    const unsubscribe = player.subscribe(() => {
+      const snapshot = player.getSnapshot();
+      setState(snapshot);
+      if (snapshot.id != null && snapshot.checked && !snapshot.busy) {
+        observed[snapshot.id] = snapshot.ready;
+        setAvailability((index) =>
+          index[snapshot.id] === snapshot.ready
+            ? index
+            : { ...index, [snapshot.id]: snapshot.ready },
+        );
+      }
+    });
     return () => {
+      disposed = true;
       unsubscribe();
       player.dispose();
       controller.current = null;
@@ -45,6 +65,8 @@ export default function AudioTransport({ id, onAdvance, onNotice }) {
   const current = state.id === id ? state.current : 0;
   const duration = state.id === id ? state.duration : tracks[id]?.duration || 0;
   const checking = state.id !== id || state.busy;
+  const downloading = state.id === id && state.downloading && state.intent;
+  const showPause = state.intent && !downloading;
   const seeking = seekingId === id && !checking && state.ready;
   const percent = duration ? Math.min(100, (current / duration) * 100) : 0;
   return (
@@ -107,9 +129,9 @@ export default function AudioTransport({ id, onAdvance, onNotice }) {
       <div className="audio-actions">
         <button
           aria-label={
-            state.intent && state.ready
+            showPause
               ? "ऑडियो रोकें"
-              : state.busy && state.intent
+              : downloading
                 ? "डाउनलोड रद्द करें"
                 : "ऑडियो चलाएँ"
           }
@@ -125,10 +147,10 @@ export default function AudioTransport({ id, onAdvance, onNotice }) {
             controller.current?.toggle();
           }}
         >
-          <Icon name={state.intent && state.ready ? "pause" : "play"} />
-          {!state.ready && (
+          <Icon name={showPause ? "pause" : "play"} />
+          {(downloading || (!state.intent && availability[id] === false)) && (
             <span className="audio-badge" aria-hidden="true">
-              {state.busy && state.intent ? (
+              {downloading ? (
                 <svg viewBox="0 0 24 24" className="download-ring">
                   <circle
                     cx="12"
@@ -149,7 +171,7 @@ export default function AudioTransport({ id, onAdvance, onNotice }) {
                   </text>
                 </svg>
               ) : (
-                !checking && <Icon name="download" />
+                <Icon name="download" />
               )}
             </span>
           )}
@@ -160,7 +182,7 @@ export default function AudioTransport({ id, onAdvance, onNotice }) {
         lang="en"
         role="status"
       >
-        {state.error || (state.busy ? "Preparing audio…" : "")}
+        {state.id === id ? state.error : ""}
       </span>
     </>
   );

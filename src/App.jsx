@@ -786,7 +786,7 @@ export default function App() {
               <AudioTransport
                 onNotice={setNotice}
                 id={route.id}
-                onAdvance={(id) => go("shodash", id)}
+                onAdvance={() => step(1)}
               />
             )}
             <button
