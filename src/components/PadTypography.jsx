@@ -1,6 +1,14 @@
+import { fitReaderText } from "../lib/fit-reader-text.js";
 import FloralFrame from "./FloralFrame";
 import { Capacitor } from "@capacitor/core";
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import {
+  memo,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { readerCollections } from "../lib/reader-collections";
 import { getPrintLayout } from "../lib/print-layout";
 import { fixedPrintModel, pageDimensions } from "../lib/fixed-print";
@@ -96,6 +104,21 @@ export default function PadTypography({
         : fixedPrintModel(pad, current, item),
     [pad, current, item, collectionMetrics],
   );
+  // One font-ready batch per page model, never an effect per text fragment.
+  // Finish all writes before reads so SVG layout is calculated once per batch.
+  useLayoutEffect(() => {
+    let active = true;
+    const fit = () => {
+      if (!active || !viewport.current) return;
+      fitReaderText(viewport.current.querySelectorAll("[data-fit-size]"));
+    };
+    loadReaderFont()
+      .then(fit)
+      .catch(() => {});
+    return () => {
+      active = false;
+    };
+  }, [page]);
   const dimensions = pageDimensions(available);
   const framedWidth = page.width + 88;
   const framedHeight = Math.max(
@@ -194,6 +217,7 @@ export default function PadTypography({
                 role={line.role === "number" ? "heading" : undefined}
                 aria-level={line.role === "number" ? 1 : undefined}
                 data-baseline={line.y}
+                data-text-width={page.width}
                 data-source-page={line.source?.pdfPage}
               >
                 <PrintLine line={line} width={page.width} />
@@ -207,42 +231,15 @@ export default function PadTypography({
 }
 
 function FittedText({ x, y, fontSize, width, centered = false, children }) {
-  const ref = useRef(null);
-  useLayoutEffect(() => {
-    let active = true;
-    const fit = () => {
-      const element = ref.current;
-      if (!active || !element) return;
-      element.removeAttribute("textLength");
-      element.removeAttribute("word-spacing");
-      element.setAttribute("font-size", String(fontSize));
-      const natural = element.getComputedTextLength();
-      if (!(natural > 0) || !(width > 0)) return;
-      const scale = Math.min(1, width / natural);
-      element.setAttribute("font-size", String(fontSize * scale));
-      const spaces = (element.textContent.trim().match(/\s+/g) || []).length;
-      // Preserve natural letter shapes. Match print justification with word gaps only.
-      // Short opening lines stay short; sparse lines are never stretched into banners.
-      if (!centered && scale === 1 && spaces && natural > width * 0.72)
-        element.setAttribute(
-          "word-spacing",
-          String((width - natural) / spaces),
-        );
-    };
-    fit();
-    loadReaderFont()
-      .then(fit)
-      .catch(() => {});
-    return () => {
-      active = false;
-    };
-  }, [children, fontSize, width, centered]);
   return (
     <text
-      ref={ref}
       x={x}
       y={y}
       fontSize={fontSize}
+      data-fit-x={x}
+      data-fit-size={fontSize}
+      data-fit-width={width}
+      data-fit-centered={String(centered)}
       textAnchor={centered ? "middle" : undefined}
       xmlSpace="preserve"
     >
@@ -251,7 +248,7 @@ function FittedText({ x, y, fontSize, width, centered = false, children }) {
   );
 }
 
-function PrintLine({ line, width }) {
+const PrintLine = memo(function PrintLine({ line, width }) {
   if (line.centered)
     return (
       <FittedText
@@ -290,7 +287,11 @@ function PrintLine({ line, width }) {
         key={index}
         x={x}
         y={baseline}
-        fontSize={segment.fontSize || line.fontSize}
+        fontSize={
+          line.role === "verse"
+            ? line.fontSize
+            : segment.fontSize || line.fontSize
+        }
         width={length}
       >
         {segment.runs
@@ -307,4 +308,4 @@ function PrintLine({ line, width }) {
       </FittedText>
     );
   });
-}
+});

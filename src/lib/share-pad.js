@@ -49,13 +49,11 @@ export async function padImage(svg) {
     "style",
     "font-family:PadExport; font-weight:700; fill:black; background:white",
   );
-  const original = [svg, ...svg.querySelectorAll("*")];
-  const copies = [clone, ...clone.querySelectorAll("*")];
+  const original = svg.querySelectorAll(".print-line");
+  const copies = clone.querySelectorAll(".print-line");
   original.forEach((element, i) => {
-    if (["text", "tspan", "g"].includes(element.tagName)) {
-      copies[i].style.fontWeight = getComputedStyle(element).fontWeight;
-      copies[i].style.whiteSpace = "pre";
-    }
+    copies[i].style.fontWeight = getComputedStyle(element).fontWeight;
+    copies[i].style.whiteSpace = "pre";
   });
   await document.fonts.ready;
   const fontData = await embeddedFont();

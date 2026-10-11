@@ -43,6 +43,8 @@ The inner reader renders source-positioned Unicode lines as an SVG page. It pres
 
 The reading page uses 25 original Vrindavan-inspired SVG borders—flowers, climbing vines, birds, Sanjhi-inspired patterns and garlands—outside the text geometry. A balanced order gives each pad a stable design across visits; every block of 25 uses the full set. Repeated motifs share SVG definitions, and a uniform clipped band keeps artwork clear of the text. It scrolls and zooms with the page and appears in native image shares; the white circular share/bookmark controls remain in sticky screen chrome and are screen-only. Short pages extend the frame to the footer without stretching verse spacing.
 
+Body text uses one fitted size per pad, including fragmented source lines. Text measurements are batched once per page model and cached across visits; unchanged lines skip re-rendering. Native image preparation inspects text roles only, avoiding decorative geometry style reads.
+
 Web sharing sends readable pad text with its canonical link. Native sharing exports the full positioned reader page as a PNG and includes the link in the share text. See [the frontend handoff](docs/frontend-handoff.md) for module boundaries and behavior.
 
 Shodash Geet bookmarks are independent of Pad Ratnakar and appear in their own saved collection. Existing numeric bookmarks remain Pad Ratnakar bookmarks; historical data cannot identify which edition they came from.
