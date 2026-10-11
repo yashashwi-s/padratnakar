@@ -258,6 +258,17 @@ export default function PadTypography({
             data-content-height={page.height + 80}
             data-layout={current || pad.collection ? "source" : "fallback"}
             data-art-ready={!needsArt || Boolean(sakhiArt)}
+            data-art-revision={page.illustrations
+              ?.map((image) =>
+                [
+                  image.sha256,
+                  image.x,
+                  image.y,
+                  image.width,
+                  image.height,
+                ].join(":"),
+              )
+              .join("|")}
             data-share-ready={
               (!needsArt || Boolean(sakhiArt)) &&
               (pad.collection

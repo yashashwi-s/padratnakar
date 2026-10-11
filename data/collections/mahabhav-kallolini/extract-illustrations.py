@@ -4,7 +4,7 @@ Preserve ink and remove paper shading plus adjacent scan typography. Crop boxes
 are physical source coordinates multiplied by three. No generated imagery.
 Run with the corpus PyMuPDF dependency; outputs are deterministic PNGs/metadata.
 """
-import fitz,json
+import fitz,json,hashlib
 from pathlib import Path
 root=Path(__file__).resolve().parent;pdf=fitz.open(root/'source/booklet.pdf')
 items=[('lalita','ललिता',16,[770,235,1120,730],3,10),('vishakha','विशाखा',16,[145,665,446,1165],11,18),('chitra','चित्रा',16,[825,1140,1070,1605],19,26),('indulekha','इन्दुलेखा',17,[710,200,1020,695],1,8),('champakalata','चम्पकलता',17,[35,658,343,1150],9,16),('rangadevi','रंगदेवी',17,[695,1150,951,1585],17,24),('tungavidya','तुङ्गविद्या',18,[123,152,446,677],1,8),('sudevi','सुदेवी',18,[745,625,1075,1170],9,16)]
@@ -44,5 +44,5 @@ for slug,name,page,bbox,first,last in items:
  edge=[rgba[(y*w+x)*4+3] for x,y in ([(x,0)for x in range(w)]+[(x,h-1)for x in range(w)]+[(0,y)for y in range(h)]+[(w-1,y)for y in range(h)])]
  assert not any(a>128 for a in edge), f'{slug}: widen the source crop before exporting'
  clean.save(root/f'art/{slug}.png')
- result.append({'id':slug,'name':name,'sourcePage':page,'sourceCropBbox':bbox,'sourceBbox':[bbox[0]+x0,bbox[1]+y0,bbox[0]+x1+1,bbox[1]+y1+1],'coordinateScale':3,'firstLineIndex':first,'lastLineIndex':last})
+ result.append({'id':slug,'name':name,'sourcePage':page,'sourceCropBbox':bbox,'sourceBbox':[bbox[0]+x0,bbox[1]+y0,bbox[0]+x1+1,bbox[1]+y1+1],'coordinateScale':3,'sha256':hashlib.sha256((root/f'art/{slug}.png').read_bytes()).hexdigest(),'firstLineIndex':first,'lastLineIndex':last})
 (root/'illustrations.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')

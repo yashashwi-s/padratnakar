@@ -124,10 +124,13 @@ export async function padImage(svg) {
 }
 // Keep just the two most recently prepared pictures, not the entire corpus.
 const prepared = new Map();
-export function preparePadShare(svg, key) {
+export function padShareRevision(svg) {
   // Pinch transforms, viewport dimensions and instance IDs do not change the
   // content of a shared page. Avoid throwing away a prepared file after zoom.
-  const revision = `${svg.dataset.contentHeight}|${svg.dataset.artReady}|${svg.viewBox.baseVal.width}|${svg.querySelector("[data-border-design]")?.dataset.borderIndex}|${[...svg.querySelectorAll(".print-line")].map((line) => line.outerHTML).join("")}`;
+  return `${svg.dataset.contentHeight}|${svg.dataset.artReady}|${svg.dataset.artRevision || ""}|${svg.viewBox.baseVal.width}|${svg.querySelector("[data-border-design]")?.dataset.borderIndex}|${[...svg.querySelectorAll(".print-line")].map((line) => line.outerHTML).join("")}`;
+}
+export function preparePadShare(svg, key) {
+  const revision = padShareRevision(svg);
   const cached = prepared.get(key);
   if (cached?.revision === revision) return cached.result;
   const result = padImage(svg)

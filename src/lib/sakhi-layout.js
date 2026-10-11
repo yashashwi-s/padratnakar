@@ -1,3 +1,22 @@
+// Both editions display the exact same complete scan assets. Fit inside the
+// available illustration slot without stretching or cropping any part of it.
+function containedDrawing(item, slot) {
+  const [left, top, right, bottom] = item.sourceBbox;
+  const scale = Math.min(
+    slot.width / (right - left),
+    slot.height / (bottom - top),
+  );
+  const width = (right - left) * scale;
+  const height = (bottom - top) * scale;
+  return {
+    ...item,
+    x: slot.x + (slot.width - width) / 2,
+    y: slot.y + (slot.height - height) / 2,
+    width,
+    height,
+  };
+}
+
 export function illustratedSakhiPage(page, pad, sakhiIllustrations = []) {
   if (!sakhiIllustrations.length) return page;
   if (pad.collection === "kallolini" && pad.id === 8) {
@@ -15,13 +34,12 @@ export function illustratedSakhiPage(page, pad, sakhiIllustrations = []) {
       const bounds = page.sourceBounds.get(item.sourcePage);
       const ratio = page.sourceScale;
       const height = Math.max(1, last.y - first.y + first.fontSize * 1.6);
-      return {
-        ...item,
+      return containedDrawing(item, {
         x: 26 + (item.sourceBbox[0] - bounds[0]) * ratio,
         y: first.y - first.fontSize,
         width: (item.sourceBbox[2] - item.sourceBbox[0]) * ratio,
         height,
-      };
+      });
     });
     return { ...page, illustrations };
   }
@@ -44,13 +62,14 @@ export function illustratedSakhiPage(page, pad, sakhiIllustrations = []) {
           previous.y + previous.height + 22 - (line.y + added - line.fontSize),
         );
       const item = sakhiIllustrations[index];
-      illustrations.push({
-        ...item,
-        x: page.width + 10,
-        y: line.y + added - line.fontSize,
-        width: 86,
-        height: 146,
-      });
+      illustrations.push(
+        containedDrawing(item, {
+          x: page.width + 10,
+          y: line.y + added - line.fontSize,
+          width: 86,
+          height: 146,
+        }),
+      );
     }
     return { ...line, y: line.y + added, textWidth: page.width };
   });

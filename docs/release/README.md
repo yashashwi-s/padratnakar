@@ -1,6 +1,6 @@
 # Native release workflow
 
-Current candidate: **1.0.20 / version code 22**, package `org.padratnakar.reader`. See [UPLOAD-FIRST.md](UPLOAD-FIRST.md) for the owner handoff. Release binaries and signing material are intentionally outside Git.
+Current candidate: **1.0.21 / version code 23**, package `org.padratnakar.reader`. See [UPLOAD-FIRST.md](UPLOAD-FIRST.md) for the owner handoff. Release binaries and signing material are intentionally outside Git.
 
 ## Build and verify
 
@@ -25,7 +25,7 @@ Keep the existing signing identity for compatible external updates. If Play dist
 
 ## Required final checks
 
-- Offline cold launch; all four collections, including late pads and shared notes.
+- Offline cold launch; all five collections, including late pads and shared notes.
 - Search (Hindi, Latin, mixed script, numbers), worker initialization, bookmarks and persistence.
 - Rapid swipes, pinch/pan, vertical scrolling, navigation while zoomed, large device text.
 - Back/exit dialog, Cancel, repeated Back, copy and native image/caption sharing.
@@ -40,4 +40,4 @@ The intended upload account is `yashashwisinghania@gmail.com`. See [Console work
 
 ## iPhone preparation
 
-The iPhone/iPad project uses the same five offline collections and corrected section hierarchy. Its source version is 1.0.20, build 22. See [the iOS build and account handoff](ios.md) for unsigned compilation, remaining device checks, and signing after enrollment. The intended owner account is `yashashwisinghania@gmail.com`; the email is not an Apple Team ID.
+The iPhone/iPad project uses the same five offline collections and corrected section hierarchy. Its source version is 1.0.21, build 23. See [the iOS build and account handoff](ios.md) for unsigned compilation, remaining device checks, and signing after enrollment. The intended owner account is `yashashwisinghania@gmail.com`; the email is not an Apple Team ID.

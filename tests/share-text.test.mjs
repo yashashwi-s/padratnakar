@@ -70,4 +70,16 @@ test("preparation saves the native image once and survives pinch/viewport change
   assert.equal(first.uri, "file://prepared.png");
   assert.equal(renders, 1);
   assert.equal(writes, 1);
+  // An artwork-only correction must replace the pre-generated image even
+  // when the text, page size and ready flag stay identical.
+  svg.dataset.artReady = "true";
+  svg.dataset.artRevision = "complete-lalita:10:20:86:146";
+  const withArt = await context.prepare(svg, "pad-32");
+  svg.dataset.artRevision = "revised-lalita:10:20:86:146";
+  const revised = await context.prepare(svg, "pad-32");
+  assert.notEqual(withArt, revised);
+  assert.equal(renders, 3);
+  assert.equal(writes, 3);
+  assert.equal(await context.prepare(svg, "pad-32"), revised);
+  assert.equal(renders, 3);
 });
