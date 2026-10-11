@@ -37,3 +37,7 @@ Then run `python3 data/collections/mahabhav-kallolini/build-candidates.py`. The 
 The app imports `collection.json` through `src/lib/kallolini.js`. Eight sections, search, collection-specific bookmarks and clean routes are supported. Fixed-line layout uses source OCR bounding boxes with deliberate margins and stanza spacing; it is not an exact font facsimile. Original page breaks are joined within a pad.
 
 `tests/kallolini.test.mjs` covers coverage, section ranges, source line rendering, bookmark identity and preservation of the approved reading. Run `npm run check` for the complete application checks.
+
+## Illustrated layout review
+
+Pad 8 includes eight original drawings extracted from PDF pages 16–18. illustrations.json records the crop boxes at coordinate scale 3. Run `python3 data/collections/mahabhav-kallolini/extract-illustrations.py` to regenerate the drawings and crop metadata. The PNGs preserve the scan's ink while removing paper shading and adjacent typography; no generated artwork is used. Five text bounds that included drawings are corrected through layout-overrides.json. Three visible transcription slips are corrected through source-corrections.json, with original readings and reasons retained. The builder applies these overrides without importing text from Pad Ratnakar.

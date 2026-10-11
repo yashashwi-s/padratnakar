@@ -1,0 +1,162 @@
+[
+  {
+    "id": "lalita",
+    "name": "ललिता",
+    "sourcePage": 16,
+    "sourceCropBbox": [
+      770,
+      235,
+      1120,
+      730
+    ],
+    "sourceBbox": [
+      819,
+      250,
+      1084,
+      707
+    ],
+    "coordinateScale": 3,
+    "firstLineIndex": 3,
+    "lastLineIndex": 10
+  },
+  {
+    "id": "vishakha",
+    "name": "विशाखा",
+    "sourcePage": 16,
+    "sourceCropBbox": [
+      145,
+      665,
+      446,
+      1165
+    ],
+    "sourceBbox": [
+      152,
+      685,
+      367,
+      1143
+    ],
+    "coordinateScale": 3,
+    "firstLineIndex": 11,
+    "lastLineIndex": 18
+  },
+  {
+    "id": "chitra",
+    "name": "चित्रा",
+    "sourcePage": 16,
+    "sourceCropBbox": [
+      825,
+      1140,
+      1070,
+      1605
+    ],
+    "sourceBbox": [
+      825,
+      1148,
+      1016,
+      1605
+    ],
+    "coordinateScale": 3,
+    "firstLineIndex": 19,
+    "lastLineIndex": 26
+  },
+  {
+    "id": "indulekha",
+    "name": "इन्दुलेखा",
+    "sourcePage": 17,
+    "sourceCropBbox": [
+      710,
+      200,
+      1020,
+      695
+    ],
+    "sourceBbox": [
+      739,
+      232,
+      991,
+      689
+    ],
+    "coordinateScale": 3,
+    "firstLineIndex": 1,
+    "lastLineIndex": 8
+  },
+  {
+    "id": "champakalata",
+    "name": "चम्पकलता",
+    "sourcePage": 17,
+    "sourceCropBbox": [
+      35,
+      658,
+      343,
+      1150
+    ],
+    "sourceBbox": [
+      72,
+      666,
+      311,
+      1116
+    ],
+    "coordinateScale": 3,
+    "firstLineIndex": 9,
+    "lastLineIndex": 16
+  },
+  {
+    "id": "rangadevi",
+    "name": "रंगदेवी",
+    "sourcePage": 17,
+    "sourceCropBbox": [
+      695,
+      1150,
+      951,
+      1585
+    ],
+    "sourceBbox": [
+      728,
+      1150,
+      947,
+      1585
+    ],
+    "coordinateScale": 3,
+    "firstLineIndex": 17,
+    "lastLineIndex": 24
+  },
+  {
+    "id": "tungavidya",
+    "name": "तुङ्गविद्या",
+    "sourcePage": 18,
+    "sourceCropBbox": [
+      123,
+      152,
+      446,
+      677
+    ],
+    "sourceBbox": [
+      138,
+      198,
+      421,
+      666
+    ],
+    "coordinateScale": 3,
+    "firstLineIndex": 1,
+    "lastLineIndex": 8
+  },
+  {
+    "id": "sudevi",
+    "name": "सुदेवी",
+    "sourcePage": 18,
+    "sourceCropBbox": [
+      745,
+      625,
+      1075,
+      1170
+    ],
+    "sourceBbox": [
+      782,
+      649,
+      1061,
+      1104
+    ],
+    "coordinateScale": 3,
+    "firstLineIndex": 9,
+    "lastLineIndex": 16
+  }
+]

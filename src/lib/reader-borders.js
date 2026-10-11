@@ -240,7 +240,7 @@ function strip(kind, p, length, symbols) {
         path(`M${-step / 2} -6Q0 12 ${step / 2} -6`, "none", p[4], 0.65),
       );
       for (let j = 0; j < 7; j++) {
-        const t = j / 6;
+        const t = (j + 0.5) / 7;
         out += circle(
           x - step / 2 + t * step,
           -6 + 18 * t * (1 - t),
@@ -250,7 +250,7 @@ function strip(kind, p, length, symbols) {
           0.35,
         );
       }
-      out += g(x - step / 2, -6, flower("jasmine", p), 0, 0.45);
+      out += g(x, -6, flower("jasmine", p), 0, 0.45);
     } else if (kind === "scallop")
       out += g(
         x,
@@ -261,14 +261,14 @@ function strip(kind, p, length, symbols) {
     else if (kind === "festival")
       out +=
         g(x, 0, i % 2 ? lotus(p) : flower("rose", p), 0, 0.78) +
-        g(x + step / 2, 0, leaves(p), 90, 0.35);
+        g(x + step / 3, 0, leaves(p), 90, 0.35);
     else if (kind === "peacock")
       out +=
         g(x, 0, flower("jasmine", p), 0, 0.6) +
-        circle(x + step / 2, 0, 1, p[4]);
+        circle(x + step / 3, 0, 1, p[4]);
     else {
       out += g(x, 0, motif(kind, p), 0, kind === "moonlotus" ? 0.72 : 0.85);
-      if (kind === "moonlotus") out += circle(x + step / 2, 0, 2.5, p[0], p[4]);
+      if (kind === "moonlotus") out += circle(x + step / 3, 0, 2.5, p[0], p[4]);
     }
   }
   return out;
@@ -297,8 +297,9 @@ export function readerBorderIndex(collection, position) {
 // One decoded image resource per design, reused by every page and image export.
 // Six motifs cover both the alternating and three-part bird/vine rhythms.
 const tiles = new Map();
-function borderTiles(index) {
-  if (tiles.has(index)) return tiles.get(index);
+function borderTiles(index, tileWidth) {
+  const key = `${index}:${tileWidth}`;
+  if (tiles.has(key)) return tiles.get(key);
   const { kind, palette } = readerBorders[index];
   const p = palettes[palette];
   const image = (width, body) =>
@@ -319,24 +320,32 @@ function borderTiles(index) {
             p,
           );
   const result = {
-    edge: image(
-      150,
-      `<g transform="translate(6 13) scale(.92 .65)">${strip(kind, p, 150, symbols)}</g>`,
+    edge: image(tileWidth, g(0, 13, strip(kind, p, tileWidth, symbols))),
+    corner: image(
+      26,
+      g(
+        kind === "peacock" ? 14 : 13,
+        13,
+        corner,
+        0,
+        kind === "peacock" ? 0.78 : 0.9,
+      ),
     ),
-    corner: image(26, g(13, 13, corner, 0, 0.65)),
   };
-  tiles.set(index, result);
+  tiles.set(key, result);
+  while (tiles.size > 100) tiles.delete(tiles.keys().next().value);
   return result;
 }
 
 /** Constant DOM size, even for book-length pads; all resources are embedded. */
 export function readerBorderMarkup(index, width, height, prefix) {
   const p = palettes[readerBorders[index].palette];
-  const tile = borderTiles(index);
+  const tile = borderTiles(index, 150);
   const shape = `M0 0H${width}V${height}H0Z M26 26V${height - 26}H${width - 26}V26Z`;
   const pattern = (axis, length) => {
     const tileWidth = length / Math.max(1, Math.round(length / 150));
-    return `<pattern id="${prefix}-${axis}" patternUnits="userSpaceOnUse" width="${tileWidth}" height="26"><image width="${tileWidth}" height="26" preserveAspectRatio="none" href="${tile.edge}"/></pattern>`;
+    const resource = borderTiles(index, tileWidth);
+    return `<pattern id="${prefix}-${axis}" patternUnits="userSpaceOnUse" width="${tileWidth}" height="26"><image width="${tileWidth}" height="26" href="${resource.edge}"/></pattern>`;
   };
   const edge = (length, axis) =>
     `<rect width="${length}" height="26" fill="url(#${prefix}-${axis})"/>`;

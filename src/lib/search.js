@@ -209,6 +209,42 @@ function phraseMatches(f, terms) {
     }),
   );
 }
+// Show surrounding original words. Ellipses describe omissions from the pad,
+// rather than depending on a CSS line clamp that can hide the actual match.
+function bodyExcerpt(document, terms, selected) {
+  const text = document.joined.text;
+  if (!text) return selected?.text || text;
+  if (selected?.kind === "footnote")
+    return `…${selected.text}${document.fields.at(-1) === selected ? "" : "…"}`;
+  const words = [...text.matchAll(/\S+/g)];
+  const selectedStart =
+    selected?.kind === "verse" ? text.indexOf(selected.text) : 0;
+  const selectedEnd = selectedStart + (selected?.text.length || text.length);
+  const hits = words.flatMap((word, i) => {
+    if (word.index < selectedStart || word.index >= selectedEnd) return [];
+    const token = field(word[0], "verse");
+    return terms.some((term) => matchTerm(token, term)) ? [i] : [];
+  });
+  let left = hits[0] ?? 0,
+    right = hits.at(-1) ?? 0;
+  const length = () =>
+    words[right].index + words[right][0].length - words[left].index;
+  // Context grows around the matching words; always retain the match itself.
+  while (length() < 240 && (left > 0 || right < words.length - 1)) {
+    if (left > 0) left--;
+    if (length() < 240 && right < words.length - 1) right++;
+  }
+  const start = words[left].index,
+    end = words[right].index + words[right][0].length;
+  const excerpt = `${left ? "…" : ""}${text.slice(start, end)}${right < words.length - 1 ? "…" : ""}`;
+  const separateLabel =
+    ["metadata", "heading"].includes(selected?.kind) ||
+    (selected?.kind === "title" && !text.startsWith(selected.text));
+  return !hits.length && separateLabel
+    ? `${selected.text}\n${excerpt}`
+    : excerpt;
+}
+
 export function searchPads(
   index,
   query,
@@ -230,7 +266,7 @@ export function searchPads(
       )
       .map((x) => ({
         pad: x.pad,
-        snippet: x.pad.title || x.lines[0] || "",
+        snippet: bodyExcerpt(x, [], x.fields[0]) || x.pad.title || "",
         score: 1000,
         matchKind: "number",
       }));
@@ -270,7 +306,7 @@ export function searchPads(
       : 0;
     results.push({
       pad: x.pad,
-      snippet: snippet?.text || x.lines[0] || "",
+      snippet: bodyExcerpt(x, terms, snippet) || x.lines[0] || "",
       snippetKind: snippet?.kind,
       matchKind: quality === 1 ? "approximate" : "exact",
       score: quality * 100 + (titleMatches ? 50 : 0) + phraseBonus,

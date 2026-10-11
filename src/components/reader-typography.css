@@ -61,3 +61,16 @@
   margin-inline: auto;
   position: relative;
 }
+
+.print-surface {
+  transform-origin: 0 0;
+  width: max-content;
+}
+.print-viewport[data-pinching="true"] {
+  touch-action: none;
+}
+
+/* Prepare the active page's compositor layer before a finger arrives. */
+.reader-panel.is-current .print-surface {
+  will-change: transform;
+}

@@ -1,0 +1,23 @@
+[
+  {
+    "pdfPage": 16,
+    "sourceLineIndex": 14,
+    "before": "सन नित मग्न श्याम-पद-कुञ्ज॥",
+    "after": "मन नित मग्न श्याम-पद-कुञ्ज॥",
+    "reason": "Visible first word is मन in the directly inspected source scan."
+  },
+  {
+    "pdfPage": 17,
+    "sourceLineIndex": 2,
+    "before": "शुक-वर्ण शुभ कुञ्ज निवास।",
+    "after": "शुभ्र-वर्ण शुभ कुञ्ज निवास।",
+    "reason": "Direct illustration-page inspection shows शुभ्र-वर्ण."
+  },
+  {
+    "pdfPage": 18,
+    "sourceLineIndex": 2,
+    "before": "कान्ति चन्द्र, कुन्दुम-सी देह।",
+    "after": "कान्ति चन्द्र, कुंकुम-सी देह।",
+    "reason": "Direct scan inspection confirms कुंकुम-सी, preserving this edition’s other words."
+  }
+]

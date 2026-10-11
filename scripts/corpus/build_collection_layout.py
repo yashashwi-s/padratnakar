@@ -31,6 +31,9 @@ def main():
             stanzas[entry['footnoteMarkerAfterStanza']-1][-1]+='*'
         for i,s in enumerate(stanzas,1):
             s[-1]=re.sub(r'॥(\*?)$',lambda m:'॥'+str(i).translate(digits)+'॥'+m[1],s[-1])
+        if entry.get('footnoteMarkerAfterStanza'):
+            marked=stanzas[entry['footnoteMarkerAfterStanza']-1]
+            marked[-1]=re.sub(r'(॥[०-९]+॥)\*$',r'*\1',marked[-1])
         if entry['role']=='closing':
             stanzas[-1][-1]=stanzas[-1][-1].removesuffix('*')
         headings=list(h['headings'])

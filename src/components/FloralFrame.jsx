@@ -13,6 +13,7 @@ const FloralFrame = memo(function FloralFrame({ width, height, design }) {
       aria-hidden="true"
       pointerEvents="none"
       data-border-design={readerBorders[design].name}
+      data-border-index={design}
       dangerouslySetInnerHTML={{ __html: markup }}
     />
   );

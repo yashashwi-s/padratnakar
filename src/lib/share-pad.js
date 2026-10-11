@@ -1,3 +1,4 @@
+import { readerBorderMarkup } from "./reader-borders.js";
 import { loadReaderFont } from "./reader-font.js";
 import { Capacitor } from "@capacitor/core";
 import { Share } from "@capacitor/share";
@@ -7,6 +8,16 @@ import { Clipboard } from "@capacitor/clipboard";
 export const SITE_ORIGIN = "https://padratnakar.vercel.app";
 export function shareLink(mode, id) {
   return `${SITE_ORIGIN}/${mode}/${id}`;
+}
+
+export function shareFooter(mode, id) {
+  return `${shareLink(mode, id)}\nपद रत्नाकर: ${SITE_ORIGIN}`;
+}
+export function copiedPadText(text, mode, id) {
+  return `${text}\n\n${shareFooter(mode, id)}`;
+}
+export function warmShareResources() {
+  return Promise.all([loadReaderFont(), embeddedFont()]);
 }
 
 function asDataUrl(blob) {
@@ -37,11 +48,22 @@ export async function padImage(svg) {
   await loadReaderFont();
   const clone = svg.cloneNode(true);
   const { x, y, width, height } = svg.viewBox.baseVal;
-  const totalHeight = height;
+  const totalHeight = Math.min(
+    height,
+    Number(svg.dataset.contentHeight) || height,
+  );
+  const border = clone.querySelector("[data-border-design]");
+  if (border && totalHeight !== height)
+    border.innerHTML = readerBorderMarkup(
+      Number(border.dataset.borderIndex),
+      width,
+      totalHeight,
+      "export-border",
+    );
   const ns = "http://www.w3.org/2000/svg";
   clone.setAttribute("xmlns", ns);
   clone.setAttribute("viewBox", `${x} ${y} ${width} ${totalHeight}`);
-  const scale = Math.min(3, 12000 / totalHeight);
+  const scale = Math.min(2, 1080 / width, 12000 / totalHeight);
   clone.setAttribute("width", String(Math.ceil(width * scale)));
   clone.setAttribute("height", String(Math.ceil(totalHeight * scale)));
   clone.removeAttribute("class");
@@ -103,17 +125,26 @@ export async function padImage(svg) {
 // Keep just the two most recently prepared pictures, not the entire corpus.
 const prepared = new Map();
 export function preparePadShare(svg, key) {
-  const revision = svg.outerHTML;
+  // Pinch transforms, viewport dimensions and instance IDs do not change the
+  // content of a shared page. Avoid throwing away a prepared file after zoom.
+  const revision = `${svg.dataset.contentHeight}|${svg.dataset.artReady}|${svg.viewBox.baseVal.width}|${svg.querySelector("[data-border-design]")?.dataset.borderIndex}|${[...svg.querySelectorAll(".print-line")].map((line) => line.outerHTML).join("")}`;
   const cached = prepared.get(key);
   if (cached?.revision === revision) return cached.result;
   const result = padImage(svg)
-    .then(async (blob) => ({
-      blob,
-      data: Capacitor.isNativePlatform()
-        ? (await asDataUrl(blob)).split(",")[1]
-        : null,
-      uri: null,
-    }))
+    .then(async (blob) => {
+      let uri = null;
+      if (Capacitor.isNativePlatform()) {
+        const data = (await asDataUrl(blob)).split(",")[1];
+        const saved = await Filesystem.writeFile({
+          path: `shared/pad-ratnakar-${key}.png`,
+          data,
+          directory: Directory.Cache,
+          recursive: true,
+        });
+        uri = saved.uri;
+      }
+      return { blob, uri };
+    })
     .catch((error) => {
       if (prepared.get(key)?.result === result) prepared.delete(key);
       throw error;
@@ -123,8 +154,7 @@ export function preparePadShare(svg, key) {
   return result;
 }
 export async function sharePad(svg, mode, id) {
-  const link = shareLink(mode, id),
-    title = "पद रत्नाकर";
+  const title = "पद रत्नाकर";
 
   // Website/PWA: share or copy the readable pad text + canonical web link.
   // Do NOT generate or attach a PNG on the web.
@@ -132,7 +162,7 @@ export async function sharePad(svg, mode, id) {
     const padText = [...svg.querySelectorAll(".print-line")]
       .map((line) => line.textContent)
       .join("\n");
-    const text = `${padText}\n\n${link}`;
+    const text = copiedPadText(padText, mode, id);
     if (navigator.share) {
       await navigator.share({ title, text });
       return "shared";
@@ -150,17 +180,7 @@ export async function sharePad(svg, mode, id) {
   if (!svg.isConnected || svg.dataset.shareReady !== "true")
     throw new Error("Reader layout is not ready");
   const picture = await preparePadShare(svg, `${mode}-${id}`);
-  const name = `pad-ratnakar-${mode}-${id}.png`;
-  const text = `${link}\nपद रत्नाकर: ${SITE_ORIGIN}`;
-  if (!picture.uri) {
-    const saved = await Filesystem.writeFile({
-      path: `shared/${name}`,
-      data: picture.data,
-      directory: Directory.Cache,
-      recursive: true,
-    });
-    picture.uri = saved.uri;
-  }
+  const text = shareFooter(mode, id);
   await Share.share({
     title,
     text,

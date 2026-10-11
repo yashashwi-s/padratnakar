@@ -166,7 +166,10 @@ test("snippets prefer the line containing all terms and retain footnote context"
       footnotes: [{ lines: ["विशेष टिप्पणी"] }],
     },
   ]);
-  assert.equal(searchPads(tiny, "राधा प्रेम")[0].snippet, "राधा प्रेम");
+  assert.equal(
+    searchPads(tiny, "राधा प्रेम")[0].snippet,
+    "राधा नाम राधा प्रेम",
+  );
   assert.equal(searchPads(tiny, "टिप्पणी")[0].snippetKind, "footnote");
 });
 test("canonical-equivalent nukta spellings and shaping controls match", () => {

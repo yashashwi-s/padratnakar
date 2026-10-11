@@ -1,4 +1,9 @@
 import {
+  radhaKripaKataksh,
+  radhaKripaKatakshPads,
+  radhaKripaKatakshPage,
+} from "./radha-kripa-kataksh.js";
+import {
   jayanti,
   jayantiPads,
   jayantiPage,
@@ -16,6 +21,13 @@ function defineCollection(collection) {
 }
 
 export const readerCollections = Object.freeze({
+  rkk: defineCollection({
+    title: radhaKripaKataksh.title,
+    pads: radhaKripaKatakshPads,
+    page: radhaKripaKatakshPage,
+    sections: [],
+    firstId: 1,
+  }),
   jayanti: defineCollection({
     title: jayanti.title,
     pads: jayantiPads,

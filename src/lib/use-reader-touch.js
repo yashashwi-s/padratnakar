@@ -24,11 +24,11 @@ export function useReaderTouch(
   useLayoutEffect(() => {
     const element = viewport.current,
       canvas = element.querySelector(".print-canvas"),
-      svg = element.querySelector("svg");
+      surface = element.querySelector(".print-surface");
     const apply = (value) => {
       canvas.style.setProperty("width", `${width * value}px`);
       canvas.style.setProperty("height", `${height * value}px`);
-      svg.style.setProperty("transform", `scale(${value})`);
+      surface.style.setProperty("transform", `scale(${value})`);
       element.setAttribute("data-zoom", String(value));
     };
     if (!interactive) zoom.current = 1;
@@ -50,13 +50,35 @@ export function useReaderTouch(
       const { value, center, anchor } = pending;
       pending = null;
       zoom.current = value;
-      // During the gesture only composite the existing page. No size writes,
-      // geometry reads or document scrolling until the fingers are released.
-      svg.style.setProperty(
+      // At fitted size a second finger must not turn the page into a movable
+      // sheet. At larger sizes keep the page covering the visible viewport.
+      const horizontal =
+        value <= 1.01
+          ? 0
+          : Math.max(
+              anchor.right - anchor.left - width * value,
+              Math.min(
+                anchor.viewportLeft - anchor.left,
+                center.x - anchor.left - anchor.x * value,
+              ),
+            );
+      const vertical =
+        value <= 1.01
+          ? 0
+          : Math.max(
+              anchor.bottom - anchor.top - height * value,
+              Math.min(
+                Math.max(0, anchor.visibleTop - anchor.top),
+                center.y - anchor.top - anchor.y * value,
+              ),
+            );
+      anchor.dx = horizontal;
+      anchor.dy = vertical;
+      // Animate an HTML compositor layer; SVG text and border are unchanged.
+      surface.style.setProperty(
         "transform",
-        `translate(${center.x - anchor.left - anchor.x * value}px, ${center.y - anchor.top - anchor.y * value}px) scale(${value})`,
+        `translate3d(${horizontal}px, ${vertical}px, 0) scale(${value})`,
       );
-      anchor.center = center;
     };
     const start = (event) => {
       cancelPress();
@@ -65,9 +87,16 @@ export function useReaderTouch(
         if (event.cancelable) event.preventDefault();
         const [a, b] = event.touches,
           center = midpoint(a, b),
-          rect = svg.getBoundingClientRect(),
-          base = canvas.getBoundingClientRect();
+          rect = surface.getBoundingClientRect(),
+          base = canvas.getBoundingClientRect(),
+          visible = element.getBoundingClientRect();
         pinch = {
+          viewportLeft: visible.left,
+          right: visible.right,
+          visibleTop: Math.max(0, visible.top),
+          bottom: Math.min(window.innerHeight, visible.bottom),
+          dx: 0,
+          dy: 0,
           left: base.left,
           top: base.top,
           center,
@@ -76,7 +105,8 @@ export function useReaderTouch(
           x: (center.x - rect.left) / zoom.current,
           y: (center.y - rect.top) / zoom.current,
         };
-        svg.style.setProperty("will-change", "transform");
+        element.setAttribute("data-pinching", "true");
+        surface.style.setProperty("will-change", "transform");
       } else if (event.touches.length === 1 && !pinch) {
         const touch = event.touches[0];
         press = { x: touch.clientX, y: touch.clientY };
@@ -93,9 +123,13 @@ export function useReaderTouch(
         cancelPress();
         const [a, b] = event.touches;
         pending = {
-          value: clampZoom(
-            (pinch.zoom * distance(a, b)) / Math.max(1, pinch.distance),
-          ),
+          value:
+            pinch.zoom === 1 &&
+            Math.abs(distance(a, b) / Math.max(1, pinch.distance) - 1) < 0.04
+              ? 1
+              : clampZoom(
+                  (pinch.zoom * distance(a, b)) / Math.max(1, pinch.distance),
+                ),
           center: midpoint(a, b),
           anchor: pinch,
         };
@@ -108,24 +142,29 @@ export function useReaderTouch(
     };
     const end = (event) => {
       cancelPress();
-      if (event.touches.length < 2 && pinch) {
+      if ((event.type === "touchcancel" || event.touches.length < 2) && pinch) {
         cancelAnimationFrame(frame);
         paint();
         const anchor = pinch;
         apply(zoom.current);
         const rect = canvas.getBoundingClientRect();
-        element.scrollBy({
-          left: rect.left + anchor.x * zoom.current - anchor.center.x,
-          top: 0,
-          behavior: "instant",
-        });
-        window.scrollBy({
-          left: 0,
-          top: rect.top + anchor.y * zoom.current - anchor.center.y,
-          behavior: "instant",
-        });
+        if (zoom.current <= 1.01) {
+          element.scrollLeft = 0;
+        } else {
+          element.scrollBy({
+            left: rect.left - anchor.left - anchor.dx,
+            top: 0,
+            behavior: "instant",
+          });
+          window.scrollBy({
+            left: 0,
+            top: rect.top - anchor.top - anchor.dy,
+            behavior: "instant",
+          });
+        }
+        element.setAttribute("data-pinching", "false");
         pinch = null;
-        svg.style.removeProperty("will-change");
+        surface.style.removeProperty("will-change");
       }
     };
     const context = (event) => event.preventDefault();
@@ -137,6 +176,8 @@ export function useReaderTouch(
     return () => {
       cancelPress();
       cancelAnimationFrame(frame);
+      surface.style.removeProperty("will-change");
+      element.setAttribute("data-pinching", "false");
       element.removeEventListener("touchstart", start);
       element.removeEventListener("touchmove", move);
       element.removeEventListener("touchend", end);

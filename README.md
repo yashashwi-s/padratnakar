@@ -4,14 +4,15 @@ Pad Ratnakar is an offline React/Vite reader for Hindi devotional literature. Re
 
 ## Collections
 
-The reader contains four collections:
+The reader contains five collections:
 
-| Collection                            |    Entries |
-| ------------------------------------- | ---------: |
-| _Pad Ratnakar_                        | 1,565 pads |
-| _Shodash Geet_                        | 18 entries |
-| _Shri Bhaiji Jayanti Mahotsav ke Pad_ |    18 pads |
-| _Mahabhav-Kallolini_                  |   117 pads |
+| Collection                                     |            Entries |
+| ---------------------------------------------- | -----------------: |
+| _Pad Ratnakar_                                 |         1,565 pads |
+| _Shodash Geet_                                 |         18 entries |
+| _Shri Bhaiji Jayanti Mahotsav ke Pad_          |            18 pads |
+| _Mahabhav-Kallolini_                           |           117 pads |
+| _Shri Radha Kripa Kataksh (Hindi translation)_ | 1 hymn, 19 stanzas |
 
 Canonical pads retain accepted Unicode text, source provenance, headings, stanzas, and shared footnotes. _Shodash Geet_ has collection-specific display rules that remain separate from canonical pad data.
 
@@ -43,15 +44,17 @@ The inner reader renders source-positioned Unicode lines as an SVG page. It pres
 
 The reading page uses 25 original Vrindavan-inspired SVG borders—flowers, climbing vines, birds, Sanjhi-inspired patterns and garlands—outside the text geometry. A balanced order gives each pad a stable design across visits; every block of 25 uses the full set. Repeated motifs reuse cached embedded image tiles, and a uniform clipped band keeps artwork clear of the text. It scrolls and zooms with the page and appears in native image shares; the white circular share/bookmark controls remain in sticky screen chrome and are screen-only. Short pages extend the frame to the footer without stretching verse spacing.
 
+Pinch previews composite an HTML surface, with page dimensions and scroll anchoring settled at release. Fitted-size two-finger movement cannot displace the page, and enlarged panning stays within its bounds. Border motifs retain their original proportions and reuse cached complete tiles in a fixed order.
+
 Body text uses one fitted size per pad, including fragmented source lines. Text measurements are batched once per page model and cached across visits; unchanged lines skip re-rendering. Native image preparation inspects text roles only, avoiding decorative geometry style reads.
 
-Web sharing sends readable pad text with its canonical link. Native sharing exports the full positioned reader page as a PNG and includes the link in the share text. See [the frontend handoff](docs/frontend-handoff.md) for module boundaries and behavior.
+Web sharing sends readable pad text with its canonical link. Native sharing exports the complete positioned text and artwork as a PNG and includes canonical-pad and app-home links. Copied text includes the same footer. Native preparation warms the font and saves the PNG ahead of the tap; zoom does not invalidate it. Export omits viewport-only empty height and caps image width at 1080 pixels. See [the frontend handoff](docs/frontend-handoff.md) for module boundaries and behavior.
 
 Shodash Geet bookmarks are independent of Pad Ratnakar and appear in their own saved collection. Existing numeric bookmarks remain Pad Ratnakar bookmarks; historical data cannot identify which edition they came from.
 
 All 18 Shodash recordings can be downloaded individually and replayed offline. The bottom divider is a seek bar with elapsed and total time. Playing audio follows Shodash navigation, advances through the sequence, and stops after Pushpika. Leaving the reader stops playback. Backgrounding the app pauses audio and cancels pending downloads; returning requires tapping Play. See [audio delivery and verification](docs/shodash-audio.md).
 
-Kallolini and Pad Ratnakar use the same section-sheet presentation with pad ranges. Pad lists show three-line excerpts with an ellipsis, and the header menu button toggles open/closed.
+Kallolini and Pad Ratnakar use the same section-sheet presentation with pad ranges. Kallolini musical headings use the canonical reader’s proportional breathing room; source line extents and indentation remain. Original sakhi drawings from its scan appear in Kallolini 8 and a separate artwork column in Pad Ratnakar 48. They load only for these pages. The RKK collection contains only the 116 Hindi translation lines from the supplied trilingual scan, with source-page provenance. Pad lists show three-line excerpts with an ellipsis; search results show surrounding matching words and ellipses only at omitted boundaries, and the header menu button toggles open/closed.
 
 ## Native shells
 
@@ -68,9 +71,3 @@ This synchronizes assets only; it does not build, sign, or test a native release
 Start with the [documentation index](docs/README.md). It links the maintained guides, release material, and historical audit snapshots.
 
 Future agents: after a major product, architecture, data, or release change, review and update this README. Keep it under 200 lines.
-
-Borders reuse a cached image tile per approved design in a fixed 25-design cycle. The frame has constant DOM complexity regardless of pad length. Swipe movement batches transform writes per animation frame and measures width only when starting or settling a gesture. Each reader panel contains its own layout and paint. Native share preparation waits for a quiet moment after touch/scroll activity instead of forcing work through an idle deadline.
-
-Kallolini preserves scanned line extents, indentation and vertical gaps using one scale per pad. Its uniform body size is constrained by source line widths, including the indented closing aarti; canonical wording is unchanged.
-
-Pinch previews update only a compositor transform; page dimensions and scroll anchoring settle once at gesture end. Border sides fit complete tile repeats, with inset artwork, and the page reserves the measured footer height.

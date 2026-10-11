@@ -1,6 +1,6 @@
 # PDF spacing and layout
 
-All **21,672 canonical heading/verse lines across 1,565 pads** are associated with their printed positions. There are **zero unmatched or ambiguous line associations**. This checks alignment to the accepted text; it does not claim every word has been independently proofread.
+All **21,671 canonical heading/verse lines across 1,565 pads** are associated with their printed positions. There are **zero unmatched or ambiguous line associations**. This checks alignment to the accepted text; it does not claim every word has been independently proofread.
 
 ## What happened to the 109 outstanding associations?
 
@@ -53,4 +53,8 @@ Hindi opening quotation marks are normalized for display (`\'राधा’` be
 
 ## Mahabhav Kallolini scan geometry
 
-All 117 entries use one coordinate scale per pad, retained over page continuations. Source line top offsets determine vertical spacing without arbitrary gap clamps or extra stanza spacing. Line extents and indentation constrain the shared fitter; one uniform body size, seeded from median scan line height, fits the most constrained complete line. Word spacing fills the recorded extent without glyph distortion. Source text and scan alignment records remain unchanged.
+All 117 entries use one coordinate scale per pad, retained over page continuations. Source line top offsets determine vertical spacing with minimum Unicode glyph clearance and the canonical reader’s added breathing room. Musical headings have a 100-unit gap before the body at this collection’s 480-unit page width, equivalent to the canonical reader’s 60 at width 288. Line extents and indentation constrain the shared fitter; one uniform body size, seeded from median scan line height, fits the most constrained complete line. Word spacing fills the recorded extent without glyph distortion. Five reviewed Kallolini 8 text boxes exclude adjacent illustrations. Three source-checked transcription corrections are recorded in its source-corrections.json. The scan and initial proofreading evidence remain preserved.
+
+Kallolini 8 includes eight drawings extracted from source PDF pages 16–18. They keep the source illustration columns; Pad Ratnakar 48 instead uses a separate artwork column to retain its complete verse lines. Drawings are embedded in export and loaded from a separate local asset chunk only on these pages.
+
+RKK uses a fixed stanza builder with its scanned alternating continuation-line indentation for one continuous Hindi hymn, 19 translated stanzas and 116 original line endings. Every stanza has a physical source page; no precise word geometry is invented for that scan.

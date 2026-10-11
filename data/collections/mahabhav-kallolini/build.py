@@ -64,6 +64,8 @@ def build():
     for decision in decisions:
         page = next(p for p in pages if p['pdfPage'] == decision['pdfPage'])
         assert any(row.get('humanDecisionId') == decision['id'] and row['text'] == decision['text'] for row in page['lines']), 'User-approved reading must survive verbatim'
+    source_corrections={(r['pdfPage'],r['sourceLineIndex']):r for r in json.loads((ROOT / 'source-corrections.json').read_text())}
+    layout_overrides = {(r['pdfPage'],r['sourceLineIndex']): r for r in json.loads((ROOT / 'layout-overrides.json').read_text())}
     entries, metadata, unresolved, alignment = [], [], [], []
     current = None
     expected_number = 1
@@ -81,6 +83,10 @@ def build():
             entries.append(current)
         for index, row in enumerate(rows):
             role, text = row['role'], row['text'].strip()
+            correction=source_corrections.get((page_no,index))
+            if correction:
+                assert text==correction['before']
+                text=correction['after']
             assert text, (page_no, index)
             if role == 'pad-number':
                 number = row['padNumber']
@@ -100,6 +106,12 @@ def build():
                       'stanzaBreakAfter': bool(row.get('stanzaBreakAfter')),
                       'sourceBbox': match['bbox'] if match and match['reliable'] and 8 <= match['bbox'][3]-match['bbox'][1] <= 100 else None,
                       'alignmentSimilarity': match['similarity'] if match else 0}
+            if (page_no,index) in layout_overrides:
+                override=layout_overrides[page_no,index]
+                assert source['text']==override['text']
+                source['sourceBbox']=override['bbox']
+                source['layoutProvenance']=override['reason']
+            if correction:source['textProvenance']=correction['reason']
             current['lines'].append(source)
             if not source['sourceBbox']:
                 alignment.append({'entry': current['sequence'], 'pdfPage': page_no, 'text': text,

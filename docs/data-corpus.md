@@ -51,3 +51,11 @@ Song 13 now follows the supplied scan’s four two-line couplets. Its first line
 ## September 27 repeated reference display correction
 
 Audit found pads 271, 363, 414, 612, 1547 and 1556 with multiple verse asterisks but one resolved footnote. The reader now shows one marker: the last marked verse for whole-pad/sequence notes, and the भगवान line for pad 612’s alternate reading. This is an explicit user-requested display normalization, not a new PDF transcription claim. Canonical words, source geometry and raw markers remain unchanged; zero/one-marker and multiple-note pads are unaffected. Shodash’s separate display rules remain unchanged.
+
+## October 11 source corrections and Hindi collection
+
+Pad 203 incorrectly included the next section heading, श्रीकृष्ण-बाल-लीला-माधुरी, as its final verse. It is printed above pad 204 on physical PDF page 140. The user-requested removal is recorded in the deterministic integration corrections and source audit; the revised canonical layout has 21,671 heading/verse positions.
+
+Kallolini pad 8 received five text-only bounding-box corrections and three directly checked readings: मन for सन, शुभ्र-वर्ण for शुक-वर्ण, and कुंकुम-सी for कुन्दुम-सी. Its committed source-corrections.json and layout-overrides.json preserve before/after decisions. Raw OCR, scans, prior proofreading and the user-approved Sanskrit correction remain intact.
+
+The new Shri Radha Kripa Kataksh Hindi translation is independent of the canonical corpus. Its supplied 16-page scan and checksum are preserved under data/collections/radha-kripa-kataksh. Nineteen Hindi translated stanzas (116 lines) were checked directly against all pages; Sanskrit and English layers are excluded. It renders as one hymn with its own route and bookmark identity.

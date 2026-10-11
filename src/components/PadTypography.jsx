@@ -1,3 +1,4 @@
+import { illustratedSakhiPage } from "../lib/sakhi-layout.js";
 import { fitReaderText } from "../lib/fit-reader-text.js";
 import FloralFrame from "./FloralFrame";
 import { Capacitor } from "@capacitor/core";
@@ -13,7 +14,7 @@ import { readerCollections } from "../lib/reader-collections";
 import { getPrintLayout } from "../lib/print-layout";
 import { fixedPrintModel, pageDimensions } from "../lib/fixed-print";
 import "./reader-typography.css";
-import { preparePadShare } from "../lib/share-pad";
+import { preparePadShare, warmShareResources } from "../lib/share-pad";
 import { useReaderTouch } from "../lib/use-reader-touch";
 import { loadReaderFont, READER_FONT } from "../lib/reader-font";
 
@@ -26,6 +27,23 @@ export default function PadTypography({
   interactive = true,
 }) {
   const [layout, setLayout] = useState(null);
+  const needsArt =
+    pad.collection === "kallolini"
+      ? pad.id === 8
+      : !pad.collection && pad.id === 48;
+  const [sakhiArt, setSakhiArt] = useState(null);
+  useEffect(() => {
+    if (!needsArt) return;
+    let active = true;
+    import("../lib/sakhi-illustrations.js")
+      .then((module) => {
+        if (active) setSakhiArt(module.sakhiIllustrations);
+      })
+      .catch(() => {});
+    return () => {
+      active = false;
+    };
+  }, [needsArt]);
   const [collectionMetrics, setCollectionMetrics] = useState(null);
   useEffect(() => {
     if (!pad.collection || pad.collection === "kallolini") return;
@@ -98,15 +116,19 @@ export default function PadTypography({
   const current = layout?.padId === pad.id ? layout : null;
   const page = useMemo(
     () =>
-      pad.collection
-        ? readerCollections[pad.collection].page(
-            pad,
-            collectionMetrics?.id === `${pad.collection}:${pad.id}`
-              ? collectionMetrics.widths
-              : null,
-          )
-        : fixedPrintModel(pad, current, item),
-    [pad, current, item, collectionMetrics],
+      illustratedSakhiPage(
+        pad.collection
+          ? readerCollections[pad.collection].page(
+              pad,
+              collectionMetrics?.id === `${pad.collection}:${pad.id}`
+                ? collectionMetrics.widths
+                : null,
+            )
+          : fixedPrintModel(pad, current, item),
+        pad,
+        sakhiArt || [],
+      ),
+    [pad, current, item, collectionMetrics, sakhiArt],
   );
   // One font-ready batch per page model, never an effect per text fragment.
   // Finish all writes before reads so SVG layout is calculated once per batch.
@@ -131,7 +153,13 @@ export default function PadTypography({
   );
   const pageHeight = (dimensions.width * framedHeight) / framedWidth;
   useEffect(() => {
-    if (!Capacitor.isNativePlatform() || !interactive || !shareKey) return;
+    if (
+      !Capacitor.isNativePlatform() ||
+      !interactive ||
+      !shareKey ||
+      (needsArt && !sakhiArt)
+    )
+      return;
     if (
       pad.collection
         ? pad.collection !== "kallolini" &&
@@ -139,6 +167,7 @@ export default function PadTypography({
         : !current
     )
       return;
+    warmShareResources().catch(() => {});
     let idle, timer;
     let started = false;
     const cancel = () => {
@@ -146,25 +175,41 @@ export default function PadTypography({
       if (idle != null) window.cancelIdleCallback?.(idle);
       idle = null;
     };
-    const schedule = () => {
+    const schedule = (event) => {
       cancel();
-      if (started || document.hidden) return;
-      timer = setTimeout(() => {
-        const prepare = () => {
-          const svg = viewport.current?.querySelector("svg");
-          if (!svg || document.hidden) return;
-          started = true;
-          preparePadShare(svg, shareKey).catch(() => {});
-        };
-        // No deadline that can force PNG work into an active gesture.
-        if (window.requestIdleCallback)
-          idle = window.requestIdleCallback(prepare);
-        else prepare();
-      }, 700);
+      if (
+        started ||
+        document.hidden ||
+        event?.touches?.length ||
+        viewport.current?.dataset.pinching === "true"
+      )
+        return;
+      timer = setTimeout(
+        () => {
+          const prepare = () => {
+            const svg = viewport.current?.querySelector("svg");
+            if (
+              !svg ||
+              document.hidden ||
+              viewport.current?.dataset.pinching === "true"
+            )
+              return;
+            started = true;
+            preparePadShare(svg, shareKey).catch(() => {});
+          };
+          // No deadline that can force PNG work into an active gesture.
+          if (window.requestIdleCallback)
+            idle = window.requestIdleCallback(prepare);
+          else prepare();
+        },
+        event ? 350 : 0,
+      );
     };
     const events = [
       "touchstart",
       "touchmove",
+      "touchend",
+      "touchcancel",
       "pointerdown",
       "scroll",
       "visibilitychange",
@@ -179,6 +224,8 @@ export default function PadTypography({
     };
   }, [
     current,
+    needsArt,
+    sakhiArt,
     shareKey,
     pad.collection,
     pad.id,
@@ -198,64 +245,81 @@ export default function PadTypography({
       aria-label="पद का पाठ"
     >
       <div className="print-canvas">
-        <svg
-          className="print-page"
-          role="document"
-          aria-label={
-            item?.title || (pad.collection ? pad.title : `पद ${pad.id}`)
-          }
-          viewBox={`0 0 ${framedWidth} ${framedHeight}`}
-          width={dimensions.width}
-          height={pageHeight}
-          data-layout={current || pad.collection ? "source" : "fallback"}
-          data-share-ready={
-            pad.collection
-              ? pad.collection === "kallolini" ||
-                collectionMetrics?.id === `${pad.collection}:${pad.id}`
-              : Boolean(current)
-          }
-        >
-          <FloralFrame
-            width={framedWidth}
-            height={framedHeight}
-            design={borderIndex}
-          />
-          <g transform="translate(44 40)">
-            {page.decorations.map((box, i) => (
-              <rect
-                key={i}
-                {...box}
-                fill="none"
-                stroke="black"
-                strokeWidth=".65"
-              />
-            ))}
-            {page.ruleY && (
-              <line
-                x1="26"
-                x2={page.width - 26}
-                y1={page.ruleY}
-                y2={page.ruleY}
-                stroke="black"
-                strokeWidth=".5"
-              />
-            )}
-            {page.lines.map((line, index) => (
-              <g
-                key={index}
-                className={`print-line print-${line.role}`}
-                role={line.role === "number" ? "heading" : undefined}
-                aria-level={line.role === "number" ? 1 : undefined}
-                data-baseline={line.y}
-                data-text-width={page.width}
-                data-source-fit={line.sourceFit ? "true" : undefined}
-                data-source-page={line.source?.pdfPage}
-              >
-                <PrintLine line={line} width={page.width} />
-              </g>
-            ))}
-          </g>
-        </svg>
+        <div className="print-surface">
+          <svg
+            className="print-page"
+            role="document"
+            aria-label={
+              item?.title || (pad.collection ? pad.title : `पद ${pad.id}`)
+            }
+            viewBox={`0 0 ${framedWidth} ${framedHeight}`}
+            width={dimensions.width}
+            height={pageHeight}
+            data-content-height={page.height + 80}
+            data-layout={current || pad.collection ? "source" : "fallback"}
+            data-art-ready={!needsArt || Boolean(sakhiArt)}
+            data-share-ready={
+              (!needsArt || Boolean(sakhiArt)) &&
+              (pad.collection
+                ? pad.collection === "kallolini" ||
+                  collectionMetrics?.id === `${pad.collection}:${pad.id}`
+                : Boolean(current))
+            }
+          >
+            <FloralFrame
+              width={framedWidth}
+              height={framedHeight}
+              design={borderIndex}
+            />
+            <g transform="translate(44 40)">
+              {page.decorations.map((box, i) => (
+                <rect
+                  key={i}
+                  {...box}
+                  fill="none"
+                  stroke="black"
+                  strokeWidth=".65"
+                />
+              ))}
+              {page.ruleY && (
+                <line
+                  x1="26"
+                  x2={page.width - 26}
+                  y1={page.ruleY}
+                  y2={page.ruleY}
+                  stroke="black"
+                  strokeWidth=".5"
+                />
+              )}
+              {page.illustrations?.map((image) => (
+                <image
+                  key={image.id}
+                  href={image.href}
+                  x={image.x}
+                  y={image.y}
+                  width={image.width}
+                  height={image.height}
+                  preserveAspectRatio="xMidYMid meet"
+                  aria-label={image.name}
+                />
+              ))}
+              {page.lines.map((line, index) => (
+                <g
+                  key={index}
+                  className={`print-line print-${line.role}`}
+                  role={line.role === "number" ? "heading" : undefined}
+                  aria-level={line.role === "number" ? 1 : undefined}
+                  data-baseline={line.y}
+                  data-text-width={line.textWidth || page.width}
+                  data-source-fit={line.sourceFit ? "true" : undefined}
+                  data-source-page={line.source?.pdfPage}
+                >
+                  <PrintLine line={line} width={page.width} />
+                </g>
+              ))}
+            </g>
+          </svg>
+        </div>
       </div>
     </div>
   );

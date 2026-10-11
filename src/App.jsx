@@ -1,5 +1,5 @@
 import { readerBorderIndex } from "./lib/reader-borders.js";
-import { sharePad, copyPad } from "./lib/share-pad";
+import { sharePad, copyPad, copiedPadText } from "./lib/share-pad";
 import { useReaderSlider } from "./lib/use-reader-slider";
 import { swipeDirection, wrappedPosition } from "./lib/reader-layout";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -386,10 +386,12 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: "instant" });
   }
   function step(direction) {
+    if (count <= 1) return;
     slider.slide(direction);
   }
   function startSwipe(event) {
     swipeStart.current = null;
+    if (count <= 1) return;
     if (event.touches.length !== 1) slider.reset();
     if (
       Number(
@@ -608,7 +610,7 @@ export default function App() {
       ...document.querySelectorAll('[data-current="true"] .print-line'),
     ].map((line) => line.textContent);
     try {
-      await copyPad(lines.join("\n"));
+      await copyPad(copiedPadText(lines.join("\n"), route.mode, route.id));
       setNotice("Text copied to clipboard.");
     } catch {
       setNotice("Could not copy. Please try again.");
@@ -798,7 +800,11 @@ export default function App() {
               <Icon name="bookmarks" />
             </button>
             <div className="nav-center">
-              <button aria-label="पिछला पद" onClick={() => step(-1)}>
+              <button
+                aria-label="पिछला पद"
+                disabled={count <= 1}
+                onClick={() => step(-1)}
+              >
                 <Icon name="left" />
               </button>
               <button
@@ -807,7 +813,11 @@ export default function App() {
               >
                 <Icon name="flower" />
               </button>
-              <button aria-label="अगला पद" onClick={() => step(1)}>
+              <button
+                aria-label="अगला पद"
+                disabled={count <= 1}
+                onClick={() => step(1)}
+              >
                 <Icon name="right" />
               </button>
             </div>

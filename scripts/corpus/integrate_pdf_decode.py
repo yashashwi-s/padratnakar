@@ -183,6 +183,7 @@ def main():
         result.append(hym)
     # Physical PDF inspection confirmed the following boundary/typography fixes.
     corrections=[
+        {'padId':203,'field':'verses','before':'श्रीकृष्ण-बाल-लीला-माधुरी','after':None,'pdfPage':140,'reason':'Section heading printed above pad 204; user reported this is not part of pad 203, confirmed against source page.'},
         {'padId':982,'field':'headings','before':'( )','after':None,'pdfPage':657,'reason':'Empty phantom heading; no corresponding printed text.'},
         {'padId':984,'field':'headings','before':'(गीता ८। १६)','after':None,'pdfPage':658,'reason':'Citation belongs to pad 983 and is already retained there.'},
         {'padId':985,'field':'headings','before':'(गीता ८। २४, २६ २७)','after':None,'pdfPage':658,'reason':'Citation belongs to pad 984 and is already retained there.'},

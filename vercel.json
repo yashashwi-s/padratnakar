@@ -3,8 +3,14 @@
     {
       "source": "/audio/(.*)",
       "headers": [
-        { "key": "Access-Control-Allow-Origin", "value": "*" },
-        { "key": "Content-Type", "value": "audio/mpeg" }
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Content-Type",
+          "value": "audio/mpeg"
+        }
       ]
     }
   ],
@@ -23,6 +29,10 @@
     },
     {
       "source": "/kallolini/:id",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/rkk/:id",
       "destination": "/index.html"
     }
   ]

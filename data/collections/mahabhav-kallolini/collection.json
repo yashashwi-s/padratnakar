@@ -1251,10 +1251,11 @@
           "sourceBbox": [
             239,
             296,
-            1062,
+            730,
             345
           ],
-          "alignmentSimilarity": 0.718
+          "alignmentSimilarity": 0.718,
+          "layoutProvenance": "Direct scan inspection: text-only bounds, excluding adjacent illustration; no text change."
         },
         {
           "sourcePage": 16,
@@ -1265,10 +1266,11 @@
           "sourceBbox": [
             148,
             344,
-            1075,
+            640,
             398
           ],
-          "alignmentSimilarity": 0.897
+          "alignmentSimilarity": 0.897,
+          "layoutProvenance": "Direct scan inspection: text-only bounds, excluding adjacent illustration; no text change."
         },
         {
           "sourcePage": 16,
@@ -1279,10 +1281,11 @@
           "sourceBbox": [
             241,
             403,
-            935,
+            739,
             447
           ],
-          "alignmentSimilarity": 0.84
+          "alignmentSimilarity": 0.84,
+          "layoutProvenance": "Direct scan inspection: text-only bounds, excluding adjacent illustration; no text change."
         },
         {
           "sourcePage": 16,
@@ -1385,7 +1388,7 @@
         {
           "sourcePage": 16,
           "sourceLineIndex": 14,
-          "text": "सन नित मग्न श्याम-पद-कुञ्ज॥",
+          "text": "मन नित मग्न श्याम-पद-कुञ्ज॥",
           "role": "verse",
           "stanzaBreakAfter": false,
           "sourceBbox": [
@@ -1394,7 +1397,8 @@
             1078,
             907
           ],
-          "alignmentSimilarity": 0.732
+          "alignmentSimilarity": 0.732,
+          "textProvenance": "Visible first word is मन in the directly inspected source scan."
         },
         {
           "sourcePage": 16,
@@ -1581,7 +1585,7 @@
         {
           "sourcePage": 17,
           "sourceLineIndex": 2,
-          "text": "शुक-वर्ण शुभ कुञ्ज निवास।",
+          "text": "शुभ्र-वर्ण शुभ कुञ्ज निवास।",
           "role": "verse",
           "stanzaBreakAfter": false,
           "sourceBbox": [
@@ -1590,7 +1594,8 @@
             640,
             331
           ],
-          "alignmentSimilarity": 0.878
+          "alignmentSimilarity": 0.878,
+          "textProvenance": "Direct illustration-page inspection shows शुभ्र-वर्ण."
         },
         {
           "sourcePage": 17,
@@ -1917,7 +1922,7 @@
         {
           "sourcePage": 18,
           "sourceLineIndex": 2,
-          "text": "कान्ति चन्द्र, कुन्दुम-सी देह।",
+          "text": "कान्ति चन्द्र, कुंकुम-सी देह।",
           "role": "verse",
           "stanzaBreakAfter": false,
           "sourceBbox": [
@@ -1926,7 +1931,8 @@
             1055,
             296
           ],
-          "alignmentSimilarity": 0.898
+          "alignmentSimilarity": 0.898,
+          "textProvenance": "Direct scan inspection confirms कुंकुम-सी, preserving this edition’s other words."
         },
         {
           "sourcePage": 18,
@@ -2019,12 +2025,13 @@
           "role": "verse",
           "stanzaBreakAfter": false,
           "sourceBbox": [
-            430,
+            133,
             682,
-            619,
+            625,
             719
           ],
-          "alignmentSimilarity": 0.727
+          "alignmentSimilarity": 0.727,
+          "layoutProvenance": "Direct scan inspection: text-only bounds, excluding adjacent illustration; no text change."
         },
         {
           "sourcePage": 18,
@@ -2105,10 +2112,11 @@
           "sourceBbox": [
             137,
             1006,
-            787,
+            627,
             1056
           ],
-          "alignmentSimilarity": 0.973
+          "alignmentSimilarity": 0.973,
+          "layoutProvenance": "Direct scan inspection: text-only bounds, excluding adjacent illustration; no text change."
         },
         {
           "sourcePage": 18,
@@ -2218,7 +2226,7 @@
           "सखी ‘विशाखा’ विद्युत-वर्णा",
           "रहती बादल-वर्णा कुञ्ज।",
           "तारा-प्रभा सुवसन सुशोभित,",
-          "सन नित मग्न श्याम-पद-कुञ्ज॥",
+          "मन नित मग्न श्याम-पद-कुञ्ज॥",
           "कर्पूरादि सुगन्ध-द्रव्य युत",
           "लेपन करती सुन्दर अंग।",
           "बूटे-बेल बनाती, रचती",
@@ -2234,7 +2242,7 @@
         ],
         [
           "सखी ‘इन्दुलेखा’ रुचि करती",
-          "शुक-वर्ण शुभ कुञ्ज निवास।",
+          "शुभ्र-वर्ण शुभ कुञ्ज निवास।",
           "अंग-कान्ति हरताल सदृश रंग",
           "दाड़िम कुसुम वसन सुखरास॥",
           "करती नृत्य विचित्र भंगिमा",
@@ -2260,7 +2268,7 @@
         ],
         [
           "सखी ‘तुङ्गविद्या’ अति शोभित",
-          "कान्ति चन्द्र, कुन्दुम-सी देह।",
+          "कान्ति चन्द्र, कुंकुम-सी देह।",
           "वसन सुशोभित पीत वर्ण बर,",
           "अरुण निकुञ्ज, भरी नव नेह॥",
           "गीत-वाद्यसे सेवा करती",

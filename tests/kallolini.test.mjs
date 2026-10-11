@@ -79,13 +79,10 @@ test("Source line extents and scan spacing survive uniformly across every Kallol
       if (prev.sourcePage !== next.sourcePage) continue;
       const ratio =
         rendered[i].fitWidth / (next.sourceBbox[2] - next.sourceBbox[0]);
-      assert.ok(
-        Math.abs(
-          rendered[i].y -
-            rendered[i - 1].y -
-            (next.sourceBbox[1] - prev.sourceBbox[1]) * ratio,
-        ) < 0.001,
-      );
+      const gap = rendered[i].y - rendered[i - 1].y;
+      if (prev.role === "musical-heading" && next.role === "verse")
+        assert.equal(gap, 100);
+      else assert.ok(gap >= (next.sourceBbox[1] - prev.sourceBbox[1]) * ratio);
     }
   }
 });
@@ -117,4 +114,17 @@ test("User-approved Sanskrit correction is preserved exactly", () => {
       (line) => line.text === "श्रीमत्परागपरमाद्भुतवैभवायाः",
     ),
   );
+});
+
+test("all Kallolini musical headings receive the canonical reader's proportional breathing room", () => {
+  for (const pad of kalloliniPads) {
+    const rows = kalloliniPage(pad).lines;
+    for (let i = 1; i < rows.length; i++)
+      if (
+        rows[i - 1].role === "heading" &&
+        rows[i - 1].source &&
+        rows[i].role === "verse"
+      )
+        assert.equal(rows[i].y - rows[i - 1].y, 100, `pad ${pad.id}`);
+  }
 });

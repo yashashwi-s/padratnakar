@@ -27,7 +27,7 @@ export function kalloliniPage(pad) {
       centered: true,
       role: "heading",
     });
-    y += 32;
+    y += (25 * width) / 288;
   }
   heading(
     pad.printedNumber
@@ -76,7 +76,11 @@ export function kalloliniPage(pad) {
         line.sourceBbox
           ? (line.sourceBbox[1] - previous.sourceBbox[1]) * ratio
           : leading;
-      y += sourceGap > 0 ? sourceGap : leading;
+      y +=
+        previous.role === "musical-heading" && line.role === "verse"
+          ? (60 * width) / 288
+          : Math.max(sourceGap > 0 ? sourceGap : leading, bodySize * 1.4) +
+            (line.role === "verse" ? (3 * width) / 288 : 16);
     }
     const b = bounds.get(line.sourcePage);
     const usable = line.sourceBbox && b;
@@ -99,9 +103,20 @@ export function kalloliniPage(pad) {
       fitWidth: sourceWidth,
       // Explicit source extents must survive the shared SVG fitter.
       sourceFit: !centered,
-      source: { pdfPage: line.sourcePage, bbox: line.sourceBbox },
+      source: {
+        pdfPage: line.sourcePage,
+        bbox: line.sourceBbox,
+        lineIndex: line.sourceLineIndex,
+      },
     });
     previous = line;
   }
-  return { width, height: y + 40, lines, decorations: [] };
+  return {
+    width,
+    height: y + 40,
+    lines,
+    decorations: [],
+    sourceScale: ratio,
+    sourceBounds: bounds,
+  };
 }

@@ -1,0 +1,62 @@
+[
+  {
+    "pdfPage": 16,
+    "sourceLineIndex": 4,
+    "text": "गोरोचन-आभा युत अंग।",
+    "bbox": [
+      239,
+      296,
+      730,
+      345
+    ],
+    "reason": "Direct scan inspection: text-only bounds, excluding adjacent illustration; no text change."
+  },
+  {
+    "pdfPage": 16,
+    "sourceLineIndex": 5,
+    "text": "बिद्युद-वर्णि निकुञ्ज-निवासिनि,",
+    "bbox": [
+      148,
+      344,
+      640,
+      398
+    ],
+    "reason": "Direct scan inspection: text-only bounds, excluding adjacent illustration; no text change."
+  },
+  {
+    "pdfPage": 16,
+    "sourceLineIndex": 6,
+    "text": "वसन रुचिर शिखिपिच्छ सुरंग॥",
+    "bbox": [
+      241,
+      403,
+      739,
+      447
+    ],
+    "reason": "Direct scan inspection: text-only bounds, excluding adjacent illustration; no text change."
+  },
+  {
+    "pdfPage": 18,
+    "sourceLineIndex": 9,
+    "text": "सखी ‘सुदेवी’ स्वर्ण-वर्ण-सी,",
+    "bbox": [
+      133,
+      682,
+      625,
+      719
+    ],
+    "reason": "Direct scan inspection: text-only bounds, excluding adjacent illustration; no text change."
+  },
+  {
+    "pdfPage": 18,
+    "sourceLineIndex": 15,
+    "text": "ललित लाड़िलीकी जो करती",
+    "bbox": [
+      137,
+      1006,
+      627,
+      1056
+    ],
+    "reason": "Direct scan inspection: text-only bounds, excluding adjacent illustration; no text change."
+  }
+]

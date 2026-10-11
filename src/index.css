@@ -902,11 +902,15 @@ body {
   white-space: normal;
 }
 .search-snippet {
-  display: -webkit-box;
-  overflow: hidden;
+  display: block;
   white-space: normal;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
+}
+.search-result-text .search-context {
+  display: none;
+}
+.pad-row:has(.search-result-text) .row-text {
+  display: block;
+  overflow: visible;
 }
 .search-result-text small {
   display: block;

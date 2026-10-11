@@ -40,6 +40,11 @@ test("all border families export with self-contained SVG references and no exter
       );
       assert.match(markup, /clip-rule="evenodd"/);
       assert(!/undefined|NaN|Infinity|<text|<script/.test(markup));
+      assert(!markup.includes('preserveAspectRatio="none"'));
+      for (const match of markup.matchAll(/href="(data:image[^"]+)"/g)) {
+        const decoded = decodeURIComponent(match[1]);
+        assert(!decoded.includes("scale(.92 .65)"));
+      }
       assert.equal((markup.match(/<image /g) || []).length, 6);
       assert.equal((markup.match(/<pattern /g) || []).length, 2);
       const patterns = [...markup.matchAll(/<pattern[^>]+width="([^"]+)"/g)];
