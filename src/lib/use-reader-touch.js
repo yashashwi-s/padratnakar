@@ -66,7 +66,7 @@ export function useReaderTouch(
       // At fitted size a second finger must not turn the page into a movable
       // sheet. At larger sizes keep the page covering the visible viewport.
       const horizontal =
-        value <= 1.01
+        value <= 1.01 && anchor.zoom <= 1.01
           ? 0
           : Math.max(
               anchor.right - anchor.left - width * value,
@@ -76,7 +76,7 @@ export function useReaderTouch(
               ),
             );
       const vertical =
-        value <= 1.01
+        value <= 1.01 && anchor.zoom <= 1.01
           ? 0
           : Math.max(
               anchor.bottom - anchor.top - height * value,
@@ -197,12 +197,16 @@ export function useReaderTouch(
             top: 0,
             behavior: "instant",
           });
+        }
+        // Shrinking also changes the document scroll coordinate. Preserve the
+        // clamped reading anchor at 1× instead of keeping the enlarged offset.
+        // rect.top accounts for any scroll adjustment the browser already made.
+        if (anchor.zoom > 1.01 || zoom.current > 1.01)
           window.scrollBy({
             left: 0,
             top: rect.top - anchor.top - anchor.dy,
             behavior: "instant",
           });
-        }
         element.setAttribute("data-pinching", "false");
         pinch = null;
         // Continue directly into a one-finger pan when one finger is lifted.

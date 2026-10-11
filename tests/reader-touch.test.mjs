@@ -10,6 +10,7 @@ function fixture() {
     scrolls = [],
     attributes = {};
   let frame;
+  let rects = {};
   const node = (name) => ({
     style: {
       setProperty: (key, value) => writes.push([name, key, value]),
@@ -17,7 +18,7 @@ function fixture() {
     },
     getBoundingClientRect() {
       reads.push(name);
-      return { left: 0, top: 100, right: 390, bottom: 1100 };
+      return rects[name] || { left: 0, top: 100, right: 390, bottom: 1100 };
     },
   });
   const surface = node("surface"),
@@ -65,6 +66,9 @@ function fixture() {
   };
   return {
     touch,
+    setRects: (value) => {
+      rects = value;
+    },
     clear,
     writes,
     reads,
@@ -200,3 +204,57 @@ test("lifting one pinch finger continues into diagonal panning without another t
   f.touch("touchcancel", []);
   assert.equal(f.attributes["data-pinching"], "false");
 });
+
+for (const ending of ["touchend", "touchcancel"]) {
+  test(`zooming fully out from a scrolled page keeps content visible on ${ending}`, () => {
+    const f = fixture();
+    f.touch("touchstart", [
+      [100, 200],
+      [200, 200],
+    ]);
+    f.touch("touchmove", [
+      [0, 200],
+      [300, 200],
+    ]);
+    f.paint();
+    f.touch("touchend", []);
+    // At 3× the reader has been panned far down and to the right.
+    f.setRects({
+      canvas: { left: -300, top: -1500, right: 870, bottom: 1500 },
+      surface: { left: -300, top: -1500, right: 870, bottom: 1500 },
+      viewport: { left: 0, top: -1500, right: 390, bottom: 1500 },
+    });
+    f.touch("touchstart", [
+      [0, 300],
+      [300, 300],
+    ]);
+    f.clear();
+    f.touch("touchmove", [
+      [100, 300],
+      [200, 300],
+    ]);
+    f.paint();
+    assert.equal(f.reads.length, 0);
+    assert.equal(f.writes.at(-1)[2], "translate3d(300px, 1300px, 0) scale(1)");
+    f.touch(ending, []);
+    assert.equal(f.attributes["data-zoom"], "1");
+    assert.equal(f.attributes["data-pinching"], "false");
+    assert.deepEqual(
+      f.scrolls.map((s) => [s.left, s.top]),
+      [[0, -1300]],
+    );
+    // Repeat a fitted-size gesture: no residual pan or stale movement.
+    f.clear();
+    f.touch("touchstart", [
+      [100, 200],
+      [200, 200],
+    ]);
+    f.touch("touchmove", [
+      [150, 250],
+      [250, 250],
+    ]);
+    f.paint();
+    f.touch("touchend", []);
+    assert.equal(f.scrolls.length, 0);
+  });
+}
