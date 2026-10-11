@@ -128,7 +128,7 @@ test("stale downloads cannot replace a newer page or resume playback", async () 
   assert.equal(released, true);
   player.dispose();
 });
-test("download-only stays paused and play obtains an uncached recording", async () => {
+test("play obtains an uncached recording and seeking stays within its duration", async () => {
   const requested = [];
   const { player, audio } = setup(async (track, { download }) => {
     requested.push(download);
@@ -136,18 +136,12 @@ test("download-only stays paused and play obtains an uncached recording", async 
   });
   player.setTrack(tracks[0]);
   await tick();
-  player.download();
-  await tick();
-  assert.equal(audio.paused, true);
-  assert.equal(player.getSnapshot().ready, true);
-  player.setTrack(tracks[1]);
-  await tick();
   player.toggle();
   await tick();
   assert.equal(audio.paused, false);
-  assert.deepEqual(requested, [false, true, false, true]);
+  assert.deepEqual(requested, [false, true]);
   player.seek(999);
-  assert.equal(audio.currentTime, tracks[1].duration);
+  assert.equal(audio.currentTime, tracks[0].duration);
   player.dispose();
 });
 test("failed download and blocked autoplay are retryable", async () => {

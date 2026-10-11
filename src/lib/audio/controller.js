@@ -164,9 +164,6 @@ export function createAudioController({ audio, source, onAdvance }) {
         else void load(true);
       }
     },
-    download() {
-      if (track && !state.ready && !state.busy) void load(true);
-    },
     seek(value) {
       if (!state.ready || !Number.isFinite(value)) return;
       audio.currentTime = Math.max(0, Math.min(state.duration, value));
