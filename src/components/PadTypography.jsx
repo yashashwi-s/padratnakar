@@ -1,3 +1,4 @@
+import FloralFrame from "./FloralFrame";
 import { Capacitor } from "@capacitor/core";
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { readerCollections } from "../lib/reader-collections";
@@ -13,6 +14,7 @@ export default function PadTypography({
   collectionItem: item,
   onCopy,
   shareKey,
+  borderIndex,
   interactive = true,
 }) {
   const [layout, setLayout] = useState(null);
@@ -36,6 +38,7 @@ export default function PadTypography({
     };
   }, [pad]);
   const [available, setAvailable] = useState(390);
+  const [minimumHeight, setMinimumHeight] = useState(0);
   const viewport = useRef(null);
   useEffect(() => {
     let active = true;
@@ -51,11 +54,31 @@ export default function PadTypography({
   }, [pad.id, pad.collection]);
   useLayoutEffect(() => {
     const element = viewport.current;
-    const update = () => setAvailable(element.clientWidth);
+    const header = document.querySelector(".app-header");
+    const chrome = document.querySelector(".reader-chrome");
+    const footer = document.querySelector(".bottom-nav");
+    const update = () => {
+      setAvailable(element.clientWidth);
+      setMinimumHeight(
+        Math.max(
+          0,
+          window.innerHeight -
+            (header?.getBoundingClientRect().height || 0) -
+            (chrome?.getBoundingClientRect().height || 0) -
+            (footer?.getBoundingClientRect().height || 0),
+        ),
+      );
+    };
     update();
     const observer = new ResizeObserver(update);
-    observer.observe(element);
-    return () => observer.disconnect();
+    [element, header, chrome, footer]
+      .filter(Boolean)
+      .forEach((node) => observer.observe(node));
+    window.addEventListener("resize", update);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", update);
+    };
   }, []);
   useEffect(() => {
     viewport.current.scrollLeft = 0;
@@ -73,6 +96,13 @@ export default function PadTypography({
         : fixedPrintModel(pad, current, item),
     [pad, current, item, collectionMetrics],
   );
+  const dimensions = pageDimensions(available);
+  const framedWidth = page.width + 88;
+  const framedHeight = Math.max(
+    page.height + 80,
+    (minimumHeight * framedWidth) / dimensions.width,
+  );
+  const pageHeight = (dimensions.width * framedHeight) / framedWidth;
   useEffect(() => {
     if (!Capacitor.isNativePlatform() || !interactive || !shareKey) return;
     if (
@@ -102,9 +132,9 @@ export default function PadTypography({
     pad.id,
     collectionMetrics,
     interactive,
+    framedHeight,
+    dimensions.width,
   ]);
-  const dimensions = pageDimensions(available);
-  const pageHeight = (dimensions.width * page.height) / (page.width + 24);
   useReaderTouch(viewport, onCopy, dimensions.width, pageHeight, interactive);
   return (
     <div
@@ -122,7 +152,7 @@ export default function PadTypography({
           aria-label={
             item?.title || (pad.collection ? pad.title : `पद ${pad.id}`)
           }
-          viewBox={`-12 0 ${page.width + 24} ${page.height}`}
+          viewBox={`0 0 ${framedWidth} ${framedHeight}`}
           width={dimensions.width}
           height={pageHeight}
           data-layout={current || pad.collection ? "source" : "fallback"}
@@ -132,55 +162,72 @@ export default function PadTypography({
               : Boolean(current)
           }
         >
-          {page.decorations.map((box, i) => (
-            <rect
-              key={i}
-              {...box}
-              fill="none"
-              stroke="black"
-              strokeWidth=".65"
-            />
-          ))}
-          {page.ruleY && (
-            <line
-              x1="26"
-              x2={page.width - 26}
-              y1={page.ruleY}
-              y2={page.ruleY}
-              stroke="black"
-              strokeWidth=".5"
-            />
-          )}
-          {page.lines.map((line, index) => (
-            <g
-              key={index}
-              className={`print-line print-${line.role}`}
-              role={line.role === "number" ? "heading" : undefined}
-              aria-level={line.role === "number" ? 1 : undefined}
-              data-baseline={line.y}
-              data-source-page={line.source?.pdfPage}
-            >
-              <PrintLine line={line} width={page.width} />
-            </g>
-          ))}
+          <FloralFrame
+            width={framedWidth}
+            height={framedHeight}
+            design={borderIndex}
+          />
+          <g transform="translate(44 40)">
+            {page.decorations.map((box, i) => (
+              <rect
+                key={i}
+                {...box}
+                fill="none"
+                stroke="black"
+                strokeWidth=".65"
+              />
+            ))}
+            {page.ruleY && (
+              <line
+                x1="26"
+                x2={page.width - 26}
+                y1={page.ruleY}
+                y2={page.ruleY}
+                stroke="black"
+                strokeWidth=".5"
+              />
+            )}
+            {page.lines.map((line, index) => (
+              <g
+                key={index}
+                className={`print-line print-${line.role}`}
+                role={line.role === "number" ? "heading" : undefined}
+                aria-level={line.role === "number" ? 1 : undefined}
+                data-baseline={line.y}
+                data-source-page={line.source?.pdfPage}
+              >
+                <PrintLine line={line} width={page.width} />
+              </g>
+            ))}
+          </g>
         </svg>
       </div>
     </div>
   );
 }
 
-function PrintLine({ line, width }) {
-  const headingRef = useRef(null);
+function FittedText({ x, y, fontSize, width, centered = false, children }) {
+  const ref = useRef(null);
   useLayoutEffect(() => {
-    if (!line.centered) return;
     let active = true;
     const fit = () => {
-      const element = headingRef.current;
+      const element = ref.current;
       if (!active || !element) return;
       element.removeAttribute("textLength");
+      element.removeAttribute("word-spacing");
+      element.setAttribute("font-size", String(fontSize));
       const natural = element.getComputedTextLength();
-      if (natural > width - 64)
-        element.setAttribute("textLength", String(width - 64));
+      if (!(natural > 0) || !(width > 0)) return;
+      const scale = Math.min(1, width / natural);
+      element.setAttribute("font-size", String(fontSize * scale));
+      const spaces = (element.textContent.trim().match(/\s+/g) || []).length;
+      // Preserve natural letter shapes. Match print justification with word gaps only.
+      // Short opening lines stay short; sparse lines are never stretched into banners.
+      if (!centered && scale === 1 && spaces && natural > width * 0.72)
+        element.setAttribute(
+          "word-spacing",
+          String((width - natural) / spaces),
+        );
     };
     fit();
     loadReaderFont()
@@ -189,32 +236,44 @@ function PrintLine({ line, width }) {
     return () => {
       active = false;
     };
-  }, [line.text, line.fontSize, line.centered, width]);
+  }, [children, fontSize, width, centered]);
+  return (
+    <text
+      ref={ref}
+      x={x}
+      y={y}
+      fontSize={fontSize}
+      textAnchor={centered ? "middle" : undefined}
+      xmlSpace="preserve"
+    >
+      {children}
+    </text>
+  );
+}
+
+function PrintLine({ line, width }) {
   if (line.centered)
     return (
-      <text
+      <FittedText
         x={line.x}
         y={line.y}
-        textAnchor="middle"
         fontSize={line.fontSize}
-        ref={headingRef}
-        lengthAdjust="spacingAndGlyphs"
+        width={width - 64}
+        centered
       >
         {line.text}
-      </text>
+      </FittedText>
     );
   if (!line.segments)
     return (
-      <text
+      <FittedText
         x={line.x}
         y={line.y}
         fontSize={line.fontSize}
-        textLength={line.length}
-        wordSpacing={line.wordSpacing}
-        lengthAdjust="spacingAndGlyphs"
+        width={line.fitWidth || line.length || width - line.x - 26}
       >
         {line.text}
-      </text>
+      </FittedText>
     );
   return line.segments.map((segment, index) => {
     const box = segment.bbox || line.source?.bbox;
@@ -227,27 +286,25 @@ function PrintLine({ line, width }) {
         ? segment.baseline - line.source.baseline
         : 0);
     return (
-      <text
+      <FittedText
         key={index}
         x={x}
         y={baseline}
         fontSize={segment.fontSize || line.fontSize}
-        textLength={length}
-        lengthAdjust="spacingAndGlyphs"
-        xmlSpace="preserve"
+        width={length}
       >
         {segment.runs
           ? segment.runs.map((run, i) => (
               <tspan
                 key={i}
                 baselineShift={run.raised && mixed ? "super" : undefined}
-                fontSize={run.raised && mixed ? 9 : undefined}
+                fontSize={run.raised && mixed ? "0.6em" : undefined}
               >
                 {run.text}
               </tspan>
             ))
           : segment.text}
-      </text>
+      </FittedText>
     );
   });
 }

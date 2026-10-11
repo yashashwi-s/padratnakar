@@ -39,13 +39,17 @@ The rebuild is deterministic and offline, and requires Python with the packages 
 
 ## Reader and sharing
 
-The inner reader renders source-positioned Unicode lines as an SVG page. It preserves printed line endings, fits the full page to the available width, and supports pinch zoom with horizontal panning inside the page. Do not reintroduce responsive line wrapping or pad canonical text with spaces to imitate PDF alignment.
+The inner reader renders source-positioned Unicode lines as an SVG page. It preserves printed line endings and source alignment, uses proportional glyph fitting and word spacing instead of horizontal letter distortion, fits the full page to the available width, and supports pinch zoom with horizontal panning inside the page. Do not reintroduce responsive line wrapping or pad canonical text with spaces to imitate PDF alignment.
+
+The reading page uses 25 original Vrindavan-inspired SVG borders—flowers, climbing vines, birds, Sanjhi-inspired patterns and garlands—outside the text geometry. A balanced order gives each pad a stable design across visits; every block of 25 uses the full set. Repeated motifs share SVG definitions, and a uniform clipped band keeps artwork clear of the text. It scrolls and zooms with the page and appears in native image shares; the white circular share/bookmark controls remain in sticky screen chrome and are screen-only. Short pages extend the frame to the footer without stretching verse spacing.
 
 Web sharing sends readable pad text with its canonical link. Native sharing exports the full positioned reader page as a PNG and includes the link in the share text. See [the frontend handoff](docs/frontend-handoff.md) for module boundaries and behavior.
 
 Shodash Geet bookmarks are independent of Pad Ratnakar and appear in their own saved collection. Existing numeric bookmarks remain Pad Ratnakar bookmarks; historical data cannot identify which edition they came from.
 
 All 18 Shodash recordings can be downloaded individually and replayed offline. The bottom divider is a seek bar with elapsed and total time. Playing audio follows Shodash navigation, advances through the sequence, and stops after Pushpika. Leaving the reader stops playback. Backgrounding the app pauses audio and cancels pending downloads; returning requires tapping Play. See [audio delivery and verification](docs/shodash-audio.md).
+
+Kallolini and Pad Ratnakar use the same section-sheet presentation with pad ranges. Pad lists show three-line excerpts with an ellipsis, and the header menu button toggles open/closed.
 
 ## Native shells
 

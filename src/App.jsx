@@ -1,3 +1,4 @@
+import { readerBorderIndex } from "./lib/reader-borders.js";
 import { sharePad, copyPad } from "./lib/share-pad";
 import { useReaderSlider } from "./lib/use-reader-slider";
 import { swipeDirection, wrappedPosition } from "./lib/reader-layout";
@@ -654,7 +655,10 @@ export default function App() {
           <button
             className="header-action"
             aria-label="संग्रह खोलें"
-            onClick={() => showView("menu")}
+            aria-expanded={view === "menu"}
+            onClick={() =>
+              view === "menu" ? history.back() : showView("menu")
+            }
           >
             <Icon name="menu" />
           </button>
@@ -702,11 +706,7 @@ export default function App() {
                     <button
                       className="topline-section"
                       aria-label="विषय और उपविषय खोलें"
-                      onClick={() =>
-                        activeCollection
-                          ? openSection({ mode: route.mode })
-                          : openBrowse()
-                      }
+                      onClick={openBrowse}
                     >
                       <span>
                         {[pad.section, pad.subtopic]
@@ -769,6 +769,7 @@ export default function App() {
                       <PadTypography
                         pad={entryPad}
                         collectionItem={entry}
+                        borderIndex={readerBorderIndex(route.mode, index)}
                         interactive={current}
                         onCopy={current ? copyCurrentPad : undefined}
                         shareKey={
@@ -829,12 +830,33 @@ export default function App() {
               <span>पद खोजें…</span>
             </button>
             <div className="sheet-scroll">
-              <SectionBar>पद रत्नाकर के विषय</SectionBar>
-              {indexMap.topics.map((topic) => (
+              <SectionBar>
+                {activeCollection?.title || "पद रत्नाकर"} के विषय
+              </SectionBar>
+              {(activeCollection?.sections.length
+                ? activeCollection.sections.map((section) => {
+                    const entries = activeCollection.pads.filter(
+                      (entry) => entry.sectionId === section.id,
+                    );
+                    return {
+                      ...section,
+                      startPad: entries[0]?.printedNumber || entries[0]?.id,
+                      endPad:
+                        entries.at(-1)?.printedNumber || entries.at(-1)?.id,
+                    };
+                  })
+                : indexMap.topics
+              ).map((topic) => (
                 <button
                   className="section-row"
                   key={topic.name}
-                  onClick={() => openSection(topic)}
+                  onClick={() =>
+                    openSection(
+                      activeCollection?.sections.length
+                        ? { mode: route.mode, sectionId: topic.id }
+                        : topic,
+                    )
+                  }
                 >
                   {topic.name}
                   <small className="section-range">
@@ -952,6 +974,14 @@ export default function App() {
                       }
                     >
                       {section.name}
+                      <small className="section-range">
+                        {(() => {
+                          const entries = selectedCollection.pads.filter(
+                            (entry) => entry.sectionId === section.id,
+                          );
+                          return `पद ${dn(entries[0]?.printedNumber || entries[0]?.id)}–${dn(entries.at(-1)?.printedNumber || entries.at(-1)?.id)}`;
+                        })()}
+                      </small>
                     </button>
                   ))
                 : selectedCollection.pads
@@ -966,7 +996,7 @@ export default function App() {
                         number={
                           entry.printedNumber ? dn(entry.printedNumber) : ""
                         }
-                        text={entry.title}
+                        text={padPreview(entry)}
                         onClick={() => go(selectedSection.mode, entry.id)}
                       />
                     ))

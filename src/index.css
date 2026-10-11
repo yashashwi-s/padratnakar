@@ -597,9 +597,19 @@ body {
   color: #727769;
   pointer-events: none;
 }
-.bottom-nav:has(.audio-actions) {
-  padding-top: 18px;
+/* Reserve the same top lane on every collection, without shifting controls. */
+.bottom-nav {
+  padding-top: 4px;
 }
+.bottom-nav .nav-center,
+.bottom-nav .saved-nav,
+.bottom-nav .audio-actions {
+  transform: translateY(3px);
+}
+.bottom-nav button {
+  height: 44px;
+}
+
 .audio-progress {
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
@@ -740,7 +750,7 @@ body {
   display: grid;
   place-items: center;
   width: 58px;
-  height: 52px;
+  height: 44px;
   border-radius: 5px;
 }
 .bottom-nav svg {
@@ -880,10 +890,11 @@ body {
 }
 .row-text {
   min-width: 0;
-  display: block;
+  display: -webkit-box;
   overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  white-space: normal;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }
 .search-result-text {
   display: block;
@@ -1213,4 +1224,30 @@ body {
   color: var(--text-muted, #6b655b);
   font-size: 0.9em;
   line-height: 1.8;
+}
+
+/* The frame scrolls; the reading actions remain reachable in the sticky chrome. */
+.reader-chrome {
+  position: sticky;
+  top: calc(var(--reader-header-height) + env(safe-area-inset-top));
+}
+.reading-toolbar {
+  position: absolute;
+  z-index: 2;
+  top: 100%;
+  right: max(0px, calc((100% - 560px) / 2));
+  padding: 2px 9px;
+  gap: 6px;
+  background: transparent;
+}
+.reading-toolbar .toolbar-action {
+  background: #fff;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  min-height: 36px;
+  box-shadow: 0 0 0 1px #ead6da;
+}
+.reading-toolbar .save-action {
+  margin-left: 0;
 }

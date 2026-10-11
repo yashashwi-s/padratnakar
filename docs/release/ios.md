@@ -1,9 +1,9 @@
 # iPhone and iPad preparation
 
-Current source: **1.0.8, build 10**, bundle ID `org.padratnakar.reader`.
-Intended owner account: `yashashwisinghania@gmail.com`. Developer enrollment is pending; an email address is not an Apple Team ID.
+Current source: **1.0.15, build 17**, bundle ID `org.padratnakar.reader`.
+Intended owner account: `yashashwisinghania@gmail.com`. Developer enrollment/signing has not been verified by this build workflow; an email address is not an Apple Team ID.
 
-## Verified on October 10, 2026
+## Last unsigned compilation verified on October 10, 2026 (1.0.8 / build 10)
 
 - Synced the current production web assets and all four Capacitor plugins into the iOS project.
 - Successfully compiled the Release configuration for a generic iOS device with signing disabled, using installed Xcode 27.0 beta (27A5194q).

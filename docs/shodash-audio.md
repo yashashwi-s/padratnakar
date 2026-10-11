@@ -24,7 +24,7 @@ Native recordings are fetched from `https://raw.githubusercontent.com/yashashwi-
 
 `tests/audio.test.mjs` verifies file identity and numbering, bookmark identity, play/pause/navigation, obsolete download races, retry, seeking, and the final stop. Run `npm run check`. Native builds still need Android/iPhone device checks for filesystem persistence, playback policies, interruptions and seeking.
 
-Android checks media volume when Play is tapped and uses a quiet toast if it is at or below 20%. Browser and iOS system volume are not inferred. Long-press copy also uses a short visible toast. No decorative artwork is included in this release.
+Android checks media volume when Play is tapped and uses a quiet toast if it is at or below 20%. Browser and iOS system volume are not inferred. Long-press copy also uses a short visible toast. The audio controls remain outside the reading-page floral frame.
 
 Availability for all 18 recordings is indexed using local file metadata. Cache checks are silent; playback intent keeps the pause icon stable between cached tracks. A progress ring appears only for an actual download, with no transient preparation notice.
 

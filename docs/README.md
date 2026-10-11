@@ -3,6 +3,7 @@
 ## Maintained guides
 
 - [Frontend handoff](frontend-handoff.md): current reader, collection, routing, search, sharing, and verification architecture.
+- [Reader borders](reader-borders.md): approved artwork, stable design order, sizing and native image exports.
 - [Adding collections](adding-collections.md): registry and integration checklist for a new reader collection.
 - [Corpus guide](data-corpus.md): accepted text, provenance, data rebuild, and validation rules.
 - [Print-layout guide](print-layout.md): source positions and fixed-line reader layout.

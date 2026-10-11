@@ -85,6 +85,7 @@ export function kalloliniPage(pad, measuredWidths = null) {
       y,
       fontSize: line.role === "footnote" ? 14 : 18 * scale,
       length: naturalWidth != null && extra >= 0 ? undefined : sourceWidth,
+      fitWidth: sourceWidth,
       wordSpacing: extra > 0 && spaces ? extra / spaces : undefined,
       source: { pdfPage: line.sourcePage },
     });
