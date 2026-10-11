@@ -1,3 +1,4 @@
+import { normalizeReaderPage } from "../lib/reader-page.js";
 import { illustratedSakhiPage } from "../lib/sakhi-layout.js";
 import { fitReaderText } from "../lib/fit-reader-text.js";
 import FloralFrame from "./FloralFrame";
@@ -116,17 +117,19 @@ export default function PadTypography({
   const current = layout?.padId === pad.id ? layout : null;
   const page = useMemo(
     () =>
-      illustratedSakhiPage(
-        pad.collection
-          ? readerCollections[pad.collection].page(
-              pad,
-              collectionMetrics?.id === `${pad.collection}:${pad.id}`
-                ? collectionMetrics.widths
-                : null,
-            )
-          : fixedPrintModel(pad, current, item),
-        pad,
-        sakhiArt || [],
+      normalizeReaderPage(
+        illustratedSakhiPage(
+          pad.collection
+            ? readerCollections[pad.collection].page(
+                pad,
+                collectionMetrics?.id === `${pad.collection}:${pad.id}`
+                  ? collectionMetrics.widths
+                  : null,
+              )
+            : fixedPrintModel(pad, current, item),
+          pad,
+          sakhiArt || [],
+        ),
       ),
     [pad, current, item, collectionMetrics, sakhiArt],
   );
@@ -184,26 +187,23 @@ export default function PadTypography({
         viewport.current?.dataset.pinching === "true"
       )
         return;
-      timer = setTimeout(
-        () => {
-          const prepare = () => {
-            const svg = viewport.current?.querySelector("svg");
-            if (
-              !svg ||
-              document.hidden ||
-              viewport.current?.dataset.pinching === "true"
-            )
-              return;
-            started = true;
-            preparePadShare(svg, shareKey).catch(() => {});
-          };
-          // No deadline that can force PNG work into an active gesture.
-          if (window.requestIdleCallback)
-            idle = window.requestIdleCallback(prepare);
-          else prepare();
-        },
-        event ? 350 : 0,
-      );
+      timer = setTimeout(() => {
+        const prepare = () => {
+          const svg = viewport.current?.querySelector("svg");
+          if (
+            !svg ||
+            document.hidden ||
+            viewport.current?.dataset.pinching === "true"
+          )
+            return;
+          started = true;
+          preparePadShare(svg, shareKey, { background: true }).catch(() => {});
+        };
+        // No deadline that can force PNG work into an active gesture.
+        if (window.requestIdleCallback)
+          idle = window.requestIdleCallback(prepare);
+        else prepare();
+      }, 1200);
     };
     const events = [
       "touchstart",

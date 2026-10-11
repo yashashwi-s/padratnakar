@@ -28,7 +28,10 @@ export function useReaderTouch(
     const apply = (value) => {
       canvas.style.setProperty("width", `${width * value}px`);
       canvas.style.setProperty("height", `${height * value}px`);
-      surface.style.setProperty("transform", `scale(${value})`);
+      surface.style.setProperty(
+        "transform",
+        `translate3d(0, 0, 0) scale(${value})`,
+      );
       element.setAttribute("data-zoom", String(value));
     };
     if (!interactive) zoom.current = 1;
@@ -164,7 +167,7 @@ export function useReaderTouch(
         }
         element.setAttribute("data-pinching", "false");
         pinch = null;
-        surface.style.removeProperty("will-change");
+        // Keep the current reader layer warm between consecutive pinches.
       }
     };
     const context = (event) => event.preventDefault();

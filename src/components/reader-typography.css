@@ -17,7 +17,7 @@
   margin: 0;
   transform-origin: 0 0;
   background: #fff;
-  overflow: visible;
+  overflow: hidden;
   font-family: "Noto Serif Devanagari", serif;
   font-weight: 700;
   font-synthesis: none;
@@ -65,6 +65,8 @@
 .print-surface {
   transform-origin: 0 0;
   width: max-content;
+  contain: layout paint;
+  backface-visibility: hidden;
 }
 .print-viewport[data-pinching="true"] {
   touch-action: none;

@@ -1,6 +1,6 @@
 # Native release workflow
 
-Current candidate: **1.0.21 / version code 23**, package `org.padratnakar.reader`. See [UPLOAD-FIRST.md](UPLOAD-FIRST.md) for the owner handoff. Release binaries and signing material are intentionally outside Git.
+Current candidate: **1.0.22 / version code 24**, package `org.padratnakar.reader`. See [UPLOAD-FIRST.md](UPLOAD-FIRST.md) for the owner handoff. Release binaries and signing material are intentionally outside Git.
 
 ## Build and verify
 
@@ -40,4 +40,4 @@ The intended upload account is `yashashwisinghania@gmail.com`. See [Console work
 
 ## iPhone preparation
 
-The iPhone/iPad project uses the same five offline collections and corrected section hierarchy. Its source version is 1.0.21, build 23. See [the iOS build and account handoff](ios.md) for unsigned compilation, remaining device checks, and signing after enrollment. The intended owner account is `yashashwisinghania@gmail.com`; the email is not an Apple Team ID.
+The iPhone/iPad project uses the same five offline collections and corrected section hierarchy. Its source version is 1.0.22, build 24. See [the iOS build and account handoff](ios.md) for unsigned compilation, remaining device checks, and signing after enrollment. The intended owner account is `yashashwisinghania@gmail.com`; the email is not an Apple Team ID.

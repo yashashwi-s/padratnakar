@@ -137,7 +137,10 @@ test("pinch panning stays inside page bounds and cancellation always settles the
   assert.equal(f.attributes["data-pinching"], "false");
   assert.ok(
     f.writes.some(
-      ([n, k, v]) => n === "surface" && k === "transform" && v === "scale(2)",
+      ([n, k, v]) =>
+        n === "surface" &&
+        k === "transform" &&
+        v === "translate3d(0, 0, 0) scale(2)",
     ),
   );
 });

@@ -44,8 +44,24 @@ async function embeddedFont() {
 }
 
 /** Export the same positioned Unicode SVG, including footnotes, into one full-pad PNG. */
-export async function padImage(svg) {
+export async function padImage(svg, { background: deferWork = false } = {}) {
+  // Native prewarming can finish loading its font/image while the user starts
+  // pinching. Yield before expensive cloning and rasterization in that case.
+  const yieldForInteraction = async () => {
+    if (!deferWork) return;
+    while (
+      document.hidden ||
+      svg.closest(".print-viewport")?.dataset.pinching === "true" ||
+      navigator.scheduling?.isInputPending?.()
+    ) {
+      if (!svg.isConnected) throw new Error("Reader page changed");
+      await new Promise((resolve) => setTimeout(resolve, 200));
+    }
+    if (!svg.isConnected) throw new Error("Reader page changed");
+  };
+  await yieldForInteraction();
   await loadReaderFont();
+  await yieldForInteraction();
   const clone = svg.cloneNode(true);
   const { x, y, width, height } = svg.viewBox.baseVal;
   const totalHeight = Math.min(
@@ -104,6 +120,7 @@ export async function padImage(svg) {
       image.onerror = reject;
       image.src = url;
     });
+    await yieldForInteraction();
     const canvas = document.createElement("canvas");
     canvas.width = Math.ceil(width * scale);
     canvas.height = Math.ceil(totalHeight * scale);
@@ -129,11 +146,11 @@ export function padShareRevision(svg) {
   // content of a shared page. Avoid throwing away a prepared file after zoom.
   return `${svg.dataset.contentHeight}|${svg.dataset.artReady}|${svg.dataset.artRevision || ""}|${svg.viewBox.baseVal.width}|${svg.querySelector("[data-border-design]")?.dataset.borderIndex}|${[...svg.querySelectorAll(".print-line")].map((line) => line.outerHTML).join("")}`;
 }
-export function preparePadShare(svg, key) {
+export function preparePadShare(svg, key, options) {
   const revision = padShareRevision(svg);
   const cached = prepared.get(key);
   if (cached?.revision === revision) return cached.result;
-  const result = padImage(svg)
+  const result = padImage(svg, options)
     .then(async (blob) => {
       let uri = null;
       if (Capacitor.isNativePlatform()) {

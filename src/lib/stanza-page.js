@@ -1,9 +1,9 @@
 /* Shared fixed-line page builder for ordinary stanza-based collections. */
 export function stanzaPage(pad, measuredWidths = null) {
-  const width = 480;
+  const width = 288;
   const lines = [];
-  let y = 30;
-  function heading(text, fontSize = 17) {
+  let y = 24;
+  function heading(text, fontSize = 13) {
     lines.push({
       text,
       centered: true,
@@ -12,7 +12,7 @@ export function stanzaPage(pad, measuredWidths = null) {
       fontSize,
       role: "heading",
     });
-    y += 32;
+    y += 24;
   }
   if (pad.printedNumber)
     heading(
@@ -21,14 +21,17 @@ export function stanzaPage(pad, measuredWidths = null) {
   if (pad.sectionHeading) heading(pad.sectionHeading);
   // Numbered pads already contain their opening line; only the unnumbered
   // closing pieces need their separate printed title above the body.
-  if (!pad.printedNumber) heading(pad.title, 19);
-  y += 24;
+  if (!pad.printedNumber) heading(pad.title, 13);
+  y += 36;
   const scale = measuredWidths
-    ? Math.min(1, (width - 36) / Math.max(1, ...measuredWidths))
+    ? Math.min(
+        1,
+        (width - 52) / Math.max(1, ...measuredWidths.map((w) => (w * 15) / 18)),
+      )
     : 1;
   const left = measuredWidths
-    ? (width - Math.max(1, ...measuredWidths) * scale) / 2
-    : 18;
+    ? (width - ((Math.max(1, ...measuredWidths) * 15) / 18) * scale) / 2
+    : 26;
   let index = 0;
   for (const block of pad.stanzas || pad.blocks || [pad.verses || []]) {
     for (const text of block) {
@@ -36,15 +39,17 @@ export function stanzaPage(pad, measuredWidths = null) {
         text,
         x: left,
         y,
-        fontSize: 18 * scale,
+        fontSize: 15 * scale,
         // Font size already applies the fit. Preserve natural glyph widths.
-        length: measuredWidths ? undefined : width - 36,
+        length: measuredWidths
+          ? ((measuredWidths[index] * 15) / 18) * scale
+          : width - 52,
         role: "verse",
         source: { pdfPage: pad.lines?.[index++]?.sourcePage },
       });
-      y += 32;
+      y += 24;
     }
-    y += 18;
+    y += 12;
   }
   return { width, height: y + 12, lines, decorations: [] };
 }

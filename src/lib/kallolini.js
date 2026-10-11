@@ -18,7 +18,7 @@ export function kalloliniPage(pad) {
   const width = 480;
   const lines = [];
   let y = 30;
-  function heading(text, size = 18) {
+  function heading(text, size = (13 * width) / 288) {
     lines.push({
       text,
       x: width / 2,
@@ -97,7 +97,11 @@ export function kalloliniPage(pad) {
           ? 26 + (line.sourceBbox[0] - b[0]) * ratio
           : 26,
       y,
-      fontSize: centered ? 16 : line.role === "footnote" ? 14 : bodySize,
+      fontSize: centered
+        ? (13 * width) / 288
+        : line.role === "footnote"
+          ? 20
+          : (15 * width) / 288,
       centered,
       length: sourceWidth,
       fitWidth: sourceWidth,
