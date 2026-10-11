@@ -71,3 +71,5 @@ This synchronizes assets only; it does not build, sign, or test a native release
 Start with the [documentation index](docs/README.md). It links the maintained guides, release material, and historical audit snapshots.
 
 Future agents: after a major product, architecture, data, or release change, review and update this README. Keep it under 200 lines.
+
+Android downloads are served at `/android` with a stable `/downloads/pad-ratnakar-latest.apk` link. Replace the signed APK in `public/downloads/` and update the page version for each public release; native builds exclude the downloadable APK. Full zoom-out resets the reader transform and nested scrolling and returns to the page top.

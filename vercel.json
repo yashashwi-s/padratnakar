@@ -12,9 +12,30 @@
           "value": "audio/mpeg"
         }
       ]
+    },
+    {
+      "source": "/downloads/(.*)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/vnd.android.package-archive"
+        },
+        {
+          "key": "Content-Disposition",
+          "value": "attachment; filename=\"pad-ratnakar.apk\""
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
     }
   ],
   "rewrites": [
+    {
+      "source": "/android",
+      "destination": "/android/index.html"
+    },
     {
       "source": "/pad/:id",
       "destination": "/index.html"

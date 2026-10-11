@@ -8,7 +8,8 @@ function fixture() {
     writes = [],
     reads = [],
     scrolls = [],
-    attributes = {};
+    attributes = {},
+    resets = [];
   let frame;
   let rects = {};
   const node = (name) => ({
@@ -51,7 +52,11 @@ function fixture() {
         return 1;
       },
       cancelAnimationFrame: () => {},
-      window: { innerHeight: 800, scrollBy: (value) => scrolls.push(value) },
+      window: {
+        innerHeight: 800,
+        scrollBy: (value) => scrolls.push(value),
+        scrollTo: (value) => resets.push(value),
+      },
     },
   );
   const touch = (name, points) =>
@@ -74,6 +79,8 @@ function fixture() {
     reads,
     scrolls,
     attributes,
+    resets,
+    element,
     paint: () => frame?.(),
   };
 }
@@ -239,9 +246,14 @@ for (const ending of ["touchend", "touchcancel"]) {
     f.touch(ending, []);
     assert.equal(f.attributes["data-zoom"], "1");
     assert.equal(f.attributes["data-pinching"], "false");
-    assert.deepEqual(
-      f.scrolls.map((s) => [s.left, s.top]),
-      [[0, -1300]],
+    assert.equal(f.scrolls.length, 0);
+    assert.equal(f.resets.at(-1).top, 0);
+    assert.equal(f.element.scrollLeft, 0);
+    assert.equal(f.element.scrollTop, 0);
+    assert.ok(
+      f.writes.some(
+        ([n, k, v]) => n === "surface" && k === "transform" && v === "none",
+      ),
     );
     // Repeat a fitted-size gesture: no residual pan or stale movement.
     f.clear();

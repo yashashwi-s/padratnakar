@@ -12,11 +12,16 @@ function nativeAudioExclusion() {
       config = value;
     },
     async closeBundle() {
-      if (config.mode === "native")
+      if (config.mode === "native") {
+        await rm(resolve(config.root, config.build.outDir, "downloads"), {
+          recursive: true,
+          force: true,
+        });
         await rm(resolve(config.root, config.build.outDir, "audio"), {
           recursive: true,
           force: true,
         });
+      }
     },
   };
 }
@@ -54,6 +59,8 @@ export default defineConfig({
           /^\/icons\//,
           /^\/data\//,
           /^\/audio\//,
+          /^\/android(?:\/|$)/,
+          /^\/downloads\//,
         ],
         // Increase precache size limit; our main JS bundle is ~6 MB.
         maximumFileSizeToCacheInBytes: 8 * 1024 * 1024,

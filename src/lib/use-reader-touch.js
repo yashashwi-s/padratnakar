@@ -30,7 +30,7 @@ export function useReaderTouch(
       canvas.style.setProperty("height", `${height * value}px`);
       surface.style.setProperty(
         "transform",
-        `translate3d(0, 0, 0) scale(${value})`,
+        value === 1 ? "none" : `translate3d(0, 0, 0) scale(${value})`,
       );
       element.setAttribute("data-zoom", String(value));
     };
@@ -191,6 +191,10 @@ export function useReaderTouch(
         const rect = canvas.getBoundingClientRect();
         if (zoom.current <= 1.01) {
           element.scrollLeft = 0;
+          element.scrollTop = 0;
+          // A full reset must discard both nested scroll offsets and the
+          // enlarged document anchor. Return the frame flush to its header.
+          window.scrollTo({ left: 0, top: 0, behavior: "instant" });
         } else {
           element.scrollBy({
             left: rect.left - anchor.left - anchor.dx,
@@ -201,7 +205,7 @@ export function useReaderTouch(
         // Shrinking also changes the document scroll coordinate. Preserve the
         // clamped reading anchor at 1× instead of keeping the enlarged offset.
         // rect.top accounts for any scroll adjustment the browser already made.
-        if (anchor.zoom > 1.01 || zoom.current > 1.01)
+        if (zoom.current > 1.01)
           window.scrollBy({
             left: 0,
             top: rect.top - anchor.top - anchor.dy,
