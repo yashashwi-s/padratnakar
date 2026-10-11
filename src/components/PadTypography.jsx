@@ -67,6 +67,10 @@ export default function PadTypography({
     const footer = document.querySelector(".bottom-nav");
     const update = () => {
       setAvailable(element.clientWidth);
+      const footerHeight = footer?.getBoundingClientRect().height || 68;
+      element
+        .closest(".reader-panel")
+        ?.style.setProperty("--actual-reader-footer", `${footerHeight}px`);
       setMinimumHeight(
         Math.max(
           0,

@@ -319,8 +319,11 @@ function borderTiles(index) {
             p,
           );
   const result = {
-    edge: image(150, g(0, 13, strip(kind, p, 150, symbols))),
-    corner: image(26, g(13, 13, corner, 0, 0.9)),
+    edge: image(
+      150,
+      `<g transform="translate(6 13) scale(.92 .65)">${strip(kind, p, 150, symbols)}</g>`,
+    ),
+    corner: image(26, g(13, 13, corner, 0, 0.65)),
   };
   tiles.set(index, result);
   return result;
@@ -331,13 +334,17 @@ export function readerBorderMarkup(index, width, height, prefix) {
   const p = palettes[readerBorders[index].palette];
   const tile = borderTiles(index);
   const shape = `M0 0H${width}V${height}H0Z M26 26V${height - 26}H${width - 26}V26Z`;
-  const edge = (length) =>
-    `<rect width="${length}" height="26" fill="url(#${prefix}-tile)"/>`;
+  const pattern = (axis, length) => {
+    const tileWidth = length / Math.max(1, Math.round(length / 150));
+    return `<pattern id="${prefix}-${axis}" patternUnits="userSpaceOnUse" width="${tileWidth}" height="26"><image width="${tileWidth}" height="26" preserveAspectRatio="none" href="${tile.edge}"/></pattern>`;
+  };
+  const edge = (length, axis) =>
+    `<rect width="${length}" height="26" fill="url(#${prefix}-${axis})"/>`;
   const art =
-    g(26, 0, edge(width - 52)) +
-    g(width - 26, height, edge(width - 52), 180) +
-    g(0, height - 26, edge(height - 52), -90) +
-    g(width, 26, edge(height - 52), 90);
+    g(26, 0, edge(width - 52, "horizontal")) +
+    g(width - 26, height, edge(width - 52, "horizontal"), 180) +
+    g(0, height - 26, edge(height - 52, "vertical"), -90) +
+    g(width, 26, edge(height - 52, "vertical"), 90);
   const corners = [
     [0, 0, 0],
     [width, 0, 90],
@@ -353,5 +360,5 @@ export function readerBorderMarkup(index, width, height, prefix) {
       ),
     )
     .join("");
-  return `<defs><pattern id="${prefix}-tile" patternUnits="userSpaceOnUse" width="150" height="26"><image width="150" height="26" href="${tile.edge}"/></pattern><clipPath id="${prefix}-band"><path d="${shape}" clip-rule="evenodd"/></clipPath></defs><path d="${shape}" fill="${p[0]}" fill-rule="evenodd"/><g clip-path="url(#${prefix}-band)">${art}${corners}</g><rect x="1" y="1" width="${width - 2}" height="${height - 2}" fill="none" stroke="${p[1]}" stroke-width=".65"/><rect x="25" y="25" width="${width - 50}" height="${height - 50}" fill="none" stroke="${p[1]}" stroke-width=".6"/><rect x="29" y="29" width="${width - 58}" height="${height - 58}" fill="none" stroke="${p[4]}" stroke-width=".45"/>`;
+  return `<defs>${pattern("horizontal", width - 52)}${pattern("vertical", height - 52)}<clipPath id="${prefix}-band"><path d="${shape}" clip-rule="evenodd"/></clipPath></defs><path d="${shape}" fill="${p[0]}" fill-rule="evenodd"/><g clip-path="url(#${prefix}-band)">${art}${corners}</g><rect x="1" y="1" width="${width - 2}" height="${height - 2}" fill="none" stroke="${p[1]}" stroke-width=".65"/><rect x="25" y="25" width="${width - 50}" height="${height - 50}" fill="none" stroke="${p[1]}" stroke-width=".6"/><rect x="29" y="29" width="${width - 58}" height="${height - 58}" fill="none" stroke="${p[4]}" stroke-width=".45"/>`;
 }

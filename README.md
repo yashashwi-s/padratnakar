@@ -72,3 +72,5 @@ Future agents: after a major product, architecture, data, or release change, rev
 Borders reuse a cached image tile per approved design in a fixed 25-design cycle. The frame has constant DOM complexity regardless of pad length. Swipe movement batches transform writes per animation frame and measures width only when starting or settling a gesture. Each reader panel contains its own layout and paint. Native share preparation waits for a quiet moment after touch/scroll activity instead of forcing work through an idle deadline.
 
 Kallolini preserves scanned line extents, indentation and vertical gaps using one scale per pad. Its uniform body size is constrained by source line widths, including the indented closing aarti; canonical wording is unchanged.
+
+Pinch previews update only a compositor transform; page dimensions and scroll anchoring settle once at gesture end. Border sides fit complete tile repeats, with inset artwork, and the page reserves the measured footer height.

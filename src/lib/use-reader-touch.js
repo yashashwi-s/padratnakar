@@ -50,18 +50,13 @@ export function useReaderTouch(
       const { value, center, anchor } = pending;
       pending = null;
       zoom.current = value;
-      apply(value);
-      const rect = canvas.getBoundingClientRect();
-      element.scrollBy({
-        left: rect.left + anchor.x * value - center.x,
-        top: 0,
-        behavior: "instant",
-      });
-      window.scrollBy({
-        left: 0,
-        top: rect.top + anchor.y * value - center.y,
-        behavior: "instant",
-      });
+      // During the gesture only composite the existing page. No size writes,
+      // geometry reads or document scrolling until the fingers are released.
+      svg.style.setProperty(
+        "transform",
+        `translate(${center.x - anchor.left - anchor.x * value}px, ${center.y - anchor.top - anchor.y * value}px) scale(${value})`,
+      );
+      anchor.center = center;
     };
     const start = (event) => {
       cancelPress();
@@ -70,8 +65,12 @@ export function useReaderTouch(
         if (event.cancelable) event.preventDefault();
         const [a, b] = event.touches,
           center = midpoint(a, b),
-          rect = svg.getBoundingClientRect();
+          rect = svg.getBoundingClientRect(),
+          base = canvas.getBoundingClientRect();
         pinch = {
+          left: base.left,
+          top: base.top,
+          center,
           distance: distance(a, b),
           zoom: zoom.current,
           x: (center.x - rect.left) / zoom.current,
@@ -112,6 +111,19 @@ export function useReaderTouch(
       if (event.touches.length < 2 && pinch) {
         cancelAnimationFrame(frame);
         paint();
+        const anchor = pinch;
+        apply(zoom.current);
+        const rect = canvas.getBoundingClientRect();
+        element.scrollBy({
+          left: rect.left + anchor.x * zoom.current - anchor.center.x,
+          top: 0,
+          behavior: "instant",
+        });
+        window.scrollBy({
+          left: 0,
+          top: rect.top + anchor.y * zoom.current - anchor.center.y,
+          behavior: "instant",
+        });
         pinch = null;
         svg.style.removeProperty("will-change");
       }

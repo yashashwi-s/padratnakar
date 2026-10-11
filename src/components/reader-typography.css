@@ -41,7 +41,7 @@
   font-weight: 750;
 }
 .pad-text:has(.print-viewport) {
-  padding: 0 0 calc(var(--reader-bottom-height) + env(safe-area-inset-bottom));
+  padding: 0 0 var(--actual-reader-footer, 68px);
 }
 @media print {
   .print-page {

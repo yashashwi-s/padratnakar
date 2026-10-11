@@ -40,8 +40,13 @@ test("all border families export with self-contained SVG references and no exter
       );
       assert.match(markup, /clip-rule="evenodd"/);
       assert(!/undefined|NaN|Infinity|<text|<script/.test(markup));
-      assert.equal((markup.match(/<image /g) || []).length, 5);
-      assert.equal((markup.match(/<pattern /g) || []).length, 1);
+      assert.equal((markup.match(/<image /g) || []).length, 6);
+      assert.equal((markup.match(/<pattern /g) || []).length, 2);
+      const patterns = [...markup.matchAll(/<pattern[^>]+width="([^"]+)"/g)];
+      for (const [j, length] of [388 - 52, height - 52].entries()) {
+        const repeats = length / Number(patterns[j][1]);
+        assert.ok(Math.abs(repeats - Math.round(repeats)) < 1e-8);
+      }
       assert(!/href="(?!#|data:image\/svg\+xml,)/.test(markup));
       const long = readerBorderMarkup(i, 388, 30000, `page-${i}`);
       assert.equal(
