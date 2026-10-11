@@ -84,6 +84,7 @@ export function fitReaderText(nodes) {
       element.removeAttribute("word-spacing");
       // Preserve printed fragment gaps; whole lines justify using words only.
       if (
+        line.dataset.justify !== "false" &&
         group.length === 1 &&
         (line.dataset.sourceFit === "true" || natural > (target - start) * 0.72)
       ) {

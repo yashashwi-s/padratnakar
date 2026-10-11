@@ -1180,13 +1180,6 @@ export default function App() {
                 ))}
               </div>
             ))}
-            {view === "menu" && (
-              <>
-                <button className="section-row" onClick={openBrowse}>
-                  विषय देखें
-                </button>
-              </>
-            )}
           </div>
         </main>
       )}

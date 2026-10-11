@@ -76,3 +76,8 @@
 .reader-panel.is-current .print-surface {
   will-change: transform;
 }
+
+/* Zoomed panning is coordinated across both scroll containers by the hook. */
+.print-viewport:not([data-zoom="1"]) {
+  touch-action: none;
+}

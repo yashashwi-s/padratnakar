@@ -6,7 +6,7 @@ const midpoint = (a, b) => ({
   x: (a.clientX + b.clientX) / 2,
   y: (a.clientY + b.clientY) / 2,
 });
-export const clampZoom = (value) => Math.max(1, Math.min(3, value));
+export const clampZoom = (value) => (value <= 1.01 ? 1 : Math.min(3, value));
 
 /** Composite the already-laid-out SVG; never rerender its text during a pinch. */
 export function useReaderTouch(
@@ -37,7 +37,9 @@ export function useReaderTouch(
     if (!interactive) zoom.current = 1;
     apply(zoom.current);
     if (!interactive) return;
-    let pinch = null,
+    let pan = null,
+      pendingPan = null,
+      pinch = null,
       press = null,
       timer = null,
       frame = null,
@@ -49,6 +51,14 @@ export function useReaderTouch(
     };
     const paint = () => {
       frame = null;
+      if (pendingPan) {
+        const { x, y } = pendingPan;
+        pendingPan = null;
+        // The reader and document are separate scroll containers. Drive both
+        // together so the browser cannot lock a diagonal drag to one axis.
+        element.scrollBy({ left: x, top: 0, behavior: "instant" });
+        window.scrollBy({ left: 0, top: y, behavior: "instant" });
+      }
       if (!pending) return;
       const { value, center, anchor } = pending;
       pending = null;
@@ -85,6 +95,11 @@ export function useReaderTouch(
     };
     const start = (event) => {
       cancelPress();
+      if (pendingPan) {
+        cancelAnimationFrame(frame);
+        paint();
+      }
+      pan = null;
       element.setAttribute("data-held", "false");
       if (event.touches.length === 2) {
         if (event.cancelable) event.preventDefault();
@@ -113,6 +128,11 @@ export function useReaderTouch(
       } else if (event.touches.length === 1 && !pinch) {
         const touch = event.touches[0];
         press = { x: touch.clientX, y: touch.clientY };
+        if (zoom.current > 1.01) {
+          if (event.cancelable) event.preventDefault();
+          pan = { x: touch.clientX, y: touch.clientY };
+          element.setAttribute("data-pinching", "true");
+        }
         timer = setTimeout(() => {
           element.setAttribute("data-held", "true");
           copy.current?.();
@@ -137,6 +157,18 @@ export function useReaderTouch(
           anchor: pinch,
         };
         if (frame === null) frame = requestAnimationFrame(paint);
+      } else if (pan && event.touches.length === 1) {
+        if (event.cancelable) event.preventDefault();
+        const t = event.touches[0];
+        if (press && Math.hypot(t.clientX - press.x, t.clientY - press.y) <= 8)
+          return;
+        cancelPress();
+        pendingPan = {
+          x: (pendingPan?.x || 0) + pan.x - t.clientX,
+          y: (pendingPan?.y || 0) + pan.y - t.clientY,
+        };
+        pan = { x: t.clientX, y: t.clientY };
+        if (frame === null) frame = requestAnimationFrame(paint);
       } else if (press && event.touches.length === 1) {
         const t = event.touches[0];
         if (Math.hypot(t.clientX - press.x, t.clientY - press.y) > 8)
@@ -145,6 +177,12 @@ export function useReaderTouch(
     };
     const end = (event) => {
       cancelPress();
+      if (pan) {
+        cancelAnimationFrame(frame);
+        paint();
+        pan = null;
+        element.setAttribute("data-pinching", "false");
+      }
       if ((event.type === "touchcancel" || event.touches.length < 2) && pinch) {
         cancelAnimationFrame(frame);
         paint();
@@ -167,6 +205,16 @@ export function useReaderTouch(
         }
         element.setAttribute("data-pinching", "false");
         pinch = null;
+        // Continue directly into a one-finger pan when one finger is lifted.
+        if (
+          event.type !== "touchcancel" &&
+          event.touches.length === 1 &&
+          zoom.current > 1.01
+        ) {
+          const touch = event.touches[0];
+          pan = { x: touch.clientX, y: touch.clientY };
+          element.setAttribute("data-pinching", "true");
+        }
         // Keep the current reader layer warm between consecutive pinches.
       }
     };

@@ -110,3 +110,36 @@ test("Pad Ratnakar 48 alternates drawings and preserves every original word", ()
     }
   }
 });
+
+test("illustrated stanzas use straight columns, natural spacing and alternate as whole blocks", () => {
+  const pr = getPad(48);
+  const layout = JSON.parse(
+    readFileSync(new URL("../public/data/layout/1.json", import.meta.url)),
+  )[48];
+  for (const [pad, base] of [
+    [pr, fixedPrintModel(pr, layout)],
+    [kalloliniPads[7], kalloliniPage(kalloliniPads[7])],
+  ]) {
+    const page = illustratedSakhiPage(base, pad, resources);
+    const body = page.lines.filter((l) => l.role === "verse");
+    for (let stanza = 0; stanza < 8; stanza++) {
+      const block = body.slice(stanza * 8, stanza * 8 + 8);
+      assert.equal(new Set(block.map((l) => l.x)).size, 1);
+      assert.ok(
+        block.every(
+          (l) => l.justify === false && l.fitWidth / page.width > 0.65,
+        ),
+      );
+      assert.ok(
+        block.every(
+          (l) => Math.abs(l.fontSize / page.width - 16 / 288) < 1e-10,
+        ),
+      );
+      assert.equal(block[0].x > page.width / 4, stanza % 2 === 0);
+    }
+  }
+  const page = illustratedSakhiPage(fixedPrintModel(pr, layout), pr, resources);
+  const parts = page.lines.filter((l) => l.canonicalLine === 3);
+  assert.equal(parts[0].text, "कुसुम-कला-कुशला रचती कल");
+  assert.equal(parts[1].text, "कुसुम-निकेतन कुसुम-वितान॥");
+});

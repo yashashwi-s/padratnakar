@@ -324,6 +324,7 @@ export default function PadTypography({
                   data-text-width={line.textWidth || page.width}
                   data-source-fit={line.sourceFit ? "true" : undefined}
                   data-source-page={line.source?.pdfPage}
+                  data-justify={line.justify === false ? "false" : undefined}
                 >
                   <PrintLine line={line} width={page.width} />
                 </g>

@@ -76,3 +76,29 @@ test("source-constrained lines retain their extents without independently shrink
   assert.equal(Number(e.attrs["font-size"]), 16);
   assert.equal(Number(e.attrs.x), 100);
 });
+
+test("straight illustrated columns do not stretch spaces to fill short lines", () => {
+  const element = {
+    parentElement: {
+      className: { baseVal: "print-verse" },
+      dataset: { textWidth: "200", sourceFit: "true", justify: "false" },
+    },
+    innerHTML: "straight column natural spacing",
+    textContent: "straight column natural spacing",
+    dataset: { fitX: "8", fitSize: "16", fitWidth: "190" },
+    attrs: {},
+    removeAttribute(key) {
+      delete this.attrs[key];
+    },
+    setAttribute(key, value) {
+      this.attrs[key] = value;
+    },
+    getComputedTextLength() {
+      return 120;
+    },
+  };
+  fitReaderText([element]);
+  assert.equal(element.attrs["font-size"], "16");
+  assert.equal(element.attrs.x, "8");
+  assert.equal(element.attrs["word-spacing"], undefined);
+});

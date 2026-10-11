@@ -144,3 +144,59 @@ test("pinch panning stays inside page bounds and cancellation always settles the
     ),
   );
 });
+
+test("zoomed one-finger drags move both axes together, coalesce frames and need no geometry reads", () => {
+  const f = fixture();
+  f.touch("touchstart", [
+    [100, 200],
+    [200, 200],
+  ]);
+  f.touch("touchmove", [
+    [50, 200],
+    [250, 200],
+  ]);
+  f.paint();
+  f.touch("touchend", []);
+  f.touch("touchstart", [[200, 400]]);
+  f.clear();
+  f.touch("touchmove", [[180, 370]]);
+  f.touch("touchmove", [[160, 340]]);
+  assert.equal(f.scrolls.length, 0);
+  f.paint();
+  assert.equal(f.reads.length, 0);
+  assert.deepEqual(
+    f.scrolls.map((s) => [s.left, s.top]),
+    [
+      [40, 0],
+      [0, 60],
+    ],
+  );
+  f.touch("touchend", []);
+  assert.equal(f.attributes["data-pinching"], "false");
+});
+test("lifting one pinch finger continues into diagonal panning without another touch", () => {
+  const f = fixture();
+  f.touch("touchstart", [
+    [100, 200],
+    [200, 200],
+  ]);
+  f.touch("touchmove", [
+    [50, 200],
+    [250, 200],
+  ]);
+  f.paint();
+  f.touch("touchend", [[250, 200]]);
+  f.clear();
+  f.touch("touchmove", [[230, 170]]);
+  f.paint();
+  assert.deepEqual(
+    f.scrolls.map((s) => [s.left, s.top]),
+    [
+      [20, 0],
+      [0, 30],
+    ],
+  );
+  assert.equal(f.reads.length, 0);
+  f.touch("touchcancel", []);
+  assert.equal(f.attributes["data-pinching"], "false");
+});
