@@ -903,14 +903,21 @@ body {
 }
 .search-snippet {
   display: block;
-  white-space: normal;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .search-result-text .search-context {
   display: none;
 }
 .pad-row:has(.search-result-text) .row-text {
   display: block;
-  overflow: visible;
+  flex: 1;
+  overflow: hidden;
+}
+.pad-row:has(.search-result-text) {
+  height: 62px;
+  min-height: 62px;
 }
 .search-result-text small {
   display: block;

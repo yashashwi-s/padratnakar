@@ -42,3 +42,30 @@ test("metadata and footnote excerpts keep the actual searched text visible", () 
   assert.ok(searchPads(notes, "आसावरी")[0].snippet.startsWith("आसावरी\n"));
   assert.equal(searchPads(notes, "टिप्पणी")[0].snippet, "…विशेष टिप्पणी");
 });
+
+test("single-line excerpts fit around the match with truthful boundary dots", async () => {
+  const { fitSearchExcerpt } = await import("../src/lib/search.js");
+  const text =
+    "first second third fourth fifth sixth seventh eighth ninth last";
+  const fit = (value) => value.length <= 28;
+  for (const word of ["first", "fifth", "last"]) {
+    const result = fitSearchExcerpt(text, word, fit);
+    assert.ok(result.includes(word));
+    assert.ok(fit(result));
+    assert.equal(result.startsWith("…"), word !== "first");
+    assert.equal(result.endsWith("…"), word !== "last");
+  }
+  assert.equal(
+    fitSearchExcerpt("short whole pad", "whole", fit),
+    "short whole pad",
+  );
+  assert.ok(
+    fitSearchExcerpt(
+      "…राधा मधुर प्यारी। श्याम कमल चरण॥…",
+      "shyam",
+      (s) => s.length <= 24,
+    ).includes("श्याम"),
+  );
+  const result = fitSearchExcerpt("…one two three…", "two", () => true);
+  assert.equal(result, "…one two three…");
+});

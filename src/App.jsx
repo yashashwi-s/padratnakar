@@ -13,6 +13,7 @@ import { devanagariNumber as dn } from "./lib/search";
 import { searchCollections as collections } from "./lib/search-catalog";
 import { useSearch } from "./lib/use-search";
 import { findSectionMatches, matchesSectionName } from "./lib/sections";
+import SearchSnippet from "./components/SearchSnippet";
 import Icon from "./components/Icon";
 import ExitDialog from "./components/ExitDialog";
 import PadTypography from "./components/PadTypography";
@@ -247,25 +248,10 @@ function SearchResults({
                       number={group.displayNumber(id)}
                       text={
                         <span className="search-result-text">
-                          <span className="search-snippet">
-                            {result.snippet || result.pad.title}
-                          </span>
-                          {result.snippetKind !== "verse" &&
-                            result.pad.verses.find(
-                              (line) => !isMusicalLabel(line),
-                            ) !== result.snippet && (
-                              <span className="search-context">
-                                {result.pad.verses.find(
-                                  (line) => !isMusicalLabel(line),
-                                )}
-                              </span>
-                            )}
-                          {result.snippetKind === "footnote" && (
-                            <small>टिप्पणी में मिला</small>
-                          )}
-                          {result.matchKind === "approximate" && (
-                            <small>मिलती-जुलती वर्तनी</small>
-                          )}
+                          <SearchSnippet
+                            text={result.snippet || result.pad.title}
+                            query={query}
+                          />
                         </span>
                       }
                       onClick={() => onOpen(group.mode, group.routeId(id))}

@@ -327,3 +327,35 @@ export function matchesSearchName(name, query) {
   }
   return q.split(" ").every((t) => matchTerm(f, queryTerm(t), false));
 }
+
+// Fit original words to the actual row width, growing context around a match.
+// Existing ellipses retain the omissions already made by the search worker.
+export function fitSearchExcerpt(text, query, fits) {
+  const leading = text.startsWith("…"),
+    trailing = text.endsWith("…");
+  const words = text.replace(/^…|…$/g, "").trim().split(/\s+/).filter(Boolean);
+  if (!words.length) return "";
+  const terms = normalize(query).split(" ").filter(Boolean).map(queryTerm);
+  const hit = words.findIndex((word) =>
+    terms.some((term) => matchTerm(field(word, "verse"), term, true)),
+  );
+  let left = Math.max(0, hit),
+    right = left;
+  const render = (l, r) =>
+    `${leading || l > 0 ? "…" : ""}${words.slice(l, r + 1).join(" ")}${trailing || r < words.length - 1 ? "…" : ""}`;
+  let result = render(left, right);
+  if (!fits(result)) return result; // CSS handles a single exceptionally long word.
+  let growLeft = true,
+    growRight = true;
+  while (growLeft || growRight) {
+    if (growLeft) {
+      if (left > 0 && fits(render(left - 1, right))) left--;
+      else growLeft = false;
+    }
+    if (growRight) {
+      if (right + 1 < words.length && fits(render(left, right + 1))) right++;
+      else growRight = false;
+    }
+  }
+  return render(left, right);
+}
