@@ -76,21 +76,20 @@ export async function audioSource(
   let bytes;
   if (response.body) {
     const reader = response.body.getReader();
-    const chunks = [];
+    const joined = new Uint8Array(track.bytes);
     let received = 0;
     while (true) {
       const { done, value } = await reader.read();
       if (done) break;
-      chunks.push(value);
+      if (received + value.byteLength > joined.byteLength) {
+        await reader.cancel();
+        throw new Error("Recording exceeds expected size");
+      }
+      joined.set(value, received);
       received += value.byteLength;
       onProgress(Math.min(0.99, received / track.bytes));
     }
-    const joined = new Uint8Array(received);
-    let offset = 0;
-    for (const chunk of chunks) {
-      joined.set(chunk, offset);
-      offset += chunk.length;
-    }
+    if (received !== track.bytes) throw new Error("Incomplete recording");
     bytes = joined.buffer;
   } else bytes = await response.arrayBuffer();
   if (bytes.byteLength !== track.bytes) throw new Error("Incomplete recording");

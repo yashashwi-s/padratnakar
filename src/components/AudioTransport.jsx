@@ -1,5 +1,8 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Icon from "./Icon";
+import { App as NativeApp } from "@capacitor/app";
+import { Capacitor } from "@capacitor/core";
+import { bindAudioLifecycle } from "../lib/audio/lifecycle";
 import tracks from "../data/shodash-audio.json";
 import { createAudioController } from "../lib/audio/controller";
 import { lowMediaVolume } from "../lib/audio/volume";
@@ -33,6 +36,11 @@ export default function AudioTransport({ id, onAdvance, onNotice }) {
       onAdvance: (next) => advance.current(next),
     });
     controller.current = player;
+    const unbindLifecycle = bindAudioLifecycle(
+      player,
+      document,
+      Capacitor.isNativePlatform() ? NativeApp : null,
+    );
     let disposed = false;
     const observed = {};
     audioAvailability(tracks)
@@ -43,7 +51,12 @@ export default function AudioTransport({ id, onAdvance, onNotice }) {
     const unsubscribe = player.subscribe(() => {
       const snapshot = player.getSnapshot();
       setState(snapshot);
-      if (snapshot.id != null && snapshot.checked && !snapshot.busy) {
+      if (
+        snapshot.id != null &&
+        snapshot.checked &&
+        !snapshot.busy &&
+        observed[snapshot.id] !== snapshot.ready
+      ) {
         observed[snapshot.id] = snapshot.ready;
         setAvailability((index) =>
           index[snapshot.id] === snapshot.ready
@@ -54,6 +67,7 @@ export default function AudioTransport({ id, onAdvance, onNotice }) {
     });
     return () => {
       disposed = true;
+      unbindLifecycle();
       unsubscribe();
       player.dispose();
       controller.current = null;

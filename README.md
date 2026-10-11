@@ -45,7 +45,7 @@ Web sharing sends readable pad text with its canonical link. Native sharing expo
 
 Shodash Geet bookmarks are independent of Pad Ratnakar and appear in their own saved collection. Existing numeric bookmarks remain Pad Ratnakar bookmarks; historical data cannot identify which edition they came from.
 
-All 18 Shodash recordings can be downloaded individually and replayed offline. The bottom divider is a seek bar with elapsed and total time. Playing audio follows Shodash navigation, advances through the sequence, and stops after Pushpika. Leaving the reader stops playback. See [audio delivery and verification](docs/shodash-audio.md).
+All 18 Shodash recordings can be downloaded individually and replayed offline. The bottom divider is a seek bar with elapsed and total time. Playing audio follows Shodash navigation, advances through the sequence, and stops after Pushpika. Leaving the reader stops playback. Backgrounding the app pauses audio and cancels pending downloads; returning requires tapping Play. See [audio delivery and verification](docs/shodash-audio.md).
 
 ## Native shells
 

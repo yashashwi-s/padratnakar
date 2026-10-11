@@ -190,7 +190,7 @@ test("played state resets per track and download progress is observable and canc
   report(0.9);
   assert.equal(player.getSnapshot().progress, 0);
   audio.dispatchEvent(new Event("playing"));
-  assert.equal(player.getSnapshot().hasPlayed, true);
+  assert.equal(player.getSnapshot().hasPlayed, false);
   player.setTrack(tracks[1]);
   await tick();
   assert.equal(player.getSnapshot().hasPlayed, false);
@@ -241,5 +241,86 @@ test("only an actual uncached transfer enters the download state", async () => {
   await tick();
   assert.equal(player.getSnapshot().downloading, false);
   assert.equal(player.getSnapshot().playing, true);
+  player.dispose();
+});
+
+test("background pauses, blocks next-track advance, and requires explicit play on return", async () => {
+  const { player, audio, advanced } = setup();
+  player.setTrack(tracks[0]);
+  await tick();
+  player.toggle();
+  audio.currentTime = 12;
+  audio.dispatchEvent(new Event("timeupdate"));
+  player.setActive(false);
+  assert.equal(audio.paused, true);
+  assert.equal(player.getSnapshot().intent, false);
+  audio.dispatchEvent(new Event("ended"));
+  player.toggle();
+  assert.equal(audio.paused, true);
+  assert.deepEqual(advanced, []);
+  player.setActive(true);
+  assert.equal(audio.paused, true);
+  assert.equal(player.getSnapshot().current, 12);
+  player.toggle();
+  assert.equal(audio.paused, false);
+  player.dispose();
+});
+
+test("a download completing after backgrounding cannot start audio", async () => {
+  let finish,
+    signal,
+    released = false;
+  const { player, audio } = setup((track, options) => {
+    if (!options.download) return Promise.resolve(null);
+    signal = options.signal;
+    return new Promise((resolve) => {
+      finish = resolve;
+    });
+  });
+  player.setTrack(tracks[0]);
+  await tick();
+  player.toggle();
+  player.setActive(false);
+  assert.equal(signal.aborted, true);
+  player.setActive(true);
+  finish({
+    url: "late",
+    release: () => {
+      released = true;
+    },
+  });
+  await tick();
+  assert.equal(audio.paused, true);
+  assert.equal(player.getSnapshot().intent, false);
+  assert.equal(player.getSnapshot().busy, false);
+  assert.equal(released, true);
+  player.dispose();
+});
+
+test("late playing events are stopped while inactive", async () => {
+  const { player, audio } = setup();
+  player.setTrack(tracks[0]);
+  await tick();
+  player.toggle();
+  player.setActive(false);
+  audio.paused = false;
+  audio.dispatchEvent(new Event("playing"));
+  assert.equal(audio.paused, true);
+  assert.equal(player.getSnapshot().playing, false);
+  player.dispose();
+});
+
+test("duplicate media ticks do not notify subscribers", async () => {
+  const { player, audio } = setup();
+  player.setTrack(tracks[0]);
+  await tick();
+  let updates = 0;
+  player.subscribe(() => updates++);
+  audio.dispatchEvent(new Event("timeupdate"));
+  audio.dispatchEvent(new Event("timeupdate"));
+  assert.equal(updates, 0);
+  audio.currentTime = 1;
+  audio.dispatchEvent(new Event("timeupdate"));
+  assert.equal(updates, 1);
   player.dispose();
 });

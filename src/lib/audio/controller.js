@@ -1,6 +1,8 @@
 // The player is independent of React so playback and download races can be
 // tested without a browser. Only the small transport subscribes to time ticks.
 export function createAudioController({ audio, source, onAdvance }) {
+  let active = true,
+    disposed = false;
   let track = null,
     generation = 0,
     abort,
@@ -21,6 +23,11 @@ export function createAudioController({ audio, source, onAdvance }) {
   };
   const listeners = new Set();
   const update = (patch) => {
+    if (
+      disposed ||
+      !Object.keys(patch).some((key) => state[key] !== patch[key])
+    )
+      return;
     state = { ...state, ...patch };
     listeners.forEach((fn) => fn());
   };
@@ -29,14 +36,16 @@ export function createAudioController({ audio, source, onAdvance }) {
     audio.pause();
   };
   async function start() {
+    if (!active || disposed || !state.intent) return;
     const ticket = generation;
     if (audio.ended || (state.duration && state.current >= state.duration))
       audio.currentTime = 0;
     try {
       await audio.play();
-      if (ticket === generation && !state.intent) audio.pause();
+      if (!active || disposed || (ticket === generation && !state.intent))
+        audio.pause();
     } catch {
-      if (ticket === generation)
+      if (ticket === generation && active && !disposed)
         update({
           intent: false,
           playing: false,
@@ -54,7 +63,8 @@ export function createAudioController({ audio, source, onAdvance }) {
         download,
         signal: abort.signal,
         onProgress: (progress) => {
-          if (ticket === generation) update({ progress });
+          if (ticket === generation)
+            update({ progress: Math.floor(progress * 100) / 100 });
         },
       });
       if (ticket !== generation) {
@@ -97,7 +107,13 @@ export function createAudioController({ audio, source, onAdvance }) {
           ? audio.duration
           : track?.duration || 0,
       }),
-    playing: () => update({ playing: true, hasPlayed: true, error: "" }),
+    playing: () => {
+      if (!active || disposed || !state.intent) {
+        audio.pause();
+        return;
+      }
+      update({ playing: true, hasPlayed: true, error: "" });
+    },
     pause: () => update({ playing: false }),
     error: () => {
       if (track)
@@ -108,7 +124,8 @@ export function createAudioController({ audio, source, onAdvance }) {
         });
     },
     ended: () => {
-      if (state.intent && track && track.id < 17) onAdvance(track.id + 1);
+      if (active && !disposed && state.intent && track && track.id < 17)
+        onAdvance(track.id + 1);
       else pause();
     },
   };
@@ -120,7 +137,18 @@ export function createAudioController({ audio, source, onAdvance }) {
       return () => listeners.delete(fn);
     },
     getSnapshot: () => state,
+    setActive(value) {
+      if (disposed || active === value) return;
+      active = value;
+      if (!active) {
+        ++generation;
+        abort?.abort();
+        update({ busy: false, downloading: false, progress: 0 });
+        pause();
+      }
+    },
     setTrack(next) {
+      if (disposed) return;
       if (track?.id === next?.id) return;
       const keepPlaying = state.intent && Boolean(next);
       ++generation;
@@ -148,7 +176,7 @@ export function createAudioController({ audio, source, onAdvance }) {
       if (next) void load(false);
     },
     toggle() {
-      if (!track) return;
+      if (!track || !active || disposed) return;
       if (state.intent) {
         if (state.busy && !state.ready) {
           ++generation;
@@ -170,6 +198,8 @@ export function createAudioController({ audio, source, onAdvance }) {
       update({ current: audio.currentTime });
     },
     dispose() {
+      disposed = true;
+      active = false;
       ++generation;
       abort?.abort();
       for (const [name, handler] of Object.entries(events))
