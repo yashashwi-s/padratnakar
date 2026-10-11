@@ -50,3 +50,29 @@ test("body fitting uses one size across lines and fragments, batches reads and c
   fitReaderText([a, b, c]);
   assert(!calls.includes("read"));
 });
+
+test("source-constrained lines retain their extents without independently shrinking words", () => {
+  const group = {
+    className: { baseVal: "print-verse" },
+    dataset: { textWidth: "480", sourceFit: "true" },
+  };
+  const e = {
+    parentElement: group,
+    innerHTML: "source constrained test",
+    textContent: "source constrained test",
+    dataset: { fitX: "100", fitSize: "20", fitWidth: "200" },
+    attrs: {},
+    removeAttribute(k) {
+      delete this.attrs[k];
+    },
+    setAttribute(k, v) {
+      this.attrs[k] = v;
+    },
+    getComputedTextLength() {
+      return 250;
+    },
+  };
+  fitReaderText([e]);
+  assert.equal(Number(e.attrs["font-size"]), 16);
+  assert.equal(Number(e.attrs.x), 100);
+});

@@ -14,7 +14,7 @@ export const kalloliniPads = collection.entries.map((entry) => ({
 }));
 
 /** Preserve this edition's lines and source alignment, without changing its text. */
-export function kalloliniPage(pad, measuredWidths = null) {
+export function kalloliniPage(pad) {
   const width = 480;
   const lines = [];
   let y = 30;
@@ -34,11 +34,8 @@ export function kalloliniPage(pad, measuredWidths = null) {
       ? `[ ${devanagariNumber(pad.printedNumber)} ]`
       : pad.title,
   );
-  let previous = null;
-  let verseIndex = 0;
-  const scale = measuredWidths
-    ? Math.min(1, (width - 52) / Math.max(1, ...measuredWidths))
-    : 1;
+  // Scan boxes describe line extents, not individual word sizes. Use one
+  // coordinate scale for the entire pad, including page continuations.
   const bounds = new Map();
   for (const line of pad.lines) {
     if (line.role !== "verse" || !line.sourceBbox) continue;
@@ -46,50 +43,64 @@ export function kalloliniPage(pad, measuredWidths = null) {
     const b = bounds.get(line.sourcePage) || [left, right];
     bounds.set(line.sourcePage, [Math.min(b[0], left), Math.max(b[1], right)]);
   }
+  const span = Math.max(1, ...[...bounds.values()].map(([l, r]) => r - l));
+  const ratio = (width - 52) / span;
+  const heights = pad.lines
+    .filter((line) => line.role === "verse" && line.sourceBbox)
+    .map((line) => (line.sourceBbox[3] - line.sourceBbox[1]) * ratio)
+    .sort((a, b) => a - b);
+  const bodySize = heights.length
+    ? heights[Math.floor(heights.length / 2)]
+    : 18;
+  const gaps = pad.lines
+    .slice(1)
+    .flatMap((line, i) => {
+      const previous = pad.lines[i];
+      if (
+        line.sourcePage !== previous.sourcePage ||
+        !line.sourceBbox ||
+        !previous.sourceBbox
+      )
+        return [];
+      const gap = (line.sourceBbox[1] - previous.sourceBbox[1]) * ratio;
+      return gap > 0 ? [gap] : [];
+    })
+    .sort((a, b) => a - b);
+  const leading = gaps.length ? gaps[Math.floor(gaps.length / 2)] : 28;
+  let previous = null;
   for (const line of pad.lines) {
-    if (line.role === "musical-heading") {
-      if (previous) y += 16;
-      heading(line.text, 16);
-      previous = null;
-      continue;
-    }
-    if (!previous) y += 28;
-    else {
-      const samePage = previous.sourcePage === line.sourcePage;
-      const b = bounds.get(line.sourcePage);
-      const ratio = b && b[1] > b[0] ? (width - 52) / (b[1] - b[0]) : 0.48;
-      const printedGap =
-        samePage && previous.sourceBbox && line.sourceBbox
-          ? (line.sourceBbox[3] - previous.sourceBbox[3]) * ratio
-          : 28;
-      y +=
-        Math.max(25, Math.min(48, printedGap)) +
-        (previous.stanzaBreakAfter ? 10 : 0);
+    if (previous) {
+      const sourceGap =
+        previous.sourcePage === line.sourcePage &&
+        previous.sourceBbox &&
+        line.sourceBbox
+          ? (line.sourceBbox[1] - previous.sourceBbox[1]) * ratio
+          : leading;
+      y += sourceGap > 0 ? sourceGap : leading;
     }
     const b = bounds.get(line.sourcePage);
-    const usable = line.role === "verse" && line.sourceBbox && b && b[1] > b[0];
-    const ratio = usable ? (width - 52) / (b[1] - b[0]) : 1;
-    const measured = measuredWidths?.[verseIndex];
+    const usable = line.sourceBbox && b;
     const sourceWidth = usable
       ? (line.sourceBbox[2] - line.sourceBbox[0]) * ratio
       : width - 52;
-    const naturalWidth = measured != null ? measured * scale : null;
-    const spaces = (line.text.match(/\s+/g) || []).length;
-    // Scanned line boxes include the book's generous word gaps. Never stretch
-    // glyphs to fill those boxes; distribute surplus width only between words.
-    const extra = naturalWidth != null ? sourceWidth - naturalWidth : 0;
+    const centered = line.role === "musical-heading";
     lines.push({
       text: line.text,
-      role: line.role,
-      x: usable ? 26 + (line.sourceBbox[0] - b[0]) * ratio : 26,
+      role: centered ? "heading" : line.role,
+      x: centered
+        ? width / 2
+        : usable
+          ? 26 + (line.sourceBbox[0] - b[0]) * ratio
+          : 26,
       y,
-      fontSize: line.role === "footnote" ? 14 : 18 * scale,
-      length: naturalWidth != null && extra >= 0 ? undefined : sourceWidth,
+      fontSize: centered ? 16 : line.role === "footnote" ? 14 : bodySize,
+      centered,
+      length: sourceWidth,
       fitWidth: sourceWidth,
-      wordSpacing: extra > 0 && spaces ? extra / spaces : undefined,
-      source: { pdfPage: line.sourcePage },
+      // Explicit source extents must survive the shared SVG fitter.
+      sourceFit: !centered,
+      source: { pdfPage: line.sourcePage, bbox: line.sourceBbox },
     });
-    if (line.role === "verse") verseIndex += 1;
     previous = line;
   }
   return { width, height: y + 40, lines, decorations: [] };

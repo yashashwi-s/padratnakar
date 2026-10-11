@@ -44,7 +44,14 @@ export function fitReaderText(nodes) {
         sum + (natural * bodySize) / Number(element.dataset.fitSize),
       0,
     );
-    const room = Number(line.dataset.textWidth) - group[0].x - 2;
+    const room =
+      line.dataset.sourceFit === "true"
+        ? Math.max(
+            ...group.map(
+              ({ element, x }) => x + Number(element.dataset.fitWidth),
+            ),
+          ) - group[0].x
+        : Number(line.dataset.textWidth) - group[0].x - 2;
     if (natural > 0 && room > 0)
       bodyScale = Math.min(bodyScale, room / natural);
   }
@@ -76,7 +83,10 @@ export function fitReaderText(nodes) {
       element.setAttribute("x", String(cursor));
       element.removeAttribute("word-spacing");
       // Preserve printed fragment gaps; whole lines justify using words only.
-      if (group.length === 1 && natural > (target - start) * 0.72) {
+      if (
+        group.length === 1 &&
+        (line.dataset.sourceFit === "true" || natural > (target - start) * 0.72)
+      ) {
         const spaces = (element.textContent.trim().match(/\s+/g) || []).length;
         if (spaces)
           element.setAttribute("word-spacing", String(surplus / spaces));

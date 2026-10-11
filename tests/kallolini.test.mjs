@@ -66,13 +66,28 @@ test("Collection search does not duplicate a pad under its section", () => {
   assert.equal(searchPads(index, "116")[0].pad.id, 116);
   assert.ok(searchPads(index, "सौभाग्य").length >= 4);
 });
-test("Short source lines retain normal glyph proportions and use word gaps", () => {
-  const pad = kalloliniPads[116];
-  const page = kalloliniPage(pad, pad.verses.map(() => 100));
-  const verses = page.lines.filter((line) => line.role === "verse");
-  assert.ok(verses.length > 0);
-  assert.ok(verses.every((line) => line.length === undefined));
-  assert.ok(verses.some((line) => line.wordSpacing > 0));
+test("Source line extents and scan spacing survive uniformly across every Kallolini pad", () => {
+  for (const pad of kalloliniPads) {
+    const page = kalloliniPage(pad);
+    const rendered = page.lines.slice(1);
+    const body = rendered.filter((line) => line.role === "verse");
+    assert.equal(new Set(body.map((line) => line.fontSize)).size, 1);
+    assert.ok(body.every((line) => line.sourceFit && line.fitWidth > 0));
+    for (let i = 1; i < pad.lines.length; i++) {
+      const prev = pad.lines[i - 1],
+        next = pad.lines[i];
+      if (prev.sourcePage !== next.sourcePage) continue;
+      const ratio =
+        rendered[i].fitWidth / (next.sourceBbox[2] - next.sourceBbox[0]);
+      assert.ok(
+        Math.abs(
+          rendered[i].y -
+            rendered[i - 1].y -
+            (next.sourceBbox[1] - prev.sourceBbox[1]) * ratio,
+        ) < 0.001,
+      );
+    }
+  }
 });
 test("The accepted build preserves proofread text and never imports comparison text", () => {
   const source = readFileSync(

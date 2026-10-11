@@ -28,7 +28,7 @@ export default function PadTypography({
   const [layout, setLayout] = useState(null);
   const [collectionMetrics, setCollectionMetrics] = useState(null);
   useEffect(() => {
-    if (!pad.collection) return;
+    if (!pad.collection || pad.collection === "kallolini") return;
     let active = true;
     loadReaderFont()
       .catch(() => {})
@@ -130,7 +130,8 @@ export default function PadTypography({
     if (!Capacitor.isNativePlatform() || !interactive || !shareKey) return;
     if (
       pad.collection
-        ? collectionMetrics?.id !== `${pad.collection}:${pad.id}`
+        ? pad.collection !== "kallolini" &&
+          collectionMetrics?.id !== `${pad.collection}:${pad.id}`
         : !current
     )
       return;
@@ -205,7 +206,8 @@ export default function PadTypography({
           data-layout={current || pad.collection ? "source" : "fallback"}
           data-share-ready={
             pad.collection
-              ? collectionMetrics?.id === `${pad.collection}:${pad.id}`
+              ? pad.collection === "kallolini" ||
+                collectionMetrics?.id === `${pad.collection}:${pad.id}`
               : Boolean(current)
           }
         >
@@ -242,6 +244,7 @@ export default function PadTypography({
                 aria-level={line.role === "number" ? 1 : undefined}
                 data-baseline={line.y}
                 data-text-width={page.width}
+                data-source-fit={line.sourceFit ? "true" : undefined}
                 data-source-page={line.source?.pdfPage}
               >
                 <PrintLine line={line} width={page.width} />

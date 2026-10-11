@@ -50,3 +50,7 @@ For font-decoder research, `python3 scripts/corpus/extract_print_layout.py --raw
 `data/shodash-geet-layout.json` contains the 18-entry collection's display-only headings, speaker alternation, stanza numbers and dedication style role. Its coordinates reference the original Pad Ratnakar, not invented coordinates for the supplied Shodash scans. See [the frontend handoff](frontend-handoff.md).
 
 Hindi opening quotation marks are normalized for display (`\'राधा’` becomes `‘राधा’`). Canonical source strings, search data, and provenance remain unchanged. The visible line and its hidden measurement copy use the same display treatment.
+
+## Mahabhav Kallolini scan geometry
+
+All 117 entries use one coordinate scale per pad, retained over page continuations. Source line top offsets determine vertical spacing without arbitrary gap clamps or extra stanza spacing. Line extents and indentation constrain the shared fitter; one uniform body size, seeded from median scan line height, fits the most constrained complete line. Word spacing fills the recorded extent without glyph distortion. Source text and scan alignment records remain unchanged.
