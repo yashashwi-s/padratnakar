@@ -49,7 +49,7 @@ Pinch previews composite an HTML surface, with page dimensions and scroll anchor
 
 Body text uses one fitted size per pad, including fragmented source lines. Text measurements are batched once per page model and cached across visits; unchanged lines skip re-rendering. Native image preparation inspects text roles only, avoiding decorative geometry style reads.
 
-Web sharing sends readable pad text with its canonical link. Native sharing exports the complete positioned text and artwork as a PNG and includes canonical-pad and app-home links. Copied text includes the same footer. Native preparation warms the font and saves the PNG ahead of the tap; zoom does not invalidate it. Export omits viewport-only empty height and caps image width at 1080 pixels. See [the frontend handoff](docs/frontend-handoff.md) for module boundaries and behavior.
+Web sharing sends readable pad text with its canonical link. Native sharing exports the complete positioned text and artwork as a PNG and includes canonical-pad and app-home links. Copied text includes the same footer. Native preparation warms the font and saves the PNG ahead of the tap; tapping Share promotes an in-progress background export immediately and wakes its interaction wait, so the share sheet never waits for another touch; zoom does not invalidate it. Export omits viewport-only empty height and caps image width at 1080 pixels. See [the frontend handoff](docs/frontend-handoff.md) for module boundaries and behavior.
 
 Shodash Geet bookmarks are independent of Pad Ratnakar and appear in their own saved collection. Existing numeric bookmarks remain Pad Ratnakar bookmarks; historical data cannot identify which edition they came from.
 

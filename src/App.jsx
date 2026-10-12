@@ -717,6 +717,7 @@ export default function App() {
                   className="toolbar-action"
                   aria-label="पद की तस्वीर साझा करें"
                   disabled={sharing}
+                  aria-busy={sharing}
                   onClick={shareCurrentPad}
                 >
                   <Icon name="share" />

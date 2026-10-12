@@ -45,18 +45,26 @@ async function embeddedFont() {
 }
 
 /** Export the same positioned Unicode SVG, including footnotes, into one full-pad PNG. */
-export async function padImage(svg, { background: deferWork = false } = {}) {
+export async function padImage(svg, work = {}) {
   // Native prewarming can finish loading its font/image while the user starts
   // pinching. Yield before expensive cloning and rasterization in that case.
   const yieldForInteraction = async () => {
-    if (!deferWork) return;
+    if (!work.background) return;
     while (
-      document.hidden ||
-      svg.closest(".print-viewport")?.dataset.pinching === "true" ||
-      navigator.scheduling?.isInputPending?.()
+      work.background &&
+      (document.hidden ||
+        svg.closest(".print-viewport")?.dataset.pinching === "true")
     ) {
       if (!svg.isConnected) throw new Error("Reader page changed");
-      await new Promise((resolve) => setTimeout(resolve, 200));
+      await new Promise((resolve) => {
+        const resume = () => {
+          clearTimeout(timer);
+          work.resume = null;
+          resolve();
+        };
+        const timer = setTimeout(resume, 200);
+        work.resume = resume;
+      });
     }
     if (!svg.isConnected) throw new Error("Reader page changed");
   };
@@ -150,8 +158,17 @@ export function padShareRevision(svg) {
 export function preparePadShare(svg, key, options) {
   const revision = padShareRevision(svg);
   const cached = prepared.get(key);
-  if (cached?.revision === revision) return cached.result;
-  const result = padImage(svg, options)
+  if (cached?.revision === revision) {
+    if (!options?.background) {
+      // A tap takes ownership of speculative work. Never leave the share
+      // sheet waiting on a background interaction/idle gate.
+      cached.work.background = false;
+      cached.work.resume?.();
+    }
+    return cached.result;
+  }
+  const work = { background: Boolean(options?.background), resume: null };
+  const result = padImage(svg, work)
     .then(async (blob) => {
       let uri = null;
       if (Capacitor.isNativePlatform()) {
@@ -170,7 +187,7 @@ export function preparePadShare(svg, key, options) {
       if (prepared.get(key)?.result === result) prepared.delete(key);
       throw error;
     });
-  prepared.set(key, { revision, result });
+  prepared.set(key, { revision, result, work });
   while (prepared.size > 2) prepared.delete(prepared.keys().next().value);
   return result;
 }

@@ -84,3 +84,55 @@ test("preparation saves the native image once and survives pinch/viewport change
   assert.equal(await context.prepare(svg, "pad-32"), revised);
   assert.equal(renders, 3);
 });
+
+test("a share tap promotes and wakes an already queued background export without duplicating it", async () => {
+  const { readFileSync } = await import("node:fs");
+  const { runInNewContext } = await import("node:vm");
+  const source = readFileSync(
+    new URL("../src/lib/share-pad.js", import.meta.url),
+    "utf8",
+  );
+  const code = source
+    .slice(
+      source.indexOf("const prepared ="),
+      source.indexOf("export async function sharePad"),
+    )
+    .replaceAll("export ", "");
+  let renders = 0,
+    writes = 0,
+    work;
+  const context = {
+    Capacitor: { isNativePlatform: () => true },
+    Directory: { Cache: "cache" },
+    Filesystem: {
+      writeFile: async () => {
+        writes++;
+        return { uri: "file://ready.png" };
+      },
+    },
+    asDataUrl: async () => "data:image/png;base64,ABC",
+    padImage: (_svg, options) => {
+      renders++;
+      work = options;
+      return new Promise((resolve) => {
+        options.resume = () => resolve({});
+      });
+    },
+  };
+  runInNewContext(code + "\nthis.prepare=preparePadShare;", context);
+  const svg = {
+    dataset: { contentHeight: "500" },
+    viewBox: { baseVal: { width: 376 } },
+    querySelector: () => null,
+    querySelectorAll: () => [{ outerHTML: "<g>verse</g>" }],
+  };
+  const background = context.prepare(svg, "pad-10", { background: true });
+  assert.equal(work.background, true);
+  const tapped = context.prepare(svg, "pad-10");
+  assert.equal(work.background, false);
+  assert.equal(tapped, background);
+  assert.equal((await tapped).uri, "file://ready.png");
+  assert.equal(renders, 1);
+  assert.equal(writes, 1);
+  assert.equal(await context.prepare(svg, "pad-10"), await tapped);
+});
