@@ -5,7 +5,11 @@ import {
   collectionPad,
   readerCollections,
 } from "../src/lib/reader-collections.js";
-import { routePath, validRoute } from "../src/lib/collection-routes.js";
+import {
+  collectionSlugs,
+  routePath,
+  validRoute,
+} from "../src/lib/collection-routes.js";
 import { searchCollections } from "../src/lib/search-catalog.js";
 
 test("reader collection registry contains navigation and rendering metadata", () => {
@@ -38,13 +42,15 @@ test("bookmarks use registered collection keys and reject malformed values", () 
 });
 
 test("production route helpers support canonical and registered routes", () => {
-  assert.equal(routePath("pad", 1), "/pad/1");
+  assert.equal(routePath("pad", 1), "/pad-ratnakar/1");
   assert.deepEqual(validRoute("#/pad/1"), { mode: "pad", id: 1 });
   assert.deepEqual(validRoute("/shodash/0/"), { mode: "shodash", id: 0 });
   for (const [mode, collection] of Object.entries(readerCollections)) {
     assert.equal(
       routePath(mode, collection.firstId),
-      `/${mode}/${collection.firstId}`,
+      mode === "rkk"
+        ? "/radhakripakataksh"
+        : `/${collectionSlugs[mode]}/${collection.firstId}`,
     );
     assert.deepEqual(validRoute(`/${mode}/${collection.firstId}`), {
       mode,

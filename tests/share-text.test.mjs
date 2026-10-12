@@ -1,3 +1,4 @@
+import { routePath } from "../src/lib/collection-routes.js";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { copiedPadText, shareFooter } from "../src/lib/share-pad.js";
@@ -15,7 +16,7 @@ test("clipboard preserves devotional text and appends the same footer as native 
     );
     assert.ok(
       shareFooter(mode, id).includes(
-        `https://padratnakar.vercel.app/${mode}/${id}`,
+        `https://padratnakar.vercel.app${routePath(mode, id)}`,
       ),
     );
     assert.ok(

@@ -1,3 +1,4 @@
+import { routePath } from "./collection-routes.js";
 import { readerBorderMarkup } from "./reader-borders.js";
 import { loadReaderFont } from "./reader-font.js";
 import { Capacitor } from "@capacitor/core";
@@ -7,7 +8,7 @@ import { Clipboard } from "@capacitor/clipboard";
 
 export const SITE_ORIGIN = "https://padratnakar.vercel.app";
 export function shareLink(mode, id) {
-  return `${SITE_ORIGIN}/${mode}/${id}`;
+  return `${SITE_ORIGIN}${routePath(mode, id)}`;
 }
 
 export function shareFooter(mode, id) {

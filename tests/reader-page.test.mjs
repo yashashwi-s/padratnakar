@@ -23,18 +23,20 @@ test("every collection gets the same border and margin scale as Pad Ratnakar", (
     }
   }
 });
-test("RKK uses a centered block and common 15-unit body seed with modest continuation indentation", () => {
+test("RKK uses aligned full lines with the canonical body seed", () => {
   const collection = readerCollections.rkk;
   const pad = collection.pads[0];
-  const widths = pad.verses.map((_, i) => (i % 2 ? 150 : 200));
-  const page = collection.page(pad, widths);
-  const lines = page.lines.filter((l) => l.role === "verse");
-  const left = Math.min(...lines.map((l) => l.x));
-  const right = Math.max(...lines.map((l) => l.x + l.length));
-  assert.ok(Math.abs(left - 26 - (page.width - 2 - right)) < 1e-9);
-  assert.ok(lines.every((l) => l.fontSize === 15));
-  assert.equal(lines[1].x - lines[0].x, 18);
-  assert.equal(lines.length, 116);
+  const lines = collection
+    .page(
+      pad,
+      pad.verses.map(() => 250),
+    )
+    .lines.filter((l) => l.role === "verse");
+  assert(
+    lines.every((l) => l.x === 26 && l.fontSize === 15 && l.length === 236),
+  );
+  assert(lines.every((l) => l.justify !== false));
+  assert.equal(lines.length, 64);
 });
 
 test("stanza collections fit the same long line at the canonical reader's width and body size", () => {

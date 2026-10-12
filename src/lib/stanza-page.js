@@ -46,11 +46,11 @@ export function stanzaPage(pad, measuredWidths = null, options = {}) {
         x,
         y,
         fontSize: 15 * scale,
-        length: measuredWidths
-          ? ((measuredWidths[index] * 15) / 18) * scale
-          : width - x - 2,
+        // Canonical whole-line extent. The shared fitter expands word gaps
+        // on near-full lines; it never stretches glyphs or short opening lines.
+        length: width - x - 26,
         role: "verse",
-        justify: false,
+
         source: { pdfPage: pad.lines?.[index]?.sourcePage },
       });
       index++;

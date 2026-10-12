@@ -50,11 +50,14 @@ function routeFromLocation() {
   if (!Capacitor.isNativePlatform()) {
     if (pathRoute) {
       // Pretty web routes are canonical. Strip any stale hash fragment.
-      if (location.hash)
+      if (
+        location.hash ||
+        location.pathname !== routePath(pathRoute.mode, pathRoute.id)
+      )
         history.replaceState(
           history.state,
           "",
-          `${location.pathname}${location.search}`,
+          `${routePath(pathRoute.mode, pathRoute.id)}${location.search}`,
         );
       return pathRoute;
     }

@@ -59,6 +59,58 @@
     {
       "source": "/madhupark/:id",
       "destination": "/index.html"
+    },
+    {
+      "source": "/pad-ratnakar/:id",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/shodash-geet/:id",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/bhaiji-jayanti/:id",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/mahabhav-kallolini/:id",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/radhakripakataksh",
+      "destination": "/index.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/pad/:id",
+      "destination": "/pad-ratnakar/:id",
+      "permanent": true
+    },
+    {
+      "source": "/shodash/:id",
+      "destination": "/shodash-geet/:id",
+      "permanent": true
+    },
+    {
+      "source": "/jayanti/:id",
+      "destination": "/bhaiji-jayanti/:id",
+      "permanent": true
+    },
+    {
+      "source": "/kallolini/:id",
+      "destination": "/mahabhav-kallolini/:id",
+      "permanent": true
+    },
+    {
+      "source": "/rkk/1",
+      "destination": "/radhakripakataksh",
+      "permanent": true
+    },
+    {
+      "source": "/radhakripakataksh/1",
+      "destination": "/radhakripakataksh",
+      "permanent": true
     }
   ]
 }

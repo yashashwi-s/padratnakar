@@ -1,6 +1,6 @@
 # iPhone and iPad preparation
 
-Current source: **1.0.29, build 31**, bundle ID `org.padratnakar.reader`.
+Current source: **1.0.30, build 32**, bundle ID `org.padratnakar.reader`.
 Intended owner account: `yashashwisinghania@gmail.com`. Developer enrollment/signing has not been verified by this build workflow; an email address is not an Apple Team ID.
 
 ## Last unsigned compilation verified on October 10, 2026 (1.0.8 / build 10)

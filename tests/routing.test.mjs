@@ -40,3 +40,21 @@ test("actual route validation rejects malformed and out-of-range input", () => {
     assert.equal(validRoute(path), null, path);
   }
 });
+
+test("collection names are canonical while old shared links retain their destinations", () => {
+  for (const [mode, id, path] of [
+    ["pad", 48, "/pad-ratnakar/48"],
+    ["shodash", 5, "/shodash-geet/5"],
+    ["jayanti", 1, "/bhaiji-jayanti/1"],
+    ["kallolini", 8, "/mahabhav-kallolini/8"],
+    ["rkk", 1, "/radhakripakataksh"],
+    ["madhupark", 55, "/madhupark/55"],
+  ]) {
+    assert.equal(routePath(mode, id), path);
+    assert.deepEqual(validRoute(path), { mode, id });
+    assert.deepEqual(validRoute(`/${mode}/${id}`), { mode, id });
+    assert.deepEqual(validRoute(`#${path}`), { mode, id });
+    assert.equal(shareLink(mode, id), `${SITE_ORIGIN}${path}`);
+  }
+  assert.equal(validRoute("/radhakripakataksh/2"), null);
+});
