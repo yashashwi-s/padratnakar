@@ -9,7 +9,7 @@ const documents = searchDocuments();
 const search = createSearchService(documents);
 test("search uses each collection's own displayed numbers", () => {
   const result = search("10");
-  for (const mode of ["pad", "jayanti", "kallolini"])
+  for (const mode of ["pad", "jayanti", "kallolini", "madhupark"])
     assert.equal(result[mode][0].id, 10);
   const collection = searchCollections.find((c) => c.mode === "shodash");
   assert.equal(collection.routeId(result.shodash[0].id), 10);

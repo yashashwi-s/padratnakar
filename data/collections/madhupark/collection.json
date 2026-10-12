@@ -1,0 +1,5446 @@
+{
+  "schemaVersion": 1,
+  "title": "मधुपर्क",
+  "source": {
+    "path": "source/booklet.pdf",
+    "pageCount": 39,
+    "sha256": "b55657097809d4ab94fd4dc8535f3164a45ffc7e20b02f697c05acb248b9f9b0",
+    "method": "Assistant visual transcription checked against all verse blocks; OCR retained only as candidates",
+    "status": "assistant-reviewed; not human-proofread"
+  },
+  "scope": "Numbered pads 1–55 only; introductory and explanatory prose excluded",
+  "normalizations": [
+    "Semantic single spaces",
+    "Unicode danda punctuation",
+    "Printed verse line endings retained; stanza gaps follow verse units"
+  ],
+  "entries": [
+    {
+      "sequence": 1,
+      "printedNumber": 1,
+      "title": "जय राधा जय सब सुख साधा जय जय कमलनयन बस करनी।",
+      "blocks": [
+        [
+          "जय राधा जय सब सुख साधा जय जय कमलनयन बस करनी।",
+          "जय स्यामा जय सब सुख धामा जय जय मनमोहन मन हरनी॥"
+        ],
+        [
+          "जय गोरी जय नित्य किसोरी जय जय भागनि भरी सुभामिनि।",
+          "जय नागरि जय सुजस उजागरि जय जय श्रीहरिप्रिया जय स्वामिनि॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "जय राधा जय सब सुख साधा जय जय कमलनयन बस करनी।",
+          "sourcePage": 1,
+          "sourceRegion": [
+            61.0,
+            321.5,
+            579.0,
+            437.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "जय स्यामा जय सब सुख धामा जय जय मनमोहन मन हरनी॥",
+          "sourcePage": 1,
+          "sourceRegion": [
+            61.0,
+            321.5,
+            579.0,
+            437.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "जय गोरी जय नित्य किसोरी जय जय भागनि भरी सुभामिनि।",
+          "sourcePage": 1,
+          "sourceRegion": [
+            61.0,
+            321.5,
+            579.0,
+            437.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "जय नागरि जय सुजस उजागरि जय जय श्रीहरिप्रिया जय स्वामिनि॥",
+          "sourcePage": 1,
+          "sourceRegion": [
+            61.0,
+            321.5,
+            579.0,
+            437.5
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        1
+      ]
+    },
+    {
+      "sequence": 2,
+      "printedNumber": 2,
+      "title": "प्रात समय नव कुंज द्वार ह्वै ललिता ललित बजाई बीना।",
+      "blocks": [
+        [
+          "प्रात समय नव कुंज द्वार ह्वै ललिता ललित बजाई बीना।",
+          "पौढ़े सुनत स्याम श्रीस्यामा दंपति चतुर नवीन नवीना॥"
+        ],
+        [
+          "अति अनुराग सुहाग भरे दोउ कोक कला जो प्रवीन प्रवीना।",
+          "चतुर्भुजदास निरखि दंपति सुख तन मन धन न्यौछावर कीना॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "प्रात समय नव कुंज द्वार ह्वै ललिता ललित बजाई बीना।",
+          "sourcePage": 1,
+          "sourceRegion": [
+            79.5,
+            686.5,
+            559.0,
+            808.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "पौढ़े सुनत स्याम श्रीस्यामा दंपति चतुर नवीन नवीना॥",
+          "sourcePage": 1,
+          "sourceRegion": [
+            79.5,
+            686.5,
+            559.0,
+            808.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "अति अनुराग सुहाग भरे दोउ कोक कला जो प्रवीन प्रवीना।",
+          "sourcePage": 1,
+          "sourceRegion": [
+            79.5,
+            686.5,
+            559.0,
+            808.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "चतुर्भुजदास निरखि दंपति सुख तन मन धन न्यौछावर कीना॥",
+          "sourcePage": 1,
+          "sourceRegion": [
+            79.5,
+            686.5,
+            559.0,
+            808.0
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        1
+      ]
+    },
+    {
+      "sequence": 3,
+      "printedNumber": 3,
+      "title": "परी बलि कौन अनोखी बान।",
+      "blocks": [
+        [
+          "परी बलि कौन अनोखी बान।",
+          "ज्यों ज्यों भोर होत है त्यों त्यों पौढ़त हौ पट तानि॥"
+        ],
+        [
+          "आरस तजहु अरुनई उदई गई निसा रति मानि।",
+          "श्रीहरिप्रिया प्रान धन जीवन सकल सुखन की खानि॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "परी बलि कौन अनोखी बान।",
+          "sourcePage": 2,
+          "sourceRegion": [
+            79.5,
+            285.5,
+            522.0,
+            424.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "ज्यों ज्यों भोर होत है त्यों त्यों पौढ़त हौ पट तानि॥",
+          "sourcePage": 2,
+          "sourceRegion": [
+            79.5,
+            285.5,
+            522.0,
+            424.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "आरस तजहु अरुनई उदई गई निसा रति मानि।",
+          "sourcePage": 2,
+          "sourceRegion": [
+            79.5,
+            285.5,
+            522.0,
+            424.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "श्रीहरिप्रिया प्रान धन जीवन सकल सुखन की खानि॥",
+          "sourcePage": 2,
+          "sourceRegion": [
+            79.5,
+            285.5,
+            522.0,
+            424.0
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        2
+      ]
+    },
+    {
+      "sequence": 4,
+      "printedNumber": 4,
+      "title": "मंगल आरति हरख उतारी।",
+      "blocks": [
+        [
+          "मंगल आरति हरख उतारी।",
+          "मंगल कुंज महल वृंदाबन मंगल मूरति प्रीतम प्यारी॥"
+        ],
+        [
+          "मंगल गान तान धुनि छाईं बीन मृदंग बजै सुखकारी।",
+          "मंगल सखी समाज मनोहर मंगल धूप महक मतवारी॥"
+        ],
+        [
+          "मंगलमय नित उत्सव मंगल मोद बिनोद प्रमोद अपारी।",
+          "सरसमाधुरी निस दिन मंगल जिन छबि मंगल निज उर धारी॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "मंगल आरति हरख उतारी।",
+          "sourcePage": 2,
+          "sourceRegion": [
+            0.0,
+            687.0,
+            635.0,
+            985.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "मंगल कुंज महल वृंदाबन मंगल मूरति प्रीतम प्यारी॥",
+          "sourcePage": 2,
+          "sourceRegion": [
+            0.0,
+            687.0,
+            635.0,
+            985.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "मंगल गान तान धुनि छाईं बीन मृदंग बजै सुखकारी।",
+          "sourcePage": 2,
+          "sourceRegion": [
+            0.0,
+            687.0,
+            635.0,
+            985.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "मंगल सखी समाज मनोहर मंगल धूप महक मतवारी॥",
+          "sourcePage": 2,
+          "sourceRegion": [
+            0.0,
+            687.0,
+            635.0,
+            985.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "मंगलमय नित उत्सव मंगल मोद बिनोद प्रमोद अपारी।",
+          "sourcePage": 2,
+          "sourceRegion": [
+            0.0,
+            687.0,
+            635.0,
+            985.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "सरसमाधुरी निस दिन मंगल जिन छबि मंगल निज उर धारी॥",
+          "sourcePage": 2,
+          "sourceRegion": [
+            0.0,
+            687.0,
+            635.0,
+            985.0
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        2
+      ]
+    },
+    {
+      "sequence": 5,
+      "printedNumber": 5,
+      "title": "कुंज द्वार ललना अरु लालन ठाढ़े दे गलबाँहीं री।",
+      "blocks": [
+        [
+          "कुंज द्वार ललना अरु लालन ठाढ़े दे गलबाँहीं री।",
+          "मूँद मूँद खोलत चख चंचल अंचल की सुधि नाहीं री॥"
+        ],
+        [
+          "झुकि झुकि जात परस्पर दोऊ आलस अगन माहीं री।",
+          "मुख अंबुज मकरंद प्रकासित ज्यों ज्यों वे जमुहाहीं री॥"
+        ],
+        [
+          "बिथुरे बार कपोलन ऊपर स्रम कन मुख झलकाहीं री।",
+          "सरसमाधुरी स्रवत सुधा रस अलि पीवत न अघाहीं री॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "कुंज द्वार ललना अरु लालन ठाढ़े दे गलबाँहीं री।",
+          "sourcePage": 3,
+          "sourceRegion": [
+            99.5,
+            426.5,
+            544.0,
+            614.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "मूँद मूँद खोलत चख चंचल अंचल की सुधि नाहीं री॥",
+          "sourcePage": 3,
+          "sourceRegion": [
+            99.5,
+            426.5,
+            544.0,
+            614.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "झुकि झुकि जात परस्पर दोऊ आलस अगन माहीं री।",
+          "sourcePage": 3,
+          "sourceRegion": [
+            99.5,
+            426.5,
+            544.0,
+            614.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "मुख अंबुज मकरंद प्रकासित ज्यों ज्यों वे जमुहाहीं री॥",
+          "sourcePage": 3,
+          "sourceRegion": [
+            99.5,
+            426.5,
+            544.0,
+            614.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "बिथुरे बार कपोलन ऊपर स्रम कन मुख झलकाहीं री।",
+          "sourcePage": 3,
+          "sourceRegion": [
+            99.5,
+            426.5,
+            544.0,
+            614.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "सरसमाधुरी स्रवत सुधा रस अलि पीवत न अघाहीं री॥",
+          "sourcePage": 3,
+          "sourceRegion": [
+            99.5,
+            426.5,
+            544.0,
+            614.0
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        3
+      ]
+    },
+    {
+      "sequence": 6,
+      "printedNumber": 6,
+      "title": "झूमक सारी हो तन गोरें।",
+      "blocks": [
+        [
+          "झूमक सारी हो तन गोरें।",
+          "जगमग रह्यो जराव को टीको छबि को उठत झकोरें॥"
+        ],
+        [
+          "रतन जटित के तरल तरौना मानो हो जात रवि भोरें।",
+          "दुलरी कंठ निरखि नकबेसर पिय दृग भये हैं चकोरें॥"
+        ],
+        [
+          "मंद मंद पग धरत धरनि पै हँसत लसत चित चोरें।",
+          "स्यामदास प्रभु रस बस कर लीने चपल नयन की कोरें॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "झूमक सारी हो तन गोरें।",
+          "sourcePage": 4,
+          "sourceRegion": [
+            67.0,
+            279.5,
+            523.0,
+            482.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "जगमग रह्यो जराव को टीको छबि को उठत झकोरें॥",
+          "sourcePage": 4,
+          "sourceRegion": [
+            67.0,
+            279.5,
+            523.0,
+            482.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "रतन जटित के तरल तरौना मानो हो जात रवि भोरें।",
+          "sourcePage": 4,
+          "sourceRegion": [
+            67.0,
+            279.5,
+            523.0,
+            482.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "दुलरी कंठ निरखि नकबेसर पिय दृग भये हैं चकोरें॥",
+          "sourcePage": 4,
+          "sourceRegion": [
+            67.0,
+            279.5,
+            523.0,
+            482.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "मंद मंद पग धरत धरनि पै हँसत लसत चित चोरें।",
+          "sourcePage": 4,
+          "sourceRegion": [
+            67.0,
+            279.5,
+            523.0,
+            482.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "स्यामदास प्रभु रस बस कर लीने चपल नयन की कोरें॥",
+          "sourcePage": 4,
+          "sourceRegion": [
+            67.0,
+            279.5,
+            523.0,
+            482.0
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        4
+      ]
+    },
+    {
+      "sequence": 7,
+      "printedNumber": 7,
+      "title": "लटकत आवत कुंज भवन ते।",
+      "blocks": [
+        [
+          "लटकत आवत कुंज भवन ते।",
+          "ढुरि ढुरि परत राधिका ऊपर जाग्रत सिथिल गवन ते॥"
+        ],
+        [
+          "चौंक परत कबहूँ मारग बिच चलत सुगंध पवन ते।",
+          "भर उसाँस राधा बियोग भय सकुचे दिवस रवन ते॥"
+        ],
+        [
+          "आलस मिस न्यारे न होत हैं नेकहूँ प्यारी तन तें।",
+          "रसिक टरौ जिन दसा स्याम की कबहूँ मेरे मन तें॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "लटकत आवत कुंज भवन ते।",
+          "sourcePage": 4,
+          "sourceRegion": [
+            84.5,
+            807.5,
+            608.5,
+            999.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "ढुरि ढुरि परत राधिका ऊपर जाग्रत सिथिल गवन ते॥",
+          "sourcePage": 4,
+          "sourceRegion": [
+            84.5,
+            807.5,
+            608.5,
+            999.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "चौंक परत कबहूँ मारग बिच चलत सुगंध पवन ते।",
+          "sourcePage": 5,
+          "sourceRegion": [
+            0.0,
+            0.5,
+            622.0,
+            486.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "भर उसाँस राधा बियोग भय सकुचे दिवस रवन ते॥",
+          "sourcePage": 5,
+          "sourceRegion": [
+            0.0,
+            0.5,
+            622.0,
+            486.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "आलस मिस न्यारे न होत हैं नेकहूँ प्यारी तन तें।",
+          "sourcePage": 5,
+          "sourceRegion": [
+            0.0,
+            0.5,
+            622.0,
+            486.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "रसिक टरौ जिन दसा स्याम की कबहूँ मेरे मन तें॥",
+          "sourcePage": 5,
+          "sourceRegion": [
+            0.0,
+            0.5,
+            622.0,
+            486.5
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        4,
+        5
+      ]
+    },
+    {
+      "sequence": 8,
+      "printedNumber": 8,
+      "title": "जयति श्रीराधिके सकल सुख साधिके",
+      "blocks": [
+        [
+          "जयति श्रीराधिके सकल सुख साधिके",
+          "तरुनि मनि नित्य नव तन किसोरी।",
+          "कृष्ण तन नील घन रूप की चातकी",
+          "कृष्ण मुख हिम किरन की चकोरी॥"
+        ],
+        [
+          "कृष्ण मन भृंग बिस्राम हित पद्मिनी",
+          "कृष्ण दृग मृगज बंधन सुडोरी।",
+          "कृष्ण अनुराग मकरंद की मधुकरी",
+          "कृष्ण गुन गान रस सिंधु बोरी॥"
+        ],
+        [
+          "परम अद्भुत अलौकिक तेरी गति लखि",
+          "मनसि साँवरे रंग अंग गोरी।",
+          "और आचरज मैं कहुँ न देख्यो सुन्यो",
+          "चतुर चौंसठ कला तदपि भोरी॥"
+        ],
+        [
+          "बिमुख पर चित्त ते चित्त जाको सदा",
+          "करत निज नाह की चित्त चोरी।",
+          "प्रकृत यह गदाधर कहत कैसे बने",
+          "अमित महिमा इतै बुद्धि थोरी॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "जयति श्रीराधिके सकल सुख साधिके",
+          "sourcePage": 5,
+          "sourceRegion": [
+            89.5,
+            543.5,
+            534.0,
+            862.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "तरुनि मनि नित्य नव तन किसोरी।",
+          "sourcePage": 5,
+          "sourceRegion": [
+            89.5,
+            543.5,
+            534.0,
+            862.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "कृष्ण तन नील घन रूप की चातकी",
+          "sourcePage": 5,
+          "sourceRegion": [
+            89.5,
+            543.5,
+            534.0,
+            862.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "कृष्ण मुख हिम किरन की चकोरी॥",
+          "sourcePage": 5,
+          "sourceRegion": [
+            89.5,
+            543.5,
+            534.0,
+            862.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "कृष्ण मन भृंग बिस्राम हित पद्मिनी",
+          "sourcePage": 5,
+          "sourceRegion": [
+            89.5,
+            543.5,
+            534.0,
+            862.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "कृष्ण दृग मृगज बंधन सुडोरी।",
+          "sourcePage": 5,
+          "sourceRegion": [
+            89.5,
+            543.5,
+            534.0,
+            862.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "कृष्ण अनुराग मकरंद की मधुकरी",
+          "sourcePage": 5,
+          "sourceRegion": [
+            89.5,
+            543.5,
+            534.0,
+            862.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "कृष्ण गुन गान रस सिंधु बोरी॥",
+          "sourcePage": 5,
+          "sourceRegion": [
+            89.5,
+            543.5,
+            534.0,
+            862.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "परम अद्भुत अलौकिक तेरी गति लखि",
+          "sourcePage": 5,
+          "sourceRegion": [
+            89.5,
+            543.5,
+            534.0,
+            862.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "मनसि साँवरे रंग अंग गोरी।",
+          "sourcePage": 5,
+          "sourceRegion": [
+            89.5,
+            543.5,
+            534.0,
+            862.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "और आचरज मैं कहुँ न देख्यो सुन्यो",
+          "sourcePage": 6,
+          "sourceRegion": [
+            88.5,
+            49.5,
+            527.0,
+            261.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "चतुर चौंसठ कला तदपि भोरी॥",
+          "sourcePage": 6,
+          "sourceRegion": [
+            88.5,
+            49.5,
+            527.0,
+            261.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "बिमुख पर चित्त ते चित्त जाको सदा",
+          "sourcePage": 6,
+          "sourceRegion": [
+            88.5,
+            49.5,
+            527.0,
+            261.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "करत निज नाह की चित्त चोरी।",
+          "sourcePage": 6,
+          "sourceRegion": [
+            88.5,
+            49.5,
+            527.0,
+            261.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "प्रकृत यह गदाधर कहत कैसे बने",
+          "sourcePage": 6,
+          "sourceRegion": [
+            88.5,
+            49.5,
+            527.0,
+            261.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "अमित महिमा इतै बुद्धि थोरी॥",
+          "sourcePage": 6,
+          "sourceRegion": [
+            88.5,
+            49.5,
+            527.0,
+            261.0
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        5,
+        6
+      ]
+    },
+    {
+      "sequence": 9,
+      "printedNumber": 9,
+      "title": "नवल ब्रजराज को लाल ठाढ़ो सखी",
+      "blocks": [
+        [
+          "नवल ब्रजराज को लाल ठाढ़ो सखी",
+          "ललित संकेत बट निकट सोहै।",
+          "देख री देख अनिमेष या वेष को",
+          "मुकुट की लटक त्रिभुवन जु मोहै॥"
+        ],
+        [
+          "स्वेद कन झलक कछु झुकी सी रहत पलक",
+          "प्रेम की ललक रस रास कीये।",
+          "धन्य बड़भाग बृषभानु नृपनंदिनी",
+          "राधिका अंस पर बाहु दीये॥"
+        ],
+        [
+          "मनि जटित भूमि पर नव लता रही झूमि",
+          "कुंज छबि पुंज बरनी न जाई।",
+          "नंद नंदन चरन परस हित जान यह",
+          "मुनिन के मनन मिल पाँत लाई॥"
+        ],
+        [
+          "परम अद्भुत रूप सकल सुख भूप यह",
+          "मदन मोहन बिना कछु न भावे।",
+          "धन्य हरिभक्त जिनकी कृपा तें सदा",
+          "कृष्ण गुन गदाधर मिस्र गावे॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "नवल ब्रजराज को लाल ठाढ़ो सखी",
+          "sourcePage": 7,
+          "sourceRegion": [
+            90.0,
+            105.0,
+            632.0,
+            611.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "ललित संकेत बट निकट सोहै।",
+          "sourcePage": 7,
+          "sourceRegion": [
+            90.0,
+            105.0,
+            632.0,
+            611.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "देख री देख अनिमेष या वेष को",
+          "sourcePage": 7,
+          "sourceRegion": [
+            90.0,
+            105.0,
+            632.0,
+            611.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "मुकुट की लटक त्रिभुवन जु मोहै॥",
+          "sourcePage": 7,
+          "sourceRegion": [
+            90.0,
+            105.0,
+            632.0,
+            611.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "स्वेद कन झलक कछु झुकी सी रहत पलक",
+          "sourcePage": 7,
+          "sourceRegion": [
+            90.0,
+            105.0,
+            632.0,
+            611.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "प्रेम की ललक रस रास कीये।",
+          "sourcePage": 7,
+          "sourceRegion": [
+            90.0,
+            105.0,
+            632.0,
+            611.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "धन्य बड़भाग बृषभानु नृपनंदिनी",
+          "sourcePage": 7,
+          "sourceRegion": [
+            90.0,
+            105.0,
+            632.0,
+            611.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "राधिका अंस पर बाहु दीये॥",
+          "sourcePage": 7,
+          "sourceRegion": [
+            90.0,
+            105.0,
+            632.0,
+            611.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "मनि जटित भूमि पर नव लता रही झूमि",
+          "sourcePage": 7,
+          "sourceRegion": [
+            90.0,
+            105.0,
+            632.0,
+            611.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "कुंज छबि पुंज बरनी न जाई।",
+          "sourcePage": 7,
+          "sourceRegion": [
+            90.0,
+            105.0,
+            632.0,
+            611.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "नंद नंदन चरन परस हित जान यह",
+          "sourcePage": 7,
+          "sourceRegion": [
+            90.0,
+            105.0,
+            632.0,
+            611.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "मुनिन के मनन मिल पाँत लाई॥",
+          "sourcePage": 7,
+          "sourceRegion": [
+            90.0,
+            105.0,
+            632.0,
+            611.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "परम अद्भुत रूप सकल सुख भूप यह",
+          "sourcePage": 7,
+          "sourceRegion": [
+            90.0,
+            105.0,
+            632.0,
+            611.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "मदन मोहन बिना कछु न भावे।",
+          "sourcePage": 7,
+          "sourceRegion": [
+            90.0,
+            105.0,
+            632.0,
+            611.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "धन्य हरिभक्त जिनकी कृपा तें सदा",
+          "sourcePage": 7,
+          "sourceRegion": [
+            90.0,
+            105.0,
+            632.0,
+            611.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "कृष्ण गुन गदाधर मिस्र गावे॥",
+          "sourcePage": 7,
+          "sourceRegion": [
+            90.0,
+            105.0,
+            632.0,
+            611.0
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        7
+      ]
+    },
+    {
+      "sequence": 10,
+      "printedNumber": 10,
+      "title": "सुमिरौ नट नागर वर सुंदर गोपाल लाल।",
+      "blocks": [
+        [
+          "सुमिरौ नट नागर वर सुंदर गोपाल लाल।",
+          "सब दुख मिटि जैहैं वे चिंतत लोचन बिसाल॥"
+        ],
+        [
+          "अलकन की झलकन लखि पलकन गति भूल जात",
+          "भ्रू बिलास मंद हास रदन छदन अति रसाल।",
+          "निंदत रबि कुंडल छबि गंड मुकुर झलमलात",
+          "पिच्छ गुच्छ कृतऽवतंस इंदु बिमल बिंदु भाल॥"
+        ],
+        [
+          "अंग अंग जित अनंग माधुरी तरंग रंग",
+          "बिमद मद गयंद होत देखत लटकीलि चाल।",
+          "हसन लसन पीत बसन चारु हार बर सिंगार",
+          "तुलसि रचित कुसुम खचित पीन उर नवीन माल॥"
+        ],
+        [
+          "ब्रज नरेस बंस दीप वृंदाबन बर महीप",
+          "बृषभानु मान पात्र सहज दीन जन दयाल।",
+          "रसिक भूप रूप रास गुन निधान जान राय",
+          "गदाधर प्रभु जुबती जन मुनि मन मानस मराल॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "सुमिरौ नट नागर वर सुंदर गोपाल लाल।",
+          "sourcePage": 8,
+          "sourceRegion": [
+            52.0,
+            388.0,
+            490.0,
+            833.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "सब दुख मिटि जैहैं वे चिंतत लोचन बिसाल॥",
+          "sourcePage": 8,
+          "sourceRegion": [
+            52.0,
+            388.0,
+            490.0,
+            833.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "अलकन की झलकन लखि पलकन गति भूल जात",
+          "sourcePage": 8,
+          "sourceRegion": [
+            52.0,
+            388.0,
+            490.0,
+            833.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "भ्रू बिलास मंद हास रदन छदन अति रसाल।",
+          "sourcePage": 8,
+          "sourceRegion": [
+            52.0,
+            388.0,
+            490.0,
+            833.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "निंदत रबि कुंडल छबि गंड मुकुर झलमलात",
+          "sourcePage": 8,
+          "sourceRegion": [
+            52.0,
+            388.0,
+            490.0,
+            833.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "पिच्छ गुच्छ कृतऽवतंस इंदु बिमल बिंदु भाल॥",
+          "sourcePage": 8,
+          "sourceRegion": [
+            52.0,
+            388.0,
+            490.0,
+            833.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "अंग अंग जित अनंग माधुरी तरंग रंग",
+          "sourcePage": 8,
+          "sourceRegion": [
+            52.0,
+            388.0,
+            490.0,
+            833.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "बिमद मद गयंद होत देखत लटकीलि चाल।",
+          "sourcePage": 8,
+          "sourceRegion": [
+            52.0,
+            388.0,
+            490.0,
+            833.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "हसन लसन पीत बसन चारु हार बर सिंगार",
+          "sourcePage": 8,
+          "sourceRegion": [
+            52.0,
+            388.0,
+            490.0,
+            833.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "तुलसि रचित कुसुम खचित पीन उर नवीन माल॥",
+          "sourcePage": 8,
+          "sourceRegion": [
+            52.0,
+            388.0,
+            490.0,
+            833.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "ब्रज नरेस बंस दीप वृंदाबन बर महीप",
+          "sourcePage": 8,
+          "sourceRegion": [
+            52.0,
+            388.0,
+            490.0,
+            833.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "बृषभानु मान पात्र सहज दीन जन दयाल।",
+          "sourcePage": 8,
+          "sourceRegion": [
+            52.0,
+            388.0,
+            490.0,
+            833.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "रसिक भूप रूप रास गुन निधान जान राय",
+          "sourcePage": 8,
+          "sourceRegion": [
+            52.0,
+            388.0,
+            490.0,
+            833.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "गदाधर प्रभु जुबती जन मुनि मन मानस मराल॥",
+          "sourcePage": 8,
+          "sourceRegion": [
+            52.0,
+            388.0,
+            490.0,
+            833.0
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        8
+      ]
+    },
+    {
+      "sequence": 11,
+      "printedNumber": 11,
+      "title": "आज इन दोउन पै बलि जैये।",
+      "blocks": [
+        [
+          "आज इन दोउन पै बलि जैये।",
+          "रोम रोम सों छबि बरसत है निरखत नैन सिरैये॥"
+        ],
+        [
+          "रूप रास मृदु हास ललित मुख उपमा देत लजैये।",
+          "नारायण या गौर स्यामको हिये निकुंज बसैये॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "आज इन दोउन पै बलि जैये।",
+          "sourcePage": 9,
+          "sourceRegion": [
+            101.5,
+            695.0,
+            542.5,
+            814.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "रोम रोम सों छबि बरसत है निरखत नैन सिरैये॥",
+          "sourcePage": 9,
+          "sourceRegion": [
+            101.5,
+            695.0,
+            542.5,
+            814.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "रूप रास मृदु हास ललित मुख उपमा देत लजैये।",
+          "sourcePage": 9,
+          "sourceRegion": [
+            101.5,
+            695.0,
+            542.5,
+            814.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "नारायण या गौर स्यामको हिये निकुंज बसैये॥",
+          "sourcePage": 9,
+          "sourceRegion": [
+            101.5,
+            695.0,
+            542.5,
+            814.0
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        9
+      ]
+    },
+    {
+      "sequence": 12,
+      "printedNumber": 12,
+      "title": "आज सिंगार निरखि स्यामा को नीको बन्यो स्याम मन भावत।",
+      "blocks": [
+        [
+          "आज सिंगार निरखि स्यामा को नीको बन्यो स्याम मन भावत।",
+          "यह छबि तिनहिं लखायो चाहत कर गहि कै नख चंद दिखावत॥"
+        ],
+        [
+          "मुख जोरे प्रतिबिंब बिराजत निरख निरख मन में मुसकावत।",
+          "चतुर्भुज प्रभु गिरिधर श्रीराधा अरस परस दोउ रीझि रिझावत॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "आज सिंगार निरखि स्यामा को नीको बन्यो स्याम मन भावत।",
+          "sourcePage": 10,
+          "sourceRegion": [
+            10.5,
+            303.5,
+            486.5,
+            442.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "यह छबि तिनहिं लखायो चाहत कर गहि कै नख चंद दिखावत॥",
+          "sourcePage": 10,
+          "sourceRegion": [
+            10.5,
+            303.5,
+            486.5,
+            442.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "मुख जोरे प्रतिबिंब बिराजत निरख निरख मन में मुसकावत।",
+          "sourcePage": 10,
+          "sourceRegion": [
+            10.5,
+            303.5,
+            486.5,
+            442.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "चतुर्भुज प्रभु गिरिधर श्रीराधा अरस परस दोउ रीझि रिझावत॥",
+          "sourcePage": 10,
+          "sourceRegion": [
+            10.5,
+            303.5,
+            486.5,
+            442.0
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        10
+      ]
+    },
+    {
+      "sequence": 13,
+      "printedNumber": 13,
+      "title": "सारी सँवारी है सोनजुही अरु जूही की तापै लगाई किनारी।",
+      "blocks": [
+        [
+          "सारी सँवारी है सोनजुही अरु जूही की तापै लगाई किनारी।",
+          "पंकज के दल को लहँगा अँगिया गुलबाँस की सोभित न्यारी॥"
+        ],
+        [
+          "चमेली को हार हमेल गुलाब को मौर की बेंदी दे भाल सँवारी।",
+          "आज विचित्र सँवारी के देखिए कैसी सिंगारी है प्यारे ने प्यारी॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "सारी सँवारी है सोनजुही अरु जूही की तापै लगाई किनारी।",
+          "sourcePage": 10,
+          "sourceRegion": [
+            30.0,
+            771.0,
+            471.0,
+            892.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "पंकज के दल को लहँगा अँगिया गुलबाँस की सोभित न्यारी॥",
+          "sourcePage": 10,
+          "sourceRegion": [
+            30.0,
+            771.0,
+            471.0,
+            892.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "चमेली को हार हमेल गुलाब को मौर की बेंदी दे भाल सँवारी।",
+          "sourcePage": 10,
+          "sourceRegion": [
+            30.0,
+            771.0,
+            471.0,
+            892.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "आज विचित्र सँवारी के देखिए कैसी सिंगारी है प्यारे ने प्यारी॥",
+          "sourcePage": 10,
+          "sourceRegion": [
+            30.0,
+            771.0,
+            471.0,
+            892.0
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        10
+      ]
+    },
+    {
+      "sequence": 14,
+      "printedNumber": 14,
+      "title": "सोनजुही की बनी पगिया रु चमेली को गुच्छ रह्यौ झुकि न्यारो।",
+      "blocks": [
+        [
+          "सोनजुही की बनी पगिया रु चमेली को गुच्छ रह्यौ झुकि न्यारो।",
+          "दै दल फूल कदंब के कुंडल सेवती जामाहु घूम घुमारो॥"
+        ],
+        [
+          "नौ तुलसी पटुका घनस्याम गुलाब हजार चमेली को न्यारो।",
+          "फूलन आज बिचित्र बन्यो देखौ कैसो सिंगार्यो है प्यारी ने प्यारो॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "सोनजुही की बनी पगिया रु चमेली को गुच्छ रह्यौ झुकि न्यारो।",
+          "sourcePage": 11,
+          "sourceRegion": [
+            69.5,
+            331.0,
+            598.0,
+            457.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "दै दल फूल कदंब के कुंडल सेवती जामाहु घूम घुमारो॥",
+          "sourcePage": 11,
+          "sourceRegion": [
+            69.5,
+            331.0,
+            598.0,
+            457.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "नौ तुलसी पटुका घनस्याम गुलाब हजार चमेली को न्यारो।",
+          "sourcePage": 11,
+          "sourceRegion": [
+            69.5,
+            331.0,
+            598.0,
+            457.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "फूलन आज बिचित्र बन्यो देखौ कैसो सिंगार्यो है प्यारी ने प्यारो॥",
+          "sourcePage": 11,
+          "sourceRegion": [
+            69.5,
+            331.0,
+            598.0,
+            457.0
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        11
+      ]
+    },
+    {
+      "sequence": 15,
+      "printedNumber": 15,
+      "title": "आजु राधिका भोरहिं जसुमति घर आई।",
+      "blocks": [
+        [
+          "आजु राधिका भोरहिं जसुमति घर आई।",
+          "महरि मुदित हँसि यों कह्यो मथि भान दुहाई॥"
+        ],
+        [
+          "आयसु लै ठाढ़ी भई कर नेति सुहाई।",
+          "रीतो माट बिलोवई चित जहाँ कन्हाई॥"
+        ],
+        [
+          "उनके मन की का कहौं ज्यौं दृष्टि लगाई।",
+          "लैया नोई बृषभ सौं गैया बिसराई॥"
+        ],
+        [
+          "नैननि में जसुमति लखी दुहुँ की चतुराई।",
+          "सूरदास दंपति दसा कापै कहि जाई॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "आजु राधिका भोरहिं जसुमति घर आई।",
+          "sourcePage": 11,
+          "sourceRegion": [
+            151.0,
+            760.0,
+            519.0,
+            893.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "महरि मुदित हँसि यों कह्यो मथि भान दुहाई॥",
+          "sourcePage": 11,
+          "sourceRegion": [
+            151.0,
+            760.0,
+            519.0,
+            893.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "आयसु लै ठाढ़ी भई कर नेति सुहाई।",
+          "sourcePage": 11,
+          "sourceRegion": [
+            151.0,
+            760.0,
+            519.0,
+            893.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "रीतो माट बिलोवई चित जहाँ कन्हाई॥",
+          "sourcePage": 11,
+          "sourceRegion": [
+            151.0,
+            760.0,
+            519.0,
+            893.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "उनके मन की का कहौं ज्यौं दृष्टि लगाई।",
+          "sourcePage": 12,
+          "sourceRegion": [
+            103.0,
+            38.0,
+            488.5,
+            194.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "लैया नोई बृषभ सौं गैया बिसराई॥",
+          "sourcePage": 12,
+          "sourceRegion": [
+            103.0,
+            38.0,
+            488.5,
+            194.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "नैननि में जसुमति लखी दुहुँ की चतुराई।",
+          "sourcePage": 12,
+          "sourceRegion": [
+            103.0,
+            38.0,
+            488.5,
+            194.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "सूरदास दंपति दसा कापै कहि जाई॥",
+          "sourcePage": 12,
+          "sourceRegion": [
+            103.0,
+            38.0,
+            488.5,
+            194.0
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        11,
+        12
+      ]
+    },
+    {
+      "sequence": 16,
+      "printedNumber": 16,
+      "title": "महरि कहो री लाडिली किन मथन सिखायौ।",
+      "blocks": [
+        [
+          "महरि कहो री लाडिली किन मथन सिखायौ।",
+          "कहँ मथनी कहँ माट है चित कहाँ लगायौ॥"
+        ],
+        [
+          "अपने घर यौं ही मथै करि प्रगट दिखायौ।",
+          "कै मेरे घर आई कै तैं सब बिसरायौ॥"
+        ],
+        [
+          "मथन नहीं मोहि आवई तुम सौंह दिवायौ।",
+          "तिहि कारन मैं आइ कै तुव बोल रखायौ॥"
+        ],
+        [
+          "नंद घरनि तब मथि दह्यो इहिं भाँति बतायौ।",
+          "सूर निरखि मुख स्याम को तहँ ध्यान लगायौ।"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "महरि कहो री लाडिली किन मथन सिखायौ।",
+          "sourcePage": 12,
+          "sourceRegion": [
+            125.0,
+            623.0,
+            633.5,
+            878.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "कहँ मथनी कहँ माट है चित कहाँ लगायौ॥",
+          "sourcePage": 12,
+          "sourceRegion": [
+            125.0,
+            623.0,
+            633.5,
+            878.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "अपने घर यौं ही मथै करि प्रगट दिखायौ।",
+          "sourcePage": 12,
+          "sourceRegion": [
+            125.0,
+            623.0,
+            633.5,
+            878.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "कै मेरे घर आई कै तैं सब बिसरायौ॥",
+          "sourcePage": 12,
+          "sourceRegion": [
+            125.0,
+            623.0,
+            633.5,
+            878.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "मथन नहीं मोहि आवई तुम सौंह दिवायौ।",
+          "sourcePage": 12,
+          "sourceRegion": [
+            125.0,
+            623.0,
+            633.5,
+            878.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "तिहि कारन मैं आइ कै तुव बोल रखायौ॥",
+          "sourcePage": 12,
+          "sourceRegion": [
+            125.0,
+            623.0,
+            633.5,
+            878.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "नंद घरनि तब मथि दह्यो इहिं भाँति बतायौ।",
+          "sourcePage": 12,
+          "sourceRegion": [
+            125.0,
+            623.0,
+            633.5,
+            878.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "सूर निरखि मुख स्याम को तहँ ध्यान लगायौ।",
+          "sourcePage": 12,
+          "sourceRegion": [
+            125.0,
+            623.0,
+            633.5,
+            878.5
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        12
+      ]
+    },
+    {
+      "sequence": 17,
+      "printedNumber": 17,
+      "title": "प्रगटी प्रीति न रही छपाई।",
+      "blocks": [
+        [
+          "प्रगटी प्रीति न रही छपाई।",
+          "परी दृष्टि बृषभानु सुता की दोउ अरुझे निरवारि न जाई॥"
+        ],
+        [
+          "बछरा छोरि खरिक कौं दीन्हो आपु कान्ह तन सुधि बिसराई।",
+          "नोवत बृषभ निकसि गैया गई हँसत सखा का दुहत कन्हाई॥"
+        ],
+        [
+          "चारों नैन भए इक ठाहर मनहीं मन दुहुँ रुचि उपजाई।",
+          "सूरदास स्वामी रतिनागर नागरि देखि गई नगराई॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "प्रगटी प्रीति न रही छपाई।",
+          "sourcePage": 13,
+          "sourceRegion": [
+            76.5,
+            389.0,
+            559.5,
+            569.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "परी दृष्टि बृषभानु सुता की दोउ अरुझे निरवारि न जाई॥",
+          "sourcePage": 13,
+          "sourceRegion": [
+            76.5,
+            389.0,
+            559.5,
+            569.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "बछरा छोरि खरिक कौं दीन्हो आपु कान्ह तन सुधि बिसराई।",
+          "sourcePage": 13,
+          "sourceRegion": [
+            76.5,
+            389.0,
+            559.5,
+            569.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "नोवत बृषभ निकसि गैया गई हँसत सखा का दुहत कन्हाई॥",
+          "sourcePage": 13,
+          "sourceRegion": [
+            76.5,
+            389.0,
+            559.5,
+            569.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "चारों नैन भए इक ठाहर मनहीं मन दुहुँ रुचि उपजाई।",
+          "sourcePage": 13,
+          "sourceRegion": [
+            76.5,
+            389.0,
+            559.5,
+            569.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "सूरदास स्वामी रतिनागर नागरि देखि गई नगराई॥",
+          "sourcePage": 13,
+          "sourceRegion": [
+            76.5,
+            389.0,
+            559.5,
+            569.0
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        13
+      ]
+    },
+    {
+      "sequence": 18,
+      "printedNumber": 18,
+      "title": "या घर प्यारी आवति रहियौ।",
+      "blocks": [
+        [
+          "या घर प्यारी आवति रहियौ।",
+          "महरि हमारी बात चलावत मिलन हमारो कहियौ।"
+        ],
+        [
+          "एक दिवस मैं गई जमुन तट तहँ उन देखी आई।",
+          "मोकौं देखि बहुत सुख पायौ मिलि अंकम लपटाई॥"
+        ],
+        [
+          "यह सुनि कै चलि कुँवरि राधिका मोकौं भई अबार।",
+          "सूरदास प्रभु मन हरि लीन्हों मोहन नंद कुमार॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "या घर प्यारी आवति रहियौ।",
+          "sourcePage": 14,
+          "sourceRegion": [
+            60.5,
+            50.5,
+            518.0,
+            281.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "महरि हमारी बात चलावत मिलन हमारो कहियौ।",
+          "sourcePage": 14,
+          "sourceRegion": [
+            60.5,
+            50.5,
+            518.0,
+            281.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "एक दिवस मैं गई जमुन तट तहँ उन देखी आई।",
+          "sourcePage": 14,
+          "sourceRegion": [
+            60.5,
+            50.5,
+            518.0,
+            281.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "मोकौं देखि बहुत सुख पायौ मिलि अंकम लपटाई॥",
+          "sourcePage": 14,
+          "sourceRegion": [
+            60.5,
+            50.5,
+            518.0,
+            281.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "यह सुनि कै चलि कुँवरि राधिका मोकौं भई अबार।",
+          "sourcePage": 14,
+          "sourceRegion": [
+            60.5,
+            50.5,
+            518.0,
+            281.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "सूरदास प्रभु मन हरि लीन्हों मोहन नंद कुमार॥",
+          "sourcePage": 14,
+          "sourceRegion": [
+            60.5,
+            50.5,
+            518.0,
+            281.0
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        14
+      ]
+    },
+    {
+      "sequence": 19,
+      "printedNumber": 19,
+      "title": "हरि सों धेनु दुहावत प्यारी।",
+      "blocks": [
+        [
+          "हरि सों धेनु दुहावत प्यारी।",
+          "करत मनोरथ पूरन मन बृषभानु महर की बारी॥"
+        ],
+        [
+          "दूध धार मुख पर छबि लागति सो उपमा अति भारी।",
+          "मानो चंद कलंकहि धोवत जहँ तहँ बूँद सुधा री॥"
+        ],
+        [
+          "हाव भाव रस मगन भए दोउ छबि निरखत ललिता री।",
+          "गो दोहन सुख करत सूर प्रभु तीनिहुँ भुवन कहा री॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "हरि सों धेनु दुहावत प्यारी।",
+          "sourcePage": 14,
+          "sourceRegion": [
+            76.0,
+            572.5,
+            512.5,
+            761.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "करत मनोरथ पूरन मन बृषभानु महर की बारी॥",
+          "sourcePage": 14,
+          "sourceRegion": [
+            76.0,
+            572.5,
+            512.5,
+            761.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "दूध धार मुख पर छबि लागति सो उपमा अति भारी।",
+          "sourcePage": 14,
+          "sourceRegion": [
+            76.0,
+            572.5,
+            512.5,
+            761.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "मानो चंद कलंकहि धोवत जहँ तहँ बूँद सुधा री॥",
+          "sourcePage": 14,
+          "sourceRegion": [
+            76.0,
+            572.5,
+            512.5,
+            761.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "हाव भाव रस मगन भए दोउ छबि निरखत ललिता री।",
+          "sourcePage": 14,
+          "sourceRegion": [
+            76.0,
+            572.5,
+            512.5,
+            761.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "गो दोहन सुख करत सूर प्रभु तीनिहुँ भुवन कहा री॥",
+          "sourcePage": 14,
+          "sourceRegion": [
+            76.0,
+            572.5,
+            512.5,
+            761.5
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        14
+      ]
+    },
+    {
+      "sequence": 20,
+      "printedNumber": 20,
+      "title": "धेनु दुहत अति हो रति बाढ़ी।",
+      "blocks": [
+        [
+          "धेनु दुहत अति हो रति बाढ़ी।",
+          "एक धार दोहनि पहुँचावत, एक धार जहाँ प्यारी ठाढ़ी॥"
+        ],
+        [
+          "मोहन कर तैं धार चलति परि मोहनि मुख अति ही छबि गाढ़ी।",
+          "मनु जलधर जलधार बृष्टि लघु पुनि पुनि प्रेम चंद पर बाढ़ी॥"
+        ],
+        [
+          "सखी संग की निरखति यह छबि भइ ब्याकुल मन्मथ की डाढ़ी।",
+          "सूरदास प्रभु के रस बस सब भवन काज तैं भई उचाढ़ी॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "धेनु दुहत अति हो रति बाढ़ी।",
+          "sourcePage": 15,
+          "sourceRegion": [
+            81.5,
+            300.5,
+            632.0,
+            513.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "एक धार दोहनि पहुँचावत, एक धार जहाँ प्यारी ठाढ़ी॥",
+          "sourcePage": 15,
+          "sourceRegion": [
+            81.5,
+            300.5,
+            632.0,
+            513.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "मोहन कर तैं धार चलति परि मोहनि मुख अति ही छबि गाढ़ी।",
+          "sourcePage": 15,
+          "sourceRegion": [
+            81.5,
+            300.5,
+            632.0,
+            513.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "मनु जलधर जलधार बृष्टि लघु पुनि पुनि प्रेम चंद पर बाढ़ी॥",
+          "sourcePage": 15,
+          "sourceRegion": [
+            81.5,
+            300.5,
+            632.0,
+            513.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "सखी संग की निरखति यह छबि भइ ब्याकुल मन्मथ की डाढ़ी।",
+          "sourcePage": 15,
+          "sourceRegion": [
+            81.5,
+            300.5,
+            632.0,
+            513.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "सूरदास प्रभु के रस बस सब भवन काज तैं भई उचाढ़ी॥",
+          "sourcePage": 15,
+          "sourceRegion": [
+            81.5,
+            300.5,
+            632.0,
+            513.0
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        15
+      ]
+    },
+    {
+      "sequence": 21,
+      "printedNumber": 21,
+      "title": "सिर दोहनी चली लै प्यारी।",
+      "blocks": [
+        [
+          "सिर दोहनी चली लै प्यारी।",
+          "फिरि चिंतवत हरि हँसे निरखि मुख मोहन मोहनि डारी॥"
+        ],
+        [
+          "ब्याकुल भई गई सखियन लौं ब्रज कौं गये कन्हाई।",
+          "और अहिर सब कहाँ तुम्हारे हरि सौं धेनु दुहाई॥"
+        ],
+        [
+          "यह सुनि कै चकित भइ प्यारी धरनि परी मुरझाई।",
+          "सूरदास सब सखियन उर भरि लीन्हौ कुँवरि उठाई॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "सिर दोहनी चली लै प्यारी।",
+          "sourcePage": 16,
+          "sourceRegion": [
+            58.5,
+            14.0,
+            519.0,
+            257.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "फिरि चिंतवत हरि हँसे निरखि मुख मोहन मोहनि डारी॥",
+          "sourcePage": 16,
+          "sourceRegion": [
+            58.5,
+            14.0,
+            519.0,
+            257.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "ब्याकुल भई गई सखियन लौं ब्रज कौं गये कन्हाई।",
+          "sourcePage": 16,
+          "sourceRegion": [
+            58.5,
+            14.0,
+            519.0,
+            257.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "और अहिर सब कहाँ तुम्हारे हरि सौं धेनु दुहाई॥",
+          "sourcePage": 16,
+          "sourceRegion": [
+            58.5,
+            14.0,
+            519.0,
+            257.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "यह सुनि कै चकित भइ प्यारी धरनि परी मुरझाई।",
+          "sourcePage": 16,
+          "sourceRegion": [
+            58.5,
+            14.0,
+            519.0,
+            257.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "सूरदास सब सखियन उर भरि लीन्हौ कुँवरि उठाई॥",
+          "sourcePage": 16,
+          "sourceRegion": [
+            58.5,
+            14.0,
+            519.0,
+            257.0
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        16
+      ]
+    },
+    {
+      "sequence": 22,
+      "printedNumber": 22,
+      "title": "खेलन के मिस कुँवरि राधिका नंद महर कैं आई हो।",
+      "blocks": [
+        [
+          "खेलन के मिस कुँवरि राधिका नंद महर कैं आई हो।",
+          "सकुच सहित मधुरे करि बोली घर हैं कुँवर कन्हाई हो॥"
+        ],
+        [
+          "सुनत स्याम कोकिल सम बानी निकसे अति अतुराई हो।",
+          "माता सो कछु करत कलह हे रिस डारी बिसराई हो॥"
+        ],
+        [
+          "मैया री तू इनकौ चीन्हति बारंबार बताई हो।",
+          "जमुना तीर काल्हि मैं भूल्यो बाँह पकरि लै आई हो॥"
+        ],
+        [
+          "आवत इहाँ तोहि सकुचति है मैं दै सौंह बुलाई हो।",
+          "सूर स्याम ऐसे गुन आगर नागरि बहुत रिझाई हो॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "खेलन के मिस कुँवरि राधिका नंद महर कैं आई हो।",
+          "sourcePage": 16,
+          "sourceRegion": [
+            76.0,
+            663.0,
+            509.0,
+            854.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "सकुच सहित मधुरे करि बोली घर हैं कुँवर कन्हाई हो॥",
+          "sourcePage": 16,
+          "sourceRegion": [
+            76.0,
+            663.0,
+            509.0,
+            854.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "सुनत स्याम कोकिल सम बानी निकसे अति अतुराई हो।",
+          "sourcePage": 16,
+          "sourceRegion": [
+            76.0,
+            663.0,
+            509.0,
+            854.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "माता सो कछु करत कलह हे रिस डारी बिसराई हो॥",
+          "sourcePage": 16,
+          "sourceRegion": [
+            76.0,
+            663.0,
+            509.0,
+            854.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "मैया री तू इनकौ चीन्हति बारंबार बताई हो।",
+          "sourcePage": 16,
+          "sourceRegion": [
+            76.0,
+            663.0,
+            509.0,
+            854.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "जमुना तीर काल्हि मैं भूल्यो बाँह पकरि लै आई हो॥",
+          "sourcePage": 16,
+          "sourceRegion": [
+            76.0,
+            663.0,
+            509.0,
+            854.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "आवत इहाँ तोहि सकुचति है मैं दै सौंह बुलाई हो।",
+          "sourcePage": 17,
+          "sourceRegion": [
+            105.5,
+            37.5,
+            552.0,
+            109.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "सूर स्याम ऐसे गुन आगर नागरि बहुत रिझाई हो॥",
+          "sourcePage": 17,
+          "sourceRegion": [
+            105.5,
+            37.5,
+            552.0,
+            109.5
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        16,
+        17
+      ]
+    },
+    {
+      "sequence": 23,
+      "printedNumber": 23,
+      "title": "जसुमति राधा कुँवरि सँवारति।",
+      "blocks": [
+        [
+          "जसुमति राधा कुँवरि सँवारति।",
+          "बड़े बार सीमंत सीस के प्रेम सहित निरुवारति॥"
+        ],
+        [
+          "माँग पारि बेनी जु सँवारति गूँथी सुंदर भाँति।",
+          "गोरें भाल बिंदु बंदन मनु इंदु प्रात रवि काँति॥"
+        ],
+        [
+          "सारी चीर नई फरिया ले अपने हाथ बनाई।",
+          "अंचल सौं मुख पोंछि अंग सब आपुहि लै पहिराई॥"
+        ],
+        [
+          "तिल चाँवरि बतासे मेवा दियो कुँवरि की गोद।",
+          "सूर स्याम राधा तनु चितवत, जसुमति मन तन मोद॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "जसुमति राधा कुँवरि सँवारति।",
+          "sourcePage": 17,
+          "sourceRegion": [
+            98.0,
+            466.5,
+            632.5,
+            721.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "बड़े बार सीमंत सीस के प्रेम सहित निरुवारति॥",
+          "sourcePage": 17,
+          "sourceRegion": [
+            98.0,
+            466.5,
+            632.5,
+            721.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "माँग पारि बेनी जु सँवारति गूँथी सुंदर भाँति।",
+          "sourcePage": 17,
+          "sourceRegion": [
+            98.0,
+            466.5,
+            632.5,
+            721.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "गोरें भाल बिंदु बंदन मनु इंदु प्रात रवि काँति॥",
+          "sourcePage": 17,
+          "sourceRegion": [
+            98.0,
+            466.5,
+            632.5,
+            721.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "सारी चीर नई फरिया ले अपने हाथ बनाई।",
+          "sourcePage": 17,
+          "sourceRegion": [
+            98.0,
+            466.5,
+            632.5,
+            721.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "अंचल सौं मुख पोंछि अंग सब आपुहि लै पहिराई॥",
+          "sourcePage": 17,
+          "sourceRegion": [
+            98.0,
+            466.5,
+            632.5,
+            721.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "तिल चाँवरि बतासे मेवा दियो कुँवरि की गोद।",
+          "sourcePage": 17,
+          "sourceRegion": [
+            98.0,
+            466.5,
+            632.5,
+            721.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "सूर स्याम राधा तनु चितवत, जसुमति मन तन मोद॥",
+          "sourcePage": 17,
+          "sourceRegion": [
+            98.0,
+            466.5,
+            632.5,
+            721.0
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        17
+      ]
+    },
+    {
+      "sequence": 24,
+      "printedNumber": 24,
+      "title": "मैं हरि की मुरली बन पाई।",
+      "blocks": [
+        [
+          "मैं हरि की मुरली बन पाई।",
+          "सुन जसुमति सँग छाड आपनो कुँवर जगाय देन हौं आई॥"
+        ],
+        [
+          "सुन पिय बचन बिहँसि उठ बैठे अंतरजामी कुँवर कन्हाई।",
+          "मुरली संग हुती मेरी पहुँची दे राधे बृषभानु दुहाई॥"
+        ],
+        [
+          "मैं निहार नीची नहिं देखी चलो संग दऊँ ठौर बताई।",
+          "बाढ़ी प्रीति मदन मोहन सौं घर बैठे जसुमति बौराई॥"
+        ],
+        [
+          "पायो परम भावतो जी को दोऊ पढ़े एक चतुराई।",
+          "परमानंददास तिन बूझो जिन यह केलि जनम भर गाई॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "मैं हरि की मुरली बन पाई।",
+          "sourcePage": 18,
+          "sourceRegion": [
+            59.0,
+            301.0,
+            500.5,
+            565.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "सुन जसुमति सँग छाड आपनो कुँवर जगाय देन हौं आई॥",
+          "sourcePage": 18,
+          "sourceRegion": [
+            59.0,
+            301.0,
+            500.5,
+            565.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "सुन पिय बचन बिहँसि उठ बैठे अंतरजामी कुँवर कन्हाई।",
+          "sourcePage": 18,
+          "sourceRegion": [
+            59.0,
+            301.0,
+            500.5,
+            565.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "मुरली संग हुती मेरी पहुँची दे राधे बृषभानु दुहाई॥",
+          "sourcePage": 18,
+          "sourceRegion": [
+            59.0,
+            301.0,
+            500.5,
+            565.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "मैं निहार नीची नहिं देखी चलो संग दऊँ ठौर बताई।",
+          "sourcePage": 18,
+          "sourceRegion": [
+            59.0,
+            301.0,
+            500.5,
+            565.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "बाढ़ी प्रीति मदन मोहन सौं घर बैठे जसुमति बौराई॥",
+          "sourcePage": 18,
+          "sourceRegion": [
+            59.0,
+            301.0,
+            500.5,
+            565.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "पायो परम भावतो जी को दोऊ पढ़े एक चतुराई।",
+          "sourcePage": 18,
+          "sourceRegion": [
+            59.0,
+            301.0,
+            500.5,
+            565.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "परमानंददास तिन बूझो जिन यह केलि जनम भर गाई॥",
+          "sourcePage": 18,
+          "sourceRegion": [
+            59.0,
+            301.0,
+            500.5,
+            565.5
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        18
+      ]
+    },
+    {
+      "sequence": 25,
+      "printedNumber": 25,
+      "title": "बनी राधा गिरधर की जोरी।",
+      "blocks": [
+        [
+          "बनी राधा गिरधर की जोरी।",
+          "मनहुँ परस्पर कोटि मदन रति की सुंदरता चोरी॥"
+        ],
+        [
+          "नौतन स्याम नंद नंदन बृषभानु सुता नव गोरी।",
+          "मनहुँ परस्पर बदन चंद को पीवत तृषित चकोरी॥"
+        ],
+        [
+          "कुंभनदास प्रभु रसिक लाल बहु बिधि रसिकिनी निहोरी।",
+          "मनहिं परस्पर बढ्यो रंग अति उपजी प्रीति न थोरी॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "बनी राधा गिरधर की जोरी।",
+          "sourcePage": 19,
+          "sourceRegion": [
+            97.5,
+            286.5,
+            629.0,
+            481.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "मनहुँ परस्पर कोटि मदन रति की सुंदरता चोरी॥",
+          "sourcePage": 19,
+          "sourceRegion": [
+            97.5,
+            286.5,
+            629.0,
+            481.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "नौतन स्याम नंद नंदन बृषभानु सुता नव गोरी।",
+          "sourcePage": 19,
+          "sourceRegion": [
+            97.5,
+            286.5,
+            629.0,
+            481.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "मनहुँ परस्पर बदन चंद को पीवत तृषित चकोरी॥",
+          "sourcePage": 19,
+          "sourceRegion": [
+            97.5,
+            286.5,
+            629.0,
+            481.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "कुंभनदास प्रभु रसिक लाल बहु बिधि रसिकिनी निहोरी।",
+          "sourcePage": 19,
+          "sourceRegion": [
+            97.5,
+            286.5,
+            629.0,
+            481.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "मनहिं परस्पर बढ्यो रंग अति उपजी प्रीति न थोरी॥",
+          "sourcePage": 19,
+          "sourceRegion": [
+            97.5,
+            286.5,
+            629.0,
+            481.5
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        19
+      ]
+    },
+    {
+      "sequence": 26,
+      "printedNumber": 26,
+      "title": "सघन कुंज की छाँह मनोहर सुमन सेज बैठे पिय प्यारी।",
+      "blocks": [
+        [
+          "सघन कुंज की छाँह मनोहर सुमन सेज बैठे पिय प्यारी।",
+          "अरस परस अंसनि भुज दीने नंद नंदन बृषभानु दुलारी॥"
+        ],
+        [
+          "नख सिख अंग सिंगार सुहावत इहि छबि सम नाहिन उपमा री।",
+          "रस बस करत प्रेम की बतियाँ हँसि हँसि देत परस्पर तारी॥"
+        ],
+        [
+          "सन मुख सकल सहचरी ठाढ़ी बिहरत श्री राधा गिरिधारी।",
+          "गोविंददास निरखि दंपति सुख तन मन धन कीनो बलिहारी॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "सघन कुंज की छाँह मनोहर सुमन सेज बैठे पिय प्यारी।",
+          "sourcePage": 20,
+          "sourceRegion": [
+            0.0,
+            44.0,
+            532.5,
+            285.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "अरस परस अंसनि भुज दीने नंद नंदन बृषभानु दुलारी॥",
+          "sourcePage": 20,
+          "sourceRegion": [
+            0.0,
+            44.0,
+            532.5,
+            285.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "नख सिख अंग सिंगार सुहावत इहि छबि सम नाहिन उपमा री।",
+          "sourcePage": 20,
+          "sourceRegion": [
+            0.0,
+            44.0,
+            532.5,
+            285.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "रस बस करत प्रेम की बतियाँ हँसि हँसि देत परस्पर तारी॥",
+          "sourcePage": 20,
+          "sourceRegion": [
+            0.0,
+            44.0,
+            532.5,
+            285.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "सन मुख सकल सहचरी ठाढ़ी बिहरत श्री राधा गिरिधारी।",
+          "sourcePage": 20,
+          "sourceRegion": [
+            0.0,
+            44.0,
+            532.5,
+            285.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "गोविंददास निरखि दंपति सुख तन मन धन कीनो बलिहारी॥",
+          "sourcePage": 20,
+          "sourceRegion": [
+            0.0,
+            44.0,
+            532.5,
+            285.5
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        20
+      ]
+    },
+    {
+      "sequence": 27,
+      "printedNumber": 27,
+      "title": "बैठे हरि राधा संग कुंज भवन अपने रंग",
+      "blocks": [
+        [
+          "बैठे हरि राधा संग कुंज भवन अपने रंग",
+          "कर मुरली अधर धरे सारंग मुख गाई।",
+          "मोहन अति ही सुजान परम चतुर गुन निधान,",
+          "जान बूझि एक तान चूक कैं बजाई॥"
+        ],
+        [
+          "प्यारी जब गह्यो बीन सकल कला गुन प्रबीन",
+          "अति नवीन रूप सहति तान वह सुनाई।",
+          "बल्लभ गिरिधरन लाल रीझि दई अंक-माल,",
+          "कहत भलैं भलैं लाल सुंदर सुखदाई॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "बैठे हरि राधा संग कुंज भवन अपने रंग",
+          "sourcePage": 20,
+          "sourceRegion": [
+            66.0,
+            621.0,
+            477.5,
+            866.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "कर मुरली अधर धरे सारंग मुख गाई।",
+          "sourcePage": 20,
+          "sourceRegion": [
+            66.0,
+            621.0,
+            477.5,
+            866.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "मोहन अति ही सुजान परम चतुर गुन निधान,",
+          "sourcePage": 20,
+          "sourceRegion": [
+            66.0,
+            621.0,
+            477.5,
+            866.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "जान बूझि एक तान चूक कैं बजाई॥",
+          "sourcePage": 20,
+          "sourceRegion": [
+            66.0,
+            621.0,
+            477.5,
+            866.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "प्यारी जब गह्यो बीन सकल कला गुन प्रबीन",
+          "sourcePage": 20,
+          "sourceRegion": [
+            66.0,
+            621.0,
+            477.5,
+            866.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "अति नवीन रूप सहति तान वह सुनाई।",
+          "sourcePage": 20,
+          "sourceRegion": [
+            66.0,
+            621.0,
+            477.5,
+            866.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "बल्लभ गिरिधरन लाल रीझि दई अंक-माल,",
+          "sourcePage": 20,
+          "sourceRegion": [
+            66.0,
+            621.0,
+            477.5,
+            866.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "कहत भलैं भलैं लाल सुंदर सुखदाई॥",
+          "sourcePage": 20,
+          "sourceRegion": [
+            66.0,
+            621.0,
+            477.5,
+            866.5
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        20
+      ]
+    },
+    {
+      "sequence": 28,
+      "printedNumber": 28,
+      "title": "इक टक रही नारि निहार।",
+      "blocks": [
+        [
+          "इक टक रही नारि निहार।",
+          "कुंज बन श्री स्याम स्यामा बैठि करत बिहार॥"
+        ],
+        [
+          "नैन सैन कटाच्छ सौं मिलि करत रंग बिलास।",
+          "नाहिं सोभा पार पावत बचन मुख मृदु हास॥"
+        ],
+        [
+          "तरुनि श्री बृषभानु तनया तरुन नंद कुमार।",
+          "सूर सो क्यों बरनि आवै रूप रस सुख सार॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "इक टक रही नारि निहार।",
+          "sourcePage": 21,
+          "sourceRegion": [
+            134.5,
+            508.5,
+            631.0,
+            692.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "कुंज बन श्री स्याम स्यामा बैठि करत बिहार॥",
+          "sourcePage": 21,
+          "sourceRegion": [
+            134.5,
+            508.5,
+            631.0,
+            692.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "नैन सैन कटाच्छ सौं मिलि करत रंग बिलास।",
+          "sourcePage": 21,
+          "sourceRegion": [
+            134.5,
+            508.5,
+            631.0,
+            692.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "नाहिं सोभा पार पावत बचन मुख मृदु हास॥",
+          "sourcePage": 21,
+          "sourceRegion": [
+            134.5,
+            508.5,
+            631.0,
+            692.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "तरुनि श्री बृषभानु तनया तरुन नंद कुमार।",
+          "sourcePage": 21,
+          "sourceRegion": [
+            134.5,
+            508.5,
+            631.0,
+            692.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "सूर सो क्यों बरनि आवै रूप रस सुख सार॥",
+          "sourcePage": 21,
+          "sourceRegion": [
+            134.5,
+            508.5,
+            631.0,
+            692.5
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        21
+      ]
+    },
+    {
+      "sequence": 29,
+      "printedNumber": 29,
+      "title": "देखन देत न बैरिनि पलकैं।",
+      "blocks": [
+        [
+          "देखन देत न बैरिनि पलकैं।",
+          "निरखत बदन लाल गिरधर को बीच परत मानो बज्र की सलकैं॥"
+        ],
+        [
+          "बन तें आवत बेनु बजावत गोरज मंडित राजत अलकैं।",
+          "माथे मुकुट स्रवन मनि कुंडल ललित कपोलन झाँई झलकैं॥"
+        ],
+        [
+          "ऐसे मुख देखन कौं सजनी कहा कियो यह पूत कमल कैं।",
+          "नंददास सब जड़न की यह गति मीन मरत भाएँ नहिं जल कैं॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "देखन देत न बैरिनि पलकैं।",
+          "sourcePage": 22,
+          "sourceRegion": [
+            21.5,
+            122.5,
+            558.0,
+            409.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "निरखत बदन लाल गिरधर को बीच परत मानो बज्र की सलकैं॥",
+          "sourcePage": 22,
+          "sourceRegion": [
+            21.5,
+            122.5,
+            558.0,
+            409.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "बन तें आवत बेनु बजावत गोरज मंडित राजत अलकैं।",
+          "sourcePage": 22,
+          "sourceRegion": [
+            21.5,
+            122.5,
+            558.0,
+            409.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "माथे मुकुट स्रवन मनि कुंडल ललित कपोलन झाँई झलकैं॥",
+          "sourcePage": 22,
+          "sourceRegion": [
+            21.5,
+            122.5,
+            558.0,
+            409.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "ऐसे मुख देखन कौं सजनी कहा कियो यह पूत कमल कैं।",
+          "sourcePage": 22,
+          "sourceRegion": [
+            21.5,
+            122.5,
+            558.0,
+            409.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "नंददास सब जड़न की यह गति मीन मरत भाएँ नहिं जल कैं॥",
+          "sourcePage": 22,
+          "sourceRegion": [
+            21.5,
+            122.5,
+            558.0,
+            409.0
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        22
+      ]
+    },
+    {
+      "sequence": 30,
+      "printedNumber": 30,
+      "title": "तेरी भौंह की मरोरन तैं ललित त्रिभंगी भये",
+      "blocks": [
+        [
+          "तेरी भौंह की मरोरन तैं ललित त्रिभंगी भये",
+          "अंजन दै चितयो भए जु स्याम बाम।",
+          "तेरी मुसकान देख दामिनी सी कौंध जात",
+          "दीन है जाचत प्यारी लेत राधे आधो नाम॥"
+        ],
+        [
+          "ज्यों ज्यों नचायो चाहौ तैसे हरि नाचत बलि",
+          "अब तो मया कीजै चलिये निकुंज धाम।",
+          "नंददास प्रभु बोलो तो बुलाय लाऊँ",
+          "उनको तो कलप बीते तेरी घरी जाम॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "तेरी भौंह की मरोरन तैं ललित त्रिभंगी भये",
+          "sourcePage": 22,
+          "sourceRegion": [
+            55.0,
+            813.0,
+            475.5,
+            913.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "अंजन दै चितयो भए जु स्याम बाम।",
+          "sourcePage": 22,
+          "sourceRegion": [
+            55.0,
+            813.0,
+            475.5,
+            913.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "तेरी मुसकान देख दामिनी सी कौंध जात",
+          "sourcePage": 23,
+          "sourceRegion": [
+            96.0,
+            86.0,
+            633.5,
+            271.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "दीन है जाचत प्यारी लेत राधे आधो नाम॥",
+          "sourcePage": 23,
+          "sourceRegion": [
+            96.0,
+            86.0,
+            633.5,
+            271.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "ज्यों ज्यों नचायो चाहौ तैसे हरि नाचत बलि",
+          "sourcePage": 23,
+          "sourceRegion": [
+            96.0,
+            86.0,
+            633.5,
+            271.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "अब तो मया कीजै चलिये निकुंज धाम।",
+          "sourcePage": 23,
+          "sourceRegion": [
+            96.0,
+            86.0,
+            633.5,
+            271.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "नंददास प्रभु बोलो तो बुलाय लाऊँ",
+          "sourcePage": 23,
+          "sourceRegion": [
+            96.0,
+            86.0,
+            633.5,
+            271.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "उनको तो कलप बीते तेरी घरी जाम॥",
+          "sourcePage": 23,
+          "sourceRegion": [
+            96.0,
+            86.0,
+            633.5,
+            271.5
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        22,
+        23
+      ]
+    },
+    {
+      "sequence": 31,
+      "printedNumber": 31,
+      "title": "जैसें तेरे नूपुर न बाजहीं",
+      "blocks": [
+        [
+          "जैसें तेरे नूपुर न बाजहीं",
+          "प्यारी! पग हौले हौले धर।",
+          "जागत ब्रज कौ लोग नाहीं सुनायबे जोग",
+          "हा हा री हठीली नेंक मेरौ कह्यौ कर॥"
+        ],
+        [
+          "जो लौं बन बीथिन माँहि सघन कुंज की परछाहिं",
+          "तो लौं मुख ढाँप चल कुँवर रसिक बर।",
+          "नंददास प्रभु प्यारी छिनहूँ न होय न्यारी",
+          "सरद उज्यारी जामें जैहैं कहूँ रर॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "जैसें तेरे नूपुर न बाजहीं",
+          "sourcePage": 23,
+          "sourceRegion": [
+            0.0,
+            678.5,
+            633.5,
+            888.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "प्यारी! पग हौले हौले धर।",
+          "sourcePage": 23,
+          "sourceRegion": [
+            0.0,
+            678.5,
+            633.5,
+            888.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "जागत ब्रज कौ लोग नाहीं सुनायबे जोग",
+          "sourcePage": 23,
+          "sourceRegion": [
+            0.0,
+            678.5,
+            633.5,
+            888.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "हा हा री हठीली नेंक मेरौ कह्यौ कर॥",
+          "sourcePage": 23,
+          "sourceRegion": [
+            0.0,
+            678.5,
+            633.5,
+            888.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "जो लौं बन बीथिन माँहि सघन कुंज की परछाहिं",
+          "sourcePage": 23,
+          "sourceRegion": [
+            0.0,
+            678.5,
+            633.5,
+            888.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "तो लौं मुख ढाँप चल कुँवर रसिक बर।",
+          "sourcePage": 23,
+          "sourceRegion": [
+            0.0,
+            678.5,
+            633.5,
+            888.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "नंददास प्रभु प्यारी छिनहूँ न होय न्यारी",
+          "sourcePage": 24,
+          "sourceRegion": [
+            71.0,
+            49.0,
+            447.0,
+            135.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "सरद उज्यारी जामें जैहैं कहूँ रर॥",
+          "sourcePage": 24,
+          "sourceRegion": [
+            71.0,
+            49.0,
+            447.0,
+            135.0
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        23,
+        24
+      ]
+    },
+    {
+      "sequence": 32,
+      "printedNumber": 32,
+      "title": "चलो क्यों न देखें री खरे दोउ कुंजन की परछाँहीं।",
+      "blocks": [
+        [
+          "चलो क्यों न देखें री खरे दोउ कुंजन की परछाँहीं।",
+          "एक भुजा गहि डार कदंब की दूजी भुजा गलबाँहीं॥"
+        ],
+        [
+          "छबि सौं छबीली लपट लटक रहि कनक बेलि तमाल अरुझाई।",
+          "हरिदास के स्वामी स्यामा कुंज बिहारी रंगे हैं प्रेम रंग माँहीं॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "चलो क्यों न देखें री खरे दोउ कुंजन की परछाँहीं।",
+          "sourcePage": 24,
+          "sourceRegion": [
+            61.0,
+            490.5,
+            526.5,
+            621.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "एक भुजा गहि डार कदंब की दूजी भुजा गलबाँहीं॥",
+          "sourcePage": 24,
+          "sourceRegion": [
+            61.0,
+            490.5,
+            526.5,
+            621.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "छबि सौं छबीली लपट लटक रहि कनक बेलि तमाल अरुझाई।",
+          "sourcePage": 24,
+          "sourceRegion": [
+            61.0,
+            490.5,
+            526.5,
+            621.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "हरिदास के स्वामी स्यामा कुंज बिहारी रंगे हैं प्रेम रंग माँहीं॥",
+          "sourcePage": 24,
+          "sourceRegion": [
+            61.0,
+            490.5,
+            526.5,
+            621.5
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        24
+      ]
+    },
+    {
+      "sequence": 33,
+      "printedNumber": 33,
+      "title": "राधिका आज आनंद में डोलै।",
+      "blocks": [
+        [
+          "राधिका आज आनंद में डोलै।",
+          "साँवरे चंद गोविंद के रस भरी दूसरी कोकिला मधुर स्वर बोलै॥"
+        ],
+        [
+          "पहिर तन नील पट कनक हारावली हाथ लै आरसी रूप को तोलै।",
+          "कहत श्रीभट्ट ब्रजनारि नागरि बनी कृष्ण के सील की ग्रंथिका खोलै॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "राधिका आज आनंद में डोलै।",
+          "sourcePage": 25,
+          "sourceRegion": [
+            56.5,
+            118.0,
+            635.5,
+            246.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "साँवरे चंद गोविंद के रस भरी दूसरी कोकिला मधुर स्वर बोलै॥",
+          "sourcePage": 25,
+          "sourceRegion": [
+            56.5,
+            118.0,
+            635.5,
+            246.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "पहिर तन नील पट कनक हारावली हाथ लै आरसी रूप को तोलै।",
+          "sourcePage": 25,
+          "sourceRegion": [
+            56.5,
+            118.0,
+            635.5,
+            246.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "कहत श्रीभट्ट ब्रजनारि नागरि बनी कृष्ण के सील की ग्रंथिका खोलै॥",
+          "sourcePage": 25,
+          "sourceRegion": [
+            56.5,
+            118.0,
+            635.5,
+            246.0
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        25
+      ]
+    },
+    {
+      "sequence": 34,
+      "printedNumber": 34,
+      "title": "कदम बन बीथिन करत बिहार।",
+      "blocks": [
+        [
+          "कदम बन बीथिन करत बिहार।",
+          "अति रस भरे मदन मोहन पिय तोर्यों प्रिया उर हार॥"
+        ],
+        [
+          "कनक भूमि बिथुरे गज मोती कुंज कुटी के द्वार।",
+          "गोविंद प्रभु हस्त करि पोवत श्रीब्रजराज कुमार॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "कदम बन बीथिन करत बिहार।",
+          "sourcePage": 25,
+          "sourceRegion": [
+            117.5,
+            580.5,
+            635.0,
+            711.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "अति रस भरे मदन मोहन पिय तोर्यों प्रिया उर हार॥",
+          "sourcePage": 25,
+          "sourceRegion": [
+            117.5,
+            580.5,
+            635.0,
+            711.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "कनक भूमि बिथुरे गज मोती कुंज कुटी के द्वार।",
+          "sourcePage": 25,
+          "sourceRegion": [
+            117.5,
+            580.5,
+            635.0,
+            711.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "गोविंद प्रभु हस्त करि पोवत श्रीब्रजराज कुमार॥",
+          "sourcePage": 25,
+          "sourceRegion": [
+            117.5,
+            580.5,
+            635.0,
+            711.5
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        25
+      ]
+    },
+    {
+      "sequence": 35,
+      "printedNumber": 35,
+      "title": "पासा खेलत हैं पिय प्यारी।",
+      "blocks": [
+        [
+          "पासा खेलत हैं पिय प्यारी।",
+          "पहिलो दाव पर्यौ स्याम की पीत पिछौरी हारी॥"
+        ],
+        [
+          "स्याम कहै कछु तुमहु लगावो तब नकबेसर डारी।",
+          "कल बल छल करि जीत्यौ चाहत लाल गोबरधनधारी॥"
+        ],
+        [
+          "अब की बेर पिय मुरली लगावौ तो खेलौ या बारी।",
+          "भूषन सबै लगाय विट्ठल प्रभु हारे कुंज बिहारी॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "पासा खेलत हैं पिय प्यारी।",
+          "sourcePage": 26,
+          "sourceRegion": [
+            51.0,
+            38.5,
+            497.5,
+            268.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "पहिलो दाव पर्यौ स्याम की पीत पिछौरी हारी॥",
+          "sourcePage": 26,
+          "sourceRegion": [
+            51.0,
+            38.5,
+            497.5,
+            268.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "स्याम कहै कछु तुमहु लगावो तब नकबेसर डारी।",
+          "sourcePage": 26,
+          "sourceRegion": [
+            51.0,
+            38.5,
+            497.5,
+            268.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "कल बल छल करि जीत्यौ चाहत लाल गोबरधनधारी॥",
+          "sourcePage": 26,
+          "sourceRegion": [
+            51.0,
+            38.5,
+            497.5,
+            268.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "अब की बेर पिय मुरली लगावौ तो खेलौ या बारी।",
+          "sourcePage": 26,
+          "sourceRegion": [
+            51.0,
+            38.5,
+            497.5,
+            268.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "भूषन सबै लगाय विट्ठल प्रभु हारे कुंज बिहारी॥",
+          "sourcePage": 26,
+          "sourceRegion": [
+            51.0,
+            38.5,
+            497.5,
+            268.0
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        26
+      ]
+    },
+    {
+      "sequence": 36,
+      "printedNumber": 36,
+      "title": "आज तेरी फबी अधिक छबि नागरी।",
+      "blocks": [
+        [
+          "आज तेरी फबी अधिक छबि नागरी।",
+          "माँग मोतिन छटा बदन पै कच लटा",
+          "नील पट घन घटा रूप गुन आगरी॥"
+        ],
+        [
+          "नयन कज्जल अनी कबरी लज्जित फनी",
+          "तिलक रेखा बनी अचल सौभाग री।",
+          "नासिका सुक चंचु अधर बंधुक सम",
+          "बीजु दाड़िम दसन चिबुक पै दाग री॥"
+        ],
+        [
+          "बलय कंकन चूरि मुद्रिका अति रूरि",
+          "बेसरि लटकि रही काम गुन आगरी।",
+          "ताटंक मनि जटित किंकिनी कटि तटित",
+          "पोत मुक्ता दाम कुच कंचुकी लाग री॥"
+        ],
+        [
+          "मूक मंजीर ध्वनि चरन नख चंद्रमा",
+          "परम सौरभ बढ़त मृदुल अनुराग री।",
+          "कहै कृष्णदास गिरिधरन बस किये",
+          "करत जब मधुर स्वर ललित वर राग री॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "आज तेरी फबी अधिक छबि नागरी।",
+          "sourcePage": 26,
+          "sourceRegion": [
+            69.5,
+            583.5,
+            510.0,
+            862.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "माँग मोतिन छटा बदन पै कच लटा",
+          "sourcePage": 26,
+          "sourceRegion": [
+            69.5,
+            583.5,
+            510.0,
+            862.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "नील पट घन घटा रूप गुन आगरी॥",
+          "sourcePage": 26,
+          "sourceRegion": [
+            69.5,
+            583.5,
+            510.0,
+            862.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "नयन कज्जल अनी कबरी लज्जित फनी",
+          "sourcePage": 26,
+          "sourceRegion": [
+            69.5,
+            583.5,
+            510.0,
+            862.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "तिलक रेखा बनी अचल सौभाग री।",
+          "sourcePage": 26,
+          "sourceRegion": [
+            69.5,
+            583.5,
+            510.0,
+            862.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "नासिका सुक चंचु अधर बंधुक सम",
+          "sourcePage": 26,
+          "sourceRegion": [
+            69.5,
+            583.5,
+            510.0,
+            862.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "बीजु दाड़िम दसन चिबुक पै दाग री॥",
+          "sourcePage": 26,
+          "sourceRegion": [
+            69.5,
+            583.5,
+            510.0,
+            862.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "बलय कंकन चूरि मुद्रिका अति रूरि",
+          "sourcePage": 26,
+          "sourceRegion": [
+            69.5,
+            583.5,
+            510.0,
+            862.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "बेसरि लटकि रही काम गुन आगरी।",
+          "sourcePage": 26,
+          "sourceRegion": [
+            69.5,
+            583.5,
+            510.0,
+            862.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "ताटंक मनि जटित किंकिनी कटि तटित",
+          "sourcePage": 27,
+          "sourceRegion": [
+            107.5,
+            76.5,
+            639.0,
+            270.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "पोत मुक्ता दाम कुच कंचुकी लाग री॥",
+          "sourcePage": 27,
+          "sourceRegion": [
+            107.5,
+            76.5,
+            639.0,
+            270.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "मूक मंजीर ध्वनि चरन नख चंद्रमा",
+          "sourcePage": 27,
+          "sourceRegion": [
+            107.5,
+            76.5,
+            639.0,
+            270.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "परम सौरभ बढ़त मृदुल अनुराग री।",
+          "sourcePage": 27,
+          "sourceRegion": [
+            107.5,
+            76.5,
+            639.0,
+            270.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "कहै कृष्णदास गिरिधरन बस किये",
+          "sourcePage": 27,
+          "sourceRegion": [
+            107.5,
+            76.5,
+            639.0,
+            270.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "करत जब मधुर स्वर ललित वर राग री॥",
+          "sourcePage": 27,
+          "sourceRegion": [
+            107.5,
+            76.5,
+            639.0,
+            270.0
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        26,
+        27
+      ]
+    },
+    {
+      "sequence": 37,
+      "printedNumber": 37,
+      "title": "भाग्यवान बृषभानु सुता सी को तिय त्रिभुवन माहीं।",
+      "blocks": [
+        [
+          "भाग्यवान बृषभानु सुता सी को तिय त्रिभुवन माहीं।",
+          "जाको पति त्रिभुवन मन मोहन दिये रहत गल बाँहीं॥"
+        ],
+        [
+          "ह्वै अधीन सँग ही सँग डोलत जहाँ कुँवरि चलि जाहीं।",
+          "रसिक लख्यौ जो सुख वृंदाबन सो त्रिभुवन में नाहीं॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "भाग्यवान बृषभानु सुता सी को तिय त्रिभुवन माहीं।",
+          "sourcePage": 28,
+          "sourceRegion": [
+            93.5,
+            107.0,
+            540.0,
+            237.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "जाको पति त्रिभुवन मन मोहन दिये रहत गल बाँहीं॥",
+          "sourcePage": 28,
+          "sourceRegion": [
+            93.5,
+            107.0,
+            540.0,
+            237.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "ह्वै अधीन सँग ही सँग डोलत जहाँ कुँवरि चलि जाहीं।",
+          "sourcePage": 28,
+          "sourceRegion": [
+            93.5,
+            107.0,
+            540.0,
+            237.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "रसिक लख्यौ जो सुख वृंदाबन सो त्रिभुवन में नाहीं॥",
+          "sourcePage": 28,
+          "sourceRegion": [
+            93.5,
+            107.0,
+            540.0,
+            237.5
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        28
+      ]
+    },
+    {
+      "sequence": 38,
+      "printedNumber": 38,
+      "title": "राधा मोहन करत बियारी।",
+      "blocks": [
+        [
+          "राधा मोहन करत बियारी।",
+          "एक कर थार सँवारे सुंदरि एक वेष एक रूप उज्यारी॥"
+        ],
+        [
+          "मधु मेवा पकवान मिठाई दंपति अति रुचिकारी।",
+          "सूरदास को जूठन दीनी अति प्रसन्न ललिता री॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "राधा मोहन करत बियारी।",
+          "sourcePage": 28,
+          "sourceRegion": [
+            98.5,
+            460.5,
+            539.0,
+            582.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "एक कर थार सँवारे सुंदरि एक वेष एक रूप उज्यारी॥",
+          "sourcePage": 28,
+          "sourceRegion": [
+            98.5,
+            460.5,
+            539.0,
+            582.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "मधु मेवा पकवान मिठाई दंपति अति रुचिकारी।",
+          "sourcePage": 28,
+          "sourceRegion": [
+            98.5,
+            460.5,
+            539.0,
+            582.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "सूरदास को जूठन दीनी अति प्रसन्न ललिता री॥",
+          "sourcePage": 28,
+          "sourceRegion": [
+            98.5,
+            460.5,
+            539.0,
+            582.5
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        28
+      ]
+    },
+    {
+      "sequence": 39,
+      "printedNumber": 39,
+      "title": "अँचवन करत लाडिली लाल।",
+      "blocks": [
+        [
+          "अँचवन करत लाडिली लाल।",
+          "कंचन झारी गहत परसपर श्रीराधा गोपाल॥"
+        ],
+        [
+          "जल मुख लेतहि हँसत हँसावत देखत सखिन के जाल।",
+          "राधा माधव केलि करत भए श्रीभट्ट परम बिचाल॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "अँचवन करत लाडिली लाल।",
+          "sourcePage": 28,
+          "sourceRegion": [
+            101.0,
+            809.0,
+            541.5,
+            865.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "कंचन झारी गहत परसपर श्रीराधा गोपाल॥",
+          "sourcePage": 28,
+          "sourceRegion": [
+            101.0,
+            809.0,
+            541.5,
+            865.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "जल मुख लेतहि हँसत हँसावत देखत सखिन के जाल।",
+          "sourcePage": 29,
+          "sourceRegion": [
+            111.0,
+            64.5,
+            555.0,
+            132.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "राधा माधव केलि करत भए श्रीभट्ट परम बिचाल॥",
+          "sourcePage": 29,
+          "sourceRegion": [
+            111.0,
+            64.5,
+            555.0,
+            132.5
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        28,
+        29
+      ]
+    },
+    {
+      "sequence": 40,
+      "printedNumber": 40,
+      "title": "बीरी सरस सखी रुचि दीनी।",
+      "blocks": [
+        [
+          "बीरी सरस सखी रुचि दीनी।",
+          "लई प्रीति कर प्रीतम प्यारी अधरन लाली लसी नवीनी॥"
+        ],
+        [
+          "मृदु मुसकात बात हँसि बोलत सुनत सहेली रस में भीनी।",
+          "सरस माधुर सयन करन की जुगल लाल मन इच्छा कीनी॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "बीरी सरस सखी रुचि दीनी।",
+          "sourcePage": 29,
+          "sourceRegion": [
+            111.5,
+            372.5,
+            554.0,
+            498.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "लई प्रीति कर प्रीतम प्यारी अधरन लाली लसी नवीनी॥",
+          "sourcePage": 29,
+          "sourceRegion": [
+            111.5,
+            372.5,
+            554.0,
+            498.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "मृदु मुसकात बात हँसि बोलत सुनत सहेली रस में भीनी।",
+          "sourcePage": 29,
+          "sourceRegion": [
+            111.5,
+            372.5,
+            554.0,
+            498.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "सरस माधुर सयन करन की जुगल लाल मन इच्छा कीनी॥",
+          "sourcePage": 29,
+          "sourceRegion": [
+            111.5,
+            372.5,
+            554.0,
+            498.0
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        29
+      ]
+    },
+    {
+      "sequence": 41,
+      "printedNumber": 41,
+      "title": "प्यारी पियहि सिखावति बीना।",
+      "blocks": [
+        [
+          "प्यारी पियहि सिखावति बीना।",
+          "तान बंधान कल्यान मनोहर इत मन देहु प्रबीना॥"
+        ],
+        [
+          "लेत सँभारि सँभारि सुघर बर नागरि कहत फबी ना।",
+          "विट्ठल विपुल बिनोद बिहारी को जानत भेद कभी ना॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "प्यारी पियहि सिखावति बीना।",
+          "sourcePage": 29,
+          "sourceRegion": [
+            114.0,
+            747.0,
+            555.0,
+            874.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "तान बंधान कल्यान मनोहर इत मन देहु प्रबीना॥",
+          "sourcePage": 29,
+          "sourceRegion": [
+            114.0,
+            747.0,
+            555.0,
+            874.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "लेत सँभारि सँभारि सुघर बर नागरि कहत फबी ना।",
+          "sourcePage": 29,
+          "sourceRegion": [
+            114.0,
+            747.0,
+            555.0,
+            874.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "विट्ठल विपुल बिनोद बिहारी को जानत भेद कभी ना॥",
+          "sourcePage": 29,
+          "sourceRegion": [
+            114.0,
+            747.0,
+            555.0,
+            874.0
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        29
+      ]
+    },
+    {
+      "sequence": 42,
+      "printedNumber": 42,
+      "title": "आज गुपाल रास रस खेलत पुलिन कल्पतरु तीर री सजनी।",
+      "blocks": [
+        [
+          "आज गुपाल रास रस खेलत पुलिन कल्पतरु तीर री सजनी।",
+          "सरद बिमल नभ चंद बिराजत रोचक त्रिबिध समीर री सजनी॥"
+        ],
+        [
+          "चंपक बकुल मालती मुकुलति मत्त मुदित पिक कीर री सजनी।",
+          "लेत सुधंग राग रागिनि को ब्रज जुबतिन की भीर री सजनी॥"
+        ],
+        [
+          "मघवा मुदित निसान बजायौ ब्रत छाँड्यौ मुनि धीर री सजनी।",
+          "हित हरिवंश मगन मन स्यामा हरत मदन घन पीर री सजनी॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "आज गुपाल रास रस खेलत पुलिन कल्पतरु तीर री सजनी।",
+          "sourcePage": 30,
+          "sourceRegion": [
+            0.0,
+            293.5,
+            552.5,
+            477.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "सरद बिमल नभ चंद बिराजत रोचक त्रिबिध समीर री सजनी॥",
+          "sourcePage": 30,
+          "sourceRegion": [
+            0.0,
+            293.5,
+            552.5,
+            477.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "चंपक बकुल मालती मुकुलति मत्त मुदित पिक कीर री सजनी।",
+          "sourcePage": 30,
+          "sourceRegion": [
+            0.0,
+            293.5,
+            552.5,
+            477.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "लेत सुधंग राग रागिनि को ब्रज जुबतिन की भीर री सजनी॥",
+          "sourcePage": 30,
+          "sourceRegion": [
+            0.0,
+            293.5,
+            552.5,
+            477.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "मघवा मुदित निसान बजायौ ब्रत छाँड्यौ मुनि धीर री सजनी।",
+          "sourcePage": 30,
+          "sourceRegion": [
+            0.0,
+            293.5,
+            552.5,
+            477.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "हित हरिवंश मगन मन स्यामा हरत मदन घन पीर री सजनी॥",
+          "sourcePage": 30,
+          "sourceRegion": [
+            0.0,
+            293.5,
+            552.5,
+            477.5
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        30
+      ]
+    },
+    {
+      "sequence": 43,
+      "printedNumber": 43,
+      "title": "रास मंडल रच्यो रसिक हरि राधिका",
+      "blocks": [
+        [
+          "रास मंडल रच्यो रसिक हरि राधिका",
+          "तरनिजा तीर बानीर कुंजे।",
+          "फूले जहाँ नीप नव बकुल कुल मालती",
+          "माधुरी मृदुल अलि पुंज गुंजे॥"
+        ],
+        [
+          "सुमन के गुच्छ अलि सुच्छ चल बात बल",
+          "तरु मनो चहुँ दिसि चँवर करहीं।",
+          "करत रव सारि सुक पिक सु नाना विहँग",
+          "नचत केकि अधिक मनहि हरहीं॥"
+        ],
+        [
+          "त्रिगुन जहाँ पवन को गवन नित ही रहत",
+          "बहत स्यामल तटनि चल तरंगा।",
+          "बिबिध फूले कमल कोक कलहंस कुल",
+          "करत कल कुणित अरु जल बिहंगा॥"
+        ],
+        [
+          "हेम मंडल रचित खचित नाना रतन",
+          "मनहुँ भू करन कुंडल बिराजे।",
+          "बंस बीनादि मुहचंग मिरदंग बर",
+          "सबन मिलि मधुर धुनि एक बाजै॥"
+        ],
+        [
+          "नचत रस मगन बृषभानुजा गिरिधरन",
+          "बदन छबि देखि सुधि जात रति मदन की।",
+          "मुकुट की थरहरनि पीत पट फरहरनि",
+          "तत थेई थेई करिन हरनि सब कदन की॥"
+        ],
+        [
+          "दसनि दमकनि हँसनि लसनि अँग अँग की",
+          "अधर बर अरुन लखि उपमा को है।",
+          "दृग जलज चलनि ढिग कुटिल अलकनि झुलनि",
+          "मनहुँ अलि कुलन की पाँति सोहै॥"
+        ],
+        [
+          "लाग अरु डाट पुनि उरप उरमेड़ तिरप",
+          "एक एक गति लेत भारी।",
+          "करत मिलि गान अति तान बंधान सों",
+          "परस्पर रीझि कहैं वायों वारी॥"
+        ],
+        [
+          "चारु उर हार बर रतन कुंडल ललित",
+          "हीर बर बीर स्रवननि सुहाई।",
+          "नील पट पीत तन गौर स्यामल मनौ",
+          "परस्पर घन अरु दामिनि दुराई॥"
+        ],
+        [
+          "सखी चहुँ दिसि बनी कनक चंपक तनी",
+          "चंद बदनी इक एक तैं आगरी।",
+          "नचत मंडल किए चित्त दुहु तन दिए",
+          "भूलि गई सकल अप अपनी सुधि नागरी॥"
+        ],
+        [
+          "रमत इहि भाँति नित रसिक सिरमौर दोऊ",
+          "संग ललितादि लिए सुघरि सुंदरि अली।",
+          "मनसि वृंदावन बसहुँ जीवन धना",
+          "ब्रजराज सून बृषभानुजू की लली॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "रास मंडल रच्यो रसिक हरि राधिका",
+          "sourcePage": 31,
+          "sourceRegion": [
+            110.5,
+            83.5,
+            557.0,
+            867.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "तरनिजा तीर बानीर कुंजे।",
+          "sourcePage": 31,
+          "sourceRegion": [
+            110.5,
+            83.5,
+            557.0,
+            867.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "फूले जहाँ नीप नव बकुल कुल मालती",
+          "sourcePage": 31,
+          "sourceRegion": [
+            110.5,
+            83.5,
+            557.0,
+            867.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "माधुरी मृदुल अलि पुंज गुंजे॥",
+          "sourcePage": 31,
+          "sourceRegion": [
+            110.5,
+            83.5,
+            557.0,
+            867.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "सुमन के गुच्छ अलि सुच्छ चल बात बल",
+          "sourcePage": 31,
+          "sourceRegion": [
+            110.5,
+            83.5,
+            557.0,
+            867.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "तरु मनो चहुँ दिसि चँवर करहीं।",
+          "sourcePage": 31,
+          "sourceRegion": [
+            110.5,
+            83.5,
+            557.0,
+            867.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "करत रव सारि सुक पिक सु नाना विहँग",
+          "sourcePage": 31,
+          "sourceRegion": [
+            110.5,
+            83.5,
+            557.0,
+            867.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "नचत केकि अधिक मनहि हरहीं॥",
+          "sourcePage": 31,
+          "sourceRegion": [
+            110.5,
+            83.5,
+            557.0,
+            867.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "त्रिगुन जहाँ पवन को गवन नित ही रहत",
+          "sourcePage": 31,
+          "sourceRegion": [
+            110.5,
+            83.5,
+            557.0,
+            867.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "बहत स्यामल तटनि चल तरंगा।",
+          "sourcePage": 31,
+          "sourceRegion": [
+            110.5,
+            83.5,
+            557.0,
+            867.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "बिबिध फूले कमल कोक कलहंस कुल",
+          "sourcePage": 31,
+          "sourceRegion": [
+            110.5,
+            83.5,
+            557.0,
+            867.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "करत कल कुणित अरु जल बिहंगा॥",
+          "sourcePage": 31,
+          "sourceRegion": [
+            110.5,
+            83.5,
+            557.0,
+            867.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "हेम मंडल रचित खचित नाना रतन",
+          "sourcePage": 31,
+          "sourceRegion": [
+            110.5,
+            83.5,
+            557.0,
+            867.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "मनहुँ भू करन कुंडल बिराजे।",
+          "sourcePage": 31,
+          "sourceRegion": [
+            110.5,
+            83.5,
+            557.0,
+            867.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "बंस बीनादि मुहचंग मिरदंग बर",
+          "sourcePage": 31,
+          "sourceRegion": [
+            110.5,
+            83.5,
+            557.0,
+            867.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "सबन मिलि मधुर धुनि एक बाजै॥",
+          "sourcePage": 31,
+          "sourceRegion": [
+            110.5,
+            83.5,
+            557.0,
+            867.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "नचत रस मगन बृषभानुजा गिरिधरन",
+          "sourcePage": 31,
+          "sourceRegion": [
+            110.5,
+            83.5,
+            557.0,
+            867.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "बदन छबि देखि सुधि जात रति मदन की।",
+          "sourcePage": 31,
+          "sourceRegion": [
+            110.5,
+            83.5,
+            557.0,
+            867.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "मुकुट की थरहरनि पीत पट फरहरनि",
+          "sourcePage": 31,
+          "sourceRegion": [
+            110.5,
+            83.5,
+            557.0,
+            867.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "तत थेई थेई करिन हरनि सब कदन की॥",
+          "sourcePage": 31,
+          "sourceRegion": [
+            110.5,
+            83.5,
+            557.0,
+            867.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "दसनि दमकनि हँसनि लसनि अँग अँग की",
+          "sourcePage": 31,
+          "sourceRegion": [
+            110.5,
+            83.5,
+            557.0,
+            867.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "अधर बर अरुन लखि उपमा को है।",
+          "sourcePage": 31,
+          "sourceRegion": [
+            110.5,
+            83.5,
+            557.0,
+            867.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "दृग जलज चलनि ढिग कुटिल अलकनि झुलनि",
+          "sourcePage": 31,
+          "sourceRegion": [
+            110.5,
+            83.5,
+            557.0,
+            867.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "मनहुँ अलि कुलन की पाँति सोहै॥",
+          "sourcePage": 31,
+          "sourceRegion": [
+            110.5,
+            83.5,
+            557.0,
+            867.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "लाग अरु डाट पुनि उरप उरमेड़ तिरप",
+          "sourcePage": 32,
+          "sourceRegion": [
+            0.0,
+            59.5,
+            530.5,
+            566.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "एक एक गति लेत भारी।",
+          "sourcePage": 32,
+          "sourceRegion": [
+            0.0,
+            59.5,
+            530.5,
+            566.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "करत मिलि गान अति तान बंधान सों",
+          "sourcePage": 32,
+          "sourceRegion": [
+            0.0,
+            59.5,
+            530.5,
+            566.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "परस्पर रीझि कहैं वायों वारी॥",
+          "sourcePage": 32,
+          "sourceRegion": [
+            0.0,
+            59.5,
+            530.5,
+            566.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "चारु उर हार बर रतन कुंडल ललित",
+          "sourcePage": 32,
+          "sourceRegion": [
+            0.0,
+            59.5,
+            530.5,
+            566.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "हीर बर बीर स्रवननि सुहाई।",
+          "sourcePage": 32,
+          "sourceRegion": [
+            0.0,
+            59.5,
+            530.5,
+            566.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "नील पट पीत तन गौर स्यामल मनौ",
+          "sourcePage": 32,
+          "sourceRegion": [
+            0.0,
+            59.5,
+            530.5,
+            566.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "परस्पर घन अरु दामिनि दुराई॥",
+          "sourcePage": 32,
+          "sourceRegion": [
+            0.0,
+            59.5,
+            530.5,
+            566.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "सखी चहुँ दिसि बनी कनक चंपक तनी",
+          "sourcePage": 32,
+          "sourceRegion": [
+            0.0,
+            59.5,
+            530.5,
+            566.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "चंद बदनी इक एक तैं आगरी।",
+          "sourcePage": 32,
+          "sourceRegion": [
+            0.0,
+            59.5,
+            530.5,
+            566.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "नचत मंडल किए चित्त दुहु तन दिए",
+          "sourcePage": 32,
+          "sourceRegion": [
+            0.0,
+            59.5,
+            530.5,
+            566.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "भूलि गई सकल अप अपनी सुधि नागरी॥",
+          "sourcePage": 32,
+          "sourceRegion": [
+            0.0,
+            59.5,
+            530.5,
+            566.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "रमत इहि भाँति नित रसिक सिरमौर दोऊ",
+          "sourcePage": 32,
+          "sourceRegion": [
+            0.0,
+            59.5,
+            530.5,
+            566.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "संग ललितादि लिए सुघरि सुंदरि अली।",
+          "sourcePage": 32,
+          "sourceRegion": [
+            0.0,
+            59.5,
+            530.5,
+            566.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "मनसि वृंदावन बसहुँ जीवन धना",
+          "sourcePage": 32,
+          "sourceRegion": [
+            0.0,
+            59.5,
+            530.5,
+            566.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "ब्रजराज सून बृषभानुजू की लली॥",
+          "sourcePage": 32,
+          "sourceRegion": [
+            0.0,
+            59.5,
+            530.5,
+            566.0
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        31,
+        32
+      ]
+    },
+    {
+      "sequence": 44,
+      "printedNumber": 44,
+      "title": "राधिका सम नागरी नवीन को प्रबीन सखी,",
+      "blocks": [
+        [
+          "राधिका सम नागरी नवीन को प्रबीन सखी,",
+          "रूप गुन सुहाग भाग आगरी न नारि।",
+          "बरुन नागलोक भूमि देवलोक की कुमारि,",
+          "प्यारी जू के रोम ऊपर डारो सब वारि॥"
+        ],
+        [
+          "आनंद कंद नंद नंदन जाके रस रंग रच्यो,",
+          "अंग बर सुधंग नाचति मानतु अति हारि।",
+          "ताके बल गरब भरे रसिक व्यास से न डरे,",
+          "लोक बेद कर्म धर्म छाँड़ि मुकुति चारि॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "राधिका सम नागरी नवीन को प्रबीन सखी,",
+          "sourcePage": 33,
+          "sourceRegion": [
+            88.0,
+            388.5,
+            528.0,
+            658.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "रूप गुन सुहाग भाग आगरी न नारि।",
+          "sourcePage": 33,
+          "sourceRegion": [
+            88.0,
+            388.5,
+            528.0,
+            658.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "बरुन नागलोक भूमि देवलोक की कुमारि,",
+          "sourcePage": 33,
+          "sourceRegion": [
+            88.0,
+            388.5,
+            528.0,
+            658.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "प्यारी जू के रोम ऊपर डारो सब वारि॥",
+          "sourcePage": 33,
+          "sourceRegion": [
+            88.0,
+            388.5,
+            528.0,
+            658.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "आनंद कंद नंद नंदन जाके रस रंग रच्यो,",
+          "sourcePage": 33,
+          "sourceRegion": [
+            88.0,
+            388.5,
+            528.0,
+            658.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "अंग बर सुधंग नाचति मानतु अति हारि।",
+          "sourcePage": 33,
+          "sourceRegion": [
+            88.0,
+            388.5,
+            528.0,
+            658.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "ताके बल गरब भरे रसिक व्यास से न डरे,",
+          "sourcePage": 33,
+          "sourceRegion": [
+            88.0,
+            388.5,
+            528.0,
+            658.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "लोक बेद कर्म धर्म छाँड़ि मुकुति चारि॥",
+          "sourcePage": 33,
+          "sourceRegion": [
+            88.0,
+            388.5,
+            528.0,
+            658.0
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        33
+      ]
+    },
+    {
+      "sequence": 45,
+      "printedNumber": 45,
+      "title": "बेसर कौन की अति नीकी।",
+      "blocks": [
+        [
+          "बेसर कौन की अति नीकी।",
+          "होड परी प्रीतम अरु प्यारी अपने अपने जी की॥"
+        ],
+        [
+          "न्याव पर्यौ ललिता के आगे कौन सरस कौ फीकी।",
+          "नंददास बिलग जिन मानो कछु एक सरस लली की॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "बेसर कौन की अति नीकी।",
+          "sourcePage": 34,
+          "sourceRegion": [
+            104.0,
+            283.5,
+            633.0,
+            408.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "होड परी प्रीतम अरु प्यारी अपने अपने जी की॥",
+          "sourcePage": 34,
+          "sourceRegion": [
+            104.0,
+            283.5,
+            633.0,
+            408.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "न्याव पर्यौ ललिता के आगे कौन सरस कौ फीकी।",
+          "sourcePage": 34,
+          "sourceRegion": [
+            104.0,
+            283.5,
+            633.0,
+            408.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "नंददास बिलग जिन मानो कछु एक सरस लली की॥",
+          "sourcePage": 34,
+          "sourceRegion": [
+            104.0,
+            283.5,
+            633.0,
+            408.5
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        34
+      ]
+    },
+    {
+      "sequence": 46,
+      "printedNumber": 46,
+      "title": "तुव मुख कमल नैन अलि मेरे।",
+      "blocks": [
+        [
+          "तुव मुख कमल नैन अलि मेरे।",
+          "पलक न लगत पलक बिन देखे अरबरात अति फिरत न फेरे॥"
+        ],
+        [
+          "पान करत मकरंद रूप रस भूलि नहीं फिर इत उत हेरे।",
+          "भगवतरसिक भए मतवारे घूमत रहत छके मद तेरे॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "तुव मुख कमल नैन अलि मेरे।",
+          "sourcePage": 34,
+          "sourceRegion": [
+            83.0,
+            672.5,
+            563.0,
+            802.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "पलक न लगत पलक बिन देखे अरबरात अति फिरत न फेरे॥",
+          "sourcePage": 34,
+          "sourceRegion": [
+            83.0,
+            672.5,
+            563.0,
+            802.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "पान करत मकरंद रूप रस भूलि नहीं फिर इत उत हेरे।",
+          "sourcePage": 34,
+          "sourceRegion": [
+            83.0,
+            672.5,
+            563.0,
+            802.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "भगवतरसिक भए मतवारे घूमत रहत छके मद तेरे॥",
+          "sourcePage": 34,
+          "sourceRegion": [
+            83.0,
+            672.5,
+            563.0,
+            802.5
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        34
+      ]
+    },
+    {
+      "sequence": 47,
+      "printedNumber": 47,
+      "title": "तुव मुख चंद चकोर ए नैना।",
+      "blocks": [
+        [
+          "तुव मुख चंद चकोर ए नैना।",
+          "अति आरत अनुरागी लंपट भूलि गई मति पलहूँ लगे ना॥"
+        ],
+        [
+          "अरबरात मिलिबे को निसि दिन मिलेइ रहत मानो कबहूँ मिले ना।",
+          "भगवतरसिक रसिक की बातें रसिक बिना कोउ समुझि सकै ना॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "तुव मुख चंद चकोर ए नैना।",
+          "sourcePage": 35,
+          "sourceRegion": [
+            0.0,
+            281.0,
+            581.0,
+            412.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "अति आरत अनुरागी लंपट भूलि गई मति पलहूँ लगे ना॥",
+          "sourcePage": 35,
+          "sourceRegion": [
+            0.0,
+            281.0,
+            581.0,
+            412.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "अरबरात मिलिबे को निसि दिन मिलेइ रहत मानो कबहूँ मिले ना।",
+          "sourcePage": 35,
+          "sourceRegion": [
+            0.0,
+            281.0,
+            581.0,
+            412.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "भगवतरसिक रसिक की बातें रसिक बिना कोउ समुझि सकै ना॥",
+          "sourcePage": 35,
+          "sourceRegion": [
+            0.0,
+            281.0,
+            581.0,
+            412.0
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        35
+      ]
+    },
+    {
+      "sequence": 48,
+      "printedNumber": 48,
+      "title": "राधा प्यारी तुमहिं लगत हौं मैं कैसो।",
+      "blocks": [
+        [
+          "राधा प्यारी तुमहिं लगत हौं मैं कैसो।",
+          "बूझन को अभिलाष रहत मन सकुच लगत मन ही मन ऐसो॥"
+        ],
+        [
+          "भोरो री गिनत चतुर कै भामिनी अपने ही बदन बखानो सो।",
+          "वृंदाबन हित रूप पै बलि जाऊँ तुम जो मिलि मेरो भाग सो ऐसो॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "राधा प्यारी तुमहिं लगत हौं मैं कैसो।",
+          "sourcePage": 35,
+          "sourceRegion": [
+            0.0,
+            664.5,
+            576.5,
+            790.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "बूझन को अभिलाष रहत मन सकुच लगत मन ही मन ऐसो॥",
+          "sourcePage": 35,
+          "sourceRegion": [
+            0.0,
+            664.5,
+            576.5,
+            790.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "भोरो री गिनत चतुर कै भामिनी अपने ही बदन बखानो सो।",
+          "sourcePage": 35,
+          "sourceRegion": [
+            0.0,
+            664.5,
+            576.5,
+            790.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "वृंदाबन हित रूप पै बलि जाऊँ तुम जो मिलि मेरो भाग सो ऐसो॥",
+          "sourcePage": 35,
+          "sourceRegion": [
+            0.0,
+            664.5,
+            576.5,
+            790.0
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        35
+      ]
+    },
+    {
+      "sequence": 49,
+      "printedNumber": 49,
+      "title": "प्रीतम तुम मेरे दृगन बसत हो।",
+      "blocks": [
+        [
+          "प्रीतम तुम मेरे दृगन बसत हो।",
+          "कहा भोरे ह्वै कै पूछत हौ कै चतुराई करि जु हँसत हौ॥"
+        ],
+        [
+          "लीजिए परखि सरूप आपनौ पुतरिन मैं प्यारे तुमहि लसत हौ॥",
+          "वृंदाबन हित रूप बलि गई कुंज लडावत हिय हुलसत हौ॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "प्रीतम तुम मेरे दृगन बसत हो।",
+          "sourcePage": 36,
+          "sourceRegion": [
+            77.5,
+            223.0,
+            559.5,
+            345.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "कहा भोरे ह्वै कै पूछत हौ कै चतुराई करि जु हँसत हौ॥",
+          "sourcePage": 36,
+          "sourceRegion": [
+            77.5,
+            223.0,
+            559.5,
+            345.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "लीजिए परखि सरूप आपनौ पुतरिन मैं प्यारे तुमहि लसत हौ॥",
+          "sourcePage": 36,
+          "sourceRegion": [
+            77.5,
+            223.0,
+            559.5,
+            345.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "वृंदाबन हित रूप बलि गई कुंज लडावत हिय हुलसत हौ॥",
+          "sourcePage": 36,
+          "sourceRegion": [
+            77.5,
+            223.0,
+            559.5,
+            345.0
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        36
+      ]
+    },
+    {
+      "sequence": 50,
+      "printedNumber": 50,
+      "title": "आज बने सखि नंद कुमार।",
+      "blocks": [
+        [
+          "आज बने सखि नंद कुमार।",
+          "बाम भाग बृषभान नंदिनी ललितादिक गावें सिंह द्वार॥"
+        ],
+        [
+          "कंचन थार लिये जु कमल कर मुक्ताफल फूलन के हार।",
+          "रोरी को सिर तिलक बिराजत करत आरती हरष अपार॥"
+        ],
+        [
+          "यह जोरी अबिचल वृंदाबन देत असीस सकल ब्रजनार।",
+          "कुंज महल में राजत दोऊ परमानंद दास बलिहार॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "आज बने सखि नंद कुमार।",
+          "sourcePage": 36,
+          "sourceRegion": [
+            79.0,
+            625.5,
+            562.5,
+            814.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "बाम भाग बृषभान नंदिनी ललितादिक गावें सिंह द्वार॥",
+          "sourcePage": 36,
+          "sourceRegion": [
+            79.0,
+            625.5,
+            562.5,
+            814.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "कंचन थार लिये जु कमल कर मुक्ताफल फूलन के हार।",
+          "sourcePage": 36,
+          "sourceRegion": [
+            79.0,
+            625.5,
+            562.5,
+            814.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "रोरी को सिर तिलक बिराजत करत आरती हरष अपार॥",
+          "sourcePage": 36,
+          "sourceRegion": [
+            79.0,
+            625.5,
+            562.5,
+            814.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "यह जोरी अबिचल वृंदाबन देत असीस सकल ब्रजनार।",
+          "sourcePage": 36,
+          "sourceRegion": [
+            79.0,
+            625.5,
+            562.5,
+            814.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "कुंज महल में राजत दोऊ परमानंद दास बलिहार॥",
+          "sourcePage": 36,
+          "sourceRegion": [
+            79.0,
+            625.5,
+            562.5,
+            814.0
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        36
+      ]
+    },
+    {
+      "sequence": 51,
+      "printedNumber": 51,
+      "title": "खंजन नैन रूप रस माते।",
+      "blocks": [
+        [
+          "खंजन नैन रूप रस माते।",
+          "अतिसय चारु चपल अनियारे पल पिंजरा न समाते॥"
+        ],
+        [
+          "उड़ उड़ जात निकट स्रवनन के उलटि फिरत ताटंक फँदाते।",
+          "सूरदास अंजन गुन अटके नाँतर अब उड़ जाते॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "खंजन नैन रूप रस माते।",
+          "sourcePage": 37,
+          "sourceRegion": [
+            0.0,
+            348.5,
+            557.0,
+            477.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "अतिसय चारु चपल अनियारे पल पिंजरा न समाते॥",
+          "sourcePage": 37,
+          "sourceRegion": [
+            0.0,
+            348.5,
+            557.0,
+            477.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "उड़ उड़ जात निकट स्रवनन के उलटि फिरत ताटंक फँदाते।",
+          "sourcePage": 37,
+          "sourceRegion": [
+            0.0,
+            348.5,
+            557.0,
+            477.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "सूरदास अंजन गुन अटके नाँतर अब उड़ जाते॥",
+          "sourcePage": 37,
+          "sourceRegion": [
+            0.0,
+            348.5,
+            557.0,
+            477.5
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        37
+      ]
+    },
+    {
+      "sequence": 52,
+      "printedNumber": 52,
+      "title": "अब पौढ़न को समय भयो।",
+      "blocks": [
+        [
+          "अब पौढ़न को समय भयो।",
+          "इत ढुर गई द्रुमन की छैयाँ उत ढुरि चंद गयो॥"
+        ],
+        [
+          "पौढ़ि रहे दोउ सुखद सेज पर बाढ़त रंग नयो।",
+          "रसिक बिहारि बिहारिन पौढ़े यह सुख दृगन लयो॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "अब पौढ़न को समय भयो।",
+          "sourcePage": 37,
+          "sourceRegion": [
+            0.0,
+            747.0,
+            520.0,
+            868.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "इत ढुर गई द्रुमन की छैयाँ उत ढुरि चंद गयो॥",
+          "sourcePage": 37,
+          "sourceRegion": [
+            0.0,
+            747.0,
+            520.0,
+            868.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "पौढ़ि रहे दोउ सुखद सेज पर बाढ़त रंग नयो।",
+          "sourcePage": 37,
+          "sourceRegion": [
+            0.0,
+            747.0,
+            520.0,
+            868.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "रसिक बिहारि बिहारिन पौढ़े यह सुख दृगन लयो॥",
+          "sourcePage": 37,
+          "sourceRegion": [
+            0.0,
+            747.0,
+            520.0,
+            868.0
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        37
+      ]
+    },
+    {
+      "sequence": 53,
+      "printedNumber": 53,
+      "title": "बिहारिनी अलकलड़ैती हौ अलकलड़े सुकुमार।",
+      "blocks": [
+        [
+          "बिहारिनी अलकलड़ैती हौ अलकलड़े सुकुमार।",
+          "अलकलड़े मोहन मंदिर में अलकलड़ोई बिहार॥"
+        ],
+        [
+          "अलकलड़ी उरझनि दोउन की अलकलड़ोई प्यार।",
+          "अलकलड़ी हरिप्रिया निहारति अलकलड़ो सुखसार॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "बिहारिनी अलकलड़ैती हौ अलकलड़े सुकुमार।",
+          "sourcePage": 38,
+          "sourceRegion": [
+            120.5,
+            323.5,
+            526.5,
+            449.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "अलकलड़े मोहन मंदिर में अलकलड़ोई बिहार॥",
+          "sourcePage": 38,
+          "sourceRegion": [
+            120.5,
+            323.5,
+            526.5,
+            449.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "अलकलड़ी उरझनि दोउन की अलकलड़ोई प्यार।",
+          "sourcePage": 38,
+          "sourceRegion": [
+            120.5,
+            323.5,
+            526.5,
+            449.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "अलकलड़ी हरिप्रिया निहारति अलकलड़ो सुखसार॥",
+          "sourcePage": 38,
+          "sourceRegion": [
+            120.5,
+            323.5,
+            526.5,
+            449.0
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        38
+      ]
+    },
+    {
+      "sequence": 54,
+      "printedNumber": 54,
+      "title": "चाँपत चरन मोहन लाल।",
+      "blocks": [
+        [
+          "चाँपत चरन मोहन लाल।",
+          "पलका पौढ़ी कुँवरि राधे सुंदरी नव बाल॥"
+        ],
+        [
+          "कबहूँ कर गहि नयन मिलवत कबहूँ छुवावत भाल।",
+          "नंददास प्रभु छबि निहारत प्रीति के प्रतिपाल॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "चाँपत चरन मोहन लाल।",
+          "sourcePage": 38,
+          "sourceRegion": [
+            124.0,
+            686.5,
+            529.0,
+            811.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "पलका पौढ़ी कुँवरि राधे सुंदरी नव बाल॥",
+          "sourcePage": 38,
+          "sourceRegion": [
+            124.0,
+            686.5,
+            529.0,
+            811.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "कबहूँ कर गहि नयन मिलवत कबहूँ छुवावत भाल।",
+          "sourcePage": 38,
+          "sourceRegion": [
+            124.0,
+            686.5,
+            529.0,
+            811.5
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "नंददास प्रभु छबि निहारत प्रीति के प्रतिपाल॥",
+          "sourcePage": 38,
+          "sourceRegion": [
+            124.0,
+            686.5,
+            529.0,
+            811.5
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        38
+      ]
+    },
+    {
+      "sequence": 55,
+      "printedNumber": 55,
+      "title": "धनि धनि लाडिली के चरन।",
+      "blocks": [
+        [
+          "धनि धनि लाडिली के चरन।",
+          "अति ही मृदुल सुगंध सीतल कमल के से बरन॥"
+        ],
+        [
+          "नख चंद चारु अनूप राजत जोत जगमग करन।",
+          "कुणित नूपुर कुंज बिहरत परम कौतुक करन॥"
+        ],
+        [
+          "नंद सुत मन मोद कारी सुरत सागर तरन।",
+          "दास परमानंद छिन छिन स्याम ताकी सरन॥"
+        ]
+      ],
+      "lines": [
+        {
+          "text": "धनि धनि लाडिली के चरन।",
+          "sourcePage": 39,
+          "sourceRegion": [
+            0.0,
+            227.5,
+            506.5,
+            418.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "अति ही मृदुल सुगंध सीतल कमल के से बरन॥",
+          "sourcePage": 39,
+          "sourceRegion": [
+            0.0,
+            227.5,
+            506.5,
+            418.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "नख चंद चारु अनूप राजत जोत जगमग करन।",
+          "sourcePage": 39,
+          "sourceRegion": [
+            0.0,
+            227.5,
+            506.5,
+            418.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "कुणित नूपुर कुंज बिहरत परम कौतुक करन॥",
+          "sourcePage": 39,
+          "sourceRegion": [
+            0.0,
+            227.5,
+            506.5,
+            418.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "नंद सुत मन मोद कारी सुरत सागर तरन।",
+          "sourcePage": 39,
+          "sourceRegion": [
+            0.0,
+            227.5,
+            506.5,
+            418.0
+          ],
+          "positionPrecision": "verse-block"
+        },
+        {
+          "text": "दास परमानंद छिन छिन स्याम ताकी सरन॥",
+          "sourcePage": 39,
+          "sourceRegion": [
+            0.0,
+            227.5,
+            506.5,
+            418.0
+          ],
+          "positionPrecision": "verse-block"
+        }
+      ],
+      "sourcePages": [
+        39
+      ]
+    }
+  ]
+}

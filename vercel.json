@@ -55,6 +55,10 @@
     {
       "source": "/rkk/:id",
       "destination": "/index.html"
+    },
+    {
+      "source": "/madhupark/:id",
+      "destination": "/index.html"
     }
   ]
 }

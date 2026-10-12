@@ -1,13 +1,13 @@
 # iPhone and iPad preparation
 
-Current source: **1.0.27, build 29**, bundle ID `org.padratnakar.reader`.
+Current source: **1.0.28, build 30**, bundle ID `org.padratnakar.reader`.
 Intended owner account: `yashashwisinghania@gmail.com`. Developer enrollment/signing has not been verified by this build workflow; an email address is not an Apple Team ID.
 
 ## Last unsigned compilation verified on October 10, 2026 (1.0.8 / build 10)
 
 - Synced the current production web assets and all four Capacitor plugins into the iOS project.
 - Successfully compiled the Release configuration for a generic iOS device with signing disabled, using installed Xcode 27.0 beta (27A5194q).
-- The app includes all five offline collections and the corrected Pad Ratnakar hierarchy.
+- The app includes all six offline collections and the corrected Pad Ratnakar hierarchy.
 - Android and both iOS configurations share version 1.0.8/build 10; a regression check enforces version and bundle-ID consistency.
 - Swift package resolutions are committed for repeatable dependency selection.
 - The 1024×1024 app icon is opaque RGB. Existing light appearance, scene lifecycle, sharing plugins and file-timestamp privacy declaration remain in place.

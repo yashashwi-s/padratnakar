@@ -1,7 +1,7 @@
 # Pad Ratnakar project
 
 - Offline React/Vite reader; no production backend or API credentials.
-- The reader has five collections: Pad Ratnakar (1,565 pads), Shodash Geet (18 entries), Shri Bhaiji Jayanti Mahotsav ke Pad (18 pads), Mahabhav-Kallolini (117 pads), and Shri Radha Kripa Kataksh Hindi translation (one hymn, 19 stanzas).
+- The reader has six collections: Pad Ratnakar (1,565 pads), Shodash Geet (18 entries), Shri Bhaiji Jayanti Mahotsav ke Pad (18 pads), Mahabhav-Kallolini (117 pads), Shri Radha Kripa Kataksh Hindi translation (one hymn, 19 stanzas), and Madhupark (55 pads).
 - Use `npm ci`, `npm run dev`, and `npm run check`. The full check covers linting, JavaScript tests, corpus and print-layout JSON checks, review checks, and the production build.
 - `npm run data:rebuild` needs Python with `requirements.txt` plus Node. It is deterministic and offline. Source inputs are in `data/source/`; the entry point is `scripts/corpus/build.py`.
 - Never use old OCR as a benchmark for the user-accepted PDF font decoding. Preserve human review overrides and provenance. Do not silently rewrite devotional text.

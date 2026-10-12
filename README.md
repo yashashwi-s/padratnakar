@@ -4,11 +4,12 @@ Pad Ratnakar is an offline React/Vite reader for Hindi devotional literature. Re
 
 ## Collections
 
-The reader contains five collections:
+The reader contains six collections:
 
 | Collection                                     |            Entries |
 | ---------------------------------------------- | -----------------: |
 | _Pad Ratnakar_                                 |         1,565 pads |
+| _Madhupark_                                    |            55 pads |
 | _Shodash Geet_                                 |         18 entries |
 | _Shri Bhaiji Jayanti Mahotsav ke Pad_          |            18 pads |
 | _Mahabhav-Kallolini_                           |           117 pads |
@@ -55,6 +56,8 @@ Shodash Geet bookmarks are independent of Pad Ratnakar and appear in their own s
 All 18 Shodash recordings can be downloaded individually and replayed offline. The bottom divider is a seek bar with elapsed and total time. Playing audio follows Shodash navigation, advances through the sequence, and stops after Pushpika. Leaving the reader stops playback. Backgrounding the app pauses audio and cancels pending downloads; returning requires tapping Play. See [audio delivery and verification](docs/shodash-audio.md).
 
 Kallolini and Pad Ratnakar use the same section-sheet presentation with pad ranges. Kallolini musical headings use the canonical reader’s proportional breathing room; source line extents and indentation remain. Original sakhi drawings from its scan appear in Kallolini 8 and alternating left/right illustration columns in Pad Ratnakar 48. Both illustrated pads use straight stanza columns, natural word spacing and wider text areas. Both pages contain the same complete source PNGs at their original proportions; artwork checksums also invalidate prepared share images after a drawing changes. They load only for these pages. All collections normalize to the same 288-unit content page before adding the border; newer collections share the canonical 15-unit body-size seed, with uniform per-pad fitting where original lines need more room. RKK stanza blocks are centered with modest continuation indentation. Pinch uses a persistent contained compositor layer, and background share rasterization yields to active pinch input. The RKK collection contains only the 116 Hindi translation lines from the supplied trilingual scan, with source-page provenance. Saved, section and subsection pad lists use single-line previews with trailing ellipses; search results use the same row height across collections, measure surrounding matching words to fit the available width, and show ellipses only at omitted boundaries, and the header menu button toggles open/closed.
+
+Madhupark contains only the 55 numbered pads from the supplied scan, without the introductory or Hindi explanatory prose. Reviewed transcription and source-block locators are retained in `data/collections/madhupark/`; rebuild it with `python3 data/collections/madhupark/build.py`. It uses the common reading, search, bookmark and sharing paths.
 
 ## Native shells
 

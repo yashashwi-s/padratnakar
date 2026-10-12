@@ -1,0 +1,981 @@
+[
+  {
+    "sequence": 1,
+    "regions": [
+      {
+        "pdfPage": 1,
+        "bbox": [
+          61.0,
+          321.5,
+          579.0,
+          437.5
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 4
+      }
+    ]
+  },
+  {
+    "sequence": 2,
+    "regions": [
+      {
+        "pdfPage": 1,
+        "bbox": [
+          79.5,
+          686.5,
+          559.0,
+          808.0
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 4
+      }
+    ]
+  },
+  {
+    "sequence": 3,
+    "regions": [
+      {
+        "pdfPage": 2,
+        "bbox": [
+          79.5,
+          285.5,
+          522.0,
+          424.0
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 4
+      }
+    ]
+  },
+  {
+    "sequence": 4,
+    "regions": [
+      {
+        "pdfPage": 2,
+        "bbox": [
+          0.0,
+          687.0,
+          635.0,
+          985.0
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 6
+      }
+    ]
+  },
+  {
+    "sequence": 5,
+    "regions": [
+      {
+        "pdfPage": 3,
+        "bbox": [
+          99.5,
+          426.5,
+          544.0,
+          614.0
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 6
+      }
+    ]
+  },
+  {
+    "sequence": 6,
+    "regions": [
+      {
+        "pdfPage": 4,
+        "bbox": [
+          67.0,
+          279.5,
+          523.0,
+          482.0
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 6
+      }
+    ]
+  },
+  {
+    "sequence": 7,
+    "regions": [
+      {
+        "pdfPage": 4,
+        "bbox": [
+          84.5,
+          807.5,
+          608.5,
+          999.5
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 2
+      },
+      {
+        "pdfPage": 5,
+        "bbox": [
+          0.0,
+          0.5,
+          622.0,
+          486.5
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 4
+      }
+    ]
+  },
+  {
+    "sequence": 8,
+    "regions": [
+      {
+        "pdfPage": 5,
+        "bbox": [
+          89.5,
+          543.5,
+          534.0,
+          862.0
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 10
+      },
+      {
+        "pdfPage": 6,
+        "bbox": [
+          88.5,
+          49.5,
+          527.0,
+          261.0
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 6
+      }
+    ]
+  },
+  {
+    "sequence": 9,
+    "regions": [
+      {
+        "pdfPage": 7,
+        "bbox": [
+          90.0,
+          105.0,
+          632.0,
+          611.0
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 16
+      }
+    ]
+  },
+  {
+    "sequence": 10,
+    "regions": [
+      {
+        "pdfPage": 8,
+        "bbox": [
+          52.0,
+          388.0,
+          490.0,
+          833.0
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 14
+      }
+    ]
+  },
+  {
+    "sequence": 11,
+    "regions": [
+      {
+        "pdfPage": 9,
+        "bbox": [
+          101.5,
+          695.0,
+          542.5,
+          814.0
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 4
+      }
+    ]
+  },
+  {
+    "sequence": 12,
+    "regions": [
+      {
+        "pdfPage": 10,
+        "bbox": [
+          10.5,
+          303.5,
+          486.5,
+          442.0
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 4
+      }
+    ]
+  },
+  {
+    "sequence": 13,
+    "regions": [
+      {
+        "pdfPage": 10,
+        "bbox": [
+          30.0,
+          771.0,
+          471.0,
+          892.0
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 4
+      }
+    ]
+  },
+  {
+    "sequence": 14,
+    "regions": [
+      {
+        "pdfPage": 11,
+        "bbox": [
+          69.5,
+          331.0,
+          598.0,
+          457.0
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 4
+      }
+    ]
+  },
+  {
+    "sequence": 15,
+    "regions": [
+      {
+        "pdfPage": 11,
+        "bbox": [
+          151.0,
+          760.0,
+          519.0,
+          893.0
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 4
+      },
+      {
+        "pdfPage": 12,
+        "bbox": [
+          103.0,
+          38.0,
+          488.5,
+          194.0
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 4
+      }
+    ]
+  },
+  {
+    "sequence": 16,
+    "regions": [
+      {
+        "pdfPage": 12,
+        "bbox": [
+          125.0,
+          623.0,
+          633.5,
+          878.5
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 8
+      }
+    ]
+  },
+  {
+    "sequence": 17,
+    "regions": [
+      {
+        "pdfPage": 13,
+        "bbox": [
+          76.5,
+          389.0,
+          559.5,
+          569.0
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 6
+      }
+    ]
+  },
+  {
+    "sequence": 18,
+    "regions": [
+      {
+        "pdfPage": 14,
+        "bbox": [
+          60.5,
+          50.5,
+          518.0,
+          281.0
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 6
+      }
+    ]
+  },
+  {
+    "sequence": 19,
+    "regions": [
+      {
+        "pdfPage": 14,
+        "bbox": [
+          76.0,
+          572.5,
+          512.5,
+          761.5
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 6
+      }
+    ]
+  },
+  {
+    "sequence": 20,
+    "regions": [
+      {
+        "pdfPage": 15,
+        "bbox": [
+          81.5,
+          300.5,
+          632.0,
+          513.0
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 6
+      }
+    ]
+  },
+  {
+    "sequence": 21,
+    "regions": [
+      {
+        "pdfPage": 16,
+        "bbox": [
+          58.5,
+          14.0,
+          519.0,
+          257.0
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 6
+      }
+    ]
+  },
+  {
+    "sequence": 22,
+    "regions": [
+      {
+        "pdfPage": 16,
+        "bbox": [
+          76.0,
+          663.0,
+          509.0,
+          854.5
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 6
+      },
+      {
+        "pdfPage": 17,
+        "bbox": [
+          105.5,
+          37.5,
+          552.0,
+          109.5
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 2
+      }
+    ]
+  },
+  {
+    "sequence": 23,
+    "regions": [
+      {
+        "pdfPage": 17,
+        "bbox": [
+          98.0,
+          466.5,
+          632.5,
+          721.0
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 8
+      }
+    ]
+  },
+  {
+    "sequence": 24,
+    "regions": [
+      {
+        "pdfPage": 18,
+        "bbox": [
+          59.0,
+          301.0,
+          500.5,
+          565.5
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 8
+      }
+    ]
+  },
+  {
+    "sequence": 25,
+    "regions": [
+      {
+        "pdfPage": 19,
+        "bbox": [
+          97.5,
+          286.5,
+          629.0,
+          481.5
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 6
+      }
+    ]
+  },
+  {
+    "sequence": 26,
+    "regions": [
+      {
+        "pdfPage": 20,
+        "bbox": [
+          0.0,
+          44.0,
+          532.5,
+          285.5
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 6
+      }
+    ]
+  },
+  {
+    "sequence": 27,
+    "regions": [
+      {
+        "pdfPage": 20,
+        "bbox": [
+          66.0,
+          621.0,
+          477.5,
+          866.5
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 8
+      }
+    ]
+  },
+  {
+    "sequence": 28,
+    "regions": [
+      {
+        "pdfPage": 21,
+        "bbox": [
+          134.5,
+          508.5,
+          631.0,
+          692.5
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 6
+      }
+    ]
+  },
+  {
+    "sequence": 29,
+    "regions": [
+      {
+        "pdfPage": 22,
+        "bbox": [
+          21.5,
+          122.5,
+          558.0,
+          409.0
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 6
+      }
+    ]
+  },
+  {
+    "sequence": 30,
+    "regions": [
+      {
+        "pdfPage": 22,
+        "bbox": [
+          55.0,
+          813.0,
+          475.5,
+          913.5
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 2
+      },
+      {
+        "pdfPage": 23,
+        "bbox": [
+          96.0,
+          86.0,
+          633.5,
+          271.5
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 6
+      }
+    ]
+  },
+  {
+    "sequence": 31,
+    "regions": [
+      {
+        "pdfPage": 23,
+        "bbox": [
+          0.0,
+          678.5,
+          633.5,
+          888.0
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 6
+      },
+      {
+        "pdfPage": 24,
+        "bbox": [
+          71.0,
+          49.0,
+          447.0,
+          135.0
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 2
+      }
+    ]
+  },
+  {
+    "sequence": 32,
+    "regions": [
+      {
+        "pdfPage": 24,
+        "bbox": [
+          61.0,
+          490.5,
+          526.5,
+          621.5
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 4
+      }
+    ]
+  },
+  {
+    "sequence": 33,
+    "regions": [
+      {
+        "pdfPage": 25,
+        "bbox": [
+          56.5,
+          118.0,
+          635.5,
+          246.0
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 4
+      }
+    ]
+  },
+  {
+    "sequence": 34,
+    "regions": [
+      {
+        "pdfPage": 25,
+        "bbox": [
+          117.5,
+          580.5,
+          635.0,
+          711.5
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 4
+      }
+    ]
+  },
+  {
+    "sequence": 35,
+    "regions": [
+      {
+        "pdfPage": 26,
+        "bbox": [
+          51.0,
+          38.5,
+          497.5,
+          268.0
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 6
+      }
+    ]
+  },
+  {
+    "sequence": 36,
+    "regions": [
+      {
+        "pdfPage": 26,
+        "bbox": [
+          69.5,
+          583.5,
+          510.0,
+          862.5
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 9
+      },
+      {
+        "pdfPage": 27,
+        "bbox": [
+          107.5,
+          76.5,
+          639.0,
+          270.0
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 6
+      }
+    ]
+  },
+  {
+    "sequence": 37,
+    "regions": [
+      {
+        "pdfPage": 28,
+        "bbox": [
+          93.5,
+          107.0,
+          540.0,
+          237.5
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 4
+      }
+    ]
+  },
+  {
+    "sequence": 38,
+    "regions": [
+      {
+        "pdfPage": 28,
+        "bbox": [
+          98.5,
+          460.5,
+          539.0,
+          582.5
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 4
+      }
+    ]
+  },
+  {
+    "sequence": 39,
+    "regions": [
+      {
+        "pdfPage": 28,
+        "bbox": [
+          101.0,
+          809.0,
+          541.5,
+          865.0
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 2
+      },
+      {
+        "pdfPage": 29,
+        "bbox": [
+          111.0,
+          64.5,
+          555.0,
+          132.5
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 2
+      }
+    ]
+  },
+  {
+    "sequence": 40,
+    "regions": [
+      {
+        "pdfPage": 29,
+        "bbox": [
+          111.5,
+          372.5,
+          554.0,
+          498.0
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 4
+      }
+    ]
+  },
+  {
+    "sequence": 41,
+    "regions": [
+      {
+        "pdfPage": 29,
+        "bbox": [
+          114.0,
+          747.0,
+          555.0,
+          874.0
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 4
+      }
+    ]
+  },
+  {
+    "sequence": 42,
+    "regions": [
+      {
+        "pdfPage": 30,
+        "bbox": [
+          0.0,
+          293.5,
+          552.5,
+          477.5
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 6
+      }
+    ]
+  },
+  {
+    "sequence": 43,
+    "regions": [
+      {
+        "pdfPage": 31,
+        "bbox": [
+          110.5,
+          83.5,
+          557.0,
+          867.5
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 24
+      },
+      {
+        "pdfPage": 32,
+        "bbox": [
+          0.0,
+          59.5,
+          530.5,
+          566.0
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 16
+      }
+    ]
+  },
+  {
+    "sequence": 44,
+    "regions": [
+      {
+        "pdfPage": 33,
+        "bbox": [
+          88.0,
+          388.5,
+          528.0,
+          658.0
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 8
+      }
+    ]
+  },
+  {
+    "sequence": 45,
+    "regions": [
+      {
+        "pdfPage": 34,
+        "bbox": [
+          104.0,
+          283.5,
+          633.0,
+          408.5
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 4
+      }
+    ]
+  },
+  {
+    "sequence": 46,
+    "regions": [
+      {
+        "pdfPage": 34,
+        "bbox": [
+          83.0,
+          672.5,
+          563.0,
+          802.5
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 4
+      }
+    ]
+  },
+  {
+    "sequence": 47,
+    "regions": [
+      {
+        "pdfPage": 35,
+        "bbox": [
+          0.0,
+          281.0,
+          581.0,
+          412.0
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 4
+      }
+    ]
+  },
+  {
+    "sequence": 48,
+    "regions": [
+      {
+        "pdfPage": 35,
+        "bbox": [
+          0.0,
+          664.5,
+          576.5,
+          790.0
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 4
+      }
+    ]
+  },
+  {
+    "sequence": 49,
+    "regions": [
+      {
+        "pdfPage": 36,
+        "bbox": [
+          77.5,
+          223.0,
+          559.5,
+          345.0
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 4
+      }
+    ]
+  },
+  {
+    "sequence": 50,
+    "regions": [
+      {
+        "pdfPage": 36,
+        "bbox": [
+          79.0,
+          625.5,
+          562.5,
+          814.0
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 6
+      }
+    ]
+  },
+  {
+    "sequence": 51,
+    "regions": [
+      {
+        "pdfPage": 37,
+        "bbox": [
+          0.0,
+          348.5,
+          557.0,
+          477.5
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 4
+      }
+    ]
+  },
+  {
+    "sequence": 52,
+    "regions": [
+      {
+        "pdfPage": 37,
+        "bbox": [
+          0.0,
+          747.0,
+          520.0,
+          868.0
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 4
+      }
+    ]
+  },
+  {
+    "sequence": 53,
+    "regions": [
+      {
+        "pdfPage": 38,
+        "bbox": [
+          120.5,
+          323.5,
+          526.5,
+          449.0
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 4
+      }
+    ]
+  },
+  {
+    "sequence": 54,
+    "regions": [
+      {
+        "pdfPage": 38,
+        "bbox": [
+          124.0,
+          686.5,
+          529.0,
+          811.5
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 4
+      }
+    ]
+  },
+  {
+    "sequence": 55,
+    "regions": [
+      {
+        "pdfPage": 39,
+        "bbox": [
+          0.0,
+          227.5,
+          506.5,
+          418.0
+        ],
+        "coordinateType": "OCR locator region; not glyph geometry",
+        "lineCount": 6
+      }
+    ]
+  }
+]

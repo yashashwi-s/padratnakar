@@ -1,3 +1,4 @@
+import { madhupark, madhuparkPads, madhuparkPage } from "./madhupark.js";
 import {
   radhaKripaKataksh,
   radhaKripaKatakshPads,
@@ -21,6 +22,13 @@ function defineCollection(collection) {
 }
 
 export const readerCollections = Object.freeze({
+  madhupark: defineCollection({
+    title: madhupark.title,
+    pads: madhuparkPads,
+    page: madhuparkPage,
+    sections: [],
+    firstId: 1,
+  }),
   rkk: defineCollection({
     title: radhaKripaKataksh.title,
     pads: radhaKripaKatakshPads,
