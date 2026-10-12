@@ -241,8 +241,9 @@ for (const ending of ["touchend", "touchcancel"]) {
       [200, 300],
     ]);
     f.paint();
-    assert.equal(f.reads.length, 0);
-    assert.equal(f.writes.at(-1)[2], "translate3d(300px, 1300px, 0) scale(1)");
+    assert.deepEqual(f.reads, ["surface", "canvas", "viewport"]);
+    assert.equal(f.writes.at(-1)[2], "none");
+    assert.equal(f.resets.at(-1).top, 0);
     f.touch(ending, []);
     assert.equal(f.attributes["data-zoom"], "1");
     assert.equal(f.attributes["data-pinching"], "false");
@@ -270,3 +271,41 @@ for (const ending of ["touchend", "touchcancel"]) {
     assert.equal(f.scrolls.length, 0);
   });
 }
+
+test("zoom out and back in without lifting fingers rebases at the fitted page", () => {
+  const f = fixture();
+  f.touch("touchstart", [
+    [100, 200],
+    [200, 200],
+  ]);
+  f.touch("touchmove", [
+    [50, 200],
+    [250, 200],
+  ]);
+  f.paint();
+  f.touch("touchend", []);
+  f.touch("touchstart", [
+    [50, 200],
+    [250, 200],
+  ]);
+  f.clear();
+  f.touch("touchmove", [
+    [100, 200],
+    [200, 200],
+  ]);
+  f.paint();
+  assert.equal(f.attributes["data-zoom"], "1");
+  assert.equal(f.writes.at(-1)[2], "none");
+  assert.equal(f.element.scrollTop, 0);
+  f.clear();
+  // Same fingers, reversed direction: this is a fresh 1x anchor.
+  f.touch("touchmove", [
+    [50, 200],
+    [250, 200],
+  ]);
+  f.paint();
+  assert.equal(f.reads.length, 0);
+  assert.equal(f.writes.at(-1)[2], "translate3d(-150px, -100px, 0) scale(2)");
+  f.touch("touchend", []);
+  assert.equal(f.attributes["data-zoom"], "2");
+});

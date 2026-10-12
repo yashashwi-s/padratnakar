@@ -49,6 +49,31 @@ export function useReaderTouch(
       timer = null;
       press = null;
     };
+    const resetScroll = () => {
+      element.scrollLeft = 0;
+      element.scrollTop = 0;
+      window.scrollTo({ left: 0, top: 0, behavior: "instant" });
+    };
+    const readAnchor = (center, separation) => {
+      const rect = surface.getBoundingClientRect();
+      const base = canvas.getBoundingClientRect();
+      const visible = element.getBoundingClientRect();
+      return {
+        viewportLeft: visible.left,
+        right: visible.right,
+        visibleTop: Math.max(0, visible.top),
+        bottom: Math.min(window.innerHeight, visible.bottom),
+        dx: 0,
+        dy: 0,
+        left: base.left,
+        top: base.top,
+        center,
+        distance: separation,
+        zoom: zoom.current,
+        x: (center.x - rect.left) / zoom.current,
+        y: (center.y - rect.top) / zoom.current,
+      };
+    };
     const paint = () => {
       frame = null;
       if (pendingPan) {
@@ -60,9 +85,18 @@ export function useReaderTouch(
         window.scrollBy({ left: 0, top: y, behavior: "instant" });
       }
       if (!pending) return;
-      const { value, center, anchor } = pending;
+      const { value, center, anchor, separation } = pending;
       pending = null;
       zoom.current = value;
+      if (value === 1 && anchor.zoom > 1) {
+        // Settle the enlarged layout immediately at the fitted boundary, even
+        // if both fingers remain down. The next inward/outward movement must
+        // use the fitted page, not the old enlarged canvas and scroll offsets.
+        apply(1);
+        resetScroll();
+        pinch = readAnchor(center, separation);
+        return;
+      }
       // At fitted size a second finger must not turn the page into a movable
       // sheet. At larger sizes keep the page covering the visible viewport.
       const horizontal =
@@ -103,26 +137,8 @@ export function useReaderTouch(
       element.setAttribute("data-held", "false");
       if (event.touches.length === 2) {
         if (event.cancelable) event.preventDefault();
-        const [a, b] = event.touches,
-          center = midpoint(a, b),
-          rect = surface.getBoundingClientRect(),
-          base = canvas.getBoundingClientRect(),
-          visible = element.getBoundingClientRect();
-        pinch = {
-          viewportLeft: visible.left,
-          right: visible.right,
-          visibleTop: Math.max(0, visible.top),
-          bottom: Math.min(window.innerHeight, visible.bottom),
-          dx: 0,
-          dy: 0,
-          left: base.left,
-          top: base.top,
-          center,
-          distance: distance(a, b),
-          zoom: zoom.current,
-          x: (center.x - rect.left) / zoom.current,
-          y: (center.y - rect.top) / zoom.current,
-        };
+        const [a, b] = event.touches;
+        pinch = readAnchor(midpoint(a, b), distance(a, b));
         element.setAttribute("data-pinching", "true");
         surface.style.setProperty("will-change", "transform");
       } else if (event.touches.length === 1 && !pinch) {
@@ -153,6 +169,7 @@ export function useReaderTouch(
               : clampZoom(
                   (pinch.zoom * distance(a, b)) / Math.max(1, pinch.distance),
                 ),
+          separation: distance(a, b),
           center: midpoint(a, b),
           anchor: pinch,
         };
@@ -190,11 +207,7 @@ export function useReaderTouch(
         apply(zoom.current);
         const rect = canvas.getBoundingClientRect();
         if (zoom.current <= 1.01) {
-          element.scrollLeft = 0;
-          element.scrollTop = 0;
-          // A full reset must discard both nested scroll offsets and the
-          // enlarged document anchor. Return the frame flush to its header.
-          window.scrollTo({ left: 0, top: 0, behavior: "instant" });
+          resetScroll();
         } else {
           element.scrollBy({
             left: rect.left - anchor.left - anchor.dx,

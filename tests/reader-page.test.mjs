@@ -30,9 +30,50 @@ test("RKK uses a centered block and common 15-unit body seed with modest continu
   const page = collection.page(pad, widths);
   const lines = page.lines.filter((l) => l.role === "verse");
   const left = Math.min(...lines.map((l) => l.x));
-  const right = Math.max(...lines.map((l) => l.x + l.fitWidth));
-  assert.ok(Math.abs(left - (page.width - right)) < 1e-9);
+  const right = Math.max(...lines.map((l) => l.x + l.length));
+  assert.ok(Math.abs(left - 26 - (page.width - 2 - right)) < 1e-9);
   assert.ok(lines.every((l) => l.fontSize === 15));
   assert.equal(lines[1].x - lines[0].x, 18);
   assert.equal(lines.length, 116);
+});
+
+test("stanza collections fit the same long line at the canonical reader's width and body size", () => {
+  const canonical = fixedPrintModel(
+    {
+      id: 1,
+      headings: [],
+      verses: ["पहली पंक्ति।", "दूसरी पंक्ति॥"],
+      stanzas: [["पहली पंक्ति।", "दूसरी पंक्ति॥"]],
+    },
+    null,
+  );
+  const first = canonical.lines.find((l) => l.role === "verse");
+  for (const mode of ["jayanti", "madhupark"]) {
+    const collection = readerCollections[mode];
+    const pad = collection.pads.find(
+      (p) => p.printedNumber && !p.sectionHeading,
+    );
+    // 300 at the 18-unit measuring size is 250 at the canonical 15-unit size.
+    // It fits the canonical 260-unit room and must not shrink to the old 236.
+    const page = collection.page(
+      pad,
+      pad.verses.map(() => 300),
+    );
+    const body = page.lines.filter((l) => l.role === "verse");
+    assert.equal(body[0].x, first.x);
+    assert.equal(body[0].y, first.y);
+    assert(body.every((l) => l.fontSize === first.fontSize));
+    assert.equal(body[1].y - body[0].y, pad.stanzas[0].length === 1 ? 28 : 20);
+    const boundary = pad.stanzas[0].length;
+    if (boundary < body.length)
+      assert.equal(body[boundary].y - body[boundary - 1].y, 28);
+    const long = collection
+      .page(
+        pad,
+        pad.verses.map(() => 600),
+      )
+      .lines.filter((l) => l.role === "verse");
+    assert.equal(new Set(long.map((l) => l.fontSize)).size, 1);
+    assert(long.every((l) => l.x + l.length <= 286.001));
+  }
 });

@@ -47,7 +47,7 @@ test("Madhupark preserves the supplied scan and 55 consecutively numbered pads",
     );
     assert.equal(new Set(body.map((l) => l.fontSize)).size, 1);
     for (const line of body) {
-      assert(line.x >= 25.99 && line.x + line.length <= 262.01);
+      assert(line.x >= 25.99 && line.x + line.length <= 286.01);
       assert(line.y > 0 && line.y < page.height);
       assert(pad.sourcePages.includes(line.source.pdfPage));
     }
