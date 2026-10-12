@@ -60,6 +60,7 @@ export default defineConfig({
           /^\/data\//,
           /^\/audio\//,
           /^\/android(?:\/|$)/,
+          /^\/ios(?:\/|$)/,
           /^\/downloads\//,
         ],
         // Increase precache size limit; our main JS bundle is ~6 MB.

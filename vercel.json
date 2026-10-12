@@ -37,6 +37,10 @@
       "destination": "/android/index.html"
     },
     {
+      "source": "/ios",
+      "destination": "/ios/index.html"
+    },
+    {
       "source": "/pad/:id",
       "destination": "/index.html"
     },

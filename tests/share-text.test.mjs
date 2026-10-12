@@ -8,6 +8,8 @@ test("clipboard preserves devotional text and appends the same footer as native 
     ["shodash", 0],
     ["kallolini", 117],
     ["jayanti", 1],
+    ["rkk", 1],
+    ["madhupark", 55],
   ]) {
     const text = "प्रथम पंक्ति।\nदूसरी पंक्ति॥";
     assert.equal(
@@ -21,7 +23,7 @@ test("clipboard preserves devotional text and appends the same footer as native 
     );
     assert.ok(
       shareFooter(mode, id).endsWith(
-        "पद रत्नाकर: https://padratnakar.vercel.app",
+        "Download App:\niOS - https://padratnakar.vercel.app/ios\nAndroid - https://padratnakar.vercel.app/android",
       ),
     );
   }

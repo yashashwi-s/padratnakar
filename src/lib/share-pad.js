@@ -1,3 +1,4 @@
+import { captureShareText, drawShareText } from "./share-canvas.js";
 import { routePath } from "./collection-routes.js";
 import { readerBorderMarkup } from "./reader-borders.js";
 import { loadReaderFont } from "./reader-font.js";
@@ -12,13 +13,13 @@ export function shareLink(mode, id) {
 }
 
 export function shareFooter(mode, id) {
-  return `${shareLink(mode, id)}\nपद रत्नाकर: ${SITE_ORIGIN}`;
+  return `${shareLink(mode, id)}\n\nDownload App:\niOS - ${SITE_ORIGIN}/ios\nAndroid - ${SITE_ORIGIN}/android`;
 }
 export function copiedPadText(text, mode, id) {
   return `${text}\n\n${shareFooter(mode, id)}`;
 }
 export function warmShareResources() {
-  return Promise.all([loadReaderFont(), embeddedFont()]);
+  return loadReaderFont();
 }
 
 function asDataUrl(blob) {
@@ -29,21 +30,6 @@ function asDataUrl(blob) {
     reader.readAsDataURL(blob);
   });
 }
-let font;
-async function embeddedFont() {
-  font ||= fetch("/fonts/NotoSerifDevanagari.ttf")
-    .then((response) => {
-      if (!response.ok) throw new Error("Font could not load");
-      return response.blob();
-    })
-    .then(asDataUrl)
-    .catch((error) => {
-      font = null;
-      throw error;
-    });
-  return font;
-}
-
 /** Export the same positioned Unicode SVG, including footnotes, into one full-pad PNG. */
 export async function padImage(svg, work = {}) {
   // Native prewarming can finish loading its font/image while the user starts
@@ -71,7 +57,9 @@ export async function padImage(svg, work = {}) {
   await yieldForInteraction();
   await loadReaderFont();
   await yieldForInteraction();
+  const textRuns = captureShareText(svg);
   const clone = svg.cloneNode(true);
+  clone.querySelectorAll(".print-line").forEach((line) => line.remove());
   const { x, y, width, height } = svg.viewBox.baseVal;
   const totalHeight = Math.min(
     height,
@@ -96,17 +84,6 @@ export async function padImage(svg, work = {}) {
     "style",
     "font-family:PadExport; font-weight:700; fill:black; background:white",
   );
-  const original = svg.querySelectorAll(".print-line");
-  const copies = clone.querySelectorAll(".print-line");
-  original.forEach((element, i) => {
-    copies[i].style.fontWeight = getComputedStyle(element).fontWeight;
-    copies[i].style.whiteSpace = "pre";
-  });
-  await document.fonts.ready;
-  const fontData = await embeddedFont();
-  const style = document.createElementNS(ns, "style");
-  style.textContent = `@font-face{font-family:PadExport;src:url(${fontData}) format('truetype');font-weight:100 900}`;
-  clone.prepend(style);
   const background = document.createElementNS(ns, "rect");
   for (const [key, value] of Object.entries({
     x,
@@ -137,13 +114,14 @@ export async function padImage(svg, work = {}) {
     context.fillStyle = "white";
     context.fillRect(0, 0, canvas.width, canvas.height);
     context.drawImage(image, 0, 0, canvas.width, canvas.height);
-    return await new Promise((resolve, reject) =>
-      canvas.toBlob(
-        (blob) =>
-          blob ? resolve(blob) : reject(new Error("Image export failed")),
-        "image/png",
-      ),
-    );
+    context.save();
+    context.scale(scale, scale);
+    context.translate(-x, -y);
+    drawShareText(context, textRuns);
+    context.restore();
+    // WebView can defer toBlob's idle encoder until another input arrives.
+    // Encode the bounded canvas now; no idle callback or extra tap is needed.
+    return canvas.toDataURL("image/png");
   } finally {
     URL.revokeObjectURL(url);
   }
@@ -172,7 +150,9 @@ export function preparePadShare(svg, key, options) {
     .then(async (blob) => {
       let uri = null;
       if (Capacitor.isNativePlatform()) {
-        const data = (await asDataUrl(blob)).split(",")[1];
+        const data = (
+          typeof blob === "string" ? blob : await asDataUrl(blob)
+        ).split(",")[1];
         const saved = await Filesystem.writeFile({
           path: `shared/pad-ratnakar-${key}.png`,
           data,

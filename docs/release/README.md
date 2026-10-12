@@ -1,6 +1,6 @@
 # Native release workflow
 
-Current candidate: **1.0.31 / version code 33**, package `org.padratnakar.reader`. See [UPLOAD-FIRST.md](UPLOAD-FIRST.md) for the owner handoff. Release binaries and signing material are intentionally outside Git.
+Current candidate: **1.0.32 / version code 34**, package `org.padratnakar.reader`. See [UPLOAD-FIRST.md](UPLOAD-FIRST.md) for the owner handoff. Release binaries and signing material are intentionally outside Git.
 
 ## Build and verify
 
@@ -40,8 +40,8 @@ The intended upload account is `yashashwisinghania@gmail.com`. See [Console work
 
 ## iPhone preparation
 
-The iPhone/iPad project uses the same six offline collections and corrected section hierarchy. Its source version is 1.0.31, build 33. See [the iOS build and account handoff](ios.md) for unsigned compilation, remaining device checks, and signing after enrollment. The intended owner account is `yashashwisinghania@gmail.com`; the email is not an Apple Team ID.
+The iPhone/iPad project uses the same six offline collections and corrected section hierarchy. Its source version is 1.0.32, build 34. See [the iOS build and account handoff](ios.md) for unsigned compilation, remaining device checks, and signing after enrollment. The intended owner account is `yashashwisinghania@gmail.com`; the email is not an Apple Team ID.
 
 ## Public Android download
 
-`public/android/index.html` is served at `/android`. After signing, copy the current APK to `public/downloads/pad-ratnakar-latest.apk`, update the HTML version, and push both with the release. Vercel serves it as an attachment with revalidation; service-worker navigation fallback excludes the download page and APK path. Native builds remove `downloads/` to avoid bundling the APK inside itself. No database or account is required for visitors.
+`public/android/index.html` is served at `/android`. After signing, copy the current APK to `public/downloads/pad-ratnakar-latest.apk`, update the HTML version, and push both with the release. Vercel serves it as an attachment with revalidation; service-worker navigation fallback excludes the download page and APK path. Native builds remove `downloads/` to avoid bundling the APK inside itself. No database or account is required for visitors. `/ios` serves the matching coming-soon page. Image sharing, web sharing and copied text append the canonical pad link followed by both platform pages.
