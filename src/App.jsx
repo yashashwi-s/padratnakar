@@ -1110,7 +1110,7 @@ export default function App() {
                               ? padPreview(byId.get(id))
                               : collection.mode === "shodash"
                                 ? collectionPreview(shodash.items[id])
-                                : collectionBookmark(value).pad.title
+                                : padPreview(collectionBookmark(value).pad)
                           }
                           onClick={() => go(collection.mode, id)}
                         />
