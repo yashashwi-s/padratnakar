@@ -1,4 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { bindAudioScreenAwake } from "../lib/audio/screen-awake";
+import { acquireAudioScreen } from "../lib/audio/screen-awake-platform";
 import Icon from "./Icon";
 import { App as NativeApp } from "@capacitor/app";
 import { Capacitor } from "@capacitor/core";
@@ -41,6 +43,11 @@ export default function AudioTransport({ id, onAdvance, onNotice }) {
       document,
       Capacitor.isNativePlatform() ? NativeApp : null,
     );
+    const unbindScreen = bindAudioScreenAwake(
+      player,
+      document,
+      acquireAudioScreen,
+    );
     let disposed = false;
     const observed = {};
     audioAvailability(tracks)
@@ -67,6 +74,7 @@ export default function AudioTransport({ id, onAdvance, onNotice }) {
     });
     return () => {
       disposed = true;
+      unbindScreen();
       unbindLifecycle();
       unsubscribe();
       player.dispose();

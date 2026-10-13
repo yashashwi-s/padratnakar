@@ -339,6 +339,10 @@ export default function App() {
     );
   });
 
+  function toggleMenu() {
+    if (view === "menu" || view === "collections") history.back();
+    else showView("menu");
+  }
   function showView(next, section = null) {
     slider.reset();
     if (view === next && next !== "section") return;
@@ -646,10 +650,8 @@ export default function App() {
           <button
             className="header-action"
             aria-label="संग्रह खोलें"
-            aria-expanded={view === "menu"}
-            onClick={() =>
-              view === "menu" ? history.back() : showView("menu")
-            }
+            aria-expanded={view === "menu" || view === "collections"}
+            onClick={toggleMenu}
           >
             <Icon name="menu" />
           </button>
@@ -797,10 +799,7 @@ export default function App() {
               >
                 <Icon name="left" />
               </button>
-              <button
-                aria-label="संग्रह देखें"
-                onClick={() => showView("collections")}
-              >
+              <button aria-label="संग्रह देखें" onClick={toggleMenu}>
                 <Icon name="flower" />
               </button>
               <button
