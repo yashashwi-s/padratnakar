@@ -1,9 +1,9 @@
-# Release handoff — 1.0.8 (version code 10)
+# Release handoff — 1.0.34 (version code 36)
 
 ## Distribution files
 
-- `pad-ratnakar-1.0.8.apk`: signed Android release for external distribution.
-- `pad-ratnakar-1.0.8.aab`: signed Play bundle.
+- `pad-ratnakar-1.0.34.apk`: signed Android release for external distribution.
+- `pad-ratnakar-1.0.34.aab`: signed Play bundle.
 - `signing-certificate.pem`: public certificate only.
 - `SHA256SUMS.txt`: artifact hashes.
 - `RELEASE.md`: build/source record and verification limits.
@@ -12,7 +12,7 @@ Files are produced outside Git; use the actual release packet and verify its has
 
 ## What changed
 
-Corrected the Pad Ratnakar contents hierarchy to 19 main sections and 22 subsections, with 517 classification changes. Section and subsection lists now show pad ranges. Accepted devotional text, footnotes, review provenance and source-positioned layout are unchanged. The rebuild and regression tests enforce agreement between the hierarchy, catalog, reader and search.
+The first native Share tap waits for lazy page preparation, shows immediate feedback, and fits text without waiting for WebView animation frames. Android audio now streams directly to persistent storage on a native worker, with incremental size/SHA-256 verification, cancellation, network timeouts and a fallback host. Existing downloaded recordings remain available. Accepted devotional text and positioned page layout are unchanged.
 
 ## Owner steps before Play submission
 

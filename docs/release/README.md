@@ -1,11 +1,11 @@
 # Native release workflow
 
-Current candidate: **1.0.33 / version code 35**, package `org.padratnakar.reader`. See [UPLOAD-FIRST.md](UPLOAD-FIRST.md) for the owner handoff. Release binaries and signing material are intentionally outside Git.
+Current candidate: **1.0.34 / version code 36**, package `org.padratnakar.reader`. See [UPLOAD-FIRST.md](UPLOAD-FIRST.md) for the owner handoff. Release binaries and signing material are intentionally outside Git.
 
 ## Build and verify
 
 1. Run `npm ci` on a clean checkout, then `npm run check`.
-2. Run `npm run build -- --mode native` and then `npx cap sync android`. The native build excludes downloadable Shodash MP3s; push the audio assets to GitHub first so the native audio URLs are available. See [audio delivery](../shodash-audio.md).
+2. Run `npm run build -- --mode native` and then `npx cap sync android`. The native build excludes downloadable Shodash MP3s; publish the audio assets on the website and GitHub first so the native audio URLs are available. See [audio delivery](../shodash-audio.md).
 3. With Java 21 and the Android SDK configured locally, run `./gradlew assembleRelease bundleRelease` from `android/`.
 4. Run `python3 scripts/release/sign.py --private-dir <existing-private-signing-directory> --output <release-directory>`. Supply `JAVA_HOME` and `ANDROID_HOME` through the local environment; never commit machine paths or secrets. Do not use `--create-key` for an existing app.
 5. The script signs/verifies APK and AAB, exports a public certificate, and writes `SHA256SUMS.txt`. Confirm package/version, certificate continuity with the previous external APK, and that the latest web/worker/font/layout assets are packaged.
@@ -29,6 +29,7 @@ Keep the existing signing identity for compatible external updates. If Play dist
 - Search (Hindi, Latin, mixed script, numbers), worker initialization, bookmarks and persistence.
 - Rapid swipes, pinch/pan, vertical scrolling, navigation while zoomed, large device text.
 - Back/exit dialog, Cancel, repeated Back, copy and native image/caption sharing.
+- First Share tap immediately after opening a pad (including illustrated pages), with no second tap; cancel and repeat sharing. Slow-network audio download, cancellation, host failure and offline replay of existing and newly downloaded recordings.
 - Installed PWA update and offline behavior on Android/iOS browsers separately from native Android.
 - Store account, publisher identity, content rights, support/privacy hosting, app-content declarations and any account-specific testing requirements remain owner/Console steps. No publishing is implied by a signed build.
 
@@ -40,7 +41,7 @@ The intended upload account is `yashashwisinghania@gmail.com`. See [Console work
 
 ## iPhone preparation
 
-The iPhone/iPad project uses the same six offline collections and corrected section hierarchy. Its source version is 1.0.33, build 35. See [the iOS build and account handoff](ios.md) for unsigned compilation, remaining device checks, and signing after enrollment. The intended owner account is `yashashwisinghania@gmail.com`; the email is not an Apple Team ID.
+The iPhone/iPad project uses the same six offline collections and corrected section hierarchy. Its source version is 1.0.34, build 36. See [the iOS build and account handoff](ios.md) for unsigned compilation, remaining device checks, and signing after enrollment. The intended owner account is `yashashwisinghania@gmail.com`; the email is not an Apple Team ID.
 
 ## Public Android download
 

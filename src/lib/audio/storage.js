@@ -1,5 +1,6 @@
 import { Capacitor } from "@capacitor/core";
 import { Directory, Filesystem } from "@capacitor/filesystem";
+import { downloadAndroidAudio } from "./native-download.js";
 
 const origin =
   "https://raw.githubusercontent.com/yashashwi-s/padratnakar/main/public";
@@ -71,6 +72,9 @@ export async function audioSource(
     if (cached) return blobSource(await cached.blob());
   }
   if (!download) return null;
+  signal.throwIfAborted();
+  if (Capacitor.getPlatform() === "android")
+    return downloadAndroidAudio(track, { signal, onProgress });
   const response = await fetch(url, { signal });
   if (!response.ok) throw new Error("Audio download failed");
   let bytes;

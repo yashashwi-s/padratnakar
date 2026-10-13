@@ -1256,3 +1256,24 @@ body {
 .reading-toolbar .save-action {
   margin-left: 0;
 }
+.reading-toolbar .toolbar-action[aria-busy="true"] {
+  opacity: 1;
+}
+.share-spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #ead6da;
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: share-spin 0.8s linear infinite;
+}
+@keyframes share-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .share-spinner {
+    animation: none;
+  }
+}

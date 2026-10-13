@@ -9,6 +9,7 @@ public class MainActivity extends BridgeActivity {
     public void onCreate(Bundle savedInstanceState) {
         registerPlugin(AudioVolumePlugin.class);
         registerPlugin(AudioScreenPlugin.class);
+        registerPlugin(AudioDownloadPlugin.class);
         super.onCreate(savedInstanceState);
         getBridge().getWebView().setOverScrollMode(View.OVER_SCROLL_NEVER);
     }

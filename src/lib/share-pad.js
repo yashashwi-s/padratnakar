@@ -2,6 +2,8 @@ import { captureShareText, drawShareText } from "./share-canvas.js";
 import { routePath } from "./collection-routes.js";
 import { readerBorderMarkup } from "./reader-borders.js";
 import { loadReaderFont } from "./reader-font.js";
+import { fitReaderText } from "./fit-reader-text.js";
+import { waitForShareLayout } from "./share-layout.js";
 import { Capacitor } from "@capacitor/core";
 import { Share } from "@capacitor/share";
 import { Filesystem, Directory } from "@capacitor/filesystem";
@@ -190,13 +192,13 @@ export async function sharePad(svg, mode, id) {
   }
 
   // Native Android/iOS: keep existing image share behavior.
+  if (svg.dataset.shareReady !== "true") await waitForShareLayout(svg);
   await loadReaderFont();
-  // Let font measurements and heading fitting commit before capturing the SVG.
-  await new Promise((resolve) =>
-    requestAnimationFrame(() => requestAnimationFrame(resolve)),
-  );
   if (!svg.isConnected || svg.dataset.shareReady !== "true")
     throw new Error("Reader layout is not ready");
+  // Flush the actual fitting work instead of waiting for two WebView frames.
+  // A cold share must complete even if rendering is idle until the next touch.
+  fitReaderText(svg.querySelectorAll("[data-fit-size]"));
   const picture = await preparePadShare(svg, `${mode}-${id}`);
   const text = shareFooter(mode, id);
   await Share.share({

@@ -306,6 +306,7 @@ export default function App() {
     return () => clearTimeout(timer);
   }, [notice]);
   const [sharing, setSharing] = useState(false);
+  const sharePending = useRef(false);
   const [exitOpen, setExitOpen] = useState(false);
   const swipeStart = useRef(null);
   const queryInputRef = useRef(null);
@@ -580,12 +581,13 @@ export default function App() {
     return () => window.removeEventListener("keydown", escape);
   }, [view]);
   async function shareCurrentPad() {
-    if (sharing) return;
+    if (sharePending.current) return;
     const svg = document.querySelector('[data-current="true"] .print-page');
-    if (!svg || svg.dataset.layout !== "source") {
+    if (!svg) {
       setNotice("The pad is still loading. Please try again.");
       return;
     }
+    sharePending.current = true;
     setSharing(true);
     try {
       const result = await sharePad(svg, route.mode, route.id);
@@ -595,6 +597,7 @@ export default function App() {
       if (error?.name !== "AbortError" && !/cancel/i.test(error?.message || ""))
         setNotice("Could not share. Please try again.");
     } finally {
+      sharePending.current = false;
       setSharing(false);
     }
   }
@@ -722,7 +725,11 @@ export default function App() {
                   aria-busy={sharing}
                   onClick={shareCurrentPad}
                 >
-                  <Icon name="share" />
+                  {sharing ? (
+                    <span className="share-spinner" aria-hidden="true" />
+                  ) : (
+                    <Icon name="share" />
+                  )}
                 </button>
                 <button
                   className={`toolbar-action save-action ${saved ? "is-saved" : ""}`}
