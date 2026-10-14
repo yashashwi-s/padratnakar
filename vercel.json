@@ -33,6 +33,14 @@
   ],
   "rewrites": [
     {
+      "source": "/support",
+      "destination": "/support/index.html"
+    },
+    {
+      "source": "/privacy",
+      "destination": "/privacy/index.html"
+    },
+    {
       "source": "/android",
       "destination": "/android/index.html"
     },

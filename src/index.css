@@ -21,6 +21,17 @@
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
+.collection-help {
+  padding: 28px 24px;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+.collection-help a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
 * {
   box-sizing: border-box;
 }

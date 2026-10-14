@@ -1177,6 +1177,23 @@ export default function App() {
               </div>
             ))}
           </div>
+          <footer className="collection-help">
+            <a
+              href="https://padratnakar.vercel.app/support"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              सहायता
+            </a>
+            <span aria-hidden="true"> · </span>
+            <a
+              href="https://padratnakar.vercel.app/privacy"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              गोपनीयता नीति
+            </a>
+          </footer>
         </main>
       )}
       <div

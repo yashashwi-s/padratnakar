@@ -1,0 +1,16 @@
+* { box-sizing: border-box; }
+body { margin: 0; background: #f4efe4; color: #28241e; font-family: system-ui, sans-serif; line-height: 1.75; }
+main { max-width: 760px; margin: auto; padding: 20px 24px 40px; }
+.language-switch { display: flex; justify-content: flex-end; gap: 8px; margin-bottom: 24px; }
+[hidden] { display: none !important; }
+.language-switch button { font: inherit; min-height: 44px; padding: 6px 16px; border: 1px solid #72664f; border-radius: 8px; background: white; color: #28241e; cursor: pointer; }
+.language-switch button[aria-pressed="true"] { background: #42543c; color: white; border-color: #42543c; }
+.brand img { display: block; width: 128px; height: auto; margin: 0 auto 28px; }
+article { background: white; border: 1px solid #dfd7c8; border-radius: 16px; padding: 28px; }
+h1 { font-size: 1.8rem; margin: 0 0 12px; line-height: 1.4; }
+h2 { font-size: 1.15rem; margin: 28px 0 8px; }
+p { margin: 10px 0; }
+a { color: #42543c; overflow-wrap: anywhere; }
+:focus-visible { outline: 3px solid #a77b43; outline-offset: 4px; }
+footer { margin-top: 24px; text-align: center; }
+@media (max-width: 400px) { main { padding-inline: 16px; } article { padding: 20px; } }

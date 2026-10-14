@@ -4,6 +4,24 @@ import { VitePWA } from "vite-plugin-pwa";
 import { rm } from "node:fs/promises";
 import { resolve } from "node:path";
 
+// Match the public information routes used by Vercel during local previews too.
+function informationPages() {
+  const configure = (server) => {
+    server.middlewares.use((request, _response, next) => {
+      const url = new URL(request.url, "http://localhost");
+      if (/^\/(support|privacy)\/?$/.test(url.pathname)) {
+        request.url = `${url.pathname.replace(/\/$/, "")}/index.html${url.search}`;
+      }
+      next();
+    });
+  };
+  return {
+    name: "information-pages",
+    configureServer: configure,
+    configurePreviewServer: configure,
+  };
+}
+
 function nativeAudioExclusion() {
   let config;
   return {
@@ -30,6 +48,7 @@ function nativeAudioExclusion() {
 export default defineConfig({
   plugins: [
     react(),
+    informationPages(),
     nativeAudioExclusion(),
     VitePWA({
       // Write the service worker to sw.js at the root of the output.
@@ -61,6 +80,8 @@ export default defineConfig({
           /^\/audio\//,
           /^\/android(?:\/|$)/,
           /^\/ios(?:\/|$)/,
+          /^\/support(?:\/|$)/,
+          /^\/privacy(?:\/|$)/,
           /^\/downloads\//,
         ],
         // Increase precache size limit; our main JS bundle is ~6 MB.
