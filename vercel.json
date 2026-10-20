@@ -45,10 +45,6 @@
       "destination": "/android/index.html"
     },
     {
-      "source": "/ios",
-      "destination": "/ios/index.html"
-    },
-    {
       "source": "/pad/:id",
       "destination": "/index.html"
     },
@@ -94,6 +90,21 @@
     }
   ],
   "redirects": [
+    {
+      "source": "/ios",
+      "destination": "https://apps.apple.com/app/pad-ratnakar/id6822623828",
+      "permanent": true
+    },
+    {
+      "source": "/ios/",
+      "destination": "https://apps.apple.com/app/pad-ratnakar/id6822623828",
+      "permanent": true
+    },
+    {
+      "source": "/ios/index.html",
+      "destination": "https://apps.apple.com/app/pad-ratnakar/id6822623828",
+      "permanent": true
+    },
     {
       "source": "/pad/:id",
       "destination": "/pad-ratnakar/:id",
